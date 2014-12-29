@@ -60,3 +60,11 @@
 .learn-more a {
   color: #00b0ff;
 }
+.position {
+  font-size: 15px;
+  font-weight: bold;
+}
+.location {
+  font-style: italic;
+  font-size: 13px;
+}

@@ -1,6 +1,6 @@
 //Width and height
 var w = 1200;
-var h = 780;
+var h = 650;
 
 //array of colors to be used in chloropleth
 var colors = d3.scale.category20c();
@@ -109,7 +109,7 @@ function makeMap(error,ZCTAs, DSAs){
 		   		//randomly assign colors to DSAs from the color scale
 		   		return colors(Math.round(Math.random()*20));
 		   	})
-			.style("stroke-width", "1.5px")
+			.style("stroke-width", "1.25px")
 			.style("opacity", 0.95)
 		   //.on("mouseover", function(d) {
 				//	d3.select(this)

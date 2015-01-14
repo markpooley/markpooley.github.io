@@ -31,12 +31,20 @@ var zoom = d3.behavior.zoom()
 var path = d3.geo.path()
 	.projection(projection);
 
+
+//tooltip
+var toolTip = d3.select('body').append('div')
+	.style('position','absolute') //setting up of styling of tooltip
+	.style('padding','0 10px')
+	.style('background', 'white')
+	.style('opacity', 0) //set opacity to zero so it doesn't show up on initial loading
+
 //Create SVG element
 var svg = d3.select("body")
-			.append("svg")
-			.attr("width", w)
-			.attr("height", h)
-			.call(zoom);
+	.append("svg")
+	.attr("width", w)
+	.attr("height", h);
+
 
 //create a tool tip that will be invisble at page load
 var toolTip = d3.select('body').append('div')
@@ -63,25 +71,31 @@ function makeMap(error,ZCTAs, DSAs){
 		   	.append("path")
 		   	.attr("d", path)
 		   	.attr("class","ZCTAs")
-		   	.attr('fill', function(){
-		   		//randomly assign colors to DSAs from the color scale
-		   		return colors(Math.round(Math.random()*20));
-		   	})
+		 	.attr("fill", 'gray')
 		   	.style("stroke-width","0.5px")
-		   	.style("opacity", 0.95)
-		    .on("mouseover", function(d) {
-					var xPos = parseFloat(d3.select(this).attr("x"))
-					var yPos = parseFloat(d3.select(this).attr("y"))
-					d3.select("#tooltip")
-						.style("left", xPos + "px")
-						.style("top", yPos + "px")
-						.select("#value")
-						.text(d);
-					d3.select("#tooltip").classed("hidden", false);
-			})
-			.on("mouseout", function(){
-				d3.select("#tooltip").classed("hidden", true);
-			});
+		   	.style("opacity", 0.95);
+			//.on('mouseover', function(d){
+			//	toolTip.transition()
+			//		.style('opacity', 0.9)
+			//	toolTip.html(d) //the data of each element created by the html
+			//		.style('left',(d3.event.pageX - 20) + 'px') //find x position of mouse pointer
+			//		.style('top',(d3.event.pageY - 30) + 'px') //find y position of mouse pointer
+//
+			//	tempColor = this.style.fill;
+			//	d3.select(this)
+			//		.transition()
+			//		.style('opacity', .5)
+			//		.style('fill', 'blue')
+			//})
+			//.on('mouseout', function(d){
+			//	toolTip.transition()
+			//		.style('opacity', 0) //make tooltip go away when mouse out
+			//	d3.select(this)
+			//		.transition()
+			//		.style('opacity', 1)
+			//		.style('fill', tempColor) //set color back
+			//});
+
 
 
 		var DSAs = svg.append('g').attr("id","DSAs")
@@ -91,7 +105,10 @@ function makeMap(error,ZCTAs, DSAs){
 			.append("path")
 			.attr("d", path)
 			.attr("class","DSAs")
-			.attr("fill", 'gray')
+			.attr('fill', function(){
+		   		//randomly assign colors to DSAs from the color scale
+		   		return colors(Math.round(Math.random()*20));
+		   	})
 			.style("stroke-width", "1.5px")
 			.style("opacity", 0.95)
 		   //.on("mouseover", function(d) {
@@ -121,7 +138,7 @@ function makeMap(error,ZCTAs, DSAs){
 
 };
 function zoomed() {
-  features.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-  features.select(".ZCTAs").style("stroke-width", 0.5 / d3.event.scale + "px");
-  features.select(".DSAs").style("stroke-width", 1.5 / d3.event.scale + "px");
+  g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  g.select(".ZCTAs").style("stroke-width", 0.5 / d3.event.scale + "px");
+  g.select(".DSAs").style("stroke-width", 1.5 / d3.event.scale + "px");
 }

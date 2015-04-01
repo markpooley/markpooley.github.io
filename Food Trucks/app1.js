@@ -55,7 +55,7 @@ var toolTip = d3.select('body').append('div')
 
 
 queue()
-	.defer(d3.json, "EligibleARea.json")
+	.defer(d3.json, "EligibleArea.json")
 	.defer(d3.json, "restaurants.json")
 	.await(makeMap);
 
@@ -66,7 +66,7 @@ function makeMap(error,ZCTAs, DSAs){
 
 	var Areas = svg.append('g').attr("id","EligibleArea")
 			.selectAll("path")
-		   	.data(json.feature(EligibleArea, EligibleArea.objects.collection).features)//generate features from topoJSON
+		   	.data(d3.json.feature(EligibleArea, EligibleArea.objects.collection).features)//generate features from topoJSON
 		   	.enter()
 		   	.append("path")
 		   	.attr("d", path)

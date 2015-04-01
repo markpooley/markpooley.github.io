@@ -20,14 +20,10 @@
              <li><a href="#" class="button">Link 4</a></li>
             </ul>
           </div>
-          <h1>Blog <small>This is my blog. It's awesome.</small></h1>
+          <h1>Blog <small>About stuff, other stuff, and such.</small></h1>
           <hr/>
         </div>
       </div>
-
-
-
-
 
 
       <div class="row">
@@ -37,22 +33,27 @@
 
           <article>
 
-            <h3><a href="#">Blog Post Title</a></h3>
-            <h6>Written by <a href="#">John Smith</a> on August 12, 2012.</h6>
+            <h3><a href="#">Evaluating the New Iowa City Food Truck Ordinance</a></h3>
+            <h6>Written by <a href="#">Mark Pooley</a> on April 1, 2015.</h6>
 
             <div class="row">
               <div class="large-6 columns">
-                <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa.</p>
-                <p>Boudin aliqua adipisicing rump corned beef. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+                <p>Iowa City is slated to expand food truck operations through a new city ordinance that will
+                hopefully be adopted (<a href="http://www.dailyiowan.com/2015/03/30/Metro/41524.html">story</a>). But, the question is where can food trucks operate safely given these new guidlines? </p>
+                <p>First, I found a mostly <a href="http://www.iowacitymenus.com/">comprehensive list</a> of restaurants in Iowa City since foodtrucks are prohibited from operating within 150 feet of a
+                restaurant. This list doesn't include KFC, McDonalds, or similar type estblishments.</p>
+
               </div>
               <div class="large-6 columns">
                 <img src="http://placehold.it/400x240&text=[img]"/>
               </div>
             </div>
-
-            <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
-
-            <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+            <p>Addresses are needed for the geocoding of these locations, which can be obtained using
+            python and the <a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">Beautifulsoup</a> package to parse the html and write relevant information to a csv.</p>
+            <p><pre><code>code will go here</code></pre></p>
+            <p>With a csv of addresses (only a few of which required manual cleaning) I could use the Google
+            Geocoding API nicely housed within <a href"https://github.com/DenisCarriere/geocoder">Denis Carriere's geocoder module</a> to obtain long/lat coordinates of each location.</p>
+            <p><pre><code>more code examples will go here</code></pre></p>
 
           </article>
 

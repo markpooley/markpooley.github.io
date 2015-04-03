@@ -1,38 +1,65 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mark Pooley: Resume</title>
+    <link rel="stylesheet" href="stylesheets/app.css" />
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation/foundation.js"></script>
+    <script src="js/foundation/foundation.accordion.js"></script>
+  </head> 
+
+ <body>
       <div class="row">
-        <div class="large-3 columns">
-          <h1><img src="http://placehold.it/400x100&text=Logo"/></h1>
-        </div>
-        <div class="large-9 columns">
-          <ul class="inline-list right">
-            <li><a href="#">Section 1</a></li>
-            <li><a href="#">Section 2</a></li>
-            <li><a href="#">Section 3</a></li>
-            <li><a href="#">Section 4</a></li>
+        <div class="large-12 columns">
+          <ul class="button-group">
+            <li><a href="index.html" class="button left">Home</a></li>
+            <li><a href="Blog.html" class="button right">Blog</a></li>
+            <li><a href="Resume1.html" class="button right">Resume</a></li>
+            <li><a href="DSA Web\Index.html" class="button right">Projects</a></li>
           </ul>
         </div>
       </div>
+         
       
-       
-      
-      
-      <div class="row">    
+           <div class="row">    
         
          
          
         <div class="large-9 push-3 columns">
           
-          <h3>Page Title <small>Page subtitle</small></h3>
-          
-          <p>Bacon ipsum dolor sit amet salami ham hock biltong ball tip drumstick sirloin pancetta meatball short loin. Venison tail chuck pork chop, andouille ball tip beef ribs flank boudin bacon. Salami andouille pork belly short ribs flank cow. Salami sirloin turkey kielbasa. Sausage venison pork loin leberkas chuck short loin, cow ham prosciutto pastrami jowl. Ham hock jerky tri-tip, fatback hamburger shoulder swine pancetta ground round. Tri-tip prosciutto meatball turkey, brisket spare ribs shankle chuck cow chicken ham hock boudin meatloaf jowl.</p>
-     
-          <p>Ground round pastrami pork loin tenderloin jerky. Jerky spare ribs biltong, ham hock ham capicola pork. Jerky turducken pork, meatloaf sausage capicola swine corned beef turkey short loin. Tongue prosciutto pork loin, ground round spare ribs venison kielbasa strip steak.</p>
-     
-          <p>Hamburger bresaola turkey t-bone, leberkas salami pork chop ham hock beef ribs. Rump biltong meatball venison, short ribs pork loin shank shankle corned beef beef. Cow salami jowl short loin hamburger fatback. Short ribs pork belly shoulder pastrami drumstick salami corned beef ham hock bresaola. Swine filet mignon cow sausage ball tip. Cow ribeye ground round, sausage pork loin pig beef ball tip turkey boudin.</p>
-     
-          <p>Prosciutto ball tip filet mignon andouille frankfurter chicken rump sausage meatball. Filet mignon meatloaf ground round andouille ham hock pork. Bresaola short loin meatball chuck hamburger pig. Turkey venison chuck, tongue fatback tail swine jerky corned beef shank kielbasa prosciutto ribeye ham tri-tip. Rump bacon pork belly meatloaf shoulder short loin meatball kielbasa pork loin tongue bresaola brisket corned beef jowl prosciutto. Beef ribs shankle short ribs pork belly corned beef fatback pork chop tongue biltong boudin strip steak sirloin meatloaf pancetta.</p>
-                
+          <ul class="accordion" data-accordion>
+           <li class="accordion-navigation">
+             <a href="#panel1a">Research Associate - University of Iowa Public Policy Center (08/2014 - Present)</a>
+             <div id="panel1a" class="content active">
+                <ul>
+                  <li>Utilized python and ArcPy libraries to geocode 100K addresses of providers in health workforce databases to connect health claims data and determine distance of each claim to stated provider.</li>
+                  <li>Developed algorithmic and flexible python script using ArcPy libraries for dental service area analysis of Delta Dental workforce and health claims data that will be used for future dental service area creation and evaluation.</li>
+                  <li>Experience developing interactive data visualizations of health workforce and health connections using JavaScript and D3 libraries.</li>
+                </ul>
+             </div> 
+           </li>
+           <li class="accordion-navigation active">
+             <a href="#panel2a" aria-expanded ="false">Research Assistant - University of Iowa Public Policy Center (10/2013 - 08/2014)</a>
+             <div id="panel2a" class="content">
+                <ul>
+                  <li>Provided geographic analysis support through python scripting for dental hygiene workforce assessment. </li>
+                  <li>Utilized python and ArcPy for analysis of health workforce claims and dental workforce assessment.</li>
+                  <li>Provided spatial data support and analysis in working with IT staff in <a href="https://www.dentistry.uiowa.edu/oipo-map">website development</a> aimed to assist dental school students in determining practice location choice.</li>
+                </ul>
+             </div>
+           </li>
+           <li class="accordion-navigation active">
+             <a href="#panel3a" aria-expanded="false">Adjunct Faculty - Kirkwood Community College (01/2014 - Present)</a>
+             <div id="panel3a" class="content">
+               Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut   labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut   aliquip ex ea commodo consequat.
+             </div>
+           </li>
+          </ul>
         </div>
-        
+  
         
          
          
@@ -74,3 +101,5 @@
           </div>
         </div> 
       </footer>
+ </body>     
+

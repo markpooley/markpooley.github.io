@@ -39,6 +39,9 @@ article .left {
 article .right {
 	padding: 0 0 1em 1em;
 }
+.toppadding {
+	padding-top: 1em;
+}
 .topspace {
 	padding-top: 3em;
 }

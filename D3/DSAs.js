@@ -55,8 +55,8 @@ var toolTip = d3.select('body').append('div')
 
 
 queue()
-	.defer(d3.json, "DSA_Data/ZCTAs.topojson")
-	.defer(d3.json, "DSA_Data/DSA40pct.topojson")
+	.defer(d3.json, "DSA_data/ZCTAs.topojson")
+	.defer(d3.json, "DSA_data/DSA40pct.topojson")
 	.await(makeMap);
 
 

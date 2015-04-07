@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    	<title>Mark Pooley</title>
+    	<link rel="stylesheet" href="stylesheets/app.css"/>
+    	<link rel="stylesheet" href="stylesheets/custom.css"/>
+    	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alegreya+Sans">
+    	<script src="bower_components/modernizr/modernizr.js"></script>
+
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://d3js.org/topojson.v1.min.js"></script>
+		<style type="text/css">
+			path {
+				stroke-width: 1px;
+				stroke: white;
+			}
+			.subunit-label {
+			  fill: #777;
+			  fill-opacity: .5;
+			  font-size: 20px;
+			  font-weight: 300;
+			  text-anchor: middle;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="top-bar" data-topbar>
+		     <ul class="title-area">
+		       <li class="name"></li>
+		       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+		     </ul>
+		     <section class="top-bar-section">
+		       <ul class="right">
+		         <li class=><a href="#">Home</a></li>
+		         <li class="has-dropdown"><a href="#">Projects</a>
+		           <ul class="dropdown">
+		             <li><a href="#">Iowa City Food Trucks</a></li>
+		             <li class="active"><a href="DSA Web\DentalServiceAreas.html">Dental Service Areas</a></li>
+		           </ul>
+		         </li>
+		         <li><a href="#">Resume</a></li>
+		         <li><a href="#">Contact</a></li>
+		       </ul>
+		     </section>
+	   </nav>
+		<div bgcolor='#022925' class="container">
+		    <h2>Dental Service Areas</h2>
+		    <p><strong>Mouse over the DSAs to reveal the ZCTAS comprising each service area.</strong></p>
+		    <div margin:auto id="map">
+
+		</div>
+		  </div>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/foundation/js/foundation.min.js"></script>
+	<script src="js/app.js"></script>
+  	<script src="_/d3.min.js"></script>
+  	<script src="http://d3js.org/queue.v1.min.js"></script>
+  	<script src="app1.js"></script>
+  	<script>$(document).foundation();</script>
+	</body>
+</html>

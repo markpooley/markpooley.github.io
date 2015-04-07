@@ -1,5 +1,5 @@
 //Width and height
-var w = 1200;
+var w = 1000;
 var h = 650;
 
 //array of colors to be used in chloropleth
@@ -40,14 +40,14 @@ var toolTip = d3.select('body').append('div')
 	.style('opacity', 0) //set opacity to zero so it doesn't show up on initial loading
 
 //Create SVG element
-var svg = d3.select("body")
+var svg = d3.select("#map")
 	.append("svg")
 	.attr("width", w)
 	.attr("height", h);
 
 
 //create a tool tip that will be invisble at page load
-var toolTip = d3.select('body').append('div')
+var toolTip = d3.select('#map').append('div')
 	.style('position', 'absolute')
 	.style('padding', '0 10 px')
 	.style('background', 'white')
@@ -80,8 +80,7 @@ function makeMap(error,ZCTAs, DSAs){
 			//	toolTip.html(d) //the data of each element created by the html
 			//		.style('left',(d3.event.pageX - 20) + 'px') //find x position of mouse pointer
 			//		.style('top',(d3.event.pageY - 30) + 'px') //find y position of mouse pointer
-//
-			//	tempColor = this.style.fill;
+			//tempColor = this.style.fill;
 			//	d3.select(this)
 			//		.transition()
 			//		.style('opacity', .5)

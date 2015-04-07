@@ -1,6 +1,6 @@
 //Width and height
-var w = 1000;
-var h = 650;
+var width = 800;
+var height = 650;
 
 //array of colors to be used in chloropleth
 var colors = d3.scale.category20c();
@@ -13,11 +13,11 @@ var tempColor;
 var maxZoomIn = 4,
 	maxZoomOut = 1;
 
-//define projections
+//Map projection
 var projection = d3.geo.mercator()
-	.center([-93.38987619865907,41.957378893855285])
-	.scale([8000])
-	.translate([w/2,h/2]);
+    .scale(99508.0166324613)
+    .center([-91.62715340944857,41.674729206640485]) //projection center
+    .translate([width/2,height/2]) //translate to center the map in view
 
 //zoom behavior
 var zoom = d3.behavior.zoom()
@@ -39,105 +39,49 @@ var toolTip = d3.select('body').append('div')
 	.style('background', 'white')
 	.style('opacity', 0) //set opacity to zero so it doesn't show up on initial loading
 
-//Create SVG element
-var svg = d3.select("#map")
-	.append("svg")
-	.attr("width", w)
-	.attr("height", h);
+//Create an SVG
+var svg = d3.select("#map").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+//Generate paths based on projection
+var path = d3.geo.path()
+    .projection(projection);
 
 
-//create a tool tip that will be invisble at page load
-var toolTip = d3.select('#map').append('div')
-	.style('position', 'absolute')
-	.style('padding', '0 10 px')
-	.style('background', 'white')
-	.style('opacity', 0)
+//Group for the map features
+var features = svg.append("g")
+    .attr("class","features");
 
+//Create zoom/pan listener
+//Change [1,Infinity] to adjust the min/max zoom scale
+var zoom = d3.behavior.zoom()
+    .scaleExtent([1, Infinity])
+    .on("zoom",zoomed);
 
-queue()
-	.defer(d3.json, "FoodTrucks_data/Employment.topojson")
-	//.defer(d3.json, "DSA_data/DSA40pct.topojson")
-	.await(makeMap);
+svg.call(zoom);
 
+d3.json("FoodTrucks_data/ProhibitedArea.geojson",function(error,geodata) {
+  if (error) return console.log(error); //unknown error, check the console
 
-function makeMap(error,ZCTAs, DSAs){
+  //Create a path for each map feature in the data
+  features.selectAll("path")
+    .data(geodata.features)
+    .enter()
+    .append("path")
+    .attr("d",path)
+    .on("click",clicked);
 
-			//Bind data and create one path per GeoJSON feature
+});
 
-	var ZCTAs = svg.append('g').attr("id","Emp")
-			.selectAll("path")
-		   	.data(topojson.feature(Emp, Emp.objects.collection).features)//generate features from topoJSON
-		   	.enter()
-		   	.append("path")
-		   	.attr("d", path)
-		   	.attr("class","ZCTAs")
-		 	.attr("fill", 'gray')
-		   	.style("stroke-width","0.5px")
-		   	.style("opacity", 0.95);
-			//.on('mouseover', function(d){
-			//	toolTip.transition()
-			//		.style('opacity', 0.9)
-			//	toolTip.html(d) //the data of each element created by the html
-			//		.style('left',(d3.event.pageX - 20) + 'px') //find x position of mouse pointer
-			//		.style('top',(d3.event.pageY - 30) + 'px') //find y position of mouse pointer
-			//tempColor = this.style.fill;
-			//	d3.select(this)
-			//		.transition()
-			//		.style('opacity', .5)
-			//		.style('fill', 'blue')
-			//})
-			//.on('mouseout', function(d){
-			//	toolTip.transition()
-			//		.style('opacity', 0) //make tooltip go away when mouse out
-			//	d3.select(this)
-			//		.transition()
-			//		.style('opacity', 1)
-			//		.style('fill', tempColor) //set color back
-			//});
+// Add optional onClick events for features here
+// d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
+function clicked(d,i) {
 
+}
 
-
-		//var DSAs = svg.append('g').attr("id","DSAs")
-		//	.selectAll("path")
-		//	.data(topojson.feature(DSAs, DSAs.objects.collection).features)
-		//	.enter()
-		//	.append("path")
-		//	.attr("d", path)
-		//	.attr("class","DSAs")
-		//	.attr('fill', function(){
-		//   		//randomly assign colors to DSAs from the color scale
-		//   		return colors(Math.round(Math.random()*20));
-		//   	})
-		//	.style("stroke-width", "1.25px")
-		//	.style("opacity", 0.95)
-		//   //.on("mouseover", function(d) {
-		//		//	d3.select(this)
-		//		//		.attr("fill", "gray");
-		//	//create mouse over event
-		//	.on('mouseover', function(d){
-		//		toolTip.transition()
-		//			.style('opacity', 0.9)
-		//		//store color temporarily
-//
-		//		tempColor = this.style.fill
-		//		d3.select(this)
-		//			.transition()
-		//			.style('opacity', 0.0)
-		//			//.style('fill', 'yellow')
-//
-		//		})
-		//	.on('mouseout', function(d){
-		//		toolTip.transition()
-		//			.style('opacity', 0)
-		//		d3.select(this)
-		//			.transition()
-		//			.style('opacity', 0.95)
-		//			.style('fill', tempColor) //restore original color using tempcolor variable
-		//	});
-
-};
+//Update map on zoom/pan
 function zoomed() {
-  g.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-  g.select(".Emp").style("stroke-width", 0.5 / d3.event.scale + "px");
-  //g.select(".DSAs").style("stroke-width", 1.5 / d3.event.scale + "px");
+  features.attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")")
+      .selectAll("path").style("stroke-width", 1 / zoom.scale() + "px" );
 }

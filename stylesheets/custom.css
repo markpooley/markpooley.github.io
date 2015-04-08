@@ -22,7 +22,7 @@ header h2 {
 	font-style: normal;
 }
 .bottomspace {
-	margin-bottom: 2em;
+	margin-bottom: 1em;
 }
 h1, h2, h3, h4, h5, h6 {
 	color: #0b090c;
@@ -61,6 +61,10 @@ footer p {
 }
 
 a.small {
+	font-size: .75em
+}
+
+div.LegText {
 	font-size: .75em
 }
 /* D3 stylings*/

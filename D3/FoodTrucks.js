@@ -78,15 +78,15 @@ function makeMap(error, Emp, OpArea){
 	   	.attr("class","Emp")
 	 	.attr("fill", function(d){
 	 		if (d.properties.Classes <= 3) {
-	 			color = '#2C4081'
+	 			color = '#2892C7'
 	 		} else if (d.properties.Classes == 4){
-	 			color = '#4869d6'
+	 			color = '#A0C29B'
 	 		} else if (d.properties.Classes == 5){
-	 			color = '#BF9330'
+	 			color = '#FAFA64'
 	 		} else if (d.properties.Classes == 6){
-	 			color = '#A67200'
+	 			color = '#FA8D34'
 	 		} else {
-	 			color = '#A60C00'
+	 			color = '#E81014'
 	 		}
 	 		return color
 	 	})
@@ -100,12 +100,22 @@ function makeMap(error, Emp, OpArea){
 	   	.append("path")
 	   	.attr("d", path)
 	   	.attr("class","OpArea")
-	 	.attr("fill", '#594665')
+	 	.attr("fill", 'rgb(78,78,78)')
 	   	.style("stroke-width","0.5px")
 	   	.style("opacity", 0.85);
 
 
 };
+// var legenedRectSize = 18;
+// var legendSpacing = 4;
+//
+// var legend = svg.seelctaAll('legend')
+//	.data(color.domain())
+//	.enter()
+//	.append('g')
+//	.attr('class','legend')
+//	.attr('transform',function(d,i))
+//
 
 function clicked(d,i) {
 }

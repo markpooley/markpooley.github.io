@@ -10,7 +10,7 @@ var colors = d3.scale.category20c();
 var tempColor;
 
 //zoom behavior
-var maxZoomIn = 4,
+var maxZoomIn = 6,
 	maxZoomOut = 1;
 
 //Map projection
@@ -68,8 +68,10 @@ queue()
 	.await(makeMap);
 
 function makeMap(error, Emp, OpArea){
+	var group = svg.append('g')
+		.attr('id','mapzoom')
 
-	var Emp = svg.append('g').attr("id","Emp")
+	var Emp = group.append('g').attr("id","Emp")
 		.selectAll("path")
 	   	.data(topojson.feature(Emp, Emp.objects.collection).features)//generate features from topoJSON
 	   	.enter()
@@ -93,7 +95,7 @@ function makeMap(error, Emp, OpArea){
 	   	.style("stroke-width","0.5px")
 	   	.style("opacity", 0.70);
 
-	var OpArea = svg.append('g').attr("id","OpArea")
+	var OpArea = group.append('g').attr("id","OpArea")
 		.selectAll("path")
 	   	.data(topojson.feature(OpArea, OpArea.objects.collection).features)//generate features from topoJSON
 	   	.enter()
@@ -106,22 +108,12 @@ function makeMap(error, Emp, OpArea){
 
 
 };
-// var legenedRectSize = 18;
-// var legendSpacing = 4;
-//
-// var legend = svg.seelctaAll('legend')
-//	.data(color.domain())
-//	.enter()
-//	.append('g')
-//	.attr('class','legend')
-//	.attr('transform',function(d,i))
-//
 
 function clicked(d,i) {
 }
 
 //Update map on zoom/pan
 function zoomed() {
-  features.attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")")
+ d3.select('#mapzoom').attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")")
       .selectAll("path").style("stroke-width", 1 / zoom.scale() + "px" );
 }

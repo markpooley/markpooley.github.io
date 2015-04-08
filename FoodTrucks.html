@@ -60,23 +60,57 @@
         <div class="large-12 columns " style="background-color: rgba(250,141,52,0.70);">
           <div class="text-center" style="color: rgb(72,72,72)">151 - 500</div>
         </div>
-        <div class="large-12 columns " style="background-color: rgba(232,16,20,0.70);">
+        <div class="large-12 columns bottomspace" style="background-color: rgba(232,16,20,0.70);">
           <div class="text-center" style="color: rgb(72,72,72)">500+</div>
         </div>
-          <!--li class="th"><svg width="50" height="50"><rect width="50" height="50" style="fill:rgba(24,64,129,0.70)" data-tooltip aria-haspopup="true" class="has-tip" title="Employment Density < 20 sq/mi"></rect></svg></li-->
-	   	</div>
+         <h5 class="text-center"><a href="#process">Learn more</a></h5>
+       	</div>
 	   	<div class="large-10 columns" id="map" data-equalizer-watch></div>
    </div>
 
+   <div class="row">
+    <div class="large-12 columns text-center" id="process"><h3>Here's how it was done</h3>
+    </div>
+    <div class="large-12 columns">
+      <ul class="tabs" data-tab role="tablist">
+       <li class="tab-title active" role="presentational"><a href="#Data1" role="tab" tabindex="0" aria-selected="true" controls="Data1">Obtaining the Data</a></li>
+       <li class="tab-title" role="presentational"><a href="#Data2" role="tab" tabindex="0" aria-selected="true" controls="Data2">Processing the Data</a></li>
+       <li class="tab-title" role="presentational"><a href="#Data3" role="tab" tabindex="0" aria-selected="true" controls="Data3">Spatial Analysis of Data</a></li>
+      </ul>
+      <div class="tabs-content">
+        <section role="tabpanel" aria-hidden="false" class="content active" id="Data1">
+          <h3> Finding data to get the proces started</h3><hr>
+          <p>Iowa City is slated to expand food truck operations through a new city ordinance that will
+          hopefully be adopted (<a href="http://www.dailyiowan.com/2015/03/30/Metro/41524.html">story</a>).But, the question is where can food trucks operate safely given these new guidlines? </p>
+          <p>First, a directory/list of restaurants in Iowa City was needed (<a href="http://www.iowacitymenus.com/">Found here</a>),since foodtrucks are prohibited from operating within 150 feet of a restaurant. This list doesn't include KFC, McDonalds, or similar type estblishments.</p>
+          <p>City boundary files were also needed to geofence the analysis to Iowa City (University Heights was included as well). A Statewide of shapefile of incorporated cities can be found <a href="https://programs.iowadnr.gov/nrgislibx/">here</a>. Using a simple query, Iowa City and University heights can be pulled out of the data.</p>
+          <p><a href="Images/OnTheMap.png"><img src="Images/OnTheMapTh.png" class="th left"></a>Finally, employment data can help inform where food trucks can optimally locate over the lunch hours. Nicely formatted data can be pulled within a geofenced area using <a href="http://onthemap.ces.census.gov/">OnTheMap</a></p>
+        </section>
+        <section role="tabpanel" aria-hidden="true" class="content" id="Data2">
+          <h3>Editing and pulling relevant data</h3><hr>
+          <p>Addresses are needed for the geocoding of these locations, which can be obtained using     python and the <a href="https://pypi.python.org/pypi/beautifulsoup4/4.3.2">Beautifulsoup</a> package to parse the html and write relevant information to a csv.</p>
+          <p><pre><code>code will go here</code></pre></p>
+          <p>With a csv of addresses (only a few of which required manual cleaning) I could use the Google Geocoding API nicely housed within <a href="https://github.com/DenisCarriere/geocoder">Denis Carriere's geocoder module</a> to obtain long/lat coordinates of each location.</p>
+          <p><pre><code>more code examples will go here</code></pre></p>
+        </section>
+        <section role="tabpanel1" aria-hidden="true" class="content" id="Data3">
+          <h3>Spatial analysis of the data</h3><hr>
+          <p><a href="http://www.ESRI.com">ESRI ArcMap</a> was utilized to do the heavy lifting for analyzing the spatial data. The majority of the hang up was the fact that Iowa City lacks an overlay of zoning layers. Invidiual parcels are available with a zoning classificaiton, but this was less than ideal (for reaons that will become apparent shortly)</p>
+        </section>
 
-	<footer class="row">
+      </div>
+
+    </div>
+   </div>
+
+  <footer class="row">
 	<div class="large-12 columns text-center">
 	  <p>Iowa City • IA</p>
 	  <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
 	    <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
 	</div>
 	</footer>
-
+    <script src="bower_components/foundation/js/foundation/foundation.magellan.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>

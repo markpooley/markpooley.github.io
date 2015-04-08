@@ -59,3 +59,18 @@ footer {
 footer p {
 	font-size: 0.8em;
 }
+
+a.small {
+	font-size: .75em
+}
+/* D3 stylings*/
+
+div.tooltip {
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-weight: bold;
+  padding: 4px 8px;
+  display: none;
+}

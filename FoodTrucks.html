@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="stylesheets/app.css"/>
     <link rel="stylesheet" href="stylesheets/custom.css"/>
     <script src="bower_components/modernizr/modernizr.js"></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
   </head>
   <body>
     <nav class="top-bar" data-topbar>
@@ -23,7 +26,7 @@
               <li><a href="DentalServiceAreas.html">Dental Service Areas</a></li>
             </ul>
           </li>
-          <li><a href="#">Resume</a></li>
+          <li><a href="#">Link</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </section>
@@ -39,7 +42,20 @@
   	</div>
   	<div class="row" data-equalizer>
 	   	<div class="large-2 columns panel" data-equalizer-watch>
-	   		<p>Here's some content that might need to be put in to this side bar to explain what is going on</p>
+
+	   		<h5 class="text-center">Legend</h5>
+        <ul>
+          <li class="th"><svg width="50" height="50"><rect width="50" height="50" style="fill:gray" data-tooltip aria-haspopup="true" class="has-tip" title="Prohibited areas of operation"></rect></svg></li>
+        </ul>
+        <h6 class="text-center">Employment</h6>
+        <ul>
+          <li class="th"><svg width="50" height="50"><rect width="50" height="50" style="fill:#2C4081" data-tooltip aria-haspopup="true" class="has-tip" title="Employment Density < 20 sq/mi"></rect></svg></li>
+          <li class="th"><svg width="50" height="50"><rect width="50" height="50" style="fill:#4869d6" data-tooltip aria-haspopup="true" class="has-tip" title="Employment Density 21 - 50 sq/mi"></rect></svg></li>
+          <li class="th"><svg width="50" height="50"><rect width="50" height="50" style="fill:#BF9330" data-tooltip aria-haspopup="true" class="has-tip" title="Employment Density 51 - 150 sq/mi"></rect></svg></li>
+          <li class="th"><svg width="50" height="50"><rect width="50" height="50" style="fill:#A67200" data-tooltip aria-haspopup="true" class="has-tip" title="Employment Density 151 - 500 sq/mi"></rect></svg></li>
+          <li class="th"><svg width="50" height="50"><rect width="50" height="50" style="fill:#A60C00" data-tooltip aria-haspopup="true" class="has-tip" title="Employment Density > 500 sq/mi"></rect></svg></li>
+
+        </ul>
 	   	</div>
 	   	<div class="large-10 columns" id="map" data-equalizer-watch></div>
    </div>
@@ -58,6 +74,7 @@
     <script src="js/app.js"></script>
     <script src="D3\src_code\d3.min.js"></script>
   	<script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
   	<script src="D3\FoodTrucks.js"></script>
     <script>
       $(document).foundation();

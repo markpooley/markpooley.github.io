@@ -15,8 +15,8 @@ var maxZoomIn = 4,
 
 //Map projection
 var projection = d3.geo.mercator()
-    .scale(99508.0166324613)
-    .center([-91.62715340944857,41.674729206640485]) //projection center
+    .scale(297838.7704891906)
+    .center([-91.53614830925925,41.65676282716673]) //projection center
     .translate([width/2,height/2]) //translate to center the map in view
 
 //zoom behavior
@@ -33,51 +33,81 @@ var path = d3.geo.path()
 
 
 //tooltip
-var toolTip = d3.select('body').append('div')
+var toolTip = d3.select('#map').append('div')
 	.style('position','absolute') //setting up of styling of tooltip
 	.style('padding','0 10px')
 	.style('background', 'white')
 	.style('opacity', 0) //set opacity to zero so it doesn't show up on initial loading
 
-//Create an SVG
+//Create an SVG and append to #map div
 var svg = d3.select("#map").append("svg")
     .attr("width", width)
     .attr("height", height);
 
 //Generate paths based on projection
-var path = d3.geo.path()
-    .projection(projection);
+var path = d3.geo.path().projection(projection);
 
 
 //Group for the map features
 var features = svg.append("g")
     .attr("class","features");
 
+//Create choropleth scale
+var color = d3.scale.quantize()
+    .domain([2,7])
+    .range(d3.range(6).map(function(i) { return "q" + i + "-6"; }));
+
 //Create zoom/pan listener
-//Change [1,Infinity] to adjust the min/max zoom scale
-var zoom = d3.behavior.zoom()
-    .scaleExtent([1, Infinity])
-    .on("zoom",zoomed);
+var zoom = d3.behavior.zoom().scaleExtent([1, 4]).on("zoom",zoomed);
 
 svg.call(zoom);
 
-d3.json("FoodTrucks_data/ProhibitedArea.geojson",function(error,geodata) {
-  if (error) return console.log(error); //unknown error, check the console
+queue()
+	.defer(d3.json, "FoodTrucks_data/Employment.topojson")
+	.defer(d3.json, "FoodTrucks_data/OpArea.topojson")
+	.await(makeMap);
 
-  //Create a path for each map feature in the data
-  features.selectAll("path")
-    .data(geodata.features)
-    .enter()
-    .append("path")
-    .attr("d",path)
-    .on("click",clicked);
+function makeMap(error, Emp, OpArea){
 
-});
+	var Emp = svg.append('g').attr("id","Emp")
+		.selectAll("path")
+	   	.data(topojson.feature(Emp, Emp.objects.collection).features)//generate features from topoJSON
+	   	.enter()
+	   	.append("path")
+	   	.attr("d", path)
+	   	.attr("class","Emp")
+	 	.attr("fill", function(d){
+	 		if (d.properties.Classes <= 3) {
+	 			color = '#2C4081'
+	 		} else if (d.properties.Classes == 4){
+	 			color = '#4869d6'
+	 		} else if (d.properties.Classes == 5){
+	 			color = '#BF9330'
+	 		} else if (d.properties.Classes == 6){
+	 			color = '#A67200'
+	 		} else {
+	 			color = '#A60C00'
+	 		}
+	 		return color
+	 	})
+	   	.style("stroke-width","0.5px")
+	   	.style("opacity", 0.70);
 
-// Add optional onClick events for features here
-// d.properties contains the attributes (e.g. d.properties.name, d.properties.population)
+	var OpArea = svg.append('g').attr("id","OpArea")
+		.selectAll("path")
+	   	.data(topojson.feature(OpArea, OpArea.objects.collection).features)//generate features from topoJSON
+	   	.enter()
+	   	.append("path")
+	   	.attr("d", path)
+	   	.attr("class","OpArea")
+	 	.attr("fill", '#594665')
+	   	.style("stroke-width","0.5px")
+	   	.style("opacity", 0.85);
+
+
+};
+
 function clicked(d,i) {
-
 }
 
 //Update map on zoom/pan

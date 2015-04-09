@@ -2,9 +2,6 @@
 var width = 800;
 var height = 650;
 
-//array of colors to be used in chloropleth
-var colors = d3.scale.category20c();
-
 
 //temporary empty color that will be used for mouseover and mouseout events
 var tempColor;
@@ -13,7 +10,7 @@ var tempColor;
 var maxZoomIn = 6,
 	maxZoomOut = 1;
 
-//Map projection
+//Define the map projection
 var projection = d3.geo.mercator()
     .scale(297838.7704891906)
     .center([-91.53614830925925,41.65676282716673]) //projection center
@@ -27,17 +24,9 @@ var zoom = d3.behavior.zoom()
   .on("zoom", zoomed);
 
 
-//Define default path generator
+//Define path generator
 var path = d3.geo.path()
 	.projection(projection);
-
-
-//tooltip
-var toolTip = d3.select('#map').append('div')
-	.style('position','absolute') //setting up of styling of tooltip
-	.style('padding','0 10px')
-	.style('background', 'white')
-	.style('opacity', 0) //set opacity to zero so it doesn't show up on initial loading
 
 //Create an SVG and append to #map div
 var svg = d3.select("#map").append("svg")
@@ -52,22 +41,21 @@ var path = d3.geo.path().projection(projection);
 var features = svg.append("g")
     .attr("class","features");
 
-//Create choropleth scale
-var color = d3.scale.quantize()
-    .domain([2,7])
-    .range(d3.range(6).map(function(i) { return "q" + i + "-6"; }));
-
 //Create zoom/pan listener
 var zoom = d3.behavior.zoom().scaleExtent([1, 4]).on("zoom",zoomed);
 
 svg.call(zoom);
 
+//queue data so it loads better
 queue()
 	.defer(d3.json, "FoodTrucks_data/Employment.topojson")
 	.defer(d3.json, "FoodTrucks_data/OpArea.topojson")
 	.await(makeMap);
 
+//D3 callback for generating the actualy map features and appending them to the features goup
 function makeMap(error, Emp, OpArea){
+
+	//group variable to zoom behavior works correctly
 	var group = svg.append('g')
 		.attr('id','mapzoom')
 
@@ -105,12 +93,7 @@ function makeMap(error, Emp, OpArea){
 	 	.attr("fill", 'rgb(78,78,78)')
 	   	.style("stroke-width","0.5px")
 	   	.style("opacity", 0.85);
-
-
 };
-
-function clicked(d,i) {
-}
 
 //Update map on zoom/pan
 function zoomed() {

@@ -1,13 +1,5 @@
 /* custom CSS styles */
 
-.button {
-	background-color: #5F2D8C;
-	border-color: #462065;
-	color: white;
-}
-.button:hover, .button:focus {
-	background-color: #462065;
-}
 header h2 {
 	font-weight: normal;
 	padding-top: 1em;
@@ -28,8 +20,12 @@ h1, h2, h3, h4, h5, h6 {
 	color: #0b090c;
 	font-family: 'Alegreya Sans', sans-serif;
 }
-
-/* chapter 3 styling challenge */
+.small p {
+	font-size: 0.60em;
+}
+.thpadding {
+	padding: 1em 1em 1em 1em;
+}
 article {
 	padding-bottom: 2em;
 }
@@ -61,7 +57,7 @@ footer p {
 }
 
 a.small, p.small {
-	font-size: .5em
+	font-size: .65em;
 }
 
 div.LegText {

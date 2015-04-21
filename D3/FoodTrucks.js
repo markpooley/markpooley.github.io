@@ -1,5 +1,5 @@
 //Width and height
-var aspect = 1.8;
+var aspect = 1.5;
 var width = $("#map").width();
 var height = width/ aspect;
 

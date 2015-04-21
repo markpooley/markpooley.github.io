@@ -1,6 +1,7 @@
 //Width and height
-var width = 800;
-var height = 650;
+var aspect = 1.8;
+var width = $("#map").width();
+var height = width/ aspect;
 
 
 //temporary empty color that will be used for mouseover and mouseout events

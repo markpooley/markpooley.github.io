@@ -1,5 +1,5 @@
 //Width and height
-var aspect = 1.3;
+var aspect = 1.4;
 var width = $("#map").width();
 var height = width/ aspect;
 
@@ -8,7 +8,7 @@ var height = width/ aspect;
 var tempColor;
 
 //zoom behavior
-var maxZoomIn = 6,
+var maxZoomIn = 8,
 	maxZoomOut = 1;
 
 //Define the map projection

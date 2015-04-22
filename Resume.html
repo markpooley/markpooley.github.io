@@ -1,63 +1,211 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		    <!--link rel="stylesheet" href="ResumeStyleSheet.css"-->
-		    <link rel="stylesheet" href="/dist/css/bootstrap.css">
-    		<link rel="stylesheet" href="main.css">
-    		<title>Resume</title>
-	</head>
-	<body>
-    </div>
-		<div id="header">
-			<p id="name">Mark Pooley</p>
-			<a href="mailto:mawwwk@gmail.com"><p id="email">mawwwk@gmail.com</p></a>
-		</div>
-		<div class="left"></div>
-		<div class="right">
-			<h4>Experience</h4>
-			<p class="position">Research Associate</p>
-			<p class="location">University of Iowa Public Policy Center, Iowa City, IA</p>
-			<p class="location">August 2014 - Present</p>
-			<ul>
-				<li>Utilized python and ArcPy libraries to geocode 100K addresses of providers in health workforce databases to connect health claims data and determine distance of each claim to stated provider./li>
-				<li>Developed algorithmic and flexible python script using ArcPy libraries for dental service area analysis of Delta Dental workforce and health claims data that will be used for future dental service area creation and evaluation.</li>
-				<li>Experience developing interactive data visualizations of health workforce and health connections using JavaScript and D3 libraries.</li>
-			</ul>
-			<p class="position">Research Assistant</p>
-			<p class="location">University of Iowa Public Policy Center, Iowa City, IA 			October 2013 - August 2014</p>
-			<ul>
-				<li>Provided geographic analysis support through python scripting for dental hygiene workforce assessment. </li>
-				<li>Utilized python and ArcPy for analysis of health workforce claims and dental workforce assessment.</li>
-				<li>Provided spatial data support and analysis in working with IT staff in <a href="https://www.dentistry.uiowa.edu/oipo-map">website development</a> aimed to assist dental school students in determining practice location choice.</li>
-			</ul>
-			<p class="position">Adjunct Faculty</p>
-			<p class="location">Kirkwood Comunity College, Iowa City, IA 		  				January 2014 - present</p>
-			<ul>
-				<li>Created lesson plans, syllabi, homework assignments, and tests for Environmental Science class.</li>
-				<li>Worked with students to establish mutually agreed upon course expectations.</li>
-				<li>Provided assignments and study materials through online system to help facilitate student success.</li>
-			</ul>
-			<p class="position">Research Assistant</p>
-			<p class="location">Injury Prevention Center, Iowa City,IA 							July 2013 - August 2014</p>
-			<ul>
-				<li>Assisted study coordination, including participant recruitment, follow-up, and data collection.</li>
-				<li>Provided database management services in connection with video, GPS, and GIS data collected from study participants.</li>
-				<li>Created scripts in python using ArcPy libraries for importing, management, and analysis of geographic data collected during study.</li>
-			</ul>
-			<p class="position">Graduate Research Assistant</p>
-			<p class="location">University of Iowa Public Policy Center, Iowa City, IA 			August 2011 - May 2013</p>
-			<ul>
-				<li>Modeled urban population growth and migration within Santiago’s 30-year growth boundary.</li>
-				<li>Developed bicycle facility analysis tool using Python and ArcPy libraries to assign prescribed bicycle facilities, determine space availability, and estimate costs.</li>
-			</ul>
-			<h4>Skills</h4>
-			<p>Languages: JavaScript, Python, HTML, CSS</p>
-			<h4>Education</h4>
-			<p>BS, Biology, Mount Mercy University - 2007</p>
-			<p>MS, Urban and Regional Planning, University of Iowa - 2013</p>
-			</div>
-		<div id="footer">
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mark Pooley: Resume</title>
+    <link rel="stylesheet" href="stylesheets/app.css"/>
+    <link rel="stylesheet" href="stylesheets/custom.css"/>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+  </head>
 
-		</div>
-	</body>
-</html>
+ <body>
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="name"></li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="right">
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown"><a href="#">Projects</a>
+          <ul class="dropdown">
+            <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+            <li><a href="DentalServiceAreas.html">Dental Service Areas</a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="Resume.html">Resume</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </section>
+  </nav>
+
+  <header class="row toppadding">
+  </header>
+
+  <div class="row">
+    <div class="magellan-container large-12 columns" data-magellan-expedition="fixed">
+      <dl class="sub-nav">
+        <dd data-magellan-arrival="Education"><a href="#Education">Education</a></dd>
+        <dd data-magellan-arrival="WorkHistory"><a href="#WorkHistory">Work History</a></dd>
+        <dd data-magellan-arrival="Skills"><a href="#Skills">Skills</a></dd>
+      </dl>
+    </div>
+
+    <!--Education-->
+    <hr>
+    <div class="large-12 columns panel" name="Education">
+      <h3 class ="text-center" data-magellan-destination="Education" id="Education">Education</h3>
+    </div>
+    <div class="large-12 columns">
+      <ul>
+        <li>BS, Biology, <a href="https://www.mtmercy.edu/">Mount Mercy Univesity</a> - 2007
+          <ul>
+            <li>Minor in Chemistry</li>
+            <li><a href="http://www.nols.edu/courses/spring-semester-in-patagonia/">National Outdoor Leadership School</a> - Semester in Chilean Patagonia. Coursework: Risk Management, Leadership</li>
+
+          </ul>
+        </li>
+        <li>MS, <a href="http://urban.uiowa.edu/">Urban and Regional Planning</a>, <a href="http://www.uiowa.edu/">University of Iowa</a> - 2013
+          <ul>
+            <li>Concentrations: Transportation, Land Use, GIS</li>
+            <li>Coursework: Spatial Analysis, Modeling Dynamic Systems, Design of Transportation Systems, Planning Public Transportation, Transportation Demand Analysis</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr>
+
+    <!--Work History-->
+    <div class="large-12 toppadding">
+      <div class=" large-12 columns panel" name="WorkHistory">
+      <h3 class="text-center" id="WorkHistory" data-magellan-destination="WorkHistory">Work History</h3>
+      </div>
+      <ul class="accordion" data-accordion id="JobList">
+       <li class="accordion-navigation">
+         <a href="#panel1"><b>Research Associate</b> - University of Iowa Public Policy Center
+          <br><i>08/2014 - Present</i></a>
+         <div id="panel1" class="content active">
+          <div class="row job">
+            <div class="large-9 columns">
+            <ul>
+              <li>Utilized python and ArcPy libraries to geocode 100K addresses of  providers in health workforce databases to connect health claims data and  determine distance of each claim to stated provider.</li>
+              <li>Developed algorithmic and flexible python script using ArcPy libraries  for dental service area analysis of Delta Dental workforce and health  claims data that will be used for future dental service area creation and  evaluation.</li>
+              <li>Experience developing interactive data visualizations of health   workforce and health connections using JavaScript and D3 libraries.</li>
+            </ul>
+          </div>
+          <div class="large-3 columns pie" id="Job1">
+            <img src="http://placehold.it/200x200&text=[th img]">
+          </div>
+         </div>
+       </li>
+       <li class="accordion-navigation active">
+         <a href="#panel2" aria-expanded ="false"><b>Research Assistant</b> - University of  Iowa Public Policy Center
+          <br><i>10/2013 - 08/2014</i></a>
+         <div id="panel2" class="content">
+          <div class="row job">
+            <div class="large-9 columns">
+              <ul>
+                <li>Provided geographic analysis support through python scripting for   dental hygiene workforce assessment.</li>
+                <li>Utilized python and ArcPy for analysis of health workforce claims and   dental workforce assessment.</li>
+                <li>Provided spatial data support and analysis in working with IT staff in  <a href="https://www.dentistry.uiowa.edu/oipo-map">website development</a>   aimed to assist dental school students in determining practice location choice.</li>
+              </ul>
+            </div>
+          <div class="large-3 columns pie" id="Job2">
+            <img src="http://placehold.it/200x200&text=[th img]">
+          </div>
+         </div>
+       </li>
+       <li class="accordion-navigation active">
+         <a href="#panel3" aria-expanded="false"><b>Adjunct Faculty</b> - Kirkwood Community   College
+          <br><i>01/2014 - Present</i></a>
+         <div id="panel3" class="content">
+          <div class="row job">
+            <div class="large-9 columns">
+            <ul>
+              <li>Created lesson plans, syllabi, homework assignments, and tests for    Environmental Science class.</li>
+              <li>Worked with students to establish mutually agreed upon course     expectations.</li>
+              <li>Provided assignments and study materials through online system to help    facilitate student success.</li>
+            </ul>
+          </div>
+          <div class="large-3 columns pie" id="Job3">
+            <img src="http://placehold.it/200x200&text=[th img]">
+          </div>
+         </div>
+        </div>
+      </li>
+      <li class="accordion-navigation active">
+        <a href="#panel4" aria-expanded="false"><b>Research Assistant</b> - Injury Prevention  Center
+        <br><i>07/2013 - 08/2014</i></a>
+        <div id="panel4" class="content">
+          <div class="row job">
+            <div class="large-9 columns">
+            <ul>
+              <li>Assisted study coordination, including participant recruitment, follow- up, and data collection.</li>
+              <li>Provided database management services in connection with video, GPS, and  GIS data collected from study participants.</li>
+              <li>Created scripts in python using ArcPy libraries for importing,  management, and analysis of geographic data collected during study.</li>
+            </ul>
+            </div>
+          <div class="large-3 columns pie" id="Job4">
+            <img src="http://placehold.it/200x200&text=[th img]">
+          </div>
+         </div>
+        </div>
+      </li>
+      <li class="accordion-navigation active">
+        <a href="#panel5" aria-expanded="false"><b>Graduate Research Assistant</b> - University  of Iowa Public Policy Center
+        <br><i>08/2011 - 05/2013</i></a>
+        <div id="panel5" class="content">
+          <div class="row job">
+            <div class="large-9 columns">
+            <ul>
+              <li>Modeled urban population growth and migration within Santiago’s 30-year   growth boundary.</li>
+              <li>Developed bicycle facility analysis tool using Python and ArcPy   libraries to assign prescribed bicycle facilities, determine space  availability, and estimate costs.</li>
+            </ul>
+            </div>
+          <div class="large-3 columns pie" id="Job5">
+            <img src="http://placehold.it/200x200&text=[th img]">
+          </div>
+         </div>
+        </div>
+      </li>
+    </div>
+  </div>
+
+  <!--Skills Area-->
+
+  <div class="row toppadding" id="Skills">
+    <div class="large-12 panel toppadding text-center" name="Skills">
+      <h3 data-magellan-destination="Skills">Skills and Languages</h3>
+    </div>
+
+  <div class="large-12 columns" >
+    <ul class="button-group even-4" id="Buttons">
+     <li><a href="#Skills" class="button" id="Script">Scripting</a></li>
+     <li><a href="#Skills" class="button" id="Software">Software</a></li>
+     <li><a href="#Skills" class="button" id="Misc">Misc</a></li>
+     <li><a href="#Skills" class="button" id="all">All</a></li>
+    </ul>
+  </div>
+  <div class="row">
+  <div class="large-12 columns " id="Viz" d></div>
+  </div>
+
+    <footer class="row">
+      <div class="large-12 columns text-center">
+        <p>Iowa City • IA</p>
+        <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+          <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+      </div>
+    </div>
+  </div>
+    </footer>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/foundation/js/foundation.min.js"></script>
+    <script src="bower_components/foundation/js/foundation/foundation.magellan.js"></script>
+    <script src="js/app.js"></script>
+
+    <!--D3 sources-->
+    <script src="D3\src_code\d3.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://d3js.org/d3.geo.tile.v0.min.js"></script>
+    <script src="D3\skills.js"></script>
+    <script src="D3\Resp.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+ </body>
+

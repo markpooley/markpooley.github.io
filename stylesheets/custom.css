@@ -66,7 +66,7 @@ div.LegText {
 }
 /* D3 stylings*/
 
-div.tooltip {
+/*div.tooltip {
   position: absolute;
   background-color: white;
   border: 1px solid black;
@@ -74,4 +74,31 @@ div.tooltip {
   font-weight: bold;
   padding: 4px 8px;
   display: none;
+}*/
+.legend span {
+    width: 33.333333%;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+.unwatched {
+	opacity: .60;
+}
+#info.panel{
+	font-style: normal;
+}
+.panel{
+	font-style: normal;
+	max-height: 317px;
+}
+p.filmInfo {
+	font-size: 0.75rem;
+
+}
+table.filmInfo{
+	font-size: 0.8em;
+}
+.banner {
+	opacity: .25;
 }

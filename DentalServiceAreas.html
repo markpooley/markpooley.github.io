@@ -25,26 +25,28 @@
 			}
 		</style>
 	</head>
-	<body>
-		<nav class="top-bar" data-topbar>
-		     <ul class="title-area">
-		       <li class="name"></li>
-		       <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-		     </ul>
-		     <section class="top-bar-section">
-		       <ul class="right">
-		         <li class=><a href="index.html">Home</a></li>
-		         <li class="has-dropdown"><a href="#">Projects</a>
-		           <ul class="dropdown">
-		             <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
-		             <li class="active"><a href="DentalServiceAreas.html">Dental Service Areas</a></li>
-		           </ul>
-		         </li>
-		         <li><a href="#">Link</a></li>
-		         <li><a href="#">Contact</a></li>
-		       </ul>
-		     </section>
-	   </nav>
+<body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="#">Home</a></li>
+          <li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li class="active"><a href="DentalServiceAreas.html">Dental Service Areas</a></li>
+              <li><a href="AYearInTheCage.html">A Year in the Cage</a>/li>
+            </ul>
+          </li>
+          <li><a href="Resume.html">Resume</a></li>
+          <!--li><a href="#">Contact</a></li-->
+
+        </ul>
+      </section>
+    </nav>
 	   <div class="row">
 			<div class="large-12 columns text-center" bgcolor='#022925' class="container">
 			    <h2>Dental Service Areas</h2>
@@ -52,10 +54,8 @@
 			</div>
 	   </div>
 	   <div class="row" data-equalizer>
-	   	<div class="large-2 columns panel" data-equalizer-watch>
-	   		<p>Here's some content that might need to be put in to this side bar to explain what is going on</p>
-	   	</div>
-	   	<div class="large-10 columns" id="map" data-equalizer-watch></div>
+
+	   	<div class="large-12 columns" id="map"></div>
 	   </div>
 
 	<footer class="row">
@@ -73,5 +73,5 @@
   	<script src="http://d3js.org/queue.v1.min.js"></script>
   	<script src="D3\DSAs.js"></script>
   	<script>$(document).foundation();</script>
-	</body>
+</body>
 </html>

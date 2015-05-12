@@ -1,6 +1,7 @@
 //Width and height
-var w = 1000;
-var h = 650;
+var aspect = 1.4;
+var width = $("#map").width();
+var height = width/ aspect;
 
 //array of colors to be used in chloropleth
 var colors = d3.scale.category20c();
@@ -17,7 +18,7 @@ var maxZoomIn = 4,
 var projection = d3.geo.mercator()
 	.center([-93.38987619865907,41.957378893855285])
 	.scale([8000])
-	.translate([w/2,h/2]);
+	.translate([width/2,height/2]);
 
 //zoom behavior
 var zoom = d3.behavior.zoom()
@@ -42,8 +43,8 @@ var toolTip = d3.select('body').append('div')
 //Create SVG element
 var svg = d3.select("#map")
 	.append("svg")
-	.attr("width", w)
-	.attr("height", h);
+	.attr("width", width)
+	.attr("height", height);
 
 
 //create a tool tip that will be invisble at page load
@@ -74,29 +75,6 @@ function makeMap(error,ZCTAs, DSAs){
 		 	.attr("fill", 'gray')
 		   	.style("stroke-width","0.5px")
 		   	.style("opacity", 0.95);
-			//.on('mouseover', function(d){
-			//	toolTip.transition()
-			//		.style('opacity', 0.9)
-			//	toolTip.html(d) //the data of each element created by the html
-			//		.style('left',(d3.event.pageX - 20) + 'px') //find x position of mouse pointer
-			//		.style('top',(d3.event.pageY - 30) + 'px') //find y position of mouse pointer
-			//tempColor = this.style.fill;
-			//	d3.select(this)
-			//		.transition()
-			//		.style('opacity', .5)
-			//		.style('fill', 'blue')
-			//})
-			//.on('mouseout', function(d){
-			//	toolTip.transition()
-			//		.style('opacity', 0) //make tooltip go away when mouse out
-			//	d3.select(this)
-			//		.transition()
-			//		.style('opacity', 1)
-			//		.style('fill', tempColor) //set color back
-			//});
-
-
-
 		var DSAs = svg.append('g').attr("id","DSAs")
 			.selectAll("path")
 			.data(topojson.feature(DSAs, DSAs.objects.collection).features)
@@ -110,10 +88,6 @@ function makeMap(error,ZCTAs, DSAs){
 		   	})
 			.style("stroke-width", "1.25px")
 			.style("opacity", 0.95)
-		   //.on("mouseover", function(d) {
-				//	d3.select(this)
-				//		.attr("fill", "gray");
-			//create mouse over event
 			.on('mouseover', function(d){
 				toolTip.transition()
 					.style('opacity', 0.9)
@@ -123,7 +97,7 @@ function makeMap(error,ZCTAs, DSAs){
 				d3.select(this)
 					.transition()
 					.style('opacity', 0.0)
-					//.style('fill', 'yellow')
+
 
 				})
 			.on('mouseout', function(d){

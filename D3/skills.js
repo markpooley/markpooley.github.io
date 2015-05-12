@@ -15,6 +15,7 @@ var allData = [
     {Type:"Software", Color: "#003A4D", Value: "STELLA", Level:3},
     {Type:"Software", Color: "#003A4D", Value: "Git Version/GitHub", Level: 6},
     {Type:"Software", Color: "#003A4D", Value: "MapBox/TileMill", Level: 3},
+    {Type:"Software", Color: "#003A4D", Value: "SketcUp", Level: 2},
     {Type:"Misc", Color: "#003040", Value:"WoodWorking", Level: 6},
     {Type:"Misc", Color: "#003040", Value:"Welding (Tig)", Level: 3},
     {Type:"Misc", Color: "#003040", Value:"Electrical (Residential)", Level: 6},
@@ -122,7 +123,6 @@ function draw(type){
             d3.select(this)
                 .transition()
                 .style('opacity', 1);
-
         })
 
         //add transition
@@ -147,13 +147,14 @@ function draw(type){
         .style('fill','white')
         .attr("x", 30)
         .attr("y", function(d,i){
-            if (currentType == 'all'){
+            if (type == 'all'){
                 return yScale(i) + height/data.length/2 + 3;
             } else{
                 return yScale(i) + height/data.length/2;
             }
         })
-        .transition()
+        .style("font-size", yScale.rangeBand + "px")
+        .transition("animate")
             .delay(function(d,i){
                 return i * 1000;
             })

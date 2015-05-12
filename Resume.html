@@ -11,25 +11,27 @@
   </head>
 
  <body>
-  <nav class="top-bar" data-topbar>
-    <ul class="title-area">
-      <li class="name"></li>
-      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <li><a href="index.html">Home</a></li>
-        <li class="has-dropdown"><a href="#">Projects</a>
-          <ul class="dropdown">
-            <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
-            <li><a href="DentalServiceAreas.html">Dental Service Areas</a></li>
-          </ul>
-        </li>
-        <li class="active"><a href="Resume.html">Resume</a></li>
-        <li><a href="#">Contact</a></li>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       </ul>
-    </section>
-  </nav>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="index.html">Home</a></li>
+          <li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="DentalServiceAreas.html">Dental Service Areas</a></li>
+              <li><a href="AYearInTheCage.html">A Year in the Cage</a>/li>
+            </ul>
+          </li>
+          <li class="active"><a href="Resume.html">Resume</a></li>
+          <!--li><a href="#">Contact</a></li-->
+
+        </ul>
+      </section>
+    </nav>
 
   <header class="row toppadding">
   </header>
@@ -40,6 +42,7 @@
         <dd data-magellan-arrival="Education"><a href="#Education">Education</a></dd>
         <dd data-magellan-arrival="WorkHistory"><a href="#WorkHistory">Work History</a></dd>
         <dd data-magellan-arrival="Skills"><a href="#Skills">Skills</a></dd>
+        <dd data-magellan-arrival="Pub"><a href="#Pub">Presentations &amp; Publications</a></dd>
       </dl>
     </div>
 
@@ -72,91 +75,79 @@
       <div class=" large-12 columns panel" name="WorkHistory">
       <h3 class="text-center" id="WorkHistory" data-magellan-destination="WorkHistory">Work History</h3>
       </div>
-      <ul class="accordion" data-accordion id="JobList">
-       <li class="accordion-navigation">
-         <a href="#panel1"><b>Research Associate</b> - University of Iowa Public Policy Center
-          <br><i>08/2014 - Present</i></a>
-         <div id="panel1" class="content active">
-          <div class="row job">
-            <div class="large-9 columns">
+      <ul class="accordion" data-accordion id="JobList" data-tooltip aria-haspopup="true" class="tip-top" title="Click a position to see more information">
+     <li class="accordion-navigation">
+       <a class="job" id="job1" href="#panel1"><b>Research Associate</b> - University of Iowa Public Policy Center
+        <br><i>08/2014 - Present</i></a>
+       <div id="panel1" class="content active">
+        <div class="row">
+          <div class="large-10 columns">
             <ul>
               <li>Utilized python and ArcPy libraries to geocode 100K addresses of  providers in health workforce databases to connect health claims data and  determine distance of each claim to stated provider.</li>
               <li>Developed algorithmic and flexible python script using ArcPy libraries  for dental service area analysis of Delta Dental workforce and health  claims data that will be used for future dental service area creation and  evaluation.</li>
               <li>Experience developing interactive data visualizations of health   workforce and health connections using JavaScript and D3 libraries.</li>
             </ul>
           </div>
-          <div class="large-3 columns pie" id="Job1">
-            <img src="http://placehold.it/200x200&text=[th img]">
+
+      </li>
+     <li class="accordion-navigation active job" id="job1">
+       <a class="job" id="job2" href="#panel2" aria-expanded ="false"><b>Research Assistant</b> - University of  Iowa Public Policy Center
+        <br><i>10/2013 - 08/2014</i></a>
+       <div id="panel2" class="content">
+        <div class="row job">
+          <div class="large-10 columns">
+            <ul>
+              <li>Provided geographic analysis support through python scripting for dental hygiene workforce assessment.</li>
+              <li>Utilized python and ArcPy for analysis of health workforce claims and   dental workforce assessment.</li>
+              <li>Provided spatial data support and analysis in working with IT staff in  <a href="https://www.dentistry.uiowa.edu/oipo-map">website development</a>   aimed to assist dental school students in determining practice location choice.</li>
+            </ul>
           </div>
-         </div>
+
        </li>
        <li class="accordion-navigation active">
-         <a href="#panel2" aria-expanded ="false"><b>Research Assistant</b> - University of  Iowa Public Policy Center
-          <br><i>10/2013 - 08/2014</i></a>
-         <div id="panel2" class="content">
-          <div class="row job">
-            <div class="large-9 columns">
-              <ul>
-                <li>Provided geographic analysis support through python scripting for   dental hygiene workforce assessment.</li>
-                <li>Utilized python and ArcPy for analysis of health workforce claims and   dental workforce assessment.</li>
-                <li>Provided spatial data support and analysis in working with IT staff in  <a href="https://www.dentistry.uiowa.edu/oipo-map">website development</a>   aimed to assist dental school students in determining practice location choice.</li>
-              </ul>
-            </div>
-          <div class="large-3 columns pie" id="Job2">
-            <img src="http://placehold.it/200x200&text=[th img]">
-          </div>
-         </div>
-       </li>
-       <li class="accordion-navigation active">
-         <a href="#panel3" aria-expanded="false"><b>Adjunct Faculty</b> - Kirkwood Community   College
+         <a class="job" id="job3" href="#panel3" aria-expanded="false"><b>Adjunct Faculty</b> - Kirkwood Community   College
           <br><i>01/2014 - Present</i></a>
          <div id="panel3" class="content">
           <div class="row job">
-            <div class="large-9 columns">
+            <div class="large-10 columns">
             <ul>
               <li>Created lesson plans, syllabi, homework assignments, and tests for    Environmental Science class.</li>
-              <li>Worked with students to establish mutually agreed upon course     expectations.</li>
+              <li>Worked with students to establish mutually agreed upon course expectations.</i>
               <li>Provided assignments and study materials through online system to help    facilitate student success.</li>
             </ul>
           </div>
-          <div class="large-3 columns pie" id="Job3">
-            <img src="http://placehold.it/200x200&text=[th img]">
-          </div>
+
          </div>
         </div>
       </li>
       <li class="accordion-navigation active">
-        <a href="#panel4" aria-expanded="false"><b>Research Assistant</b> - Injury Prevention  Center
+        <a class="job" id="job4" href="#panel4" aria-expanded="false"><b>Research Assistant</b> - Injury Prevention  Center
         <br><i>07/2013 - 08/2014</i></a>
         <div id="panel4" class="content">
           <div class="row job">
-            <div class="large-9 columns">
+            <div class="large-910columns">
             <ul>
               <li>Assisted study coordination, including participant recruitment, follow- up, and data collection.</li>
               <li>Provided database management services in connection with video, GPS, and  GIS data collected from study participants.</li>
               <li>Created scripts in python using ArcPy libraries for importing,  management, and analysis of geographic data collected during study.</li>
             </ul>
             </div>
-          <div class="large-3 columns pie" id="Job4">
-            <img src="http://placehold.it/200x200&text=[th img]">
-          </div>
+
          </div>
         </div>
       </li>
       <li class="accordion-navigation active">
-        <a href="#panel5" aria-expanded="false"><b>Graduate Research Assistant</b> - University  of Iowa Public Policy Center
+        <a class="job" id="job5" href="#panel5" aria-expanded="false"><b>Graduate Research Assistant</b> - University  of Iowa Public Policy Center
         <br><i>08/2011 - 05/2013</i></a>
         <div id="panel5" class="content">
           <div class="row job">
-            <div class="large-9 columns">
+            <div class="large-10 columns">
             <ul>
               <li>Modeled urban population growth and migration within Santiago’s 30-year   growth boundary.</li>
               <li>Developed bicycle facility analysis tool using Python and ArcPy   libraries to assign prescribed bicycle facilities, determine space  availability, and estimate costs.</li>
             </ul>
             </div>
-          <div class="large-3 columns pie" id="Job5">
-            <img src="http://placehold.it/200x200&text=[th img]">
-          </div>
+
          </div>
         </div>
       </li>
@@ -182,6 +173,27 @@
   <div class="large-12 columns " id="Viz" d></div>
   </div>
 
+  <hr>
+  <div class="large-12 columns">
+    <div class="large-12 columns panel toppadding text-center" name="Pub">
+      <h3 data-magellan-destination="Pub" id="Pub">Presentations and Publications</h3>
+    </div>
+    <ul>
+      <div class="large-12 columns">
+        <li>Julie C. Reynolds, Raymond A. Kuthy, Mark J. Pooley, Mary C. Kelly, Susan C. McKernan. <i>Dental Hygiene Workforce in Iowa: Snapshot and Recommendations for a Workforce Monitoring System</i>. November 2014</li>
+        <li>M. Pooley. <i>Thinking Beyond Transportation: Looking to Urban Travel Behavior for Sultions</i>. Kennedy High School, November 2014</li>
+        <li>C. Hamann, M. Pooley. <i>Pedal PortAL: Naturalistic Bicycle STudy</i>. Statewide Traffic Records Coordinating Committee, Iowa City, IA 2013</li>
+        <li>M.Pooley, S.N. Spak. <i>Prioritizing Complete Streets Infrastructure for Commuter Safety and Health: A Link-Level Cost-Benefit Approach</i>. In Prepration for <i>Journal of the American Planning Association</i></li>
+        <li>M.Pooley, S.N. Spak. <i>Transferable Reduced-Form Activity Modeling for Urban-Scale Sectoral Emissions Spatial Surrogates and Inventories from Census Data.</i>In preparation for <i>Atmospheric Environment</i></li>
+        <li>M.Pooley. <i>Prioritizing Complete Streets Infrastructure for Commuter Safety and Health: A Link-Level Cost-Benefit Approach</i>. Poster Presetntation. American Planning Association National Conference, Chicago, IL 2013</li>
+        <li>M.Pooley <i>Effective Advocacy: Making Rational and Data Driven Environmental Arguments</i>. Midwest Outdoor Leadership Conference, Iowa City, IA 2013</li>
+
+      </div>
+    </ul>
+  </div>
+
+
+  </div>
     <footer class="row">
       <div class="large-12 columns text-center">
         <p>Iowa City • IA</p>
@@ -189,12 +201,12 @@
           <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
       </div>
     </div>
-  </div>
     </footer>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="bower_components/foundation/js/foundation/foundation.magellan.js"></script>
+    <script src="bower_components/c3/c3.min.js"></script>
     <script src="js/app.js"></script>
 
     <!--D3 sources-->
@@ -203,7 +215,8 @@
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://d3js.org/d3.geo.tile.v0.min.js"></script>
     <script src="D3\skills.js"></script>
-    <script src="D3\Resp.js"></script>
+    <script src="js/chart.js"></script>
+    <!--script src="D3\Resp.js"></script-->
     <script>
       $(document).foundation();
     </script>

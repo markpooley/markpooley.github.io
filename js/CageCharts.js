@@ -10,7 +10,7 @@ var dataset;
 d3.csv('Data/CageData.csv', function(data){
 	dataset = data
 	for (var i = 0; i < dataset.length; i++) {
-		if (dataset[i].Status == "Unwatched"){
+		if (data[i].Status == "Unwatched"){
 			watched ++
 		}
 	}
@@ -18,121 +18,70 @@ d3.csv('Data/CageData.csv', function(data){
 console.log(watched)
 
 var width = 960,
-    height = 500,
-    τ = 2 * Math.PI; // http://tauday.com/tau-manifesto
-
-// An arc function with all values bound except the endAngle. So, to compute an
-// SVG path string for a given angle, we pass an object with an endAngle
-// property to the `arc` function, and it will return the corresponding string.
-var arc = d3.svg.arc()
-    .innerRadius(150)
-    .outerRadius(240)
-    .startAngle(0);
+    height = 500;
 
 // Create the SVG container, and apply a transform such that the origin is the
 // center of the canvas. This way, we don't need to position arcs individually.
 var svg = d3.select("#chart").append("svg")
     .attr("width", width)
-    .attr("height", height)
-  .append("g")
-    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+    .attr("height", height);
 
-// Add the background arc, from 0 to 100% (τ).
-var background = svg.append("path")
-    .datum({endAngle: τ})
-    .style("fill", "#ddd")
-    .attr("d", arc);
+//scale data to radians
+var arcScale = d3.scale.linear().domain([0,100]).range([0-Math.PI/2,Math.PI/2]);
+var colorScale = d3.scale.ordinal()
+	.domain(['#9CA0F6',"#AA63B8","#F66CA2",'#AA2A24',"#771505"])
 
-// Add the foreground arc in orange, currently showing 12.7%.
-var foreground = svg.append("path")
-    .datum({endAngle: .127 * τ})
-    .style("fill", "orange")
-    .attr("d", arc);
+data = [[0,20,'#9CA0F6'],[20,40,"#AA63B8"],[40,60,"#F66CA2"],[60,80,'#AA2A24'],[80,100,"#771505"]]
 
-// Every so often, start a transition to a new random angle. Use transition.call
-// (identical to selection.call) so that we can encapsulate the logic for
-// tweening the arc in a separate function below.
-setInterval(function() {
-  foreground.transition()
-      .duration(750)
-      .call(arcTween, Math.random() * τ);
-}, 1500);
+// An arc function with all values bound except the endAngle. So, to compute an
+// SVG path string for a given angle, we pass an object with an endAngle
+// property to the `arc` function, and it will return the corresponding string.
+var arcBack = d3.svg.arc()
+    .innerRadius(150)
+    .outerRadius(240)
+    .startAngle(0-Math.PI/2)
+    .endAngle(Math.PI/2);
 
-// Creates a tween on the specified transition's "d" attribute, transitioning
-// any selected arcs from their current angle to the specified new angle.
-function arcTween(transition, newAngle) {
+function drawArc(a){
+	var arcGauge = d3.svg.arc()
+	.innerRadius(150)
+	.outerRadius(240)
+	.startAngle(0-Math.PI/2)
+	.endAngle(a)
 
-  // The function passed to attrTween is invoked for each selected element when
-  // the transition starts, and for each element returns the interpolator to use
-  // over the course of transition. This function is thus responsible for
-  // determining the starting angle of the transition (which is pulled from the
-  // element's bound datum, d.endAngle), and the ending angle (simply the
-  // newAngle argument to the enclosing function).
-  transition.attrTween("d", function(d) {
+	var guage = svg.append('path').attr('d',arcGauge).attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
+	.transition()
+		.ease('elastic')
+		.duration(750)
+	.style('flll',function(){return colorScale(a);})
+	.attr('class','cageRage')
 
-    // To interpolate between the two angles, we use the default d3.interpolate.
-    // (Internally, this maps to d3.interpolateNumber, since both of the
-    // arguments to d3.interpolate are numbers.) The returned function takes a
-    // single argument t and returns a number between the starting angle and the
-    // ending angle. When t = 0, it returns d.endAngle; when t = 1, it returns
-    // newAngle; and for 0 < t < 1 it returns an angle in-between.
-    var interpolate = d3.interpolate(d.endAngle, newAngle);
 
-    // The return value of the attrTween is also a function: the function that
-    // we want to run for each tick of the transition. Because we used
-    // attrTween("d"), the return value of this last function will be set to the
-    // "d" attribute at every tick. (It's also possible to use transition.tween
-    // to run arbitrary code for every tick, say if you want to set multiple
-    // attributes from a single function.) The argument t ranges from 0, at the
-    // start of the transition, to 1, at the end.
-    return function(t) {
-
-      // Calculate the current arc angle based on the transition time, t. Since
-      // the t for the transition and the t for the interpolate both range from
-      // 0 to 1, we can pass t directly to the interpolator.
-      //
-      // Note that the interpolated angle is written into the element's bound
-      // data object! This is important: it means that if the transition were
-      // interrupted, the data bound to the element would still be consistent
-      // with its appearance. Whenever we start a new arc transition, the
-      // correct starting angle can be inferred from the data.
-      d.endAngle = interpolate(t);
-
-      // Lastly, compute the arc path given the updated data! In effect, this
-      // transition uses data-space interpolation: the data is interpolated
-      // (that is, the end angle) rather than the path string itself.
-      // Interpolating the angles in polar coordinates, rather than the raw path
-      // string, produces valid intermediate arcs during the transition.
-      return arc(d);
-    };
-  });
 }
-//var chart = c3.generate({
-//	bindto: '#chart',
-//	padding: {
-//		top: 50,
-//		bottom: 50
-//	},
-//	data:{
-//		columns:[
-//		['data', 37]
-//
-//		],
-//		type: 'gauge'
-//	},
-//	size:{
-//		height: height
-//	},
-//	transition: {
-//		duration: 500
-//	}
-	//color: {
-		//pattern: ['#FF000','#F97600','#F6c00','#60B044'],
-		//threshold:{
-		//	values: [25,50,75,100]
+done = 60/74 * 100
 
-	//	}
-	//}
-//});
-//chart.load({
-//});
+//draw the thing
+drawArc(arcScale(done))
+
+var back = svg.append("path").attr('d',arcBack).attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
+	.style('fill', 'gray')
+	.attr('class','cageGauge');
+
+
+//gauge.append('text')
+//		.attr('x',width /2)
+//		.attr('y', height / 3)
+//		.text('Gauge')
+//		.attr('font-size','16px')
+//
+
+//gauge.append('path').attr('d',arc).attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
+
+var rageScale = [
+	[0, 'Bunny is in the Box'],
+	[20, 'Eating a Peach'],
+	[40, 'looking for a prom queen'],
+	[60, "Let's Ride!"],
+	[80, "Sh*t's gettin radical"],
+	[100, "'Deadfall' freaking out scene"]
+]

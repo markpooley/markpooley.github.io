@@ -66,15 +66,6 @@ div.LegText {
 }
 /* D3 stylings*/
 
-/*div.tooltip {
-  position: absolute;
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  font-weight: bold;
-  padding: 4px 8px;
-  display: none;
-}*/
 .legend span {
     width: 33.333333%;
     display: inline-block;
@@ -101,4 +92,11 @@ table.filmInfo{
 }
 .banner {
 	opacity: .25;
+}
+/*remove tooltip bottom dotted line from home page*/
+#projects > .has-tip {
+	border-bottom: 0px;
+}
+.cageGauge {
+	opacity: 0.5;
 }

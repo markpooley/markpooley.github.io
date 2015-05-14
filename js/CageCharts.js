@@ -25,7 +25,7 @@ var width = 960,
 // SVG path string for a given angle, we pass an object with an endAngle
 // property to the `arc` function, and it will return the corresponding string.
 var arc = d3.svg.arc()
-    .innerRadius(180)
+    .innerRadius(150)
     .outerRadius(240)
     .startAngle(0);
 

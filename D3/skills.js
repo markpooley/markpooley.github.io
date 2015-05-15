@@ -4,7 +4,7 @@ var allData = [
     {Type:"Script", Color:"#00648C", Value: "HTML", Level: 5},
     {Type:"Script", Color:"#00648C", Value: "CSS", Level: 5},
     {Type:"Script", Color:"#00648C", Value: "JavaScript", Level: 4.5},
-    {Type:"Script", Color:"#00648C", Value: "Data Driven Documents(D3)", Level: 5},
+    {Type:"Script", Color:"#00648C", Value: "Data Driven Documents (D3)", Level: 5},
     {Type:"Script", Color:"#00648C", Value: "Foundation", Level: 5},
     {Type:"Script", Color:"#00648C", Value: "JQuery",Level: 2},
     {Type:"Software", Color: "#003A4D", Value: "ArcGIS", Level: 8},

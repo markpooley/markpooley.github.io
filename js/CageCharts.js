@@ -1,87 +1,160 @@
 //dimensions
-var aspect = 1.8;
-var width = $("#chart").width();
-var height = width/ aspect;
-radius = height/2-10
+var aspect = .45;
+var width = $("#cageGauge").width();
+var height = width * aspect
+var arcOuterRadius = width / 4,
+	arcInnerRadius =  arcOuterRadius *.60;
 
-//Create an SVG and append to #map div
-var watched = 0;
-var dataset;
-d3.csv('Data/CageData.csv', function(data){
-	dataset = data
-	for (var i = 0; i < dataset.length; i++) {
-		if (data[i].Status == "Unwatched"){
-			watched ++
-		}
+//color variables
+var colLow = "#FFFF00",
+	colHi = "#FF0000";
+
+//Gauge text generation
+//
+//
+var textX = $('#arc').width()/ 2
+var textY = $('#cageGauge').height()
+
+var start = 0 - Math.PI/2; //Starting point of arc gauge
+var p = Math.PI/2; //ending point of arc on gauge
+var intervals = [0,20,40,60,80,100]; //intervals for Cage Guage animation
+var watched = 0, //count of watched
+	total = 0; //total count of entries
+
+////pull data from csv for analysis
+//d3.csv('Data/CageData.csv', function(data){
+//	dataset = data;
+//	count = 0;
+//	watched = 0;
+//	data.forEach(function(d){
+//		watched = watched + parseInt(+d.Status)
+//		count++
+//	})
+//	done = watched/count * 100
+//	intervals.push(done)
+//
+//	return dataset = dataset;
+//
+//});
+
+//get number of elements watched and unwatched
+var unwatched = d3.selectAll('.unwatched')[0].length
+var watched = d3.selectAll('.watched')[0].length
+var pctDone = function(watched,unwatched){
+	total = watched + unwatched;
+	if (watched == 0){
+		done = 0
+	} else {
+		done = watched/total * 100
 	}
-});
-console.log(watched)
+	return done
+}
+done = pctDone(watched,unwatched)
+intervals.push(done)
 
-var width = 960,
-    height = 500;
+
+//basic arc setup.
+var arc = d3.svg.arc()
+	.innerRadius(arcInnerRadius)
+	.outerRadius(arcOuterRadius)
+	.startAngle(start);
+
+//color scales and linear scaling of percent to radians for arc drawing
+//scale for scaling a pct number to the arc
+var arcScale = d3.scale.linear().domain([0,100]).range([0-Math.PI/2,Math.PI/2]);
+
+//scale arc positions to a color scale
+var colorScale = d3.scale.linear().domain([start,p]).range([colLow,colHi])
+
+//scale status intervals to the range of possible input values
+var statusScale = d3.scale.quantize()
+	.domain([0,100])
+	.range(['The bunny is in the box','Lowrider, Donny',"Finding some friggin' rockets!","Not The Bees!","Sh*t's gettin radical!","'Deadfall' freaking out scene"])
+
 
 // Create the SVG container, and apply a transform such that the origin is the
 // center of the canvas. This way, we don't need to position arcs individually.
-var svg = d3.select("#chart").append("svg")
+var svg = d3.select("#cageGauge").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr('id','gaugeSVG')
+    .append('g')
+    	.attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")");
 
-//scale data to radians
-var arcScale = d3.scale.linear().domain([0,100]).range([0-Math.PI/2,Math.PI/2]);
-var colorScale = d3.scale.ordinal()
-	.domain(['#9CA0F6',"#AA63B8","#F66CA2",'#AA2A24',"#771505"])
+//text label
+var statusLabel = svg.append('text').attr('id','statusLabel')
+	.attr('x', 0)
+	.attr('y',0)
+	.text('Status:')
+	.style('text-anchor','middle')
+	.style('font-size','12px')
 
-data = [[0,20,'#9CA0F6'],[20,40,"#AA63B8"],[40,60,"#F66CA2"],[60,80,'#AA2A24'],[80,100,"#771505"]]
+//current status label that will be updated
+var text = svg.append('text').attr('id','status')
+
+var gaugeLabel = svg.append('text').attr('id','gaugeLabel')
+	.attr('x',0)
+	.attr('y',-(arcOuterRadius + 15))
+	.text('The Cage Gauge')
+	.style('text-anchor','middle')
+	.style('font-size','22px')
 
 // An arc function with all values bound except the endAngle. So, to compute an
 // SVG path string for a given angle, we pass an object with an endAngle
 // property to the `arc` function, and it will return the corresponding string.
-var arcBack = d3.svg.arc()
-    .innerRadius(150)
-    .outerRadius(240)
-    .startAngle(0-Math.PI/2)
-    .endAngle(Math.PI/2);
+var background = svg.append('path')
+    .datum({endAngle:(Math.PI/2)})
+    .style('fill','#ddd')
+    .attr('d',arc)
+    .attr('id','arc');
 
-function drawArc(a){
-	var arcGauge = d3.svg.arc()
-	.innerRadius(150)
-	.outerRadius(240)
-	.startAngle(0-Math.PI/2)
-	.endAngle(a)
+//foreground svg
+var foreground = svg.append('path')
+	.datum({endAngle: start})
+	.style('fill',function(d){
+		return colorScale(d.endAngle);
+	})
+	.style('opacity', 1.0)
+	.attr('arc',arc)
 
-	var guage = svg.append('path').attr('d',arcGauge).attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
-	.transition()
-		.ease('elastic')
-		.duration(750)
-	.style('flll',function(){return colorScale(a);})
-	.attr('class','cageRage')
-
-
-}
-done = 60/74 * 100
-
-//draw the thing
-drawArc(arcScale(done))
-
-var back = svg.append("path").attr('d',arcBack).attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
-	.style('fill', 'gray')
-	.attr('class','cageGauge');
-
-
-//gauge.append('text')
-//		.attr('x',width /2)
-//		.attr('y', height / 3)
-//		.text('Gauge')
-//		.attr('font-size','16px')
+//draw the main gauge and transition through all the intervals
 //
+function draw(data){
+	for(i = 0; i < data.length;i++){
+		var n = data[i]
+		foreground.transition()
+			.delay(1000*i)
+			.duration(250)
+			.ease('linear')
+			.call(arcTween,arcScale(n))
+		.style('fill',function(){
+			return colorScale(arcScale(n));
+		})
+		d3.select('#status')
+			.transition()
+			.delay(1050*i)
+			.duration(255)
+			.ease('linear')
+		.attr('x',textX)
+		.attr('y', + 20)
+		.text(function(){return statusScale(n);})
+		.attr('font-size', '12 px')
+		.style('fill','black')
+		.style('text-anchor','middle');
+	}
+};
 
-//gauge.append('path').attr('d',arc).attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
+//draw the intervals
+$(document).ready(draw(intervals));
 
-var rageScale = [
-	[0, 'Bunny is in the Box'],
-	[20, 'Eating a Peach'],
-	[40, 'looking for a prom queen'],
-	[60, "Let's Ride!"],
-	[80, "Sh*t's gettin radical"],
-	[100, "'Deadfall' freaking out scene"]
-]
+
+//function to draw new arcs from the the previous one
+function arcTween(transition, newAngle) {
+	transition.attrTween('d',function(d){
+		var interpolate = d3.interpolate(d.endAngle, newAngle);
+		return function(t) {
+			d.endAngle = interpolate(t);
+			return arc(d)
+		};
+	});
+};

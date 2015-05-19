@@ -1,5 +1,7 @@
 /* custom CSS styles */
-
+.row {
+	max-width: 85%;
+}
 header h2 {
 	font-weight: normal;
 	padding-top: 1em;
@@ -8,7 +10,7 @@ header h2 {
 }
 .panel {
 	font-style: italic;
-	font-family: Georgia, serif;
+	font-family: Georgia;
 
 }
 .panel a {
@@ -45,7 +47,7 @@ article .right {
 .topspace p {
 	font-size: 0.8em;
 	color: #999;
-	font-family: Georgia, serif;
+	font-family: Georgia;
 	font-style: italic;
 }
 footer {
@@ -63,6 +65,10 @@ a.small, p.small {
 
 div.LegText {
 	font-size: .75em
+}
+#cagePanel {
+	overflow-y: scroll;
+	overflow: hidden;
 }
 /* D3 stylings*/
 
@@ -97,6 +103,12 @@ table.filmInfo{
 #projects > .has-tip {
 	border-bottom: 0px;
 }
-.cageGauge {
-	opacity: 0.5;
+
+#gaugeLabel {
+	font-family: Georgia;
+	font-weight: bold;
+}
+#status ,#statusLabel{
+	font-family: Georgia;
+	font-weight: bold
 }

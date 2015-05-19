@@ -10,8 +10,6 @@ var colLow = "#FFFF00",
 	colHi = "#FF0000";
 
 //Gauge text generation
-//
-//
 var textX = $('#arc').width()/ 2
 var textY = $('#cageGauge').height()
 
@@ -106,7 +104,9 @@ var background = svg.append('path')
     .datum({endAngle:(Math.PI/2)})
     .style('fill','#ddd')
     .attr('d',arc)
-    .attr('id','arc');
+    .attr('id','arc')
+    .attr('x',width/2)
+    .attr('y',height);
 
 //foreground svg
 var foreground = svg.append('path')
@@ -123,7 +123,7 @@ function draw(data){
 	for(i = 0; i < data.length;i++){
 		var n = data[i]
 		foreground.transition()
-			.delay(1000*i)
+			.delay(750*i)
 			.duration(250)
 			.ease('linear')
 			.call(arcTween,arcScale(n))

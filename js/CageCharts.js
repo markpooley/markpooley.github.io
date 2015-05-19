@@ -106,7 +106,7 @@ var background = svg.append('path')
     .attr('d',arc)
     .attr('id','arc')
     .attr('x',width/2)
-    .attr('y',height);
+    .attr('');
 
 //foreground svg
 var foreground = svg.append('path')
@@ -123,7 +123,7 @@ function draw(data){
 	for(i = 0; i < data.length;i++){
 		var n = data[i]
 		foreground.transition()
-			.delay(750*i)
+			.delay(1000*i)
 			.duration(250)
 			.ease('linear')
 			.call(arcTween,arcScale(n))

@@ -61,7 +61,7 @@ var hGuide = d3.select('svg').append('g')
         .style({stroke: "#000"})
 
 var progTitle = chart.append('text')
-	.attr('id','progressStatus')
+	.attr('id','cageTime')
 	.attr('x',width/2)
 	.attr('y',0 + (margin.top * .75))
 	.text('Time in the Cage : '+ Math.round(days) + ' days')

@@ -108,7 +108,7 @@ table.filmInfo{
 	font-family: Georgia;
 	font-weight: bold;
 }
-#status ,#statusLabel{
+#status ,#statusLabel, #cageTime{
 	font-family: Georgia;
 	font-weight: bold
 }

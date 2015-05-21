@@ -1,12 +1,12 @@
 //data variables
 var allData = [
     {Type:"Script", Color:"#00648C", Value: "Python", Level: 6.5},
-    {Type:"Script", Color:"#00648C", Value: "HTML", Level: 5},
+    {Type:"Script", Color:"#00648C", Value: "HTML", Level: 5.5},
     {Type:"Script", Color:"#00648C", Value: "CSS", Level: 5},
     {Type:"Script", Color:"#00648C", Value: "JavaScript", Level: 4.5},
     {Type:"Script", Color:"#00648C", Value: "Data Driven Documents (D3)", Level: 5},
     {Type:"Script", Color:"#00648C", Value: "Foundation", Level: 5},
-    {Type:"Script", Color:"#00648C", Value: "JQuery",Level: 2},
+    {Type:"Script", Color:"#00648C", Value: "JQuery",Level: 3.5},
     {Type:"Software", Color: "#003A4D", Value: "ArcGIS", Level: 8},
     {Type:"Software", Color: "#003A4D", Value: "MS Office", Level: 8},
     {Type:"Software", Color: "#003A4D", Value: "Adobe InDesign", Level: 5},
@@ -15,7 +15,7 @@ var allData = [
     {Type:"Software", Color: "#003A4D", Value: "STELLA", Level:3},
     {Type:"Software", Color: "#003A4D", Value: "Git Version/GitHub", Level: 6},
     {Type:"Software", Color: "#003A4D", Value: "MapBox/TileMill", Level: 3},
-    {Type:"Software", Color: "#003A4D", Value: "SketcUp", Level: 2},
+    {Type:"Software", Color: "#003A4D", Value: "SketchUp", Level: 2},
     {Type:"Misc", Color: "#003040", Value:"WoodWorking", Level: 6},
     {Type:"Misc", Color: "#003040", Value:"Welding (Tig)", Level: 3},
     {Type:"Misc", Color: "#003040", Value:"Electrical (Residential)", Level: 6},

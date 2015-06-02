@@ -2,7 +2,6 @@
 var aspect = 1.4;
 var width = $("#map").width();
 var height = width/ aspect;
-
 //array of colors to be used in chloropleth
 var colors = d3.scale.category20c();
 

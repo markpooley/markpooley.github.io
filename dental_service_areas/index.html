@@ -7,9 +7,11 @@
     	<link rel="stylesheet" href="../stylesheets/app.css"/>
     	<link rel="stylesheet" href="stylesheets/custom.css"/>
     	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+      <link rel="stylesheet" type="text/css" href="../D3/d3.slider/d3.slider.css" media="screen" />
     	<script src="../bower_components/modernizr/modernizr.js"></script>
       <script src="http://d3js.org/d3.v3.min.js"></script>
       <script src="http://d3js.org/topojson.v1.min.js"></script>
+      <script src="../D3/d3.slider/d3.slider.js"></script>
     	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
       <style type="text/css">
 
@@ -48,10 +50,12 @@
       <div class="row">
         <div class="small-6 columns" id="loc">LOC</div>
       </div>
-	   	<div class="fullwidth" id="map">Map</div>
-	   </div>
+     </div>
+	   	<div class="fullwidth" id="map">
+        <!--div id="map"></div-->
+      </div>
 
-	<!--footer class="row">
+	<footer class="row">
 		<div class="large-12 columns text-center">
 		  <p>Iowa City • IA</p>
 		  <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
@@ -60,7 +64,7 @@
 		<div class="row">
 			<div class="small-12 columns" id="map"></div>
 		</div>
-	</footer-->
+	</footer>
 
 	   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 	   <script src="../bower_components/foundation/js/foundation.min.js"></script>

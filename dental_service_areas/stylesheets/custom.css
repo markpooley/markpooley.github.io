@@ -13,17 +13,17 @@ div.tooltip {
 div.container{
   margin: 0 auto;
 }
-#map {
-  width: 100%;
-  height: 100%;
-}
+
 .toppadding {
   padding-top: 1em;
 }
 .topspace {
   padding-top: 3em;
 }
-
+.fullwidth {
+  width: 75%;
+  margin: auto;
+}
 .leaflet-container{
   cursor: default;
 }

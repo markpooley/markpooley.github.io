@@ -1,12 +1,17 @@
 width = $('#map').width()
-height = width * .75
+height = width * .55
 
-d3.select('#map').attr('style','height:' + height)
+d3.select('#map').attr('style','height:' + height + 'px')
 
 var sw = L.latLng(40.581,-95.636),
-    ne = L.latLng(45.547,-91.263);
+    ne = L.latLng(45.547,-91.263),
+    bounds = L.latLngBounds(sw,ne);
 
-var map = L.map('map', {center: [42,-93.4],zoom: 8})
+var map = L.map('map', {center: [42,-93.4],
+      zoom: 8,
+      minZoom: 8,
+      bounds: bounds,
+      reuseTiles: true})
       .addLayer(new L.TileLayer("http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"));
 
   var colors = ['rgb(213,62,79)','rgb(253,174,97)','rgb(255,255,191)','rgb(171,221,164)','rgb(50,136,189)']
@@ -79,7 +84,7 @@ function drawDSAs(){
         })
         .style('stroke-width', "2px")
         .style('stroke','white')
-        .style('opacity', 0.95)
+        .style('opacity', 0.90)
         .on('mouseover', function(d){
           //store color temporarily
           d3.select('#loc').text('LOC: ' + d.properties.SUM_Patients_In/d.properties.SUM_Patients_Total)

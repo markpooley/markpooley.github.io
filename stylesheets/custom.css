@@ -108,10 +108,21 @@ table.filmInfo{
 	font-family: Georgia;
 	font-weight: bold;
 }
-#status ,#statusLabel, #cageTime{
+#status ,#statusLabel, #daysLabel{
 	font-family: Georgia;
 	font-weight: bold
 }
+#daysLabel {
+	font-size: 3em;
+
+}
 blockquote {
 	border-left: 0px;
+}
+#kills, #freaks {
+	font-size: 5em;
+}
+
+/*.gaugeTitle h4{
+	font-weight: bold;
 }

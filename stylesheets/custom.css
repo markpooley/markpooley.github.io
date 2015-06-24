@@ -112,3 +112,6 @@ table.filmInfo{
 	font-family: Georgia;
 	font-weight: bold
 }
+blockquote {
+	border-left: 0px;
+}

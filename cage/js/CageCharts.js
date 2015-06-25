@@ -9,18 +9,18 @@ var arcOuterRadius = width / 2,
 var colLow = "#FFFF00",
 	colHi = "#FF0000";
 
-//Gauge text generation
+//Gauge arc dimension determination generation
 var textX = $('#arc').width()/ 2
 var textY = $('#cageGauge').height()
 
-//set up variables for drawing
+//set up variables for drawing cage Gague
 var start = 0 - Math.PI/2; //Starting point of arc gauge
 var p = Math.PI/2; //ending point of arc on gauge
 var intervals = [0,20,40,60,80,100]; //intervals for Cage Guage animation
 var watched = 0, //count of watched
 	total = 0; //total count of entries
 
-
+///variables for determining time spent in the cage
 var yrstart = new Date('2015-06-01'),
 	today = new Date();
 
@@ -37,6 +37,8 @@ var getDays = function(start,today){
 var days = [getDays(yrstart,today)]
 
 //pull data from csv for aggregate freakouts and cage kills
+//append data to counters and use tween function to count up
+//from zero to current aggregate
 d3.csv('Data/CageData.csv', function(data){
 	dataset = data;
 	var kills = 0,
@@ -51,26 +53,40 @@ d3.csv('Data/CageData.csv', function(data){
 		.attr('height',height)
 		.attr('id','cageKills')
 		.append('text')
-		.text(kills)
+		.text(0)
 		.attr('id','kills')
 		.attr('x',width / 2)
 		.attr('y',height / 2)
 		.style('text-anchor','middle')
-		//.style('font-size','48px')
+		.transition()
+			.duration(3000)
+			.tween('text',tweenText(kills));
 
 	d3.select('#cageFreakouts').append('svg')
 		.attr('width',width)
 		.attr('height',height)
 		.attr('id','cageFreaks')
 		.append('text')
-		.text(freaks)
+		.text(0)
 		.attr('id','freaks')
 		.attr('x',width / 2)
 		.attr('y',height / 2)
 		.style('text-anchor','middle')
-		//.style('font-size','48px')
+		.transition()
+			.duration(3000)
+			.tween('text',tweenText(freaks));
 
-	console.log(kills, freaks)
+	function tweenText(newVal){
+		return function(){
+			var currentVal =+ this.textContent;
+			var i = d3.interpolateRound(currentVal, newVal);
+
+			return function(t){
+				this.textContent = i(t);
+			};
+		};
+	};
+
 });
 
 //get number of elements watched and unwatched
@@ -89,14 +105,14 @@ done = pctDone(watched,unwatched)
 intervals.push(done)
 
 
-//basic arc setup.
+//set up the arcs
 var arc = d3.svg.arc()
 	.innerRadius(arcInnerRadius)
 	.outerRadius(arcOuterRadius)
 	.startAngle(start);
 
 //color scales and linear scaling of percent to radians for arc drawing
-//scale for scaling a pct number to the arc
+//on time and cage gauge
 var arcScale = d3.scale.linear().domain([0,100]).range([0-Math.PI/2,Math.PI/2]);
 
 //scale arc positions to a color scale
@@ -105,11 +121,10 @@ var colorScale = d3.scale.linear().domain([start,p]).range([colLow,colHi])
 //scale status intervals to the range of possible input values
 var statusScale = d3.scale.quantize()
 	.domain([0,100])
-	.range(['The bunny is in the box','Lowrider, Donny',"Finding some friggin' rockets!","Not The Bees!","Sh*t's gettin radical!","'Deadfall' freaking out scene"])
+	.range(['The bunny is in the box','Lowrider, Donny',"Finding some friggin' rockets!","I'm a vampire!","Not The Bees!","'Deadfall' freaking out scene"])
 
 
-// Create the SVG container, and apply a transform such that the origin is the
-// center of the canvas. This way, we don't need to position arcs individually.
+// Creation of svg, background and foreground arcs for the cage Gauge.
 var svg = d3.select("#cageGauge").append("svg")
     .attr("width", width)
     .attr("height", height)
@@ -124,10 +139,27 @@ var statusLabel = svg.append('text').attr('id','statusLabel')
 	.text('Status:')
 	.style('text-anchor','middle')
 	.style('font-size','12px')
+//background creation for cague guage
+var background = svg.append('path')
+    .datum({endAngle:(Math.PI/2)})
+    .style('fill','#ddd')
+    .attr('d',arc)
+    .attr('id','arc')
+    .attr('x',width/2);
 
-//current status label that will be updated
+//foreground for cage gauge
+var foreground = svg.append('path')
+	.datum({endAngle: start})
+	.style('fill',function(d){
+		return colorScale(d.endAngle);
+	})
+	.style('opacity', 1.0)
+	.attr('arc',arc)
+
+//current status label that will be updated on the cage gauge
 var text = svg.append('text').attr('id','status')
 
+//creation svg, background and foreground for the time gauge
 // Add SVG to time gauge
 var timeSVG = d3.select('#timeCage').append('svg')
 	.attr("width",width)
@@ -144,7 +176,7 @@ var timeBackground = timeSVG.append('path')
 	.attr('id','timeArc')
 	.attr('x',width/2);
 
-
+//foreground for time gauge
 var timeForeground = timeSVG.append('path')
 	.datum({endAngle: start})
 	.style('fill',function(d){
@@ -153,41 +185,27 @@ var timeForeground = timeSVG.append('path')
 	.style('opacity',1)
 	.attr('arc',arc)
 
+//great svg text element for time gauge
 var daysText = timeSVG.append('text').attr('id','daysLabel')
 	.attr('x', 0)
 	.attr('y',0)
 	.style('text-anchor','middle')
-	.style('font-size','12px')
+	.style('font-size','40px')
 
-
-//var gaugeLabel = svg.append('text').attr('id','gaugeLabel')
-//	.attr('x',0)
-//	.attr('y',-(arcOuterRadius + 15))
-//	.text('The Cage Gauge')
-//	.style('text-anchor','middle')
-//	.style('font-size','22px')
+//var days = timeSVG.append('text').attr('id','days')
+//	.attr('x', textX)
+//	.attr('y', -50)
+//	.text("Days")
+//	.attr('text-anchor','middle')
+//	.attr('font-size', '12 px')
+//	.attr('fill', 'black')
 
 // An arc function with all values bound except the endAngle. So, to compute an
 // SVG path string for a given angle, we pass an object with an endAngle
 // property to the `arc` function, and it will return the corresponding string.
-var background = svg.append('path')
-    .datum({endAngle:(Math.PI/2)})
-    .style('fill','#ddd')
-    .attr('d',arc)
-    .attr('id','arc')
-    .attr('x',width/2);
-
-
-//foreground svg
-var foreground = svg.append('path')
-	.datum({endAngle: start})
-	.style('fill',function(d){
-		return colorScale(d.endAngle);
-	})
-	.style('opacity', 1.0)
-	.attr('arc',arc)
 
 function drawTime(days){
+	//calculate the % of year spent in the cage
 	n = days/365 *100
 	timeForeground.transition()
 		.delay(1000)
@@ -198,16 +216,28 @@ function drawTime(days){
 		return colorScale(arcScale(n));
 	})
 	d3.select('#daysLabel')
+		.attr('x',textX)
+		.attr('y', 0)
+		.text(0)
+		//.attr('font-size', "20 px")
+		//.attr('fill','black')
+		.attr('text-anchor', 'middle')
 		.transition()
-		.delay(1050)
-		.duration(255)
-		.ease('linear')
-	.attr('x',textX)
-	.attr('y', + 20)
-	.text(d3.format('.0f')(days) + ' Days')
-	.attr('font-size', "12 px")
-	.attr('fill','black')
-	.attr('text-anchor', 'middle');
+			.delay(1050)
+			.duration(250*n)
+			.tween('text',tweenText(days));
+
+	function tweenText(newVal){
+		return function(){
+			var currentVal =+ this.textContent;
+			var i = d3.interpolateRound(currentVal, newVal);
+
+			return function(t){
+				this.textContent = i(t);
+			};
+		};
+	};
+
 }
 
 
@@ -238,9 +268,6 @@ function drawGauge(data){
 	}
 };
 
-//draw the intervals
-$(document).ready(drawGauge(intervals));
-$(document).ready(drawTime(days));
 
 //function to draw new arcs from the the previous one
 function arcTween(transition, newAngle) {
@@ -252,3 +279,15 @@ function arcTween(transition, newAngle) {
 		};
 	});
 };
+//event listener to activate viz generations on the modal divs
+$(document).ready(function(){
+	$("#posters").click(function(event){
+		 id = event.target.title;
+		 split = id.indexOf('(') - 1
+		 title = id.slice(0,split)
+		 console.log(title)
+	});
+});
+//draw the intervals
+$(document).ready(drawGauge(intervals));
+$(document).ready(drawTime(days));

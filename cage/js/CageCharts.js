@@ -46,8 +46,9 @@ d3.csv('Data/CageData.csv', function(data){
 	data.forEach(function(d){
 		kills = kills + parseInt(+d.Kills)
 		freaks = freaks + parseInt(+d.Freakouts)
-
 	})
+	//hard code for the time being until I can figure out freakouts
+
 	d3.select('#cageKills').append('svg')
 		.attr('width', width)
 		.attr('height',height)
@@ -86,6 +87,35 @@ d3.csv('Data/CageData.csv', function(data){
 			};
 		};
 	};
+
+	//event listener to activate viz generations on the modal divs
+	//$(document).ready(function(){
+	//	$("#posters").click(function(event){
+	//		 id = event.target.title;
+	//		 split = id.indexOf('(') - 1;
+	//		 title = id.slice(0,split).replace(/\s/g,'');
+	//		 divID = "#" + title;
+	//		 dEntry = id.slice(0,split)
+	//		 console.log(dEntry)
+	//		 kills = divID + "Kills";
+	//		 freaks = divID + "Freaks";
+	//		 width = $(divID).width()/2;
+	//		 height = width * 0.5
+	//		 data.forEach(function(d){
+	//		 	if (d.Title == dEntry){
+	//		 		console.log(d.Title, d.Kills, d.Freakouts)
+	//		 	}
+	//		 })
+	//		 d3.select(kills).append('svg')
+	//		 	.attr('width',width)
+	//		 	.attr('height',height)
+	//		 	.attr('id', kills)
+	//		 d3.select(freaks).append('svg')
+	//		 	.attr('width',width)
+	//		 	.attr('height',height)
+	//		 	.attr('id', freaks)
+	//	});
+	//});
 
 });
 
@@ -279,15 +309,19 @@ function arcTween(transition, newAngle) {
 		};
 	});
 };
-//event listener to activate viz generations on the modal divs
-$(document).ready(function(){
-	$("#posters").click(function(event){
-		 id = event.target.title;
-		 split = id.indexOf('(') - 1
-		 title = id.slice(0,split)
-		 console.log(title)
-	});
-});
+
+
+////event listener to activate viz generations on the modal divs
+//$(document).ready(function(){
+//	$("#posters").click(function(event){
+//		 id = event.target.title;
+//		 split = id.indexOf('(') - 1
+//		 title = id.slice(0,split)
+//		 console.log(title)
+//
+//
+//	});
+//});
 //draw the intervals
 $(document).ready(drawGauge(intervals));
 $(document).ready(drawTime(days));

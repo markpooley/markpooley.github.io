@@ -121,7 +121,14 @@ blockquote {
 #kills, #freaks {
 	font-size: 6em;
 }
-
+#killCount, #freakCount {
+	font-size: 4em;
+}
 .gaugeTitle h4{
 	font-weight: 600;
+}
+.reveal-modal {
+	position: absolute;
+	visibility: hidden;
+	display: block;
 }

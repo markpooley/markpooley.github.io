@@ -10,7 +10,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 2003,Matchstick Men,"Comedy, Crime, Drama",PG-13,7.3/10,0,54290,116,,
 2000,Gone in Sixty Seconds,"Action, Crime, Thriller",PG-13,6.5/10,90000000,1234703248,118,,
 1987,Raising Arizona,"Comedy, Crime, Drama",PG-13,7.4/10,6000000,22847564,94,,
-2007,Next,"Action, Sci-Fi, Thriller",PG-13,6.2/10,70000000,17993461,96,,
+2007,Next,"Action, Sci-Fi, Thriller",PG-13,6.2/10,70000000,17993461,96,0,1
 1987,Moonstruck,"Comedy, Drama, Romance",PG,7.1/10,0,80640528,102,,
 1995,Leaving Las Vegas,"Drama, Romance",R,7.6/10,3600000,31968347,111,,
 2014,Dying of the Light,"Drama, Thriller",R,4.3/10,15000000,0,94,,
@@ -33,14 +33,14 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 1993,Amos &amp; Andrew,"Comedy, Crime",PG-13,5.5/10,0,9745803,96,,
 1998,City of Angels,"Drama, Fantasy, Romance",PG-13,6.7/10,55000000,78745923,114,,
 2013,Joe,Drama,R,6.9/10,4000000,371897,117,,
-2014,Left Behind,"Action, Sci-Fi, Thriller",PG-13,3.1/10,16000000,13998282,110,0,1
+2014,Left Behind,"Action, Sci-Fi, Thriller",PG-13,3.1/10,16000000,7769235,110,0,1
 2007,National Treasure: Book of Secrets,"Action, Adventure, Mystery",PG,6.5/10,130000000,219961501,124,,
 1986,The Boy in Blue,"Biography, Drama, Sport",R,5.3/10,7716000,275000,100,,
 2006,The Wicker Man,"Horror, Mystery, Thriller",PG-13,3.6/10,40000000,1391887,102,,
 1997,FaceOff,"Action, Crime, Sci-Fi",R,7.3/10,80000000,112225777,138,14,10
 2011,Seeking Justice,"Action, Drama, Thriller",R,6.2/10,17000000,41081,105,,
 2007,Grindhouse,"Action, Horror, Thriller",R,7.7/10,53000000,25031037,191,,
-2012,Stolen,"Action, Crime, Drama",R,5.5/10,35000000,183125,96,1,2
+2012,Stolen,"Action, Crime, Drama",R,5.5/10,35000000,304318,96,1,2
 1999,Bringing Out the Dead,"Comedy, Drama, Thriller",R,6.8/10,55000000,967925,121,,
 2008,Bangkok Dangerous,"Action, Crime, Thriller",R,5.4/10,40000000,15279680,99,,
 2014,Rage,"Action, Crime, Thriller",NOT RATED,5.0/10,21000000,0,92,,

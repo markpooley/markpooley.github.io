@@ -19,7 +19,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 2002,Adaptation.,"Comedy, Drama",R,7.7/10,19000000,89971,114,,
 2010,Kick-Ass,"Action, Comedy",R,7.7/10,30000000,48043505,117,,
 1992,Honeymoon in Vegas,"Comedy, Romance, Thriller",PG-13,5.8/10,25000000,35208854,96,,
-2011,Drive Angry,"Action, Comedy, Fantasy",R,5.5/10,50000000,10706786,104,,
+2011,Drive Angry,"Action, Comedy, Fantasy",R,5.5/10,50000000,10706786,104,31,
 2009,Bad Lieutenant: Port of Call New Orleans,"Crime, Drama",R,6.7/10,25000000,532700,122,,
 2009,Knowing,"Action, Drama, Mystery",PG-13,6.2/10,50000000,79948113,121,,
 2015,Snowden,"Biography, Drama, Thriller",Unrated,Not Rated Yet,49967762,0,0,,
@@ -64,7 +64,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 1990,Industrial Symphony No. 1: The Dream of the Brokenhearted,"Drama, Music",Unrated,7.1/10,0,0,50,,
 2013,The Croods,"Animation, Adventure, Comedy",PG,7.3/10,135000000,187165546,98,,
 2001,Christmas Carol: The Movie,"Animation, Family",PG,5.6/10,12000000,1372998,77,,
-1983,Valley Girl,"Comedy, Romance",R,6.3/10,350000,0,99,,
+1983,Valley Girl,"Comedy, Romance",R,6.3/10,350000,16797122,99,0,5
 1998,Snake Eyes,"Action, Crime, Drama",R,5.9/10,69000000,55585389,98,,
 1991,Zandalee,"Drama, Romance, Thriller",R,4.3/10,0,0,100,,
 2011,Trespass,"Crime, Drama, Thriller",R,5.3/10,35000000,16816,91,,

@@ -1,0 +1,94 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Age of Iowa City Buildings</title>
+    <link rel="stylesheet" href="../stylesheets/app.css"/>
+    <link rel="stylesheet" href="stylesheets/YearBuiltJC.css"/>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../index.html">Home</a></li>
+          <li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="../FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="../DentalServiceAreas.html">Dental Service Areas</a></li>
+              <li><a href="../cage/">A Year in the Cage</a></li>
+              <li class="active"><a href="YearBuiltJC.html">Age of Johnson County Buildings</a></li>
+
+            </ul>
+          </li>
+          <li><a href="../blog/">Blog</a></li>
+          <li><a href="../Resume.html">Resume</a></li>
+          <!--li><a href="#">Contact</a></li-->
+
+        </ul>
+      </section>
+    </nav>
+
+      <div class="fullwidth toppadding" id="info">
+        <div class="small-4 columns" id="info">
+          <h3 class="badge">Build Year of Structures in Iowa City</h3>
+        </div>
+        <div class="small-4 columns" id="badge">
+          <h6 class="badge" align="center">Click and and hold to drag, use the mouse wheel to zoom</h6>
+          <h6 class="subheader" align="center">To learn how the data were collected and visualized click <a href="#">here</a></h6>
+        </div>
+       <div class="small-4 columns right toppadding" id="legend" align="right">
+        <table id="legend" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+          <td class="legend">No Data</td>
+          <td class="legend">1800</td>
+          <td class="legend">1840</td>
+          <td class="legend">1860</td>
+          <td class="legend">1900</td>
+          <td class="legend">1920</td>
+          <td class="legend">1940</td>
+          <td class="legend">1960</td>
+          <td class="legend">1980</td>
+          <td class="legend">2000</td>
+        </tr>
+        </table>
+      </div>
+      <div class="fullwidth">
+        <div class="small-12 columns badge" id="buildyear" style="vertical-align:middle">Build Year: </div>
+      </div>
+    </div>
+    <div class="fullwidth" id="map"></div>
+  </div>
+
+
+  <footer class="row">
+  <div class="large-12 columns text-center">
+    <p font-color="white">Iowa City • IA</p>
+    <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+      <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+  </div>
+  </footer>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../D3\src_code\d3.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="js/yearbuiltjc.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

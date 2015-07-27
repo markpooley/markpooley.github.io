@@ -31,8 +31,6 @@ var getDays = function(start,today){
 	}
 	return time;
 }
-
-
 //get number of days since start
 var days = [getDays(yrstart,today)]
 
@@ -41,12 +39,19 @@ var days = [getDays(yrstart,today)]
 //from zero to current aggregate
 d3.csv('Data/CageData.csv', function(data){
 	dataset = data;
+	cageArray = []
 	var kills = 0,
 		freaks = 0;
 	data.forEach(function(d){
 		kills = kills + parseInt(+d.Kills)
 		freaks = freaks + parseInt(+d.Freakouts)
+		cageArray.push({
+			Title: d.Title,
+			Kills: d.Kills,
+			Freaks: d.Freakouts
+		})
 	})
+	console.log(cageArray)
 	//hard code for the time being until I can figure out freakouts
 
 	d3.select('#cageKills').append('svg')
@@ -89,33 +94,95 @@ d3.csv('Data/CageData.csv', function(data){
 	};
 
 	//event listener to activate viz generations on the modal divs
-	//$(document).ready(function(){
-	//	$("#posters").click(function(event){
-	//		 id = event.target.title;
-	//		 split = id.indexOf('(') - 1;
-	//		 title = id.slice(0,split).replace(/\s/g,'');
-	//		 divID = "#" + title;
-	//		 dEntry = id.slice(0,split)
-	//		 console.log(dEntry)
-	//		 kills = divID + "Kills";
-	//		 freaks = divID + "Freaks";
-	//		 width = $(divID).width()/2;
-	//		 height = width * 0.5
-	//		 data.forEach(function(d){
-	//		 	if (d.Title == dEntry){
-	//		 		console.log(d.Title, d.Kills, d.Freakouts)
-	//		 	}
-	//		 })
-	//		 d3.select(kills).append('svg')
-	//		 	.attr('width',width)
-	//		 	.attr('height',height)
-	//		 	.attr('id', kills)
-	//		 d3.select(freaks).append('svg')
-	//		 	.attr('width',width)
-	//		 	.attr('height',height)
-	//		 	.attr('id', freaks)
-	//	});
-	//});
+	$(document).ready(function(){
+		$("#posters").click(function(event){
+
+			 id = event.target.title;
+			 //get the Title and create an ID
+			 split = id.indexOf('(') - 1;
+			 title = id.slice(0,split).replace(/\s/g,'');
+			 divID = "#" + title;
+			 dEntry = id.slice(0,split)
+
+
+
+			 	Char = divID + "Char"
+			 	Hair = divID + "Hair"
+			 	Rating = divID + "Rating"
+			 	kills = divID + "Kills";
+			 	freaks = divID + "Freaks";
+
+			 	width = $(Char).width();
+			 	height = width
+			 	ratingWidth = $(Rating).width()
+			 	ratingHeight = ratingWidth / 1.5
+
+			 	console.log(divID)
+			 	console.log(width,height)
+			 	data.forEach(function(d){
+			 		if (d.Title == dEntry){
+			 			console.log(d.Title, d.Kills, d.Freakouts)
+			 			killCount = d.Kills
+			 			freakCount = d.Freakouts
+			 		}
+			 	})
+
+ 			 	d3.select(Char).append('svg')
+			 		.attr('width',width)
+			 		.attr('height',height)
+			 		.attr('id', Char.slice(1))
+			 		.attr('fill','black')
+ 			 	d3.select(Hair).append('svg')
+			 		.attr('width',width)
+			 		.attr('height',height)
+			 		.attr('id', Hair.slice(1))
+			 		.attr('fill','black')
+ 			 	d3.select(Rating).append('svg')
+			 		.attr('width',ratingWidth)
+			 		.attr('height',ratingHeight)
+			 		.attr('id', Rating.slice(1))
+			 		.attr('fill','black')
+
+
+			 	d3.select(kills).append('svg')
+			 		.attr('width',width)
+			 		.attr('height',height)
+			 		.attr('id', kills.slice(1))
+			 		.append('text')
+					.text(0)
+					.attr('id','killCount')
+					.attr('x',width / 2)
+					.attr('y',height- 10)
+					.style('text-anchor','middle')
+					.transition()
+						.duration(3000)
+						.tween('text',tweenText(killCount));
+
+			 	d3.select(freaks).append('svg')
+			 		.attr('width',width)
+			 		.attr('height',height)
+			 		.attr('id', freaks.slice(1))
+			 		.append('text')
+					.text(0)
+					.attr('id','freakCount')
+					.attr('x',width / 2)
+					.attr('y',height - 10 )
+					.style('text-anchor','middle')
+					.transition()
+						.duration(3000)
+						.tween('text',tweenText(freakCount));
+
+				function tweenText(newVal){
+					return function(){
+						var currentVal =+ this.textContent;
+						var i = d3.interpolateRound(currentVal, newVal);
+						return function(t){
+							this.textContent = i(t);
+						};
+					};
+				};
+		});
+	});
 
 });
 
@@ -166,9 +233,9 @@ var svg = d3.select("#cageGauge").append("svg")
 var statusLabel = svg.append('text').attr('id','statusLabel')
 	.attr('x', 0)
 	.attr('y',0)
-	.text('Status:')
 	.style('text-anchor','middle')
-	.style('font-size','12px')
+	.style('font-size','40px')
+
 //background creation for cague guage
 var background = svg.append('path')
     .datum({endAngle:(Math.PI/2)})
@@ -217,18 +284,10 @@ var timeForeground = timeSVG.append('path')
 
 //great svg text element for time gauge
 var daysText = timeSVG.append('text').attr('id','daysLabel')
-	.attr('x', 0)
+	.attr('x',0)
 	.attr('y',0)
 	.style('text-anchor','middle')
 	.style('font-size','40px')
-
-//var days = timeSVG.append('text').attr('id','days')
-//	.attr('x', textX)
-//	.attr('y', -50)
-//	.text("Days")
-//	.attr('text-anchor','middle')
-//	.attr('font-size', '12 px')
-//	.attr('fill', 'black')
 
 // An arc function with all values bound except the endAngle. So, to compute an
 // SVG path string for a given angle, we pass an object with an endAngle
@@ -249,7 +308,7 @@ function drawTime(days){
 		.attr('x',textX)
 		.attr('y', 0)
 		.text(0)
-		//.attr('font-size', "20 px")
+		//.attr('font-size', "30 px")
 		//.attr('fill','black')
 		.attr('text-anchor', 'middle')
 		.transition()
@@ -268,36 +327,72 @@ function drawTime(days){
 		};
 	};
 
-}
+}// end drawTime function
 
 
 //draw the main gauge and transition through all the intervals
 //
-function drawGauge(data){
-	for(i = 0; i < data.length;i++){
-		var n = data[i]
-		foreground.transition()
-			.delay(1000*i)
-			.duration(250)
-			.ease('linear')
-			.call(arcTween,arcScale(n))
-		.style('fill',function(){
-			return colorScale(arcScale(n));
-		})
-		d3.select('#status')
-			.transition()
-			.delay(1050*i)
-			.duration(255)
-			.ease('linear')
-		.attr('x',textX)
-		.attr('y', + 20)
-		.text(function(){return statusScale(n);})
-		.attr('font-size', '12 px')
-		.style('fill','black')
-		.style('text-anchor','middle');
-	}
-};
+//function drawGauge(data){
+//	for(i = 0; i < data.length;i++){
+//		var n = data[i]
+//		foreground.transition()
+//			.delay(1000*i)
+//			.duration(250)
+//			.ease('linear')
+//			.call(arcTween,arcScale(n))
+//		.style('fill',function(){
+//			return colorScale(arcScale(n));
+//		})
+//		d3.select('#status')
+//			.transition()
+//			.delay(1050*i)
+//			.duration(255)
+//			.ease('linear')
+//		.attr('x',textX)
+//		.attr('y', + 20)
+//		.text(function(){return statusScale(n);})
+//		.attr('font-size', '12 px')
+//		.style('fill','black')
+//		.style('text-anchor','middle');
+//	}
+//};
+//Animate Cage Gauge
+function drawGauge(pctDone){
 
+	n = pctDone
+	foreground.transition()
+		.delay(1000)
+		.duration(250*n)
+		.ease('linear')
+		.call(arcTween,arcScale(pctDone))
+	.style('fill',function(){
+		return colorScale(arcScale(pctDone));
+	})
+	d3.select('#statusLabel')
+		.transition()
+		.attr('x',textX)
+		.attr('y',0)
+		.text(0)
+		//.style('font-size', "30 px")
+		//.attr('fill','black')
+		.attr('text-anchor', 'middle')
+		.transition()
+			.delay(1050)
+			.duration(250*n)
+			.tween('text',tweenText(pctDone));
+
+	function tweenText(newVal){
+		return function(){
+			var currentVal =+ this.textContent;
+			var i = d3.interpolateRound(currentVal, newVal);
+
+			return function(t){
+				this.textContent = i(t);
+			};
+		};
+	};
+
+}// end draw Gauge function
 
 //function to draw new arcs from the the previous one
 function arcTween(transition, newAngle) {
@@ -309,6 +404,7 @@ function arcTween(transition, newAngle) {
 		};
 	});
 };
+
 
 
 ////event listener to activate viz generations on the modal divs
@@ -323,5 +419,6 @@ function arcTween(transition, newAngle) {
 //	});
 //});
 //draw the intervals
-$(document).ready(drawGauge(intervals));
+console.log(done)
+$(document).ready(drawGauge(done));
 $(document).ready(drawTime(days));

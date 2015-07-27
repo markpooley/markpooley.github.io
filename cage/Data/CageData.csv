@@ -19,7 +19,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 2002,Adaptation.,"Comedy, Drama",R,7.7/10,19000000,89971,114,,
 2010,Kick-Ass,"Action, Comedy",R,7.7/10,30000000,48043505,117,,
 1992,Honeymoon in Vegas,"Comedy, Romance, Thriller",PG-13,5.8/10,25000000,35208854,96,,
-2011,Drive Angry,"Action, Comedy, Fantasy",R,5.5/10,50000000,10706786,104,31,
+2011,Drive Angry,"Action, Comedy, Fantasy",R,5.5/10,50000000,10706786,104,31,0
 2009,Bad Lieutenant: Port of Call New Orleans,"Crime, Drama",R,6.7/10,25000000,532700,122,,
 2009,Knowing,"Action, Drama, Mystery",PG-13,6.2/10,50000000,79948113,121,,
 2015,Snowden,"Biography, Drama, Thriller",Unrated,Not Rated Yet,49967762,0,0,,
@@ -32,7 +32,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 2005,Lord of War,"Crime, Drama, Thriller",R,7.6/10,50000000,148101,122,,
 1993,Amos &amp; Andrew,"Comedy, Crime",PG-13,5.5/10,0,9745803,96,,
 1998,City of Angels,"Drama, Fantasy, Romance",PG-13,6.7/10,55000000,78745923,114,,
-2013,Joe,Drama,R,6.9/10,4000000,371897,117,,
+2013,Joe,Drama,R,6.9/10,4000000,371897,117,3,3
 2014,Left Behind,"Action, Sci-Fi, Thriller",PG-13,3.1/10,16000000,7769235,110,0,1
 2007,National Treasure: Book of Secrets,"Action, Adventure, Mystery",PG,6.5/10,130000000,219961501,124,,
 1986,The Boy in Blue,"Biography, Drama, Sport",R,5.3/10,7716000,275000,100,,
@@ -66,7 +66,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 2001,Christmas Carol: The Movie,"Animation, Family",PG,5.6/10,12000000,1372998,77,,
 1983,Valley Girl,"Comedy, Romance",R,6.3/10,350000,16797122,99,0,5
 1998,Snake Eyes,"Action, Crime, Drama",R,5.9/10,69000000,55585389,98,,
-1991,Zandalee,"Drama, Romance, Thriller",R,4.3/10,0,0,100,,
+1991,Zandalee,"Drama, Romance, Thriller",R,4.3/10,0,0,100,0,5
 2011,Trespass,"Crime, Drama, Thriller",R,5.3/10,35000000,16816,91,,
 1984,The Cotton Club,"Crime, Drama, Music",R,6.5/10,58000000,25900000,127,,
 1994,Guarding Tess,"Comedy, Drama",PG-13,6.1/10,20000000,27053498,96,,

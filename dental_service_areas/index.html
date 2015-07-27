@@ -3,15 +3,18 @@
   <head>
     	<meta charset="utf-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    	<title>Dental Service Areas</title>
-    	<link rel="stylesheet" href="../stylesheets/app.css"/>
+    	<title>Dental Service Areas</title
+>    	<link rel="stylesheet" href="../stylesheets/app.css"/>
     	<link rel="stylesheet" href="stylesheets/custom.css"/>
     	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
       <link rel="stylesheet" type="text/css" href="../D3/d3.slider/d3.slider.css" media="screen" />
+      <link rel="stylesheet" type="text/css" href="../D3/c3/c3.min.css"/>
     	<script src="../bower_components/modernizr/modernizr.js"></script>
       <script src="http://d3js.org/d3.v3.min.js"></script>
       <script src="http://d3js.org/topojson.v1.min.js"></script>
-      <script src="../D3/d3.slider/d3.slider.js"></script>
+      <!--script src="../D3/d3.slider/d3.slider.js"></script>
+      <script src="../D3/c3/c3.min.js"></script-->
+
     	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
       <style type="text/css">
 
@@ -31,7 +34,7 @@
               <li><a href="/FoodTrucks.html">Iowa City Food Trucks</a></li>
               <li class="active"><a href="#">Dental Service Areas</a></li>
               <li><a href="../cage/">A Year in the Cage</a></li>
-              <li><a href="../YearBuiltJC.html">Age of Johnson County Buildings</a></li>
+              <li><a href="../yearbuiltjc/">Age of Johnson County Buildings</a></li>
             </ul>
           </li>
           <li><a href="Resume.html">Resume</a></li>
@@ -40,30 +43,41 @@
         </ul>
       </section>
     </nav>
-	   <!--div class="row">
-			<div class="large-12 columns text-center" bgcolor='#022925' class="container">
-			    <h2>Dental Service Areas</h2>
-			    <p class="panel">Mouse over the DSAs to reveal the ZCTAs each areas has ben built from.</p>
-			</div>
 	   </div-->
-	   <div class="row toppadding">
-      <div class="row">
-        <div class="small-6 columns" id="loc">LOC</div>
-      </div>
-     </div>
-	   	<div class="fullwidth" id="map">
-        <!--div id="map"></div-->
+      <div class= "fullwidth toppadding">
+        <div class="panel"><p>Dental Service Areas are built from ZCTAs (Zip Code Tabultion Areas). Dental Visits occuring inside and outside each ZCTA are tabulated and a crosswalk is used to determine how ZCTAS are aggregated into representative geographic service areas using both health data and geographic constraints. For a more in-depth explanation of how service areas are created click <a href="#">here</a>.</p>
+        <p>Localization of Care (LOC) is a ratio of the visits occuring within a service area to all visits observed from members liviving within the service area (some visits occur out of a servic area). Mouse/hover over a service area to find out the LOC and get an idea of the number of ZCTAS making up a particulare service area.</p>
+        </div>
       </div>
 
-	<footer class="row">
-		<div class="large-12 columns text-center">
-		  <p>Iowa City • IA</p>
-		  <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
-		    <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
-		</div>
-		<div class="row">
-			<div class="small-12 columns" id="map"></div>
-		</div>
+    <div class= "row toppadding"></div>
+    <div class="fullwidth" id="chart"></div>
+    <div class="fullwidth">
+        <div class="small-6 columns" id="locDiv">
+          <table border="0" id="locTable">
+            <tr><td id="loc">LOC: 0.00</td><tr>
+          </table>
+        </div>
+        <div class="small-6 columns" id="legend">
+          <table id="legendTable" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="background-color: rgb(213,62,79)">&lt; .20</td>
+              <td style="background-color: rgb(253,174,97)">.20 - .40</td>
+              <td style="background-color: rgb(229,229,172)">.40 - .60</td>
+              <td style="background-color: rgb(122,157,117)">.60 - .80</td>
+              <td style="background-color: rgb(50,136,189)">&gt; .80</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="fullwidth toppadding" id="map"></div>
+
+  <footer class="row">
+    <div class="large-12 columns text-center">
+      <p>Iowa City • IA</p>
+      <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+        <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+    </div>
 	</footer>
 
 	   <script src="../bower_components/jquery/dist/jquery.min.js"></script>

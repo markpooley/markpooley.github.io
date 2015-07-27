@@ -13,7 +13,10 @@ div.tooltip {
 div.container{
   margin: 0 auto;
 }
-
+#chart {
+  margin: auto
+  display: block;
+}
 .toppadding {
   padding-top: 1em;
 }
@@ -21,9 +24,21 @@ div.container{
   padding-top: 3em;
 }
 .fullwidth {
-  width: 75%;
+  width: 65%;
   margin: auto;
 }
 .leaflet-container{
   cursor: default;
+}
+#legend {
+  float: right;
+}
+#legendTable {
+  text-align: center;
+}
+#loc {
+  float:left;
+}
+#locTable {
+  border: none;
 }

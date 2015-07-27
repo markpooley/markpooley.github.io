@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Mark Pooley</title>
+    <link rel="stylesheet" href="../../../../stylesheets/app.css"/>
+    <link rel="stylesheet" href="../../../stylesheets/custom.css"/>
+    <script src="../../../../bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../../../../../index.html">Home</a></li>
+          <li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="dental_service_areas/">Dental Service Areas</a></li>
+              <li><a href="cage/">A Year in the Cage</a></li>
+              <li><a href="yearbuiltjc/">Age of Johnson County Buildings</a></li>
+            </ul>
+          </li>
+          <li class="active"><a href="../../../../blog/">Blog</a></li>
+          <li><a href="Resume.html">Resume</a></li>
+        </ul>
+      </section>
+    </nav>
+    <div class="row">
+      <div class="small-10 columns small-centered">
+        <h2>Evaluating the New Iowa City Food Truck Ordinance</h3>
+        <h6>April 1, 2015.</h6><hr>
+        <p>Iowa City is slated to expand food truck operations through a new city ordinance that will hopefully be adopted (<a href="http://www.dailyiowan.com/2015/03/30/Metro/41524.html">story</a>). But, the question is where can food trucks operate safely given these new guidlines? </p>
+        <p>First, I found a mostly <a href="http://www.iowacitymenus.com/">comprehensive list</a> of restaurants in Iowa City since foodtrucks are prohibited from operating within 150 feet of a restaurant. This list doesn't include KFC, McDonalds, or similar type estblishments.</p>
+
+        <h4>Getting restaurant locations and geocoding</h4><hr>
+        We'll need BeautifulSoup, urllib2, and geocoder to parse open and parse the html data, all of which can be installed using pip.
+<pre>
+  <code>pip install library</code>
+</pre>
+<pre>
+  <code>
+    #import libraries
+    import BeautifulSoup,urllib2,timer,geocoder,csv
+  </code>
+</pre>
+        In taking a look at the html from the 'iowacitymenus.com' page, we find that it's a (mostly) organized list. So, we can use <a href="https://pypi.python.org/pypi/beautifulsoup4">BeautifulSoup</a> to parse the html data using python (there's a great tutorial by Zev Ross about using beautiful soup to parse html in python <a href="http://zevross.com/blog/2014/05/16/using-the-python-library-beautifulsoup-to-extract-data-from-a-webpage-applied-to-world-cup-rankings/">here</a>.) We can use the urllib2 library to open the url and feed it in to BeatifulSoup. We then iterate through the "soup" to find the elements we're interested in and write the output to a csv. Viola!
+<pre>
+  <code>
+    url = <span class='hljs-string'>'http://www.iowacitymenus.com/'</span>
+    page = urllib2.urlopen(url)
+    content = urllib2.urlopen(url).<span class="hljs-keyword">read</span>()
+    soup = BeautifulSoup(content)</code>
+</pre>
+        <p>This was my first foray into scrapping web data, so I wasn't able to navigate the html tree structure, or use BeautifulSoup very efficienlty. Instead, I used some elementary string manipulation to pull the names and address of locations and write them to the csv.</p>
+<pre>
+  <code>
+    with open('ICEats.csv', 'wb') as csvfile:
+      writer = csv.writer(csvfile, delimiter=',')
+      writer.writerow(('Name','Address','Lat','Lon'))
+      for loc in locs:
+          if loc.b == None:
+              pass
+          else:
+        #The addresses were in list elements, but housed within break elements -
+        #makes pulling the necessary informaiton a bit difficult. So, some
+        #string  manipulation was needed to get the needed info.
+        #----------------------------------------------------------------------
+              name = str(loc.b).strip(<span class="hljs-string">''</span>)
+              line = str(loc)
+              s = line.find('br') + 5
+
+              place = line[s:]
+              e = place.find('br') - 1
+              place = place[:e]
+
+              #try to geocode locations
+              try:
+                timer.sleep(0.2) #sleep to avoid query limit
+                loc = geocoder.google(place)
+                Lat = loc.lat
+                Lon = loc.lng
+              except:
+                Lat = None
+                Lon = None
+
+              dict[name] = place
+
+              writer.writerow((name,place,Lat,Lon))
+    csvfile.close()
+  </code>
+</pre>
+        <p>We've got our data into a CSV now. It wasn't perfect, I had to manually change a couple entires. Locations that couldn't be geocoded while writing to the CSV were just manually entered, since there were only a few of them.</p>
+
+        <h4>Spatial analysis of data and conversion for web display</h4><hr>
+        <p><a href="http://www.ESRI.com">ESRI ArcMap</a> was utilized to do the heavy lifting for analyzing the spatial data. The majority of the hang up was the fact that Iowa City lacks an overlay of zoning layers. Invidiual parcels are available with a zoning classificaiton, but this was less than ideal (for reaons that will become apparent shortly)</p>
+        <h6>Processes done in ArcMap</h6>
+        <ul>
+          <li>Create a 150 buffer around all restaurant locations </li>
+          <li>Delineate the Downtown and Northside Districts</li>
+          <li>Identify residential parcels and fill in road right-of-way areas</li>
+          <li>Dissolve all the restricted areas into one feature</li>
+          <li>Convert shapefiles to topojson for web display</li>
+        </ul>
+        <p>Creating a 150 buffer around restaurants is stratigh forward, and uses readily available geopcrocessing tools in ArcMap. The downtown districts were manually created using the <a href="http://www.icgov.org/site/CMSv2/File/planning/urban/ZoningMap.pdf">Iowa City Zoning Map</a> (warning, it's a HUGE PDF!)</p>
+        <p>A simple zoning overlay was all that was needed. However, only a parcel level shapefile was available. Parcels do not lend themselves to dissolving by zoning type well since all the of the road right-of-way is essentially empty.</p>
+        <p>In order to get around this issue the road areas were isolated, and split using road centerline data (available <a href="http://www.iowadot.gov/gis/downloads/zipped_files/GIMS_History/2013/">here</a>).This data was merged with the parcel data that had been previously dissolved by zoning type, and a neighbor table was generated. From this, a zoning classification was assigned to each roadway based on the zoning type of the largest area bordering each road. The code for this was written hastily in the python interpreter inside of ArcMap...so didn't save it.</p>
+        <p>A little bit of manual cleaning of boundaries, and the data is ready for conversion. Converting ESRI shapefiles to geojson is easy using OSGEO in the command prompt</p>
+<pre>
+  <code>$ ogr2ogr -f GeoJSON -t_srs crs:84 [name].geojson [name].shp</code>
+</pre>
+      <p>The GeoJSON can then be dragged into <a href="http://www.mapshaper.org/">MapShaper</a> to be simplified and exported as a TopoJSON, which is much small and loads faster in web pages. <a href="#">Here's the final result</a></p>
+
+      <h4>Displaying data for the web</h4><hr>
+      <p><a href="http://d3js.org/">D3</a> is an incredibly powerful library for displaying data &#45; particularly spatial data. </p>
+      </div>
+    </div>
+    <footer class="row ">
+      <div class="large-12 columns text-center">
+        <p>Iowa City • IA</p>
+        <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+          <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+      </div>
+    </footer>
+
+    <script src="../../../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../../../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../../../../js/app.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

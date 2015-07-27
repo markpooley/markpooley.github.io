@@ -132,3 +132,6 @@ blockquote {
 	visibility: hidden;
 	display: block;
 }
+#MetaCage div {
+	text-align: center;
+}

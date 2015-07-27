@@ -1,0 +1,41 @@
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: gray;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+div.container{
+  margin: 0 auto;
+}
+
+.toppadding {
+  padding-top: 1em;
+}
+.topspace {
+  padding-top: 3em;
+}
+.fullwidth {
+  width: 65%;
+  margin: auto;
+}
+.leaflet-container{
+  cursor: default;
+}
+#legend {
+  float: right;
+}
+#legendTable {
+  text-align: center;
+}
+#loc {
+  float:left;
+}
+#locTable {
+  border: none;
+}

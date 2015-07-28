@@ -34,6 +34,19 @@ var getDays = function(start,today){
 //get number of days since start
 var days = [getDays(yrstart,today)]
 
+
+//create the SVGS immediately
+var killSVG = d3.select('#cageKills').append('svg')
+	.attr('width', width)
+	.attr('height',height)
+	.attr('id','cageKills')
+
+//create freak svg
+var freakSVG = 	d3.select('#cageFreakouts').append('svg')
+	.attr('width',width)
+	.attr('height',height)
+	.attr('id','cageFreaks')
+
 //pull data from csv for aggregate freakouts and cage kills
 //append data to counters and use tween function to count up
 //from zero to current aggregate
@@ -51,14 +64,9 @@ d3.csv('Data/CageData.csv', function(data){
 			Freaks: d.Freakouts
 		})
 	})
-	console.log(cageArray)
-	//hard code for the time being until I can figure out freakouts
 
-	d3.select('#cageKills').append('svg')
-		.attr('width', width)
-		.attr('height',height)
-		.attr('id','cageKills')
-		.append('text')
+	//animate counter for kills
+	killSVG.append('text')
 		.text(0)
 		.attr('id','kills')
 		.attr('x',width / 2)
@@ -68,11 +76,8 @@ d3.csv('Data/CageData.csv', function(data){
 			.duration(3000)
 			.tween('text',tweenText(kills));
 
-	d3.select('#cageFreakouts').append('svg')
-		.attr('width',width)
-		.attr('height',height)
-		.attr('id','cageFreaks')
-		.append('text')
+	//animate counter for freakouts
+	freakSVG.append('text')
 		.text(0)
 		.attr('id','freaks')
 		.attr('x',width / 2)
@@ -112,10 +117,9 @@ d3.csv('Data/CageData.csv', function(data){
 			 	kills = divID + "Kills";
 			 	freaks = divID + "Freaks";
 
-			 	width = $(Char).width();
-			 	height = width
+			 	modWidth = $(Char).width();
 			 	ratingWidth = $(Rating).width()
-			 	ratingHeight = ratingWidth / 1.5
+			 	height = ratingWidth / 1.5
 
 			 	console.log(divID)
 			 	console.log(width,height)
@@ -127,46 +131,36 @@ d3.csv('Data/CageData.csv', function(data){
 			 		}
 			 	})
 
- 			 	d3.select(Char).append('svg')
-			 		.attr('width',width)
-			 		.attr('height',height)
-			 		.attr('id', Char.slice(1))
-			 		.attr('fill','black')
- 			 	d3.select(Hair).append('svg')
-			 		.attr('width',width)
-			 		.attr('height',height)
-			 		.attr('id', Hair.slice(1))
-			 		.attr('fill','black')
  			 	d3.select(Rating).append('svg')
 			 		.attr('width',ratingWidth)
-			 		.attr('height',ratingHeight)
+			 		.attr('height',height)
 			 		.attr('id', Rating.slice(1))
 			 		.attr('fill','black')
 
 
 			 	d3.select(kills).append('svg')
-			 		.attr('width',width)
+			 		.attr('width',modWidth)
 			 		.attr('height',height)
 			 		.attr('id', kills.slice(1))
 			 		.append('text')
 					.text(0)
 					.attr('id','killCount')
-					.attr('x',width / 2)
-					.attr('y',height- 10)
+					.attr('x',modWidth / 2)
+					.attr('y',height/2)
 					.style('text-anchor','middle')
 					.transition()
 						.duration(3000)
 						.tween('text',tweenText(killCount));
 
 			 	d3.select(freaks).append('svg')
-			 		.attr('width',width)
+			 		.attr('width',modWidth)
 			 		.attr('height',height)
 			 		.attr('id', freaks.slice(1))
 			 		.append('text')
 					.text(0)
 					.attr('id','freakCount')
-					.attr('x',width / 2)
-					.attr('y',height - 10 )
+					.attr('x',modWidth / 2)
+					.attr('y',height /2 )
 					.style('text-anchor','middle')
 					.transition()
 						.duration(3000)
@@ -418,7 +412,7 @@ function arcTween(transition, newAngle) {
 //
 //	});
 //});
-//draw the intervals
-console.log(done)
+
+//draw gauges
 $(document).ready(drawGauge(done));
 $(document).ready(drawTime(days));

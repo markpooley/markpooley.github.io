@@ -120,7 +120,7 @@ function drawChart(){
           .style('fill',tempColor)
         //change dsa back to orginal colour
         d3.select("#dsa"+this.id.slice(3))//select geographic unit
-          .style('fill-opacity',1)
+          .style('opacity',1)
       })
 
     //add transition to make it more snazzy

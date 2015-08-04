@@ -1,0 +1,17 @@
+/* CSS Document                             */
+
+.cageImg {
+
+	vertical-align: center;
+}
+#cageImg{
+	vertical-align: bottom;
+	display:block;
+	margin: auto;
+}
+.imgContainer{
+
+}
+.orbit-container{
+	vertical-align: bottom;
+}

@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="A Year in the Cage, Nicolase Cage, Nic Cage"/>
+    <meta name="description" contet="A Year in the Cage where all of Nic Cage's movies are screened and evaluated. Notable Quotes &amp; Cagisms are recorded, as well as Cage freakouts and Cage kills."/>
     <title>A Year in the Cage</title>
  	<link rel="stylesheet" href="../stylesheets/app.css"/>
+    <link rel="stylesheet" href="stylesheets/cage.css"/>
     <link rel="stylesheet" href="../stylesheets/custom.css"/>
     <script src="../bower_components/modernizr/modernizr.js"></script>
 
@@ -19,13 +22,11 @@
         <ul class="right">
           <li><a href="../index.html">Home</a></li>
           <li class="has-dropdown"><a href="#">Projects</a>
-            <ul class="dropdown">GIS/Geography
-              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
-              <li><a href="dental_service_areas/">Dental Service Areas</a></li>
-              <li><a href="yearbuiltjc/">Age of Johnson County Buildings</a></li>
-            </ul>
-            <ul class="dropdown">Cinematic
-              <li class='active'><a href="cage/">A Year in the Cage</a></li>
+            <ul class="dropdown">
+              <li><a href="../FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="../dental_service_areas/">Dental Service Areas</a></li>
+              <li><a href="../yearbuiltjc/">Age of Johnson County Buildings</a></li>
+              <li class="active"><a href="cage/">A Year in the Cage</a></li>
             </ul>
           </li>
           <li><a href="../Resume.html">Resume</a></li>
@@ -49,10 +50,10 @@
 	</div>
 </div>
 <div class="row">
-  <div class="small-1 columns"></div>
-  <div class="small-3 columns">
-    <h3 align="center">Cage Hair Spectrum</h3>
-    <ul class="oribit slider" data-orbit data-options="timer_speed:3000;">
+  <div class="small-12 columns toppadding imgContainer">
+  <div class="small-3 columns cageImg" id="cageImg">
+    <h3 align="center">Cage Hair</h3>
+    <ul class="oribit slider" data-orbit data-options="timer_speed:3000; resume_on_mouseout:true;" id="cageImg">
       <li>
         <img src="images/carousel/cage_hair/Adaptation_resized.jpg">
         <div class="orbit-caption">
@@ -144,10 +145,11 @@
         </div>
       </li>
   </div>
-  <div class="small-2 columns"></div>
-  <div class="small-3 columns">
-   <h3 align="center">Cage Character Spectrum</h3>
-    <ul class="oribit slider" data-orbit data-options="timer_speed:3000;">
+  <div class="small-6 columns cageImg">
+    <img src="images/ClassicCage.jpg" id="cageImg"></div>
+  <div class="small-3 columns cageImg" id="cageImg">
+   <h3 align="center">Cage Character</h3>
+    <ul class="oribit slider" data-orbit data-options="timer_speed:3000; resume_on_mouseout:true;" id="cageImg">
       <li>
         <img src="http://placehold.it/400x400">
       </li>
@@ -160,10 +162,11 @@
     </ul>
   </div>
 </div>
+</div>
 
 
 </ul>
-<div class="row">
+<div class="row toppadding">
 	<div class="small-12 columns" id='films'>
     <div class="panel">
         <p align="center"><b>Click on a title thumnbnail to get more information about a film.</b><br>(lightened images haven't been watched yet)</p>
@@ -235,7 +238,7 @@
   <li class="watched"><a data-reveal-id="Zandalee"><img height="317" width="214" alt="Zandalee (1991) Poster" title="Zandalee (1991) Poster" src="images/cage_images/zandalee_1991_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod68"><img height="317" width="214" alt="Trespass (2011) Poster" title="Trespass (2011) Poster" src="images/cage_images/trespass_2011_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod69"><img height="317" width="214" alt="The Cotton Club (1984) Poster" title="The Cotton Club (1984) Poster" src="images/cage_images/the_cotton_club_1984_poster.jpg" itemprop="image" /></a></li>
-  <li class="unwatched"><a data-reveal-id="mod70"><img height="317" width="214" alt="Guarding Tess (1994) Poster" title="Guarding Tess (1994) Poster" src="images/cage_images/guarding_tess_1994_poster.jpg" itemprop="image" /></a></li>
+  <li class="watched"><a data-reveal-id="GuardingTess"><img height="317" width="214" alt="Guarding Tess (1994) Poster" title="Guarding Tess (1994) Poster" src="images/cage_images/guarding_tess_1994_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod71"><img height="317" width="214" alt="Never on Tuesday (1989) Poster" title="Never on Tuesday (1989) Poster" src="images/cage_images/never_on_tuesday_1989_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod72"><img height="317" width="214" alt="G-Force (2009) Poster" title="G-Force (2009) Poster" src="images/cage_images/g-force_2009_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod73"><img height="317" width="214" alt="Captain Corelli's Mandolin (2001) Poster" title="Captain Corelli's Mandolin (2001) Poster" src="images/cage_images/captain_corelli's_mandolin_2001_poster.jpg" itemprop="image" /></a></li>
@@ -389,6 +392,7 @@
   <p>We eventually learn that Sherrif and Tranny Indiana Jones (Boyle) are thieves on the run from a job in Illinois.  A climactic graveyard scene ensues where the Sheriff gets a knife to the neck and Lyle is <span data-tooltip aria-haspopup="true" class="has-tip" title="I'm counting this as a kill since Lyle would not have survived this injury, even though Boyle shot him dead later">impaled on a gravestone</span> by Cage.</p>
   <p>I was utterly confused at the logic here. Why would the sheriff bury $500,000 in a graveyard? What if he needed it? Why wouldn't you hide it somewhere just a bit more convenient?</p>
   <p>Cage escapes by hopping a train, bum knee and all. Indy/Boyle temporarily escapes on the same train. But, when she tries to shoot Cage he's chill since he knows the <span data-tooltip aria-haspopup="true" class="has-tip" title="There's absolutely no way he could have known this, except for being clairvoyant like in 'Next'">gun doesn't have bullets</span>. Cage calmly dumps out the money. Indy/Boyle jumps out after it. Cage snags a wayward stack of "benjamins" caught in the door and chills hard while the train takes him away.</p>
+  <div class="panel">Erin accompanied me in the viewing of this Cage classic. As usual, she dozed off midway through. But, everytime Cage freaked out she would wake for just a bit and state "freakout" before returning to her slumber</div>
 
   <h3 id="cagisms" align="center">Quotes &amp; Cagisms</h3><hr>
   <blockquote>Does that tickle? Cause it won't if I pull the trigger. <cite>Dwight Yoakam, oh yeah! Dwight Yoakam is in this!</cite></blockquote>
@@ -2278,7 +2282,7 @@
   <p><i>forthcoming</i></p>
   </div>
 </div>
-<div id="mod70" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+<div id="GuardingTess" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
   <div class="small-9 columns" id="modalTitle">
 	<table class="filmInfo">
         <tr><td colspan="2"><h4><b>Guarding Tess</b>, <i>1994</i></h4></td></tr>
@@ -2295,14 +2299,19 @@
  <br>
  <table width="100%">
  <tr><td><h4 align="center">Meta Cage</h4></td></tr>
- <tr><td><b>The Cage Character:</b></td></tr>
- <tr><td><b>Cage Hair:</b></td></tr>
- <tr><td><b>Cage Rating:</b></td></tr>
+ <tr><td><b>The Cage Character:</b> Tough but fair, SAIC (Special Agent in Charge)</td></tr>
+ <tr><td><b>Cage Hair:</b> Business Combover. Cage you'd take hom to meet your father.</td></tr>
+ <tr><td><b>Cage Rating:</b> 7 cages out of 10</td></tr>
  </table>
   <h3 id="review" align="center">Review</h3><h6 align="center"></h6><hr>
-  <p><i>forthcoming</i></p>
+  <p>Cage is a frustrated Secret Service agent stuck on a lame-ass duty protecting a widowed former first lady, Tess (Played by MacLaine). First of all, the opening credit scene is unecessary. Credits belong at the end of the movie; unless an opening credit montage is <span data-tooltip aria-haspopup="true" class="has-tip" title="Like Disney's 1973 'Robin Hood' or 'Lord of War' (A Cage joint) ">creative or adds to the story</span>.</p>
+  <p>The aforementioned fault aside, Cage does quite well in his role as Doug Chesnic, SAIC.  He tries to leave his duty guarding Tess. With a sense of relief he loosens his tie, <span data-tooltip aria-haspopup="true" class="has-tip" title="which provides the real sense of relief when undone, so the undoing of the tie does nothing">but leaves his top button done</span>. Tess has power over even the president and calls him to deal with her struggles regarding secret service protection, and request Doug back on duty as SAIC.  Basically, Tess is a pill that everyone kowtows to - except for good ole' <span data-tooltip aria-haspopup="true" class="has-tip" title="well...sort of. It takes him a while, but he grows a pair">Cage</span>!
+  <p>Cage becomes a sad little pony when Tess is kidnapped under his <span data-tooltip aria-haspopup="true" class="has-tip" title="double entendre intended">watch</span>.  But he is resourceful and makes solid use of a chair that he was left with from the kidnapping to wait for his fellow officers to pick him up. Cage goes bananas on the skeezy driver that assisted with the kidnapping by shooting his toe(s) off in a hospital. For not being an action movie, this is one of the best scenes of Cage firing a weapon while executing good dialogue.</p>
+  <p>Tess is found, Cage and his men insist on digging Tess out of the <span data-tooltip aria-haspopup="true" class="has-tip" title="That's right! The kidnappers buried her alive in a barn!">hole she was buried in</span>, and demand a <span data-tooltip aria-haspopup="true" class="has-tip" title="WTF is a power saw? That's a nebulous request. Cage should have demanded a corded circular saw so they could set a blade depth and be sure to not hurt Tess.">power saw</span> when they finally unearth the box Tess was buried in. The almost final scene involves a Tess being flown out in a helicopter, only to land. She requests Doug/Cage to accompany her. Said request has to be relayed like a game of telephone because everyone on in this scene forgets they have radios attached to their person.</p>
   <h3 id="cagisms" align="center">Quotes &amp; Cagisms</h3><hr>
-  <p><i>forthcoming</i></p>
+  <blockquote>I'd choose Mr. Ed in a second. <cite>Doug Chesnic/Cage</cite></blockquote>
+  <blockquote>I'm a Secret Service agent, not a caddy. If you want your ball, I suggest you go get it yourself. <cite>Doug Chesnic/Cage</cite></blockquote>
+  <blockquote>I'm gonna count to five then I'm going to shoot your toe off. (shoots toe off immediately) <cite>Doug Chesnic/Cage</cite></blockquote>
   </div>
 </div>
 <div id="mod71" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
@@ -2406,7 +2415,7 @@
     <script src="js/CageCharts.js"></script>
 
     <script>$(window).load(function(){
-      $(document)foundation();
+      $(document).foundation();
     });</script>
   </body>
 </html>

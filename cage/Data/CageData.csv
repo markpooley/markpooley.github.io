@@ -28,7 +28,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 2015,The Runner,,Unrated,Not Rated Yet,6000000,0,0,,
 2011,Season of the Witch,"Action, Adventure, Fantasy",PG-13,5.4/10,40000000,24823283,95,,
 2000,The Family Man,"Comedy, Drama, Fantasy",PG-13,6.7/10,60000000,596451055,125,,
-2014,Outcast,"Action, Adventure",Unrated,4.5/10,0,0,99,,
+2014,Outcast,"Action, Adventure",Unrated,4.5/10,0,0,99,42,3
 2005,Lord of War,"Crime, Drama, Thriller",R,7.6/10,50000000,148101,122,,
 1993,Amos &amp; Andrew,"Comedy, Crime",PG-13,5.5/10,0,9745803,96,,
 1998,City of Angels,"Drama, Fantasy, Romance",PG-13,6.7/10,55000000,78745923,114,,
@@ -49,7 +49,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 1984,Birdy,"Drama, War",R,7.3/10,0,0,120,,
 2004,National Treasure,"Action, Adventure, Mystery",PG,6.9/10,100000000,173005002,131,,
 1990,Wild at Heart,"Comedy, Crime, Thriller",NC-17,7.3/10,9500000,14560247,125,,
-1997,Con Air,"Action, Crime, Thriller",R,6.8/10,75000000,101087161,115,,
+1997,Con Air,"Action, Crime, Thriller",R,6.8/10,75000000,101087161,115,7,0
 1984,Racing with the Moon,"Comedy, Drama, Romance",PG,6.8/10,0,5400000,108,,
 1986,Peggy Sue Got Married,"Comedy, Drama, Fantasy",PG-13,6.3/10,18000000,41382841,103,,
 2006,World Trade Center,"Drama, History, Thriller",PG-13,6.0/10,63000000,271684,129,,

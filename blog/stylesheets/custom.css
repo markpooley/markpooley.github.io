@@ -39,3 +39,6 @@ div.container{
 #locTable {
   border: none;
 }
+code {
+  overflow-x: auto;
+}

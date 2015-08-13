@@ -1,0 +1,215 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Mark Pooley</title>
+    <link rel="stylesheet" href="../../../../stylesheets/app.css"/>
+    <link rel="stylesheet" href="../../../stylesheets/custom.css"/>
+    <script src="../../../../bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../../../../../index.html">Home</a></li>
+          <!--li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="dental_service_areas/">Dental Service Areas</a></li>
+              <li><a href="cage/">A Year in the Cage</a></li>
+              <li><a href="yearbuiltjc/">Age of Johnson County Buildings</a></li>
+            </ul>
+          </li-->
+          <li class="active"><a href="../../../../blog/">Blog</a></li>
+          <li><a href="../../../../Resume.html">Resume</a></li>
+        </ul>
+      </section>
+    </nav>
+    <div class="row">
+      <div class="small-10 columns small-centered">
+        <h2>Sraping data to for the Cage Page</h3>
+        <h6>April 25, 2015.</h6><hr>
+        <p>A year in the Cage is no small feat, and not for the weak willed. Building a web page complete with data on all of Cage's movies seemed like the best approach for tracking progress, while providing an avenue for tracking, reviewing, and recording quotes.</p>
+        <p>IMDB discourages/prohibits data mining. But, this was a small task that was able to run in a fairly short amount of time. I looked at the IMDB page structure(s) and scraped the relevant info and wrote it to an html page and CSV. Writing to a CSV allowed for data visualiztion with d3 (which I ultimately decided to do).</p>
+        <p>For this I used BeautifulSoup, urllib2, re, csv, and python packages. After importing the necessary packages we can create the soup from the main page for Nicolas Cage</p>
+        <pre overflow-x: auto>
+          <code class="python">
+          url = 'http://www.imdb.com/name/nm0000115/'
+          page = urllib2.urlopen(url)
+          soup = bs(page.read())
+          films = soup.find("div",{"class":"filmo-category-section"})
+
+          #get a BS result set of all the rows in which NC was an actor/voice
+          fs = films.findAllNext('div',{'id': re.compile('actor-tt*')})
+          </code>
+        </pre>
+        First, let's define some functions that get the information we're interested in. Most of them will take soup, or row as input depending on what is getting fed into them. I like to keep functions simple and distinct when scraping - it makes it easier for me to keep track of what I'm doing.</p>
+        <pre overflow-x: auto>
+          <code class="python">
+          #get the Title of the film and url for IMDB film entry
+          ---------------------------------------------------------------------
+          def getTitle(row):
+             titleRow = row.find('a',href=True)
+             title = titleRow.contents[0]
+             link = 'http://www.imdb.com' + titleRow['href'] #generate a correct URl
+
+             return [title,link]
+
+          #get year
+          def getYr(row):
+            yr = row.find('span').contents[0]
+            #the contents were messy, this finds the index of the character needed
+            return yr[yr.index(';')+1: yr.index(';')+5]
+
+          </code>
+        </pre>
+        <p>The function(s) above are pretty self explanatory. Originally, I wrote a function that just found the linked movie poster image. But, IMDB wasn't allowing those to load on my page. So, I changed the function and saved a local copy of each movie poster.</p>
+        <pre>
+          <code class="python">
+            def findImage(soup):
+               try:
+                   img = soup.find('td',{'id': 'img_primary'})
+                   img = img.find('img')
+                   link = img['src']
+                   link_title = str(img['title']).lower().replace(' ','_')
+                   title = link_title.translate(None, ':()')
+
+
+                   jpg = urllib.urlretrieve(link, 'cage_images/{0}.jpg'.format(title))
+                   img['src'] = jpg[0]
+
+                   if link == None:
+                      #if no image found, just stick a place holder in there
+                       link = '&lt;img src="http://placehold.it/214x317">'
+               except AttributeError:
+               #if no image found, just stick a place holder in there
+                   link = '&lt;img src="http://placehold.it/214x317">'
+
+               return img
+          </code>
+        </pre>
+        <p>There are a few other functions, similarly structured to find information that I wanted (i.e. budgets, actors, ratings, etc.). It would have been quite monotonous to write/create the lists and modal divs for all of the movies in the Cage Cannon. So, I went through the Nic Cage IMDB entry and found all the movies with a release year &le; 2015 (He has a number in pre production, rumored, etc.) and where he was credited as an actor. All of these were written to a dictionary in <a href="https://www.python.org">python</a>.</p>
+        <pre overflow-x: auto>
+          <code class="python">
+            #get a BS result set of all the rows in which NC was an actor/voice
+            fs = films.findAllNext('div',{'id': re.compile('actor-tt*')})
+
+            #loop through the soup and find all the titles were Cage is an actor
+            for row in fs:
+            try:
+                yr = getYr(row)
+                title = getTitle(row)[0]
+
+                if yr.isdigit() and int(yr) &le; 2015:
+                    count+=1 #increment counter
+
+                    #get soup from the corresponding film page
+                    url = urllib2.urlopen(getTitle(row)[1])
+                    print title
+                    #print page
+                    soup = bs(url.read())
+                    imgLink = findImage(soup)
+                    info = findInfo(soup)
+                    people = findPeople(soup)
+                    finance = findEarnings(soup)
+                    rating =  findRating(soup)
+
+                    CageDict[title] = [yr, title, info[2],rating[0],rating[1],info[0],info[1],people[0],people[1],finance[0],finance[1],imgLink]
+                    csvDict[title] = [yr, title, rating[1], rating[0],info[1], getInt(finance[0]),getInt(finance[1]),getInt(info[0]),'Unwatched']
+
+                    #aggreate run times, budgets, and gross
+
+                    totalRuntime += getInt(info[0])
+                    totalBudget += getInt(finance[0])
+                    totalGross += getInt(finance[1])
+
+            #rudimentary/lazy error handling
+            except UnicodeEncodeError:
+                print 'error encountered at {0}'.format(count)
+                pass
+          </code>
+        </pre>
+      <p>With dictionaries created, it's easy to then write the html code iteratively. This allowed for code testing and checking of html formating pretty easily. If anything was way off, I could just re-run the code and overwrite mistakes. I did use <a href="http://www.sublimetext.com/">Sublime Text</a> to do some basic search/replace, as well as make some minor edits. I wrote the list, and modal divs to two separate HTML documents and just added the two together, which isn't ideal, but worked just fine.</p>
+      <pre overflow-x: auto>
+        <code class="python" >
+          #write out cage list to html document
+          with open('CageList.html','wb') as f:
+              f.write('&lt;ul class="large-block-grid-5">\n')
+
+              for row in CageDict:
+                  line = CageDict[row]
+                  #create modal link from title
+                  mod = line[1].replace(' ','').translate(None,'\/#&amp;#')
+                  f.write('&lt;li class="unwatched">
+                  &lt;a data-reveal-id="mod{0}">{1}
+                  &lt;/a>&lt;/li>\n'.format(mod,line[-1]))
+
+              f.write('&lt;/ul>')
+
+          #write modal div html document that will be used for
+          #modal reveals linked to the CageList.html doc
+          with open('CagePage.html','wb') as CagePage:
+
+
+    for row in CageDict:
+        line = CageDict[row]
+
+        mod = line[1].replace(' ','').translate(None,'\/#&amp;#')#create modal link from title
+
+        CagePage.write('&lt;div id="mod{0}" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">\n'.format(mod))
+        CagePage.write('  &lt;div class="small-9 columns" id="modalTitle">\n')
+        CagePage.write('  &lt;table class="filmInfo">\n')
+        CagePage.write('        &lt;tr>&lt;td colspan="2">&lt;h4>&lt;b>{0}&lt;/b>, &lt;i>{1}&lt;/i>&lt;/h4>&lt;/td>&lt;/tr>\n'.format(line[1],line[0])) #Title and Year
+        CagePage.write('        &lt;tr>&lt;td colspan="2">&lt;b>Description: &lt;/b>{0}&lt;/td>&lt;/tr>\n'.format(line[2].encode('utf-8'))) #Description
+        CagePage.write('        &lt;tr>&lt;td>&lt;b>MPAA Rating: &lt;/b>{0}&lt;/td>&lt;td>&lt;b>Genre: &lt;/b>{1}&lt;/td>&lt;/tr>\n'.format(line[3],line[4])) #rating and genre
+        CagePage.write('        &lt;tr>&lt;td>&lt;b>Runtime:&lt;/b> {0}&lt;/td>&lt;td>&lt;b>Avg IMDB User Rating: &lt;/b>{1}&lt;/td>&lt;/tr>\n'.format(line[5],line[6])) #Runtime and IMDB rating
+        CagePage.write('        &lt;tr>&lt;td>&lt;b>Director: &lt;/b>{0}&lt;/td>&lt;td>&lt;b>Actors: &lt;/b>{1}&lt;/td>&lt;/tr>\n'.format(line[7],line[8].encode('utf-8'))) #director and "big name" actors
+        CagePage.write('        &lt;tr>&lt;td>&lt;b>Budget: &lt;/b>{0}&lt;/td>&lt;td>&lt;b>Gross: &lt;/b>{1}&lt;/td>&lt;/tr>\n'.format(line[9],line[10])) #budget and gross for film
+        CagePage.write('    &lt;/table>\n') #close table
+        CagePage.write('  &lt;/div>\n') #close the 9 column div
+        CagePage.write(' &lt;div class="small-3 columns">&lt;a>{0}&lt;/a>&lt;/div>\n'.format(line[-1]))
+        CagePage.write(' &lt;a class="close-reveal-modal" aria-label="Close">&#215;&lt;/a>\n') #close 'x' in reveal box
+        CagePage.write(' &lt;div class="small-12 columns">\n')
+        CagePage.write(' &lt;br>\n')
+        CagePage.write(' &lt;table width="100%">\n')
+        CagePage.write(' &lt;tr>&lt;td>&lt;h4 align="center">Meta Cage&lt;/h4>&lt;/td>&lt;/tr>\n')
+        CagePage.write(' &lt;tr>&lt;td>&lt;b>The Cage Character:&lt;/b>&lt;/td>&lt;/tr>\n')
+        CagePage.write(' &lt;tr>&lt;td>&lt;b>Cage Hair:&lt;/b>&lt;/td>&lt;/tr>\n')
+        CagePage.write(' &lt;tr>&lt;td>&lt;b>Cage Rating:&lt;/b>&lt;/td>&lt;/tr>\n')
+        CagePage.write(' &lt;/table>\n')
+        CagePage.write('  &lt;h3 id="review" align="center">Review&lt;/h3>&lt;h6 align="center">&lt;/h6>&lt;hr>\n')
+        CagePage.write('  &lt;p>&lt;i>forthcoming&lt;/i>&lt;/p>\n')
+        CagePage.write('  &lt;h3 id="cagisms" align="center">Quotes &amp; Cagisms&lt;/h3>&lt;hr>\n')
+        CagePage.write('  &lt;p>&lt;i>forthcoming&lt;/i>&lt;/p>\n')
+        CagePage.write('  &lt;/div>\n')
+        CagePage.write('&lt;/div>\n') #close main div
+
+        </code>
+      </pre>
+      <p>Viola! I was able to throw the two html documents together and start an epic <a href="../../../../cage/">"Year in the Cage"</a>. I also wrote the csv dictionaryI decided to get a little nerdy and add some D3 visualizations as well, becuase, why not.</p>
+    </div>
+    <hr>
+    <footer class="row ">
+      <div class="large-12 columns text-center">
+        <p>Iowa City • IA</p>
+        <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+          <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+      </div>
+    </footer>
+
+    <script src="../../../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../../../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../../../../js/app.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iowa City Food Trucks</title>
+    <link rel="stylesheet" href="../stylesheets/app.css"/>
+    <link rel="stylesheet" href="stylesheets/custom.css"/>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../index.html">Home</a></li>
+          <li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li class="active"><a href="#">Iowa City Food Trucks</a></li>
+              <li><a href="../dental_service_areas/">Dental Service Areas</a></li>
+              <li><a href="../cage/">A Year in the Cage</a></li>
+              <li><a href="../yearbuiltjc/">Age of Johnson County Buildings</a></li>
+            </ul>
+          </li>
+          <li><a href="../blog">Blog</a></li>
+          <li><a href="../Resume.html">Resume</a></li>
+          <!--li><a href="#">Contact</a></li-->
+
+        </ul>
+      </section>
+    </nav>
+
+  <div class="fullwidth toppadding" id="info">
+        <div class="small-4 columns" id="info">
+          <h3 class="badge" id='title'>Eligible Food Truck Operation Areas</h3>
+          <p class="badge" id="info">To read the story <a href="http://www.dailyiowan.com/2015/03/30/Metro/41524.html">click here</a>. To learn how the data were processed <a href="../blog/entries/2015/04/food_trucks.html">click here</a></p>
+        </div>
+        <div class="small-4 columns" id="badge">
+          <h6 class="badge" align="center">Click and and hold to drag, use the mouse wheel to zoom</h6>
+        </div>
+       <div class="small-4 columns right toppadding" id="legend" align="right">
+        <table id="legend" width="100%" border="0" cellspacing="0" cellpadding="0">Legend (Employment = Jobs/SqMi)
+          <tr>
+          <td class="legend" style="background-color: rgba(32,32,32, 0.80); font-color: white">Prohibited</td>
+          <td class="legend" style="background-color: rgba(40,146,199,0.50)">&le; 20</td>
+          <td class="legend" style="background-color: rgba(160,194,155,0.50)">21 - 50</td>
+          <td class="legend" style="background-color: rgba(250,250,250,0.50)">51 - 150</td>
+          <td class="legend" style="background-color: rgba(250,141,52,0.50)">151 - 500</td>
+          <td class="legend" style="background-color: rgba(232,16,20,0.50)">500+</td>
+        </tr>
+        </table>
+      </div>
+
+    </div>
+    <div class="fullwidth" id="map"></div>
+  </div>
+
+
+  <footer class="row">
+  <div class="large-12 columns text-center">
+    <p font-color="white">Iowa City • IA</p>
+    <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+      <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+  </div>
+  </footer>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../D3\src_code\d3.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="js/FoodTrucks.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

@@ -3,8 +3,6 @@ var aspect = 1.5;
 var width = $("#map").width();
 var height = width/ aspect;
 
-
-
 //set up the color scale
 var colors = ['rgb(213,62,79)','rgb(244,109,67)','rgb(253,174,97)','rgb(254,224,139)','rgb(255,255,191)','rgb(230,245,152)','rgb(171,221,164)','rgb(102,194,165)','rgb(50,136,189)']
 var colLow = "#2892C7"
@@ -12,6 +10,30 @@ var colHigh = "#E81014"
 var colorScale = d3.scale.quantize().domain([1800,2015]).range(colors)
 //temporary empty color that will be used for mouseover and mouseout events
 var tempColor;
+
+
+//draw legened
+var legendTable = d3.select("#legend")
+
+//generate legend svg
+function drawLegend(table){
+  d3.selectAll(".legend")
+    .style('background-color', function(d){
+      //grab the text
+      text = d3.select(this).text()
+      if (text == 'No Data'){
+        color = 'rgb(224,224,224)'
+      } else {
+        color = colorScale(text)
+      }
+      return color
+    })
+    .style('opacity', 0.85)
+
+};
+//actually draw legend table
+drawLegend(legendTable)
+
 
 //add BaseMap
 var map = L.map('map', {center: [41.661128,-91.530168],
@@ -75,6 +97,16 @@ function makeMap(error,buildings){
       //transition back to normal opacity
       d3.select(this).transition().style('opacity',0.85)
     });
+
+    $('#title').on('click', function(){
+      buildings.style('opacity', .10)
+      buildings.transition()
+        .duration(10000)
+        .style('opacity',0.85)
+        .delay(function(d){
+          return parseInt(d.properties.BuildYear_) * 10 ;
+        })
+      })
     //when user zooms, view needs to be reset
     map.on('viewreset', reset);
     //this will put stuff on the map
@@ -107,25 +139,4 @@ function makeMap(error,buildings){
 
 };
 
-
-//generate legend svg
-function drawLegend(table){
-  d3.selectAll(".legend")
-    .style('background-color', function(d){
-      //grab the text
-      text = d3.select(this).text()
-      if (text == 'No Data'){
-        color = 'rgb(224,224,224)'
-      } else {
-        color = colorScale(text)
-      }
-      return color
-    })
-    .style('opacity', 0.85)
-
-};
-
-var legendTable = d3.select("#legend")
-//actually draw legend table
-drawLegend(legendTable)
 

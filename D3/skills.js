@@ -17,6 +17,7 @@ var allData = [
     {Type:"Software", Color: "#003A4D", Value: "MapBox/TileMill", Level: 3},
     {Type:"Software", Color: "#003A4D", Value: "SketchUp", Level: 2},
     {Type:"Misc", Color: "#003040", Value:"WoodWorking", Level: 6},
+    {Type:"Misc", Color: "#003040", Value:"Construction", Level: 6},
     {Type:"Misc", Color: "#003040", Value:"Welding (Tig)", Level: 3},
     {Type:"Misc", Color: "#003040", Value:"Electrical (Residential)", Level: 6},
     {Type:"Misc", Color: "#003040", Value:"Bicycle Maintainence/Repair", Level: 8}

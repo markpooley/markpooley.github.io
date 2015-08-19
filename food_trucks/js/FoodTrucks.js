@@ -6,14 +6,13 @@ var height = width/ aspect;
 //temporary empty color that will be used for mouseover and mouseout events
 var tempColor;
 
-var sw = L.LatLng(41.589128, -91.613188),
-	ne = L.latLng(41.693552, -91.486115),
-	bounds = L.latLngBounds(sw,ne);
+//var sw = L.LatLng(41.570765, -91.663227),
+//	ne = L.latLng(41.709829, -91.438694),
+//	bounds = L.latLngBounds(sw,ne);
 
 //add BaseMap
 var map = L.map('map', {center: [41.645,-91.530168],
-	bounds: bounds,
-  	zoom: 13,
+	zoom: 13,
   	reuseTiles: true,
   	trackResize: true})
   	.addLayer(new L.TileLayer("http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"));
@@ -102,8 +101,8 @@ function drawOpArea(){
 		   	.append("path")
 		   	.attr("d", path)
 		   	.attr("class","OpArea")
-		   	.style("opacity", 0.80)
-		   	.style("fill", "rgb(32,32,32)");
+		   	.style("opacity", 0.85)
+		   	.style("fill", "rgb(56,56,56)");
 
 		map.on('viewreset', reset);
     	//this will put stuff on the map

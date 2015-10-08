@@ -58,8 +58,9 @@ d3.select("#locDiv").select("#locTable").select('tr').selectAll('td')
   .style("text-align","center")
   .style('font-size','x-large')
 
+function makeMap(){
 //draw barChart
-function drawChart(){
+//function drawChart(){
 
   d3.json("data/DSA40pct.topojson", function(error, dsas){
     var dsas = topojson.feature(dsas, dsas.objects.collection).features;
@@ -164,9 +165,9 @@ function drawChart(){
           }
           });// hide zero and 1
   });//end d3.json callback
-};//end draw Chart Function
+//};//end draw Chart Function
 
-function drawZctas(){
+//function drawZctas(){
   d3.json("data/ZCTAs.topojson", function(error, zctas){
     collection = topojson.feature(zctas, zctas.objects.collection);
     var transform = d3.geo.transform({point: projectPoint}),
@@ -204,11 +205,11 @@ function drawZctas(){
       this.stream.point(point.x,point.y);
     }//end project point
 
-  });
-};
+  });//end json callback
+//};
 
 //draw DSAs overtop the ZCTAs
-function drawDSAs(){
+//function drawDSAs(){
 
   d3.json("data/DSA40pct.topojson", function(error, dsas){
     var collection = topojson.feature(dsas, dsas.objects.collection)
@@ -288,8 +289,8 @@ function drawDSAs(){
       }
 
   }); //end d3.json callback
-};//end of Draw DSA function
-
+//};//end of Draw DSA function
+};
 
 
 
@@ -303,9 +304,10 @@ $(window).resize(function(){
 var zctas = "data/ZCTAs.topojson",
     dsas = "data/DSA40pct.topojson";
 $(document).ready(function(){
-  drawChart();
-  drawZctas();
-  drawDSAs();
+  makeMap();
+  //drawChart();
+  //drawZctas();
+  //drawDSAs();
 });
 
 //$(document).ready(drawZctas());

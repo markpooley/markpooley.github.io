@@ -1,0 +1,129 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <title>Mark Pooley</title>
+    <link rel="stylesheet" href="../../../../stylesheets/app.css"/>
+    <link rel="stylesheet" href="../../../stylesheets/custom.css"/>
+    <script src="../../../../bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../../../../../index.html">Home</a></li>
+          <!--li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="dental_service_areas/">Dental Service Areas</a></li>
+              <li><a href="cage/">A Year in the Cage</a></li>
+              <li><a href="yearbuiltjc/">Age of Johnson County Buildings</a></li>
+            </ul>
+          </li-->
+          <li class="active"><a href="../../../../blog/">Blog</a></li>
+          <li><a href="../../../../Resume.html">Resume</a></li>
+        </ul>
+      </section>
+    </nav>
+    <div class="row">
+      <div class="small-10 columns small-centered">
+        <h2>Building dataset for Age of Iowa City</h3>
+        <h6>October 14, 2015.</h6><hr>
+        <p>A shapefile of Iowa City buildings, and those for all of Johnson County, IA is easy to obtain from a public repsository. But, the age/build year of those buildings is not in the data. Originally, I was going to do all of Johnson County, IA but that proved to be very slow to load so I opted to do just Iowa City - which presented a few problems</p>
+
+        <h4>First Attempt to get the data</h4><hr>
+        Originally, I was just going to scrape data from the Iowa City assessors website to obtain build years for each parcel number and attach that to the building data since. I had parcel data from a previous project so I simply spatially joined parcel ids to the buildings. I built a nice little web scraper using urllib2 and BeautiflulSoup libraries into an arcgis tool.
+
+<pre>
+<code>
+########################################################################
+#Input Variable loading and environment declaration
+########################################################################
+parcels = arcpy.GetParameterAsText(0)
+
+url = 'http://iowacity.iowaassessors.com/parcel.php?parcel='
+page = urllib2.urlopen(url)
+soup = bs(page.read())
+
+if 'YearBuilt' not in [f.name for f in arcpy.ListFields(parcels)]:
+    arcpy.AddField_management(parcels,'YearBuilt','TEXT')
+
+parcels_fields = ['PPN','YearBuilt','PropClass']
+
+</code>
+
+</pre>
+      <p>This little bit sets up the Shapefile dbf for reading in data and adding it to the appropriate field</p>
+<pre>
+<code>
+def makeSoup(ppn):
+    temp = url + ppn
+    page = urllib2.urlopen(temp)
+    return bs(page.read())
+
+def getYrBuilt(soup,PropClass):
+    #get prop class of a parcel
+    if 'c' in PropClass.lower() or 'i' in PropClass.lower():
+        name = 'commercialData'
+        dataIndex = 1
+    else:
+        name = 'residentialData'
+        dataIndex = 2
+    #try to pull year built
+    try:
+        table = soup.find('div',{'class': name})
+        data = table.findAll('div')
+        date = data[dataIndex].text
+    except:
+        date = 'unknown'
+    return date
+</code>
+</pre>
+      <p>Some simple functions to pull the data I need from the html genereated in the "makeSoup function. Next it was a simple matter of just iterating through lines in the shapefile data using a update cursor.</p>
+
+<pre>
+<code>
+featureCount = int(arcpy.GetCount_management(parcels).getOutput(0))
+arcpy.SetProgressor('step','finding build years....',0,featureCount,1)
+Query = "YearBuilt = 'unknown'"
+with arcpy.da.UpdateCursor(parcels,parcels_fields,Query) as cursor:
+    for row in cursor:
+        soup = makeSoup(row[0])
+        date = getYrBuilt(soup,row[2])
+        row[1] = str(date)
+        arcpy.SetProgressorLabel('Parcel: {0}, year: {1}'.format(row[0],date))
+        cursor.updateRow(row)
+        arcpy.SetProgressorPosition()
+
+arcpy.ResetProgressor()
+arcpy.AddMessage('Process Complete')
+</code>
+</pre>
+<h2>Second Attempt at Getting the Data</h2>
+        <p>One thing I did not account for was the getting flagged for data mining. As I was testing snippets of code using small lists of parcel numbers I apparently didn't set off any triggers on the assessors website. But, once I tried to pull all the data for every building within the Iowa City limits they flagged me and I had to contact a representative from the assessors office to get the data I wanted - delaying the simple project a couple days.No biggie, but they still have me blocked...</p>
+    </div>
+</div><hr>
+    <footer class="row ">
+      <div class="large-12 columns text-center">
+        <p>Iowa City • IA</p>
+        <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+          <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+      </div>
+    </footer>
+
+    <script src="../../../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../../../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../../../../js/app.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

@@ -59,9 +59,49 @@ d3.select("#locDiv").select("#locTable").select('tr').selectAll('td')
   .style('font-size','x-large')
 
 function makeMap(){
-//draw barChart
-//function drawChart(){
 
+//draw base ZCTAs
+  d3.json("data/ZCTAs.topojson", function(error, zctas){
+    collection = topojson.feature(zctas, zctas.objects.collection);
+    var transform = d3.geo.transform({point: projectPoint}),
+      path = d3.geo.path().projection(transform)
+
+    var zctas = g.append('g').attr('id','zctas').selectAll("path")
+      .data(collection.features)
+      .enter().append('path')
+      .attr('fill',function(d){
+          return colorScale(d.properties.LOC)
+      })
+      .style('opacity', 0.65)
+      .style('stroke','white');
+    // when the user zooms in or out you need to reset
+    // the view
+    map.on("viewreset", reset);
+    // this puts stuff on the map!
+    reset();
+
+    // Reposition the SVG to cover the features.
+    function reset() {
+      var bounds = path.bounds(collection);
+      var topLeft = bounds[0],
+      bottomRight = bounds[1];
+      svg.attr("width", bottomRight[0] - topLeft[0])
+        .attr("height", bottomRight[1] - topLeft[1])
+        .style("left", topLeft[0] + "px")
+        .style("top", topLeft[1] + "px");
+      g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+            zctas.attr("d",path);
+    } // end reset
+
+    function projectPoint(x,y){
+      var point = map.latLngToLayerPoint(new L.LatLng(y,x));
+      this.stream.point(point.x,point.y);
+    }//end project point
+
+  });//end json callback
+
+
+  //draw bar chart
   d3.json("data/DSA40pct.topojson", function(error, dsas){
     var dsas = topojson.feature(dsas, dsas.objects.collection).features;
     //var dsas = collection.features //
@@ -167,45 +207,7 @@ function makeMap(){
   });//end d3.json callback
 //};//end draw Chart Function
 
-//function drawZctas(){
-  d3.json("data/ZCTAs.topojson", function(error, zctas){
-    collection = topojson.feature(zctas, zctas.objects.collection);
-    var transform = d3.geo.transform({point: projectPoint}),
-      path = d3.geo.path().projection(transform)
 
-    var zctas = g.append('g').attr('id','zctas').selectAll("path")
-      .data(collection.features)
-      .enter().append('path')
-      .attr('fill',function(d){
-          return colorScale(d.properties.LOC)
-      })
-      .style('opacity', 0.65)
-      .style('stroke','white');
-    // when the user zooms in or out you need to reset
-    // the view
-    map.on("viewreset", reset);
-    // this puts stuff on the map!
-    reset();
-
-    // Reposition the SVG to cover the features.
-    function reset() {
-      var bounds = path.bounds(collection);
-      var topLeft = bounds[0],
-      bottomRight = bounds[1];
-      svg.attr("width", bottomRight[0] - topLeft[0])
-        .attr("height", bottomRight[1] - topLeft[1])
-        .style("left", topLeft[0] + "px")
-        .style("top", topLeft[1] + "px");
-      g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-            zctas.attr("d",path);
-    } // end reset
-
-    function projectPoint(x,y){
-      var point = map.latLngToLayerPoint(new L.LatLng(y,x));
-      this.stream.point(point.x,point.y);
-    }//end project point
-
-  });//end json callback
 //};
 
 //draw DSAs overtop the ZCTAs

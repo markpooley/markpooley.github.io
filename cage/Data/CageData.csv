@@ -11,8 +11,8 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 2000,Gone in Sixty Seconds,"Action, Crime, Thriller",PG-13,6.5/10,90000000,1234703248,118,,
 1987,Raising Arizona,"Comedy, Crime, Drama",PG-13,7.4/10,6000000,22847564,94,,
 2007,Next,"Action, Sci-Fi, Thriller",PG-13,6.2/10,70000000,17993461,96,0,1
-1987,Moonstruck,"Comedy, Drama, Romance",PG,7.1/10,0,80640528,102,,
-1995,Leaving Las Vegas,"Drama, Romance",R,7.6/10,3600000,31968347,111,,
+1987,Moonstruck,"Comedy, Drama, Romance",PG,7.1/10,0,80640528,102,0,3
+1995,Leaving Las Vegas,"Drama, Romance",R,7.6/10,3600000,31968347,111,1,5
 2014,Dying of the Light,"Drama, Thriller",R,4.3/10,15000000,0,94,3,5
 2010,The Sorcerer's Apprentice,"Action, Adventure, Comedy",PG,6.2/10,150000000,63143812,109,,
 2002,Windtalkers,"Action, Drama, War",R,6.0/10,115000000,368655,134,,

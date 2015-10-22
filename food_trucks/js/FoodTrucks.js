@@ -6,10 +6,6 @@ var height = width/ aspect;
 //temporary empty color that will be used for mouseover and mouseout events
 var tempColor;
 
-//var sw = L.LatLng(41.570765, -91.663227),
-//	ne = L.latLng(41.709829, -91.438694),
-//	bounds = L.latLngBounds(sw,ne);
-
 //add BaseMap
 var map = L.map('map', {center: [41.645,-91.530168],
 	zoom: 13,
@@ -26,6 +22,7 @@ var g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 svg.attr('width',width).attr('height',height)
 
+//fill legend
 //queue()
 //	.defer(d3.json, "data/Employment.topojson")
 //	.defer(d3.json, "data/OpArea.topojson")
@@ -42,6 +39,9 @@ function drawEmp(){
 			.enter()
 			.append('path')
 			.attr("d", path)
+			.attr('class', function(d){
+				return d.properties.Classes
+			})
 			.attr('fill', function(d){
 				if (d.properties.Classes <= 3) {
 		 			color = '#2892C7'
@@ -58,6 +58,25 @@ function drawEmp(){
 		 	})
 			.style('opacity', 0.5)
 
+
+		//add mouseover interactivity
+		.on('mouseover',function(d){
+			var id = d3.select(this).attr("class");
+			d3.select(this).style('opacity', 0.60)
+			id = "#Leg" + id
+			console.log(id)
+			d3.select('#legend').select(id).style('opacity',1)
+			//tempColor = legend.style.opacity
+			//console.log(tempColor)
+
+
+		})
+
+		.on('mouseout',function(d){
+			d3.select(this).style('opacity',0.50)
+			d3.select('body')
+			d3.select('#legend').select(id).style('opacity',.6)
+		});
 
 		map.on('viewreset', reset);
     	//this will put stuff on the map
@@ -101,12 +120,23 @@ function drawOpArea(){
 		   	.append("path")
 		   	.attr("d", path)
 		   	.attr("class","OpArea")
-		   	.style("opacity", 0.85)
-		   	.style("fill", "rgb(56,56,56)");
+		   	.style("opacity", 0.75)
+		   	.style("fill", "rgb(56,56,56)")
+
+    	//interactivity
+    	.on('mouseover',function(d){
+    		var opacity = d3.select(this).style('opacity',0.95);
+    		console.log(opacity)
+    	})
+    	.on('mouseover',function(d){
+    		d3.select(this).style('opacity',0.75);
+    	});
 
 		map.on('viewreset', reset);
     	//this will put stuff on the map
     	reset();
+
+
 	    // Reposition the SVG to cover the features.
 	    function reset() {
 
@@ -136,125 +166,3 @@ $(document).ready(function(){
   drawEmp();
   drawOpArea();
 });
-
-	//function drawOpArea(error, opArea){
-	//};//end drawOpArea
-
-
-    //drawEmployment(employment);
-    //drawOpArea(opArea);
-
-// end of MakeMap function
-////Define path generator
-//var path = d3.geo.path()
-//	.projection(projection);
-//
-////Create an SVG and append to #map div
-//var svg = d3.select("#map").append("svg")
-//    .attr("width", width)
-//    .attr("height", height);
-//
-////Generate paths based on projection
-//var path = d3.geo.path().projection(projection);
-//
-//
-////Group for the map features
-//var features = svg.append("g")
-//    .attr("class","features");
-//
-////Create zoom/pan listener
-//var zoom = d3.behavior.zoom().scaleExtent([1, 4]).on("zoom",zoomed);
-//
-//svg.call(zoom);
-//
-////queue data so it loads better
-//queue()
-//	.defer(d3.json, "data/Employment.topojson")
-//	.defer(d3.json, "data/OpArea.topojson")
-//	.await(makeMap);
-//
-////D3 callback for generating the actualy map features and appending them to the features goup
-//function makeMap(error, Emp, OpArea){
-//	var EmpCollection = topojson.feature(Emp, Emp.objects.collection);
-// 	var EmpTransform = d3.geo.transform({point: projectPoint}),
-//      path = d3.geo.path().projection(EmpTransform)
-//
-//    var OpCollection = topojson.feature(OpArea, OpArea.objects.collection);
-//    var OpTransform = d3.geo.transform({point: projectPoint}),
-//    	path = d3.geo.path().projection(EmpTransform)
-//
-//	//group variable to zoom behavior works correctly
-//	var group = svg.append('g')
-//		.attr('id','mapzoom')
-//
-//	var Emp = group.append('g').attr("id","Emp")
-//		.selectAll("path")
-//	   	.data(Empcollection.features)//generate features from topoJSON
-//	   	.enter()
-//	   	.append("path")
-//	   	.attr("d", path)
-//	   	.attr("class","Emp")
-//	 	.attr("fill", function(d){
-//	 		if (d.properties.Classes <= 3) {
-//	 			color = '#2892C7'
-//	 		} else if (d.properties.Classes == 4){
-//	 			color = '#A0C29B'
-//	 		} else if (d.properties.Classes == 5){
-//	 			color = '#FAFA64'
-//	 		} else if (d.properties.Classes == 6){
-//	 			color = '#FA8D34'
-//	 		} else {
-//	 			color = '#E81014'
-//	 		}
-//	 		return color
-//	 	})
-//	   	.style("stroke-width","0.5px")
-//	   	.style("opacity", 0.70);
-//
-//	var OpArea = group.append('g').attr("id","OpArea")
-//		.selectAll("path")
-//	   	.data(OpCollection.features)//generate features from topoJSON
-//	   	.enter()
-//	   	.append("path")
-//	   	.attr("d", path)
-//	   	.attr("class","OpArea")
-//	 	.attr("fill", 'rgb(78,78,78)')
-//	   	.style("stroke-width","0.5px")
-//	   	.style("opacity", 0.85);
-//
-//   	//when user zooms, view needs to be reset
-//    map.on('viewreset', reset);
-//    //this will put stuff on the map
-//    reset();
-//
-//    // Reposition the SVG to cover the features.
-//    function reset() {
-//
-//        var bounds = path.bounds(collection);
-//
-//
-//        var topLeft = bounds[0],
-//        bottomRight = bounds[1];
-//
-//        svg.attr("width", bottomRight[0] - topLeft[0])
-//            .attr("height", bottomRight[1] - topLeft[1])
-//            .style("left", topLeft[0] + "px")
-//            .style("top", topLeft[1] + "px");
-//
-//        g   .attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-//
-//        buildings.attr("d",path);
-//
-//    } // end reset
-//
-//    function projectPoint(x,y){
-//      var point = map.latLngToLayerPoint(new L.LatLng(y,x));
-//      this.stream.point(point.x,point.y);
-//    }
-//};
-
-//Update map on zoom/pan
-//function zoomed() {
-// d3.select('#mapzoom').attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")")
-//      .selectAll("path").style("stroke-width", 1 / zoom.scale() + "px" );
-//}

@@ -51,7 +51,7 @@
     import BeautifulSoup,urllib2,timer,geocoder,csv
   </code>
 </pre>
-        In taking a look at the html from the 'iowacitymenus.com' page, we find that it's a (mostly) organized list. So, we can use <a href="https://pypi.python.org/pypi/beautifulsoup4">BeautifulSoup</a> to parse the html data using python (there's a great tutorial by Zev Ross about using beautiful soup to parse html in python <a href="http://zevross.com/blog/2014/05/16/using-the-python-library-beautifulsoup-to-extract-data-from-a-webpage-applied-to-world-cup-rankings/">here</a>.) We can use the urllib2 library to open the url and feed it in to BeatifulSoup. We then iterate through the "soup" to find the elements we're interested in and write the output to a csv. Viola!
+        In taking a look at the html from the 'iowacitymenus.com' page, we find that it's a (mostly) organized list. So, we can use <a href="https://pypi.python.org/pypi/beautifulsoup4">BeautifulSoup</a> to parse the html data using python (there's a great tutorial by Zev Ross about using BeautifulSoup to parse html in python <a href="http://zevross.com/blog/2014/05/16/using-the-python-library-beautifulsoup-to-extract-data-from-a-webpage-applied-to-world-cup-rankings/">here</a>.) We can use the urllib2 library to open the url and feed it in to BeatifulSoup. We then iterate through the "soup" to find the elements we're interested in and write the output to a csv. Viola!
 <pre>
   <code>
     url = <span class='hljs-string'>'http://www.iowacitymenus.com/'</span>
@@ -116,7 +116,7 @@
 <pre>
   <code>$ ogr2ogr -f GeoJSON -t_srs crs:84 [name].geojson [name].shp</code>
 </pre>
-      <p>The GeoJSON can then be dragged into <a href="http://www.mapshaper.org/">MapShaper</a> to be simplified and exported as a TopoJSON, which is much small and loads faster in web pages. <a href="#">Here's the final result</a></p>
+      <p>The GeoJSON can then be dragged into <a href="http://www.mapshaper.org/">MapShaper</a> to be simplified and exported as a TopoJSON, which is much small and loads faster in web pages. <a href="../../../../food_trucks">Here's the final result</a></p>
 
       <h4>Displaying data for the web</h4><hr>
       <p><a href="http://d3js.org/">D3</a> is an incredibly powerful library for displaying data &#45; particularly spatial data. </p>

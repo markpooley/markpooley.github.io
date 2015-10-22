@@ -32,9 +32,18 @@ footer p {
 	border: 2px;
 	border-color: #111111;
 	background: #111111;
+	white-space: nowrap;
 }
-.animate {
+.symbol{
+	opacity: 0.50;
+}
+.sybmolText {
+	text-align: center;
+	vertical-align: center;
+	opacity: 1;
 	color: white;
+	position: relative;
+}
 }
 #directions{
 	background: #111111;

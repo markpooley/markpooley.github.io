@@ -47,7 +47,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 1982,Fast Times at Ridgemont High,"Comedy, Drama",R,7.2/10,4500000,0,90,,
 1983,Rumble Fish,Drama,R,7.2/10,10000000,2500000,94,,
 1984,Birdy,"Drama, War",R,7.3/10,0,0,120,,
-2004,National Treasure,"Action, Adventure, Mystery",PG,6.9/10,100000000,173005002,131,,
+2004,National Treasure,"Action, Adventure, Mystery",PG,6.9/10,100000000,173005002,131,0,1
 1990,Wild at Heart,"Comedy, Crime, Thriller",NC-17,7.3/10,9500000,14560247,125,,
 1997,Con Air,"Action, Crime, Thriller",R,6.8/10,75000000,101087161,115,7,0
 1984,Racing with the Moon,"Comedy, Drama, Romance",PG,6.8/10,0,5400000,108,,
@@ -56,7 +56,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Kills,Freakouts
 1988,Vampire's Kiss,"Comedy, Horror",R,5.8/10,0,725131,103,,
 1989,Time to Kill,"Drama, War",R,5.2/10,0,0,110,,
 1981,Best of Times,,Unrated,5.9/10,0,0,95,,
-2005,The Weather Man,"Comedy, Drama",R,6.7/10,22000000,860440,102,,
+2005,The Weather Man,"Comedy, Drama",R,6.7/10,22000000,860440,102,0,6
 2007,Ghost Rider,"Action, Fantasy, Horror",PG-13,5.2/10,110000000,115802596,114,,
 1993,Deadfall,"Crime, Drama",R,3.7/10,10000000,0,98,,
 1990,Fire Birds,"Action, Adventure",PG-13,4.6/10,0,14760451,85,,

@@ -19,3 +19,10 @@ iframe {
 	display: block;
 	margin: auto;
 }
+.svgText{
+	font-size: 1.5em;
+	font-weight: bold;
+}
+#divModList {
+	padding-left: 10px !important;
+}

@@ -130,6 +130,12 @@ var timeSVG = d3.select('#timeCage').append('svg')
 	.append('g')
 		.attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
 
+//timeSVG.append('text')
+//	.attr('x', 0 )
+//	.attr('y',height *.15)
+//	.attr('class','svgText')
+//	.attr('text-anchor','middle')
+//	.text('Days in the Cage')
 //add background to time svg
 var timeBackground = timeSVG.append('path')
 	.datum({endAngle:(Math.PI/2)})
@@ -154,11 +160,44 @@ var daysText = timeSVG.append('text').attr('id','daysLabel')
 	.style('text-anchor','middle')
 	.style('font-size','40px')
 
+//select the SVG text elements and add Zeros to all of them intially
+//
+//days label
+d3.select('#daysLabel')
+	.attr('x',textX)
+	.attr('y', 0)
+	.text(0)
+	.attr('text-anchor', 'middle')
+//status label
+d3.select('#statusLabel')
+	.transition()
+	.attr('x',textX)
+	.attr('y',0)
+	.text(0)
+	.attr('text-anchor', 'middle')
+//add Zero to Kills SVG text element
+killSVG.append('text')
+	.text(0)
+	.attr('id','kills')
+	.attr('x',width / 2)
+	.attr('y',height*.60)
+	.style('text-anchor','middle')
+
+//add zero to the freaks SVG
+freakSVG.append('text')
+	.text(0)
+	.attr('id','freaks')
+	.attr('x',width / 2)
+	.attr('y',height*.60)
+	.style('text-anchor','middle')
+
 //pull data from csv for aggregate freakouts and cage kills
 //append data to counters and use tween function to count up
 //from zero to current aggregate draw the arcs for the days in the cage
 //and cage gauge all in one callback.
-d3.csv('Data/CageData.csv', function(data){
+
+function drawViz(){
+	d3.csv('Data/CageData.csv', function(data){
 	dataset = data;
 	cageArray = []
 	var kills = 0,
@@ -177,68 +216,47 @@ d3.csv('Data/CageData.csv', function(data){
 	var pctDays = days/365 *100;
 	timeForeground.transition()
 		.delay(500)
-		.duration(250*pctDays)
+		.duration(3000)
 		.ease('linear')
 		.call(arcTween,arcScale(pctDays))
 	.style('fill',function(){
 		return colorScale(arcScale(pctDays));
 	})
-	d3.select('#daysLabel')
-		.attr('x',textX)
-		.attr('y', 0)
-		.text(0)
-		.attr('text-anchor', 'middle')
-		.transition()
+
+	//tweentext/animate the Days in the Cage text
+	d3.select('#daysLabel').transition()
 			.delay(500)
-			.duration(250*pctDays)
+			.duration(3000)
 			.tween('text',tweenText(days));
 
 
 	//draw Cage Gauge, which is the pct of movies watched
-	delay = (pctDays + 500) + (250*pctDays)
+	var delay = 3500; //delay the the bottom counters
 
 	foreground.transition()
-		.delay(delay)
-		.duration(250*pctWatched)
+		.delay(500)
+		.duration(3000)//250*pctWatched)
 		.ease('linear')
 		.call(arcTween,arcScale(pctWatched))
 	.style('fill',function(){
 		return colorScale(arcScale(pctWatched));
 	})
-	d3.select('#statusLabel')
-		.transition()
-		.attr('x',textX)
-		.attr('y',0)
-		.text(0)
-		.attr('text-anchor', 'middle')
-		.transition()
-			.delay(delay)
-			.duration(250*pctWatched)
+
+	//tweentext/transition the Cage Gauge numbers
+	d3.select('#statusLabel').transition()
+			.delay(500)
+			.duration(3000)
 			.tween('text',tweenText(pctWatched));
 
 
 	//animate counter for kills
-	delay = delay + (250 * pctWatched)
-	killSVG.append('text')
-		.text(0)
-		.attr('id','kills')
-		.attr('x',width / 2)
-		.attr('y',height - 10)
-		.style('text-anchor','middle')
-		.transition()
+	killSVG.select('text').transition()
 			.delay(delay)
 			.duration(3000)
 			.tween('text',tweenText(kills));
 
 	//animate counter for freakouts
-	delay = delay + 3000
-	freakSVG.append('text')
-		.text(0)
-		.attr('id','freaks')
-		.attr('x',width / 2)
-		.attr('y',height - 10)
-		.style('text-anchor','middle')
-		.transition()
+	freakSVG.select('text').transition()
 			.delay(delay)
 			.duration(3000)
 			.tween('text',tweenText(freaks));
@@ -346,9 +364,17 @@ d3.csv('Data/CageData.csv', function(data){
 	//	});
 	//});
 
+	//Change the overflow once the visulization has run
+	$('body').css('overflow','auto')
 }); //end of d3 callback
+};//end drawViz function
 
+//wait until the page has fully loaded to run the drawViz function
+//this prevents jumpiness/jerky visualizations.
+$(window).load(function(){
+	drawViz();
 
+})
 
 
 //event listener to activate viz generations on the modal divs

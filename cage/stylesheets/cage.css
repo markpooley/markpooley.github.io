@@ -26,3 +26,6 @@ iframe {
 #divModList {
 	padding-left: 10px !important;
 }
+body {
+	overflow: hidden;
+}

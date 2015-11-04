@@ -29,3 +29,8 @@ iframe {
 body {
 	overflow: hidden;
 }
+#modImage {
+	display: block;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}

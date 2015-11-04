@@ -1,0 +1,200 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="keywords" content="generating random points in ArcGIS, ArcGIS, ArcMap, arcpy, python, search cursor, zip codes, shapefile, ESRI">
+    <meta name="description" content="generating random points within defined geographic boundries using an interative python process and creating a tool in ESRI ArcGIS.">
+    <title>Generating Random Points</title>
+    <link rel="stylesheet" href="../../../../stylesheets/app.css"/>
+    <link rel="stylesheet" href="../../../stylesheets/custom.css"/>
+    <script src="../../../../bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+    <!--Site navigation stuff-->
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../../../../../index.html">Home</a></li>
+          <!--li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="dental_service_areas/">Dental Service Areas</a></li>
+              <li><a href="cage/">A Year in the Cage</a></li>
+              <li><a href="yearbuiltjc/">Age of Johnson County Buildings</a></li>
+            </ul>
+          </li-->
+          <li class="active"><a href="../../../../blog/">Blog</a></li>
+          <li><a href="../../../../Resume.html">Resume</a></li>
+        </ul>
+      </section>
+    </nav>
+    <!-- Main body fo content-->
+    <div class="row">
+      <div class="small-10 columns small-centered">
+        <h3>Generating Sets of Random Points Within Different Geographic Boundaries</h3>
+        <h6>November 3, 2015</h6>
+        <hr>
+        <p>Oftentimes when presented with a set of addresses not all of them geocode properly (or at all). Sometimes, we can simply drop/omit these addresses - eating a 3-5% loss in a dataset from bad address quality is often acceptable. But, what happens when you have a small data set and each datum is linked back to something else you need for analysis (i.e. survey responses)?</p>
+        <p>One option (other than dropping the addresses) is to simply geocode to the city/state or center of a zip code. However, this can introduce an unwanted spatial bias. If you're planning to calculate the distance to the nearest city, or evaluate spatial clustering using the aforementioned approach will skew your results - an unwanted side effect</p>
+        <p>I don't always create special tools or toolsets in <a href="http://www.esri.com/software/arcgis">ArcMap</a>, but there were some trial and error for this process. Creating a tool is a bit more iniital work, but makes re-running and error tracking easier.</p>
+        <h4>Setting the Input Data</h4><hr>
+        <!--Code block-->
+<pre>
+<code>
+########################################################################
+#User input variables
+########################################################################
+completeList = arcpy.GetParameterAsText(0) #list of all responses
+currentList = arcpy.GetParameterAsText(1) # list of responses that have been geocoded
+featLayer = arcpy.GetParameterAsText(2) #feature layer (for selections)
+randomPoints = arcpy.GetParameterAsText(3) #random points empty point fC
+crossWalk = arcpy.GetParameterAsText(4) #Zip to ZCTA Crosswalk
+outLocation = arcpy.GetParameterAsText(5) # ouput location
+
+env.workspace = outLocation #make workspace the same as the output location
+outPath = os.path.realpath(outLocation) #get the real path name of output location
+arcpy.AddMessage('Output Path: {0}'.format(outPath))#print output path as message
+</code>
+</pre>
+      <p>I'll explain a bit more about what these inputs are for this specific case.</p>
+      <ul>
+      <li>"completeList" is the entire set of addresses/responses.</li>
+      <li>"currentList" is that of all the data correctly geocoded. </li>
+      <li>"featLayer" is, as the name implies, a feature layer. This is necessary for making selections based on attributes that will be used later in the process.</li>
+      <li>"randomPoints" is an empty feature class with the fields you need that has been already created. The random points generated within each geographic boundary will be appended to this, which helps prevent a huge batch data being generated for each loop iteration (<a href="#loop">explained a bit lower down)</a></li>
+      <li>"crosswalk" is a zip code to ZCTA (Zip Code Tabulation Area) crosswalk available <a href="http://udsmapper.org/zcta-crosswalk.cfm">here</a>. This will serve as a backup if the zip code for data is not found in our feature layer</li>
+      <li>"outlocation", output location - pretty self-explanatory.</li>
+    </ul>
+      <h4>Declare Process Variables and Throw the Crosswalk into a Dictionary</h4><hr>
+<pre>
+<code>
+#################################################################################
+#Declare Global variables
+#################################################################################
+pointDict = defaultdict(list) #dictionary of zipcodes with IDs in a list
+fNames = [f.name for f in arcpy.ListFields(completeList) if 'ZIP' in f.name or 'ID' in f.name]
+arcpy.AddMessage('fieldNames: {0}'.format(fNames))
+locatedIDs = [] # just a tracker/counter list
+pointDict = defaultdict(list) #dicationary of zctas and the ids of points to be generated in them
+omitted = 0 #counter variable to track omitted entries in geocoded survey responses
+#################################################################################
+#generate a crosswalk dictionary to be used in the pointDict dictionary generation
+#################################################################################
+crossWalkDict = {}
+crossFields = [u'ZIP',u'ZCTA_crosswalk']
+with arcpy.da.SearchCursor(crossWalk,crossFields) as cursor:
+  for row in cursor:
+    crossWalkDict[int(row[0])] = int(row[1]) #use integers
+</code>
+</pre>
+      <p>Putting the crosswalk into an "in memory" dictionary allows for easy and quick access. The dictionary uses zip codes as keys, which when accessed give us the corresponding ZCTA. I like to use dictionaries with lists. This isn't quite as clean and readable as JSON, but it works for me. The code below generates the foundational in memory data we'll use to create the random points.</p>
+<pre id="artifact">
+<code>
+#################################################################################
+#Get a count and generate a dictionary of the IDS that need to have random points
+#generated.
+#################################################################################
+with arcpy.da.SearchCursor(currentList,fNames) as cursor:
+  for row in cursor:
+    locatedIDs.append(row[0])
+
+with arcpy.da.SearchCursor(completeList, fNames) as cursor:
+  for row in cursor:
+    if row[0] not in locatedIDs:
+      omitted += 1
+      # use the crosswalk for the key to ensure proper selection later
+      #key = crossWalkDict.get(row[1])
+
+      try:
+        pointDict[row[1]].append(row[0])
+      except:
+        pointDict[row[1]] = row[0]
+
+arcpy.AddMessage('{0} zipcodes found to generate points in'.format(len(pointDict)))
+arcpy.AddMessage('{0} responses found to be omitted from initial geocoding process'.format(omitted))
+</code>
+</pre>
+      <p>There's a line commented out where originally I used the crosswalk to map all the zip codes to a ZCTA. But, as stated earlier, when you have the ability to use a finer/more representative spatial resolution you should do so.</p>
+      <p>First a list of all the located IDs is generated from the "currentList". Then those in the "completeList" not found in the "locatedIDs" list are counted (incrementing of the "omitted" variable") and added to our "pointDict" dictionary. This generates a list of IDs in each zip code. Using this format allows for using the list length as an input variable for the number of points, as well as assigning IDs to the generated points iteratively.</p>
+      <h4>Generating the Points, Assigning IDs, and Appending</h4><hr>
+      <p>This may not be the most efficient loop, in fact, I'm fairly certain it isn't. I'm iterating through the "pointDict" dictionary using the keys (k) to generate a query for a selection on the featureLayer which provides the geographic bounds for each set of randomly generated points (often a single point within a zip code or ZCTA).</p>
+      <p>If the selection is empty (that is the zip code isn't found in the "featuerLayer") and the number of points generate is 0, I turn to the crosswalk to generate  new query and selection of the corresponding ZCTA for the unfound zip code. The list (v variable in the loop) is used to assign IDs to the temporary random points that are then appended to our final random points feature class.</p>
+<pre id="loop">
+<code>
+#################################################################################
+#Iterate th rough the pointDict Dictionary and select the feature layer to generate
+#Random points within the selection.
+#################################################################################
+
+arcpy.SetProgressor('step','generating random points for missing responses...',0,len(pointDict),1)
+for k, v in pointDict.iteritems():
+  query = "ZIP = '{0}'".format(k)
+
+  #selection to bound the random points within a specific zip code.
+  selection = arcpy.SelectLayerByAttribute_management(featLayer, "NEW_SELECTION", query)
+
+  arcpy.SetProgressorLabel('creating random points for {0}...'.format(k))
+  randPoints = arcpy.CreateRandomPoints_management(outPath,'Temp_RandomPoints',selection,"",str(len(v)),"","POINT")
+
+  pointCount = int(arcpy.GetCount_management(randPoints).getOutput(0))
+
+  #Check that the correct number of points were generated, if not. Try a different
+  #approach using the crosswalk dictionary.
+  #--------------------------------------------------------------------------------
+  if pointCount != len(v):
+    arcpy.AddMessage('Point count mismatch for zipcode {0} containing id: {1}\nTrying ZCTA crosswalk instead...'.format(k,v))
+
+    query = "ZIP = '{0}'".format(crossWalkDict.get(k))
+    selection = arcpy.SelectLayerByAttribute_management(featLayer, "NEW_SELECTION", query)
+    randPoints = arcpy.CreateRandomPoints_management(outPath,'Temp_RandomPoints',selection,"",str(len(v)),"","POINT")
+
+  arcpy.AddField_management(randPoints,'ID','SHORT')
+  updateFields = [u'ID']
+
+  #Before appending the temporary random points to the final point output update
+  #The ID which can be used to update the provider type and such later
+  #--------------------------------------------------------------------------------
+  idCounter = 0
+  with arcpy.da.UpdateCursor(randPoints,updateFields) as cursor:
+    for row in cursor:
+
+      row[0] = v[idCounter]
+      idCounter += 1
+      cursor.updateRow(row)
+
+  #Append the current random points to the final output random points
+  #--------------------------------------------------------------------------------
+  arcpy.SetProgressorLabel('appending random points for {0} to the final output random points'.format(k))
+  arcpy.Append_management(randPoints,randomPoints,"NO_TEST")
+  arcpy.SetProgressorPosition()
+
+arcpy.AddMessage("Process Complete!")
+</code>
+</pre>
+      <p>You might wonder why not just use the crosswalk out of the gate for simplicity and a faster runtime. I left in an <a href="#artifact">"artifact"</a> of this approach (which was what I did initially). Some of the postal zip codes are actually quite small (usually for small towns where every resident just has a po box). If possible, it's best to generate points within those smaller zip codes to maintain accuracy. There's likely a faster/more efficient way to accomplish this task. Hit me up if you have ideas or suggestions. My contact info is below!</p>
+    </div>
+    </div><hr>
+    <footer class="row ">
+      <div class="large-12 columns text-center">
+        <p>Iowa City • IA</p>
+        <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+          <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+      </div>
+    </footer>
+
+    <script src="../../../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../../../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../../../../js/app.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

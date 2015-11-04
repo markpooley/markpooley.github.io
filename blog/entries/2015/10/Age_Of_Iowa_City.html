@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <meta name="keywords" content="python, ESRI, ArcGIS, ArcMap, BeautifuleSoup, webscraping, Iowa City, Age of Iowa City">
+    <meta name="description" content="Building a dataset set for to visualize the Age of Iowa City, Iowa using publicly available data.">
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>Mark Pooley</title>
+    <title>Age of Iowa City</title>
     <link rel="stylesheet" href="../../../../stylesheets/app.css"/>
     <link rel="stylesheet" href="../../../stylesheets/custom.css"/>
     <script src="../../../../bower_components/modernizr/modernizr.js"></script>
@@ -35,12 +37,12 @@
     </nav>
     <div class="row">
       <div class="small-10 columns small-centered">
-        <h3>Building dataset for Age of Iowa City</h3>
+        <h3>Building Dataset for the Age of Iowa City</h3>
         <h6>October 14, 2015.</h6><hr>
-        <p>A shapefile of Iowa City buildings, and those for all of Johnson County, IA is easy to obtain from a public repsository. But, the age/build year of those buildings is not in the data. Originally, I was going to do all of Johnson County, IA but that proved to be very slow to load so I opted to do just Iowa City - which presented a few problems</p>
+        <p>A Shapefile of Iowa City buildings, and those for all of Johnson County, IA is easy to obtain from a public repository. But, the age/build year of those buildings is not in the data. Originally, I was going to do all of Johnson County, IA but that proved to be very slow to load so I opted to do just Iowa City - which presented a few problems</p>
 
-        <h4>First Attempt to get the data</h4><hr>
-        Originally, I was just going to scrape data from the Iowa City assessors website to obtain build years for each parcel number and attach that to the building data since. I had parcel data from a previous project so I simply spatially joined parcel ids to the buildings. I built a nice little web scraper using urllib2 and BeautiflulSoup libraries into an arcgis tool.
+        <h4>First Attempt to Get the Data</h4><hr>
+        Originally, I was just going to scrape data from the Iowa City assessors website to obtain build years for each parcel number and attach that to the building data since. I had parcel data from a previous project so I simply spatially joined parcel ids to the buildings. I built a nice little web scraper using urllib2 and BeautiflulSoup libraries into an ArcGIS tool.
 
 <pre>
 <code>
@@ -87,7 +89,7 @@ def getYrBuilt(soup,PropClass):
     return date
 </code>
 </pre>
-      <p>Some simple functions to pull the data I need from the html genereated in the "makeSoup function. Next it was a simple matter of just iterating through lines in the shapefile data using a update cursor.</p>
+      <p>Some simple functions to pull the data I need from the HTML generated in the "makeSoup function. Next it was a simple matter of just iterating through lines in the Shapefile data using an update cursor.</p>
 
 <pre>
 <code>
@@ -109,6 +111,7 @@ arcpy.AddMessage('Process Complete')
 </pre>
 <h3>Second Attempt at Getting the Data</h3>
         <p>One thing I did not account for was the getting flagged for data mining. As I was testing snippets of code using small lists of parcel numbers I apparently didn't set off any triggers on the assessors website. But, once I tried to pull all the data for every building within the Iowa City limits they flagged me and I had to contact a representative from the assessors office to get the data I wanted - delaying the simple project a couple days.No biggie, but they still have me blocked...</p>
+        <p>The final map output can be found <a href="../../../../yearbuiltjc/index.html">here.</a> </p>
     </div>
 </div><hr>
     <footer class="row ">

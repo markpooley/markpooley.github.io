@@ -34,3 +34,9 @@ body {
 	margin-left: auto !important;
 	margin-right: auto !important;
 }
+#iFrame {
+	display: block;
+	width: 75%;
+
+
+  }

@@ -19,6 +19,7 @@ var p = Math.PI/2; //ending point of arc on gauge
 var intervals = [0,20,40,60,80,100]; //intervals for Cage Guage animation
 var watched = 0, //count of watched
 	total = 0; //total count of entries
+var font = 'Lato';
 
 ///variables for determining time spent in the cage
 var yrstart = new Date('2015-06-01'),
@@ -45,11 +46,43 @@ var killSVG = d3.select('#cageKills').append('svg')
 	.attr('height',height)
 	.attr('id','cageKills')
 
+killSVG.append('text')
+	.text('Cage')
+	//.attr('class', 'svgText')
+	.attr('opacity', 0.30)
+	.attr('x',width / 2)
+	.attr('y',height*.65)
+	.style('text-anchor','middle')
+killSVG.append('text')
+	.text('Kills')
+	//.attr('class', 'svgText')
+	.attr('opacity', 0.30)
+	.attr('x',width / 2)
+	.attr('y',height * .95 )
+	.style('text-anchor','middle')
+
+
 //create freak svg
 var freakSVG = 	d3.select('#cageFreakouts').append('svg')
 	.attr('width',width)
 	.attr('height',height)
 	.attr('id','cageFreaks')
+
+freakSVG.append('text')
+	.text('Cage')
+	//.attr('class', 'svgText')
+	.attr('opacity', 0.30)
+	.attr('x',width / 2)
+	.attr('y',height*.65)
+	.style('text-anchor','middle')
+freakSVG.append('text')
+	.text('Freakouts')
+	//.attr('class', 'svgText')
+	.attr('opacity', 0.30)
+	.attr('x',width / 2)
+	.attr('y',height * .95 )
+	.style('text-anchor','middle')
+
 
 //get number of elements watched and unwatched
 var unwatched = d3.selectAll('.unwatched')[0].length
@@ -85,14 +118,21 @@ var statusScale = d3.scale.quantize()
 	.domain([0,100])
 	.range(['The bunny is in the box','Lowrider, Donny',"Finding some friggin' rockets!","I'm a vampire!","Not The Bees!","'Deadfall' freaking out scene"])
 
-
-// Creation of svg, background and foreground arcs for the cage Gauge.
+//
+// Creation of svg, background and foreground arcs for the Cage Gauge.
 var svg = d3.select("#cageGauge").append("svg")
     .attr("width", width)
     .attr("height", height)
     .attr('id','gaugeSVG')
     .append('g')
-    	.attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")");
+    	.attr("transform", "translate(" + width / 2 + "," + height *.90 + ")");
+svg.append('text')
+	.attr('x', 0 )
+	.attr('y',-height *.75)
+	//.attr('class','svgText')
+	.attr('text-anchor','middle')
+	.text('The Cage Gauge')
+$('#cageGauge').css('font-size',height*.15 + 'px').css('font-weight','bold')
 
 //status label for Cage Gauge
 var statusLabel = svg.append('text').attr('id','statusLabel')
@@ -128,15 +168,17 @@ var timeSVG = d3.select('#timeCage').append('svg')
 	.attr('height',height)
 	.attr('id','timeGauge')
 	.append('g')
-		.attr("transform", "translate(" + width / 2 + "," + height / 1.5 + ")")
+		.attr("transform", "translate(" + width / 2 + "," + height*.90 + ")")
 
-//timeSVG.append('text')
-//	.attr('x', 0 )
-//	.attr('y',height *.15)
-//	.attr('class','svgText')
-//	.attr('text-anchor','middle')
-//	.text('Days in the Cage')
+timeSVG.append('text')
+	.attr('x', 0 )
+	.attr('y',-height *.75)
+	//.attr('class','svgText')
+	.attr('text-anchor','middle')
+	.text('Days in the Cage')
+$('#timeCage').css('font-size',height*.15 + 'px').css('font-weight','bold')
 //add background to time svg
+
 var timeBackground = timeSVG.append('path')
 	.datum({endAngle:(Math.PI/2)})
 	.style('fill','#ddd')
@@ -168,6 +210,8 @@ d3.select('#daysLabel')
 	.attr('y', 0)
 	.text(0)
 	.attr('text-anchor', 'middle')
+$('#daysLabel').css('font-size',height*.25 + 'px').css('font-weight','bold').css('font-family','Helvetica')
+
 //status label
 d3.select('#statusLabel')
 	.transition()
@@ -175,21 +219,31 @@ d3.select('#statusLabel')
 	.attr('y',0)
 	.text(0)
 	.attr('text-anchor', 'middle')
+$('#statusLabel').css('font-size',height*.25 + 'px').css('font-weight','bold').css('font-family','Helvetica')
+
 //add Zero to Kills SVG text element
 killSVG.append('text')
 	.text(0)
 	.attr('id','kills')
 	.attr('x',width / 2)
-	.attr('y',height*.60)
+	.attr('y',height*.30)
 	.style('text-anchor','middle')
+
+//scale the svg text to fit the container
+$('#kills').css('font-size',(height/3.5) + 'px').css('font-weight','heavy')
+$('#cageKills').css('font-size',(height/3.5) + 'px').css('font-weight','bold')
 
 //add zero to the freaks SVG
 freakSVG.append('text')
 	.text(0)
 	.attr('id','freaks')
 	.attr('x',width / 2)
-	.attr('y',height*.60)
+	.attr('y',height*.30)
 	.style('text-anchor','middle')
+
+//scale the svg text to fit the container
+$('#freaks').css('font-size',(height/3.5) + 'px').css('font-weight','bold')
+$('#cageFreakouts').css('font-size',(height/3.5) + 'px').css('font-weight','bold')
 
 //pull data from csv for aggregate freakouts and cage kills
 //append data to counters and use tween function to count up
@@ -250,13 +304,13 @@ function drawViz(){
 
 
 	//animate counter for kills
-	killSVG.select('text').transition()
+	killSVG.select('#kills').transition()
 			.delay(delay)
 			.duration(3000)
 			.tween('text',tweenText(kills));
 
 	//animate counter for freakouts
-	freakSVG.select('text').transition()
+	freakSVG.select('#freaks').transition()
 			.delay(delay)
 			.duration(3000)
 			.tween('text',tweenText(freaks));
@@ -375,7 +429,6 @@ $(window).load(function(){
 	drawViz();
 
 })
-
 
 //event listener to activate viz generations on the modal divs
 //$(document).ready(function(){

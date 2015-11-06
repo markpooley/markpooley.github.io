@@ -9,8 +9,8 @@
 	display:block;
 	margin: auto;
 }
-.imgContainer{
-
+#cagePanel {
+	overflow-y: scroll !important;
 }
 .orbit-container{
 	vertical-align: bottom;
@@ -37,6 +37,4 @@ body {
 #iFrame {
 	display: block;
 	width: 75%;
-
-
   }

@@ -140,7 +140,7 @@ blockquote {
 	color: white;
 
 }
-/*Define mobile styling*//*
-@media only screen {
-	h4 {font-size: 0.75em;}
+/*Define mobile styling*/
+@media (max-width: 350px) {
+	h4 {font-size: 0.70em;}
 }

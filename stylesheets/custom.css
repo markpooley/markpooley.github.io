@@ -135,3 +135,12 @@ blockquote {
 #MetaCage div {
 	text-align: center;
 }
+#CategoryTitle {
+	background-color: rgba(24,24,24,.90);
+	color: white;
+
+}
+/*Define mobile styling*//*
+@media only screen {
+	h4 {font-size: 0.75em;}
+}

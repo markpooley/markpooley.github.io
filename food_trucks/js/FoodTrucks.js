@@ -2,6 +2,21 @@
 var aspect = 1.4;
 var width = $("#map").width();
 var height = width/ aspect;
+//var colorScheme = [
+//	{type: '#Leg0', selectCol: "rgba(56,56,56,0.95)",transColor: "rgba(56,56,56,0.60)"},
+//	{type: '#Leg3', selectCol: "rgba(40,146,199,0.75)",transColor: "rgba(40,146,199,0.60)" },
+//	{type: '#Leg4', selectCol: "rgba(160,194,155,0.75)",transColor: "rgba(160,194,155,0.60)"},
+//	{type: '#Leg5', selectCol: "rgba(250,250,100,0.75)",transColor: "rgba(250,250,100,0.60)"},
+//	{type: '#Leg6', selectCol: "rgba(250,141,52,0.75)",transColor: "rgba(250,141,52,0.60)"},
+//	{type: '#Leg7', selectCol: "rgba(232,16,20,0.75)",transColor: "rgba(232,16,20,0.60)"}
+//];
+var colorScheme = {};
+	colorScheme.Leg0 = ["rgba(56,56,56,0.95)","rgba(56,56,56,0.60)"];
+	colorScheme.Leg3 = ["rgba(40,146,199,0.80)", "rgba(40,146,199,0.60)"];
+	colorScheme.Leg4 = ["rgba(160,194,155,0.80)", "rgba(160,194,155,0.60)"];
+	colorScheme.Leg5 = ["rgba(250,250,100,0.80)", "rgba(250,250,100,0.60)"];
+	colorScheme.Leg6 = ["rgba(250,141,52,0.80)", "rgba(250,141,52,0.60)"];
+	colorScheme.Leg7 = ["rgba(232,16,20,0.80)", "rgba(232,16,20,0.60)"];
 
 //temporary empty color that will be used for mouseover and mouseout events
 var tempColor;
@@ -40,7 +55,7 @@ function drawEmp(){
 			.append('path')
 			.attr("d", path)
 			.attr('class', function(d){
-				return d.properties.Classes
+				return "empClass" + d.properties.Classes
 			})
 			.attr('fill', function(d){
 				if (d.properties.Classes <= 3) {
@@ -62,20 +77,21 @@ function drawEmp(){
 		//add mouseover interactivity
 		.on('mouseover',function(d){
 			var id = d3.select(this).attr("class");
-			d3.select(this).style('opacity', 0.60)
-			id = "#Leg" + id
-			console.log(id)
-			d3.select('#legend').select(id).style('opacity',1)
-			//tempColor = legend.style.opacity
-			//console.log(tempColor)
+			d3.select(this).style('opacity', 0.75)
+			id = "#Leg" + id.slice(-1)
+			colorid = 'Leg' + id.slice(-1)
+			d3.select('#legend').select(id).style('background-color',colorScheme[colorid][0])
+
 
 
 		})
 
 		.on('mouseout',function(d){
+			var id = d3.select(this).attr("class");
 			d3.select(this).style('opacity',0.50)
-			d3.select('body')
-			d3.select('#legend').select(id).style('opacity',.6)
+			id = "#Leg" + id.slice(-1)
+			colorid = 'Leg' + id.slice(-1)
+			d3.select('#legend').select(id).style('background-color',colorScheme[colorid][1])
 		});
 
 		map.on('viewreset', reset);
@@ -119,17 +135,21 @@ function drawOpArea(){
 		   	.enter()
 		   	.append("path")
 		   	.attr("d", path)
-		   	.attr("class","OpArea")
+		   	.attr("class","empClass0")
 		   	.style("opacity", 0.75)
 		   	.style("fill", "rgb(56,56,56)")
 
     	//interactivity
-    	.on('mouseover',function(d){
+    	opArea = d3.selectAll('.empClass0')
+
+    	opArea.on('mouseover',function(d){
     		var opacity = d3.select(this).style('opacity',0.95);
     		console.log(opacity)
-    	})
-    	.on('mouseover',function(d){
+    		d3.select('#legend').select('#Leg0').style('background-color',colorScheme["Leg0"][0])
+    	});
+    	opArea.on('mouseover',function(d){
     		d3.select(this).style('opacity',0.75);
+    		d3.select('#legend').select('#Leg0').style('background-color',colorScheme["Leg0"][1])
     	});
 
 		map.on('viewreset', reset);
@@ -162,6 +182,39 @@ function drawOpArea(){
 	})//end json callback
 }; //end drawOpArea function
 
+//create legend interactivity
+///////////////////////////////////////
+var legend = d3.select('#legendBlocks').selectAll('div')
+legend.on('mouseover',function(){
+	var area = d3.select(this).attr('id')
+	tempclass = ".empClass"+area.slice(-1)
+
+	var id = '#' + area;
+	d3.select('#legend').select(id).style('background-color',colorScheme[area][0])
+		.style('border',1)
+		.style('border-color','white')
+
+	//change opacities of the operation/employment areas
+	if (tempclass ==='.empClass0'){
+		d3.select(tempclass).style('opacity',.95);
+	} else {
+		d3.select(tempclass).style('opacity',.65);
+	}
+})
+legend.on('mouseout',function(){
+	var area = d3.select(this).attr('id')
+
+	var id = '#' + area;
+	d3.select('#legend').select(id).style('background-color',colorScheme[area][1])
+		.style('border', 'none')
+
+	//change opacities of operation/employment areas
+	if(tempclass === '.empClass0'){
+		d3.select(tempclass).style('opacity',0.75)
+	} else {
+	d3.select(tempclass).style('opacity',0.5)
+}
+})
 $(document).ready(function(){
   drawEmp();
   drawOpArea();

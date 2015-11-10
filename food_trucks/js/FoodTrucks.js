@@ -2,14 +2,7 @@
 var aspect = 1.4;
 var width = $("#map").width();
 var height = width/ aspect;
-//var colorScheme = [
-//	{type: '#Leg0', selectCol: "rgba(56,56,56,0.95)",transColor: "rgba(56,56,56,0.60)"},
-//	{type: '#Leg3', selectCol: "rgba(40,146,199,0.75)",transColor: "rgba(40,146,199,0.60)" },
-//	{type: '#Leg4', selectCol: "rgba(160,194,155,0.75)",transColor: "rgba(160,194,155,0.60)"},
-//	{type: '#Leg5', selectCol: "rgba(250,250,100,0.75)",transColor: "rgba(250,250,100,0.60)"},
-//	{type: '#Leg6', selectCol: "rgba(250,141,52,0.75)",transColor: "rgba(250,141,52,0.60)"},
-//	{type: '#Leg7', selectCol: "rgba(232,16,20,0.75)",transColor: "rgba(232,16,20,0.60)"}
-//];
+
 var colorScheme = {};
 	colorScheme.Leg0 = ["rgba(56,56,56,0.95)","rgba(56,56,56,0.60)"];
 	colorScheme.Leg3 = ["rgba(40,146,199,0.80)", "rgba(40,146,199,0.60)"];

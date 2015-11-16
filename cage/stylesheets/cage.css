@@ -47,7 +47,17 @@ body {
  .hidden {
 	display: none;
 }
- #gaugeTip, #killTip, #freakTip, #timeTip{
+ .toolTip{
+	position: absolute !important;
+	height: auto;
+	margin: 0 auto;
+	margin-bottom: auto;
+	padding: 10px;
+	background: #d3d3d3;
+	opacity: .95;
+	border-radius: 10px;
+}
+ /*#gaugeTip, #killTip, #freakTip, #timeTip{
 	position: absolute !important;
 	height: auto;
 	margin: 0 auto;
@@ -56,11 +66,29 @@ body {
 	opacity: .95;
 	border-radius: 10px;
 }
- /*Define mobile styling*//*
+ /*Define mobile styling
 @media only screen {
 	body,p,table tr td {font-size: 0.9em !important;}
 	table tr td {font-size: 0.9em !important;}
 	table tr td h4 {font-size: 1.5em;}
 	h3,h4 {font-size: 1.10em;}
 	h6 {font-size: 0.9em;}
+}*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) {
+  .toolTip {
+  	margin-bottom: -50px;
+  }
+  .toolTip > p{
+  	font-size: 0.55em !important;
+  	line-height: 1.25;
+  	margin-bottom: 0.05rem;
+}
+  #killTip > p, #freakTip > p {
+  	line-height: 0.5;
+  	margin-bottom: 0.5rem;
+  }
+  .toolTip > h2{
+   	font-size: 0.65em !important;
+   	line-height: 0.5;
+}
 }

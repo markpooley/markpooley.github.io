@@ -135,7 +135,8 @@ $('#cageGauge').css('font-size',height*.15 + 'px').css('font-weight','bold')
 
 //Add popover/interactive Tooltip when Cage Guage is moused over
 //
-d3.select('#gaugeTip').style('top',(height*.25) + 'px')
+var gaugeTipWidth = $('#gaugeTip').width();
+d3.select('#gaugeTip').style('top',(height*.15) + 'px').style('left',(width - gaugeTipWidth)/2 + 'px')
 d3.select('#cageGauge').on('mouseover',function(){
 	svg.selectAll('path').style('opacity',0.5)
 	d3.select('#gaugeTip').classed('hidden',false)
@@ -234,7 +235,9 @@ $('#statusLabel').css('font-size',height*.25 + 'px').css('font-weight','bold').c
 
 //
 //Add Time in the Cage mouseover interactivity
-d3.select('#timeTip').style('top',(height*.25) + 'px')
+var timeTipWidth = $('#timeTip').width();
+d3.select('#timeTip').style('top',(height*.15) + 'px').style('left',(width - timeTipWidth)/2 + 'px')
+
 d3.select('#timeCage').on('mouseover',function(){
 	d3.select('#timeCage').selectAll('path').style('opacity',0.5)
 	d3.select('#timeTip').classed('hidden',false)
@@ -371,13 +374,13 @@ function drawViz(){
 };
 	var killTipWidth = $('#killTip').width();
 	var killWidth = $('#cageKills').width();
-	d3.select('#killTip').style('top',(height*.25) + 'px').style('left',(killWidth - killTipWidth)/2 + 'px')
+	d3.select('#killTip').style('top',(height*.15) + 'px').style('left',(killWidth - killTipWidth)/2 + 'px')
 
 	d3.select('#cageKills').on('mouseover',function(){
 		avgKills = d3.round(avgKills,2)
 		d3.select('#tipkills').transition()
-			.delay(250)
-			.duration(750)
+			.delay(100)
+			.duration(500)
 			.tween('text',tweenText(avgKills))
 		d3.select('#killTip').classed('hidden',false)
 	})
@@ -390,11 +393,11 @@ function drawViz(){
 	var freakWidth = $('#cageFreakouts').width();
 
 	//freakout tooltip mouseover interactivity
-	d3.select('#freakTip').style('top',(height*.25) + 'px').style('left',(freakWidth - freakTipWidth)/2 + 'px')
+	d3.select('#freakTip').style('top',(height*.15) + 'px').style('left',(freakWidth - freakTipWidth)/2 + 'px')
 	d3.select('#cageFreakouts').on('mouseover',function(){
 		d3.select('#tipFreaks').transition()
-			.delay(250)
-			.duration(750)
+			.delay(100)
+			.duration(500)
 			.tween('text',tweenText(avgFreaks))
 		d3.select('#freakTip').classed('hidden',false)
 	})

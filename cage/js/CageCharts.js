@@ -61,7 +61,6 @@ killSVG.append('text')
 	.attr('y',height * .95 )
 	.style('text-anchor','middle')
 
-
 //create freak svg
 var freakSVG = 	d3.select('#cageFreakouts').append('svg')
 	.attr('width',width)
@@ -134,6 +133,17 @@ svg.append('text')
 	.text('The Cage Gauge')
 $('#cageGauge').css('font-size',height*.15 + 'px').css('font-weight','bold')
 
+//Add popover/interactive Tooltip when Cage Guage is moused over
+//
+d3.select('#gaugeTip').style('top',(height*.25) + 'px')
+d3.select('#cageGauge').on('mouseover',function(){
+	svg.selectAll('path').style('opacity',0.5)
+	d3.select('#gaugeTip').classed('hidden',false)
+})
+d3.select('#cageGauge').on('mouseout',function(){
+	svg.selectAll('path').style('opacity',1)
+	d3.select('#gaugeTip').classed('hidden',true)
+})
 //status label for Cage Gauge
 var statusLabel = svg.append('text').attr('id','statusLabel')
 	.attr('x', 0)
@@ -160,6 +170,7 @@ var foreground = svg.append('path')
 
 //current status label that will be updated on the cage gauge
 var text = svg.append('text').attr('id','status')
+
 
 //creation svg, background and foreground for the time gauge
 // Add SVG to time gauge
@@ -220,6 +231,19 @@ d3.select('#statusLabel')
 	.text(0)
 	.attr('text-anchor', 'middle')
 $('#statusLabel').css('font-size',height*.25 + 'px').css('font-weight','bold').css('font-family','Helvetica')
+
+//
+//Add Time in the Cage mouseover interactivity
+d3.select('#timeTip').style('top',(height*.25) + 'px')
+d3.select('#timeCage').on('mouseover',function(){
+	d3.select('#timeCage').selectAll('path').style('opacity',0.5)
+	d3.select('#timeTip').classed('hidden',false)
+})
+d3.select('#timeCage').on('mouseout',function(){
+	d3.select('#timeCage').selectAll('path').style('opacity',1)
+	d3.select('#timeTip').classed('hidden',true)
+})
+
 
 //add Zero to Kills SVG text element
 killSVG.append('text')
@@ -315,6 +339,14 @@ function drawViz(){
 			.duration(3000)
 			.tween('text',tweenText(freaks));
 
+	//edit avg kills number in tooltip
+	var avgKills = kills/watched;
+	//d3.select('#tipkills').text(d3.round(avgKills,1))
+
+	//edit the frakouts number in tooltip
+	var avgFreaks = freaks/watched;
+	//d3.select('#tipFreaks').text(d3.round(avgFreaks,1))
+
 	//function for animating the counting of numbers
 	function tweenText(newVal){
 		return function(){
@@ -337,87 +369,38 @@ function drawViz(){
 		};
 	});
 };
+	var killTipWidth = $('#killTip').width();
+	var killWidth = $('#cageKills').width();
+	d3.select('#killTip').style('top',(height*.25) + 'px').style('left',(killWidth - killTipWidth)/2 + 'px')
 
-	//event listener to activate viz generations on the modal divs
-	//$(document).ready(function(){
-	//	$("#posters").click(function(event){
-//
-	//		 id = event.target.title;
-	//		 //get the Title and create an ID
-	//		 split = id.indexOf('(') - 1;
-	//		 title = id.slice(0,split).replace(/\s/g,'');
-	//		 divID = "#" + title;
-	//		 dEntry = id.slice(0,split)
-//
-//
-//
-	//		 	Char = divID + "Char"
-	//		 	Hair = divID + "Hair"
-	//		 	Rating = divID + "Rating"
-	//		 	kills = divID + "Kills";
-	//		 	freaks = divID + "Freaks";
-//
-	//		 	modWidth = $(Char).width();
-	//		 	ratingWidth = $(Rating).width()
-	//		 	height = ratingWidth / 1.5
-//
-	//		 	console.log(divID)
-	//		 	console.log(width,height)
-	//		 	data.forEach(function(d){
-	//		 		if (d.Title == dEntry){
-	//		 			console.log(d.Title, d.Kills, d.Freakouts)
-	//		 			killCount = d.Kills
-	//		 			freakCount = d.Freakouts
-	//		 		}
-	//		 	})
-//
- 	//		 	d3.select(Rating).append('svg')
-	//		 		.attr('width',ratingWidth)
-	//		 		.attr('height',height)
-	//		 		.attr('id', Rating.slice(1))
-	//		 		.attr('fill','black')
-//
-//
-	//		 	d3.select(kills).append('svg')
-	//		 		.attr('width',modWidth)
-	//		 		.attr('height',height)
-	//		 		.attr('id', kills.slice(1))
-	//		 		.append('text')
-	//				.text(0)
-	//				.attr('id','killCount')
-	//				.attr('x',modWidth / 2)
-	//				.attr('y',height/2)
-	//				.style('text-anchor','middle')
-	//				.transition()
-	//					.duration(3000)
-	//					.tween('text',tweenText(killCount));
-//
-	//		 	d3.select(freaks).append('svg')
-	//		 		.attr('width',modWidth)
-	//		 		.attr('height',height)
-	//		 		.attr('id', freaks.slice(1))
-	//		 		.append('text')
-	//				.text(0)
-	//				.attr('id','freakCount')
-	//				.attr('x',modWidth / 2)
-	//				.attr('y',height /2 )
-	//				.style('text-anchor','middle')
-	//				.transition()
-	//					.duration(3000)
-	//					.tween('text',tweenText(freakCount));
-//
-	//			function tweenText(newVal){
-	//				return function(){
-	//					var currentVal =+ this.textContent;
-	//					var i = d3.interpolateRound(currentVal, newVal);
-	//					return function(t){
-	//						this.textContent = i(t);
-	//					};
-	//				};
-	//			};
-	//	});
-	//});
+	d3.select('#cageKills').on('mouseover',function(){
+		avgKills = d3.round(avgKills,2)
+		d3.select('#tipkills').transition()
+			.delay(250)
+			.duration(750)
+			.tween('text',tweenText(avgKills))
+		d3.select('#killTip').classed('hidden',false)
+	})
 
+	d3.select('#cageKills').on('mouseout',function(){
+		d3.select('#tipKills').transition().text('0')
+		d3.select('#killTip').classed('hidden',true)
+	})
+	var freakTipWidth = $('#freakTip').width();
+	var freakWidth = $('#cageFreakouts').width();
+
+	//freakout tooltip mouseover interactivity
+	d3.select('#freakTip').style('top',(height*.25) + 'px').style('left',(freakWidth - freakTipWidth)/2 + 'px')
+	d3.select('#cageFreakouts').on('mouseover',function(){
+		d3.select('#tipFreaks').transition()
+			.delay(250)
+			.duration(750)
+			.tween('text',tweenText(avgFreaks))
+		d3.select('#freakTip').classed('hidden',false)
+	})
+	d3.select('#cageFreakouts').on('mouseout',function(){
+		d3.select('#freakTip').classed('hidden',true)
+	})
 	//Change the overflow once the visulization has run
 	$('body').css('overflow','auto')
 }); //end of d3 callback

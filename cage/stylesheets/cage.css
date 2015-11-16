@@ -41,6 +41,21 @@ body {
  #poster {
  	margin-bottom: 1em;
  }
+ #pQuote {
+ 	margin-left: 10%;
+ }
+ .hidden {
+	display: none;
+}
+ #gaugeTip, #killTip, #freakTip, #timeTip{
+	position: absolute !important;
+	height: auto;
+	margin: 0 auto;
+	padding: 10px;
+	background: #d3d3d3;
+	opacity: .95;
+	border-radius: 10px;
+}
  /*Define mobile styling*//*
 @media only screen {
 	body,p,table tr td {font-size: 0.9em !important;}

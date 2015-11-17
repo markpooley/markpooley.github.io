@@ -53,16 +53,16 @@
 	   </div-->
       <div class= "fullwidth toppadding">
         <div class="panel"><p>Dental Service Areas are built from ZCTAs (Zip Code Tabultion Areas). Dental Visits occuring inside and outside each ZCTA are tabulated and a crosswalk is used to determine how ZCTAS are aggregated into representative geographic service areas using both health data and geographic constraints. For a more in-depth explanation of how service areas are created click <a href="#">here</a>.</p>
-        <p>Localization of Care (LOC) is a ratio of the visits occuring within a service area to all visits observed from members liviving within the service area (some visits occur out of a servic area). Mouse/hover over a service area to find out the LOC and get an idea of the number of ZCTAS making up a particulare service area.</p>
+        <p>Mouse/hover over a service area to find out the LOC and get an idea of the number of ZCTAS making up a particular service area.</p>
         </div>
       </div>
 
     <div class= "row toppadding"></div>
     <div class="fullwidth" id="chart"></div>
     <div class="fullwidth">
-        <div class="small-6 columns" id="locDiv">
+        <div class="small-6 columns" id="locDiv"><div id="locTip" class="hidden"><p>Localization of Care (LOC) is the ratio of care sought and received in the same geographic area where it was received (Patients In) compared to all care sought within that same geographic area (Patients Total).</p></div>
           <table border="0" id="locTable">
-            <tr><td id="loc">LOC: 0.00</td><tr>
+            <tr><td id="patientIn" >Patients In: 0 </td><td id="patientTot">Patients Total: 0</td><td id="loc">LOC: 0.00</td></tr>
           </table>
         </div>
         <div class="small-6 columns" id="legend">

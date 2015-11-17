@@ -33,6 +33,8 @@ map.fitBounds(bounds)
 var colors = ['rgb(213,62,79)','rgb(253,174,97)','rgb(229,229,172)','rgb(122,157,117)','rgb(50,136,189)']
 var colorScale = d3.scale.quantize().domain([0, 0.25, 0.50, 0.75, 1]).range(colors)
 
+var ids = ['leg0','leg1','leg2','leg3','leg4']
+var idScale = d3.scale.quantize().domain([0,.20,.40,.60,.80,1]).range(ids)
 // appending the SVG to the Leaflet map pane
 // g (group) element will be inside the svg
 var svg = d3.select(map.getPanes().overlayPane).append("svg");
@@ -58,38 +60,40 @@ d3.select("#locDiv").select("#locTable").select('tr').selectAll('td')
   .style("text-align","center")
   .style('font-size','x-large')
 
-//queue()
-//  .defer(d3.json, 'data/ZCTAs.topojson')
-//  .defer(d3.json, 'data/DSA40pct.topojson')
-//  .await(makeMap);
+//add some tooltip interactivity
+d3.select('#locDiv').on('mouseover',function(){
+  d3.select('#locTip').classed('hidden',false)
+})
+d3.select('#locDiv').on('mouseout',function(){
+  d3.select('#locTip').classed('hidden',true)
+})
 
-function makeMap(){
+queue()
+  .defer(d3.json, 'data/ZCTAs.topojson')
+  .defer(d3.json, 'data/DSA40pct.topojson')
+  .await(makeMap);
+
+function makeMap(error, zctas, dsas){
 
 //draw base ZCTAs
-  d3.json("data/ZCTAs.topojson", function(error, zctas){
-    console.log(zctas)
-    collection = topojson.feature(zctas, zctas.objects.collection);
-    console.log(collection)
+  //d3.json("data/ZCTAs.topojson", function(error, zctas){
+
+    zctaCollection = topojson.feature(zctas, zctas.objects.collection);
+    console.log(zctaCollection)
     var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform)
 
     var ZCTAs = g.append('g').attr('id','zctas').selectAll("path")
-      .data(collection.features)
+      .data(zctaCollection.features)
       .enter().append('path')
       .attr('fill',function(d){
           return colorScale(d.properties.LOC)
       })
-      .style('opacity', 0.65)
+      .style('opacity', 0.90)
       .style('stroke','white');
-    // when the user zooms in or out you need to reset
-    // the view
-    map.on("viewreset", reset);
-    // this puts stuff on the map!
-    reset();
-
     // Reposition the SVG to cover the features.
-    function reset() {
-      var bounds = path.bounds(collection);
+    function zctareset() {
+      var bounds = path.bounds(zctaCollection);
       var topLeft = bounds[0],
       bottomRight = bounds[1];
       svg.attr("width", bottomRight[0] - topLeft[0])
@@ -97,25 +101,34 @@ function makeMap(){
         .style("left", topLeft[0] + "px")
         .style("top", topLeft[1] + "px");
       g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-            ZCTAs.attr("d",path);
+      ZCTAs.attr("d",path);
     } // end reset
+
+    // when the user zooms in or out you need to reset
+    // the view
+    map.on("viewreset", zctareset);
+    // this puts stuff on the map!
+    zctareset();
+
 
     function projectPoint(x,y){
       var point = map.latLngToLayerPoint(new L.LatLng(y,x));
       this.stream.point(point.x,point.y);
     }//end project point
 
-  });//end json callback
+  //});//end json callback
 
 
   //draw bar chart
-  d3.json("data/DSA40pct.topojson", function(error, dsas){
-    var dsas = topojson.feature(dsas, dsas.objects.collection).features;
+  //d3.json("data/DSA40pct.topojson", function(error, dsas){
+    var barDsas = topojson.feature(dsas, dsas.objects.collection).features;
     //var dsas = collection.features //
-  var dsaArray = [];
-    dsas.forEach(function(d){
+    var dsaArray = [];
+    barDsas.forEach(function(d){
       dsaArray.push({
         key: String(d.properties.DSA_Revised_40_pct),
+        patientIn: d.properties.SUM_Patients_In,
+        patientTotal: d.properties.SUM_Patients_Total,
         value: d3.format("01g")(d.properties.SUM_Patients_In/d.properties.SUM_Patients_Total)
       })
     })//end dsas.forEach
@@ -149,7 +162,7 @@ function makeMap(){
       .attr('height',0)
       .attr('y',chartHeight)
       .attr('id',function(d){ return "bar"+String(d.key)})// add an id for interactivity
-
+      .attr('class',function(d){return idScale(d.value)})
       //add mouseover interactivity
       .on('mouseover',function(d) {
         tempColor = this.style.fill;
@@ -157,6 +170,8 @@ function makeMap(){
         d3.select(this)
           .style('fill','#f04124')
           d3.select('#loc').text('LOC: ' + d3.format(".2g")(d.value)) //update LOC div
+          d3.select('#patientIn').text('Patients In: '+d3.format(',d')(d.patientIn))
+          d3.select('#patientTot').text('Patients Total: '+d3.format(',d')(d.patientTotal))
           d3.select("#dsa"+this.id.slice(3))
             .style('opacity',0) //adjust opacity of dsa selected
 
@@ -167,6 +182,9 @@ function makeMap(){
           .style('opacity','1')
           .style('fill',tempColor)
         //change dsa back to orginal colour
+        d3.select('#loc').text('LOC: 0.00')
+        d3.select('#patientIn').text('Patients In: 0')
+        d3.select('#patientTot').text('Patients Total: 0')
         d3.select("#dsa"+this.id.slice(3))//select geographic unit
           .style('opacity',1)
       })
@@ -179,9 +197,9 @@ function makeMap(){
       .delay(function(d,i){
         return i*10;
       })
-      .duration(2000)
+      .duration(1000)
       .delay(function(d,i){
-        return 2000 + i*10
+        return 1000 + i*10
       })
 
       //set up vertical Axis Scale
@@ -192,7 +210,7 @@ function makeMap(){
       var vLeftAxis = d3.svg.axis()
        .scale(vGuideScale)
        .orient('left')
-       .ticks(5)
+       .ticks(5).tickFormat(d3.format('%'))
 
       //add axis/left guide
       var vGuide = d3.select('#chart').select('svg').append('g')
@@ -211,7 +229,7 @@ function makeMap(){
           this.remove()
           }
           });// hide zero and 1
-  });//end d3.json callback
+  //});//end d3.json callback
 //};//end draw Chart Function
 
 
@@ -220,33 +238,41 @@ function makeMap(){
 //draw DSAs overtop the ZCTAs
 //function drawDSAs(){
 
-  d3.json("data/DSA40pct.topojson", function(error, dsas){
-    var collection = topojson.feature(dsas, dsas.objects.collection)
-    console.log(collection)
+  //d3.json("data/DSA40pct.topojson", function(error, dsas){
+    var dsaCollection = topojson.feature(dsas, dsas.objects.collection)
+    console.log(dsaCollection)
     //transform for the leaflet basmap
     var transform = d3.geo.transform({point: projectPoint}),
               path = d3.geo.path().projection(transform)
 
     var DSAs = g.append('g').attr('id','dsas').selectAll("path")
-      .data(collection.features)
+      .data(dsaCollection.features)
       .enter().append("path")
       .style('fill', function(d){
         loc = d.properties.SUM_Patients_In / d.properties.SUM_Patients_Total
         return colorScale(loc)
       })
       .attr('id', function(d){ return 'dsa'+ d.properties.DSA_Revised_40_pct})
-      .style('stroke-width', "1.5px")
-      .style('stroke','white')
+      .attr('class',function(d) {return idScale(d.properties.SUM_Patients_In / d.properties.SUM_Patients_Total)})
+      .style('stroke-width', "2px")
+      .style('stroke','#606060')
       .style('opacity', 1)
 
       //mouseover interactivity
       .on('mouseover', function(d){
         //store color temporarily
-        d3.select('#loc').text('LOC: ' + d3.format(".2g")(d.properties.SUM_Patients_In/d.properties.SUM_Patients_Total))
         tempColor = this.style.fill
+        //update the patient and LOC table data
+        d3.select('#loc').text('LOC: ' + d3.format(".2g")(d.properties.SUM_Patients_In/d.properties.SUM_Patients_Total))
+        d3.select('#patientIn').text('Patients In: '+d3.format(',d')(d.properties.SUM_Patients_In))
+        d3.select('#patientTot').text('Patients Total: '+d3.format(',d')(d.properties.SUM_Patients_Total))
+
         d3.select(this)
          .transition()
-         .style('opacity', 0)
+         .style('fill-opacity', 0)
+         //.style('stroke-width', '5px')
+         //.style('stroke', '#606060')
+         DSAs.selectAll()
 
         //select corresponding bar on bar chart
         d3.select("#bar"+this.id.slice(3)).style('fill','#f04124')
@@ -256,9 +282,12 @@ function makeMap(){
       .on('mouseout',function(d){
         d3.select(this)
           .transition()
-          .style('opacity',1)
-
+          .style('fill-opacity',0.95)
           .style('fill',tempColor)
+        //reset patient and LOC data
+        d3.select('#loc').text('LOC: 0.00')
+        d3.select('#patientIn').text('Patients In: 0')
+        d3.select('#patientTot').text('Patients Total: 0')
         //change bar back to original color
         d3.select('#bar'+this.id.slice(3)).style('fill',tempColor)
       });
@@ -270,14 +299,14 @@ function makeMap(){
       });
 
       // when the user zooms in or out you need to reset
-      map.on("viewreset", reset);
+      map.on("viewreset", dsareset);
       // this puts stuff on the map!
-      reset();
+      dsareset();
 
       // Reposition the SVG to cover the features.
-      function reset() {
+      function dsareset() {
 
-          var bounds = path.bounds(collection);
+          var bounds = path.bounds(dsaCollection);
           var topLeft = bounds[0],
           bottomRight = bounds[1];
 
@@ -297,23 +326,39 @@ function makeMap(){
         this.stream.point(point.x,point.y);
       }
 
-  }); //end d3.json callback
+  //}); //end d3.json callback
 //};//end of Draw DSA function
 };
 
+d3.selectAll('.legendItem').on('mouseover',function(){
+  var id = d3.select(this).attr('id');
+  d3.select(this).style('opacity',.75);
+  var dsaClass = '.'+ id;
+  d3.select('#map').selectAll(dsaClass).style('opacity',0);
+  d3.select('#chart').selectAll(dsaClass).style('opacity',0.75);
 
 
-//lazy resonspiveness event listener
-$(window).resize(function(){
-  $
-  map.fitBounds([bounds]);
-  location.reload();
+
+})
+d3.selectAll('.legendItem').on('mouseout',function(){
+  var id = d3.select(this).attr('id');
+  d3.select(this).style('opacity',1);
+  var dsaClass = '.'+ id;
+  d3.select('#map').selectAll(dsaClass).style('opacity',1);
+  d3.select('#chart').selectAll(dsaClass).style('opacity',1);
 })
 
-var zctas = "data/ZCTAs.topojson",
-    dsas = "data/DSA40pct.topojson";
-$(document).ready(function(){
-  makeMap();
+//lazy resonspiveness event listener
+//$(window).resize(function(){
+//  $
+//  map.fitBounds([bounds]);
+//  location.reload();
+//})
 
-});
+//var zctas = "data/ZCTAs.topojson",
+//    dsas = "data/DSA40pct.topojson";
+//$(document).ready(function(){
+//  makeMap();
+//
+//});
 

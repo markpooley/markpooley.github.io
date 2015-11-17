@@ -36,9 +36,40 @@ div.container{
 #legendTable {
   text-align: center;
 }
-#loc {
+/*#loc {
   float:left;
-}
+}*/
 #locTable {
   border: none;
+  width: 100%;
+}
+#patientIn, #patientTot, #loc{
+  width: 40%;
+  text-align: left !important;
+  font-size: large !important;
+}
+#loc {
+  text-align: right !important;
+}
+#locTable > td {
+  width: auto;
+}
+#locTip {
+  position: absolute !important;
+  line-height: 1.0;
+  height: auto;
+  padding: 5px;
+  background: #d3d3d3;
+  opacity: 1;
+  border-radius: 5px;
+  margin-bottom: 0.05rem !important;
+
+}
+#locTip > p{
+  font-size: 0.80em !important;
+
+  text-align: center;
+}
+.hidden {
+  display: none;
 }

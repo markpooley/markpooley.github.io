@@ -7,13 +7,11 @@
 >    	<link rel="stylesheet" href="../stylesheets/app.css"/>
     	<link rel="stylesheet" href="stylesheets/custom.css"/>
     	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
-      <!--link rel="stylesheet" type="text/css" href="../D3/d3.slider/d3.slider.css" media="screen" />
-      <link rel="stylesheet" type="text/css" href="../D3/c3/c3.min.css"/-->
     	<script src="../bower_components/modernizr/modernizr.js"></script>
       <script src="http://d3js.org/d3.v3.min.js"></script>
       <script src="http://d3js.org/topojson.v1.min.js"></script>
-      <!--script src="../D3/d3.slider/d3.slider.js"></script>
-      <script src="../D3/c3/c3.min.js"></script-->
+      <script src="http://d3js.org/queue.v1.min.js"></script>
+
 
     	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
       <style type="text/css">
@@ -70,11 +68,11 @@
         <div class="small-6 columns" id="legend">
           <table id="legendTable" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td style="background-color: rgb(213,62,79)">&lt; .20</td>
-              <td style="background-color: rgb(253,174,97)">.20 - .40</td>
-              <td style="background-color: rgb(229,229,172)">.40 - .60</td>
-              <td style="background-color: rgb(122,157,117)">.60 - .80</td>
-              <td style="background-color: rgb(50,136,189)">&gt; .80</td>
+              <td class="legendItem" id="leg0" style="background-color: rgb(213,62,79)">&lt; .20</td>
+              <td class="legendItem" id="leg1" style="background-color: rgb(253,174,97)">.20 - .40</td>
+              <td class="legendItem" id="leg2" style="background-color: rgb(229,229,172)">.40 - .60</td>
+              <td class="legendItem" id="leg3" style="background-color: rgb(122,157,117)">.60 - .80</td>
+              <td class="legendItem" id="leg4" style="background-color: rgb(50,136,189)">&gt; .80</td>
             </tr>
           </table>
         </div>

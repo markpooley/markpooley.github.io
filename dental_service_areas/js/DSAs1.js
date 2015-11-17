@@ -58,15 +58,22 @@ d3.select("#locDiv").select("#locTable").select('tr').selectAll('td')
   .style("text-align","center")
   .style('font-size','x-large')
 
+//queue()
+//  .defer(d3.json, 'data/ZCTAs.topojson')
+//  .defer(d3.json, 'data/DSA40pct.topojson')
+//  .await(makeMap);
+
 function makeMap(){
 
 //draw base ZCTAs
   d3.json("data/ZCTAs.topojson", function(error, zctas){
+    console.log(zctas)
     collection = topojson.feature(zctas, zctas.objects.collection);
+    console.log(collection)
     var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform)
 
-    var zctas = g.append('g').attr('id','zctas').selectAll("path")
+    var ZCTAs = g.append('g').attr('id','zctas').selectAll("path")
       .data(collection.features)
       .enter().append('path')
       .attr('fill',function(d){
@@ -90,7 +97,7 @@ function makeMap(){
         .style("left", topLeft[0] + "px")
         .style("top", topLeft[1] + "px");
       g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-            zctas.attr("d",path);
+            ZCTAs.attr("d",path);
     } // end reset
 
     function projectPoint(x,y){
@@ -215,12 +222,12 @@ function makeMap(){
 
   d3.json("data/DSA40pct.topojson", function(error, dsas){
     var collection = topojson.feature(dsas, dsas.objects.collection)
-
+    console.log(collection)
     //transform for the leaflet basmap
     var transform = d3.geo.transform({point: projectPoint}),
               path = d3.geo.path().projection(transform)
 
-    var dsas = g.append('g').attr('id','dsas').selectAll("path")
+    var DSAs = g.append('g').attr('id','dsas').selectAll("path")
       .data(collection.features)
       .enter().append("path")
       .style('fill', function(d){
@@ -281,7 +288,7 @@ function makeMap(){
 
           g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
 
-          dsas.attr("d",path);
+          DSAs.attr("d",path);
       } // end reset
 
       //functi0n for reprojecting points on zoom
@@ -307,10 +314,6 @@ var zctas = "data/ZCTAs.topojson",
     dsas = "data/DSA40pct.topojson";
 $(document).ready(function(){
   makeMap();
-  //drawChart();
-  //drawZctas();
-  //drawDSAs();
+
 });
 
-//$(document).ready(drawZctas());
-//$(document).ready(drawDSAs());

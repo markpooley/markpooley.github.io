@@ -57,6 +57,9 @@ body {
 	opacity: .95;
 	border-radius: 10px;
 }
+#pList {
+	margin-left: 10% !important;
+}
  /*#gaugeTip, #killTip, #freakTip, #timeTip{
 	position: absolute !important;
 	height: auto;

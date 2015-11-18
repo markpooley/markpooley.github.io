@@ -167,8 +167,6 @@ function makeMap(error, zctas, dsas){
       .on('mouseover',function(d) {
         tempColor = this.style.fill;
         //select dsa based on bar
-        d3.select(this)
-          .style('fill','#f04124')
           d3.select('#loc').text('LOC: ' + d3.format(".2g")(d.value)) //update LOC div
           d3.select('#patientIn').text('Patients In: '+d3.format(',d')(d.patientIn))
           d3.select('#patientTot').text('Patients Total: '+d3.format(',d')(d.patientTotal))
@@ -282,7 +280,7 @@ function makeMap(error, zctas, dsas){
       .on('mouseout',function(d){
         d3.select(this)
           .transition()
-          .style('fill-opacity',0.95)
+          .style('fill-opacity',1)
           .style('fill',tempColor)
         //reset patient and LOC data
         d3.select('#loc').text('LOC: 0.00')

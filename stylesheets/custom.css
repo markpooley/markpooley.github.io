@@ -141,6 +141,10 @@ blockquote {
 #CategoryTitle {
 	background-color: rgba(24,24,24,.90);
 	color: white;
+}
+#pList {
+	margin-left: 5%
+}
 
 }
 /*Define mobile styling*/

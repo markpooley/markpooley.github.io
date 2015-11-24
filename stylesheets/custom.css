@@ -148,8 +148,9 @@ blockquote {
 .panel {
 	overflow-y: scroll !important;
 }
-}
+
 /*Define mobile styling*/
 @media (max-width: 350px) {
-	h4 {font-size: 0.70em;}
+	h4 {font-size: 1.75em;} /*Styling for tables*/
+	th,td {font-size: 0.65em !important;}
 }

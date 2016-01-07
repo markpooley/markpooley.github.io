@@ -154,3 +154,7 @@ blockquote {
 	h4 {font-size: 1.75em;} /*Styling for tables*/
 	th,td {font-size: 0.65em !important;}
 }
+/*Bike Projects styling*/
+#buildData {
+	padding-left: 1em;
+}

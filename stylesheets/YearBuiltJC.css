@@ -1,0 +1,33 @@
+body {
+	background-color: #111111;
+}
+
+footer p {
+	color: white;
+}
+
+.badge {
+	color: white;
+	background: #111111;
+}
+#info {
+	font-size: .95em;
+	background: #111111;
+}
+#legend {
+	border: 2px;
+	border-color: #111111;
+	background: #111111;
+	float: right;
+}
+#directions{
+	background: #111111;
+	float: right;
+}
+#map {
+	width: 100%;
+	height: 100%;
+}
+.leaflet-container{
+	cursor: default;
+}

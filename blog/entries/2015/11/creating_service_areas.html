@@ -1,0 +1,102 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="keywords" content="keywords">
+    <meta name="description" content="description">
+    <title>Creating Geographic Service Areas</title>
+    <link rel="stylesheet" href="../../../../stylesheets/app.css"/>
+    <link rel="stylesheet" href="../../../stylesheets/custom.css"/>
+    <script src="../../../../bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+    <!--Site navigation stuff-->
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../../../../../index.html">Home</a></li>
+          <!--li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li><a href="FoodTrucks.html">Iowa City Food Trucks</a></li>
+              <li><a href="dental_service_areas/">Dental Service Areas</a></li>
+              <li><a href="cage/">A Year in the Cage</a></li>
+              <li><a href="yearbuiltjc/">Age of Johnson County Buildings</a></li>
+            </ul>
+          </li-->
+          <li class="active"><a href="../../../../blog/">Blog</a></li>
+          <li><a href="../../../../Resume.html">Resume</a></li>
+        </ul>
+      </section>
+    </nav>
+    <!-- Main body fo content-->
+    <div class="row">
+      <div class="small-10 columns small-centered">
+        <h3>Creating Service Areas from Point Data</h3>
+            <h6>November 18, 2015</h6>
+        <hr>
+        <p></p>
+        <h4>Aggregating by Zip Code</h4><hr>
+        <p>Even if data aren't geocoded accurately, they can ge aggregated by zipcode or ZCTA accurately. First it's good to iterate through the data and look for zip codes  that don't have a spatial counterpart (in the spatial data). A zip code to ZCTA crosswalk can be used for this. The goal is to take individual/point data and aggregate the number of visits origininating in each zip code or ZCTA and what zipcode the care was received in. The result is a table that looks like the following:</p>
+        <table align="center">
+          <tr>
+            <th>Recipient ZCTA</th>
+            <th>Provider ZCTA</th>
+            <th>Visits</th>
+            <th>Total Visits</th>
+            <th>Dyad Max</th>
+          </tr>
+          <tr>
+            <td>50001</td>
+            <td>50125</td>
+            <td align="center">125</td>
+            <td align="center">201</td>
+            <td align="center">1</td>
+          </tr>
+          <tr>
+            <td>50001</td>
+            <td>50266</td>
+            <td align="center">5</td>
+            <td align="center">201</td>
+            <td align="center">0</td>
+          </tr>
+        </table>
+        <p>The "Dyad Max" variable serves as an indicator of which dyad pair the maxiumum number of visits occcured for all people originating in the "Recipient ZCTA". </p>
+
+        <h4>Generating a Neighbor Table and Aggregating Neighbors</h4><hr>
+        <p>This could be done separately, but it's easier to just throw everything into a script. The fewer steps required outside of a script or tool, the easier it is to use.  </p>
+        <!--Code block-->
+<pre>
+<code>
+########################################################################
+#some comments
+########################################################################
+var = 'this'
+
+</code>
+</pre>
+      </div>
+    </div><hr>
+    <footer class="row ">
+      <div class="large-12 columns text-center">
+        <p>Iowa City • IA</p>
+        <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+          <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+      </div>
+    </footer>
+
+    <script src="../../../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../../../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../../../../js/app.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

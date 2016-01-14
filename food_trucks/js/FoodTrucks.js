@@ -208,6 +208,8 @@ legend.on('mouseout',function(){
 	d3.select(tempclass).style('opacity',0.5)
 }
 })
+
+
 $(document).ready(function(){
   drawEmp();
   drawOpArea();

@@ -2,6 +2,10 @@
 .row {
 	max-width: 85%;
 }
+.break{
+	padding-top: 5em;
+	padding-bottom: 5em;
+}
 #resume, #Skills{
 	max-width: 65% !important;
 }
@@ -16,6 +20,31 @@ header h2 {
 	font-family: Georgia;
 
 }
+.projectCategory {
+	border-radius: 50%;
+}
+/*banner and category stylings*/
+.banner {
+	position: relative;
+}
+
+/*project desription stylings*/
+#proj {
+	border-radius: 5%;
+}
+/*back to top span styling*/
+.cat h2 {
+	width: 100%;
+	text-align: center;
+	border-bottom: 1px solid #000;
+	line-height: 0.1em;
+	margin: 10px 0 20px;
+}
+.cat span {
+	background: #fff;
+	padding: 0 10px;
+}
+
 .panel a {
 	font-style: normal;
 }
@@ -99,9 +128,10 @@ p.filmInfo {
 table.filmInfo{
 	font-size: 0.8em;
 }
+/*
 .banner {
 	opacity: .25;
-}
+}*/
 /*remove tooltip bottom dotted line from home page*/
 #projects > .has-tip {
 	border-bottom: 0px;

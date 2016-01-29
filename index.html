@@ -12,7 +12,7 @@
 
   </head>
   <body>
-    <nav class="top-bar" data-topbar>
+    <nav class="top-bar" data-topbar id="top">
       <ul class="title-area">
         <li class="name"></li>
         <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
@@ -48,17 +48,21 @@
         </ul>
       </section>
     </nav>
-    <div class="row-full-width" id="top">
+    <div class="row-full-width">
 
-        <img src="images/CodeBanner.PNG" alt="Banner" class="bottomspace">
+        <img src="images/index_images/banner_main_alt.jpg" class="banner" alt="Banner" class="bottomspace">
+        <div class="overlay main">
+          <h2>Oh High There!</h2>
+          <p>I like to ride bikes and write code. I'm a geographic analyst for public health researchers. I use ESRI ArcGIS for most of the "heavy lifting". I write and use Python scripts, and have experience buidling interactive web maps using D3. I enjoy building and riding bicycles in my spare time. </p>
+        </div>
       <!--/div-->
     </div class="bottomspace">
       <div class="row"><h1 align="center">Projects</h1>
-        <ul class="medium-block-grid-4">
+        <ul class="medium-block-grid-3">
       <li id="Mapping/GIS" class="cat" align="middle"><a href="#mapping"><img class="projectCategory" src="images/index_images/Mapping_th.JPG"></a><h3 class="type">Mapping</h3></li>
       <li id="Bicycle" class="cat" align="middle"><a href="#bicycle"><img class="projectCategory" src="images/index_images/Bicycle_th.jpg"></a><h3 class="type">Bicycle</h3></li>
       <li id="Cinematic" class="cat" align="middle"><a href="#cinema"><img class="projectCategory" src="images/index_images/Cinema_th.jpg"></a><h3 class="type">Cinema</h3></li>
-      <li id="Outdoors" class="cat" align="middle"><a href=""><img class="projectCategory" src="images/index_images/Outdoors_th.jpg"></a><h3 class="type">Outdoors</h3></li>
+      <!--li id="Outdoors" class="cat" align="middle"><a href=""><img class="projectCategory" src="images/index_images/Outdoors_th.jpg"></a><h3 class="type">Outdoors</h3></li-->
       </ul>
     </div>
     <div class="break"></div>
@@ -67,6 +71,12 @@
     <!--Mapping and data visualization section-->
     <div class="row-full-width" style="position:relative;" >
         <img id="mapping" class="banner"src="images/index_images/map_banner_large.jpg" alt="Banner" class="bottomspace">
+
+          <div class="overlay">
+          <h2>Mapping and Data Visualization</h2>
+          <p>I like to build interactive web maps and visualizations. I use ESRI ArcGIS for most of the geographic data mining and manipulation. For web development I use <a href="http://d3js.org/">D3</a> and javascript.</p>
+        </div>
+
     </div>
     <br>
     <div class="row">
@@ -93,8 +103,12 @@
 
     <div class="break"></div>
     <!--Bicycle Projects-->
-    <div class="row-full-width">
+    <div class="row-full-width" style="position:relative;">
     <img id="bicycle" class="banner" src="images/index_images/bike_banner_large.jpg" alt="Banner" class="bottomspace">
+      <div class="overlay bike">
+        <h2>Bicycle Projects</h2>
+          <p>I like bikes. They provide me with a source of transportation and they're cheaper than therapy. I've built one frame from the ground up, and several bikes from a "frame up" build.</p>
+      </div>
     </div>
     <br>
     <div class="row">
@@ -117,8 +131,12 @@
 
     </div>
     <div class="break"></div>
-    <div class="row-full-width">
+    <div class="row-full-width" style="position:relative;">
     <img id="cinema" class="banner" src="images/index_images/cinema_banner_large.jpg" alt="Banner" class="bottomspace">
+      <div class="overlay">
+        <h2>Cinematic Challenges</h2>
+          <p>These are challenges to watch an entire actor's body of work in one year. I started with Sir Doctor Professor Nicolas Cage. Others will certainly follow.  </p>
+      </div>
   </div>
   <br>
   <div class="row">

@@ -408,6 +408,17 @@ function drawViz(){
 	$('body').css('overflow','auto')
 }); //end of d3 callback
 };//end drawViz function
+//d3 mouseover interactiviy
+//var posters = d3.select('#posters').selectAll('li');
+//	posters.on('mouseover',function(){
+//		id = '#' + d3.select(this).select('a').attr('data-reveal-id')
+//		title = d3.select(this).select('a').select('img').attr('title')
+//		title = title.split('(')[0]
+//		console.log()
+//		console.log(title, id)
+//	})
+
+
 
 //wait until the page has fully loaded to run the drawViz function
 //this prevents jumpiness/jerky visualizations.

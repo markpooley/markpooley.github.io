@@ -217,7 +217,53 @@ blockquote {
 	h4 {font-size: 1.75em;} /*Styling for tables*/
 	th,td {font-size: 0.65em !important;}
 }
+/***********************/
 /*Bike Projects styling*/
+/***********************/
+.hideme {
+	opacity: 0;
+	border-style: solid;
+	border-color: black;
+	border-width: 5px 0px 3px 0px;
+	margin: 10px 10px 0px 0px;
+
+}
+
+.orbit-hide {
+	visibility: none;
+}
+.hideme p {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+h3.bike {
+	border-style: solid;
+	border-color: black;
+	border-width: 0px 0px 5px 0px;
+}
+h5.bike {
+	border-style: double;
+	border-color: black;
+	border-width: 0px 0px 3px 0px;
+}
+.data-orbit {
+	background-color: #bdbdbd;
+}
 #buildData {
 	padding-left: 1em;
+}
+@media (min-width: 625px){
+	.clearing-thumbs {
+		display: none;
+	}
+	.orbit-caption {
+		font-size: .75em;
+	}
+}
+@media (max-width: 600px) {
+	.orbit-list {
+		display: none;
+	}
+
+
 }

@@ -180,6 +180,12 @@ function drawData(){
 			.attr('transform','translate('+(-margin.left/1.5)+','+(graphH/2)+')rotate(-90)')
 			.style('fill','white')
 			.text('Miles')
+		graph.append('text')
+			.attr('text-anchor','middle')
+			.attr('transform','translate('+(graphW/2)+','+margin.top+')')
+			.style('fill','white')
+			.style('font-size','1.5em')
+			.text('Hover over trips on the map or bars on the chart for specific trip information')
 
 		//Add trips to the map
 		var trips = g.append('g').attr('id','trip').selectAll("path")

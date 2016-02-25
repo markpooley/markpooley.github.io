@@ -1,0 +1,115 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Iowa City, Foodtrucks, Food Trucks, Iowa City Cuisine, Iowa City Eateries, Iowa"/>
+    <meta name="description" content="Spatial evaluation of where Food Trucks can legally operate in Iowa City, and where they should place themselves based on employment density."/>
+    <title>Iowa City Food Trucks</title>
+    <link rel="stylesheet" href="../stylesheets/app.css"/>
+    <link rel="stylesheet" href="stylesheets/custom.css"/>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+  </head>
+  <body>
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../index.html">Home</a></li>
+          <li class="has-dropdown"><a href="#">Projects</a>
+            <ul class="dropdown">
+              <li class="has-dropdown"><a href="">Geography</a>
+                <ul class="dropdown">
+                  <li class="active"><a href="#">Iowa City Food Trucks</a></li>
+                  <li><a href="../yearbuiltjc/">Age of Johnson County Buildings</a></li>
+                  <!--li><a href="../dental_service_areas/">Dental Service Areas</a></li-->
+                </ul>
+              </li>
+              <li class="has-dropdown"><a href="">Cinematic</a>
+                <ul class="dropdown">
+                  <li><a href="../cage/">A Year in the Cage</a></li>
+                </ul>
+              </li>
+              <li class="has-dropdown"><a href="">Bicycle</a>
+                <ul class="dropdown">
+                  <li><a href="../bike-projects/pugsley/">Pugsley Rebuild</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="../blog">Blog</a></li>
+          <li><a href="../Resume.html">Resume</a></li>
+
+
+        </ul>
+      </section>
+    </nav>
+
+  <div class="toppadding" id="info">
+        <div class="small-8 columns" id="info">
+          <h3 class="badge" id='title'>Winter Bike Commuting: January, 2014</h3>
+          <p class="badge" id="info">Nearly everywhere I rode my bike during January and beginning of Feburary (30 days). My GPS didn't work 100% of the time and I may have forgotten to turn it on a few times... </p>
+        </div>
+       <div class="small-4 columns toppadding end" id='buttonDiv'>
+        <button align="middle" class="button expand" id="play">Animate Trips</button>
+      </div>
+      </div>
+
+    </div>
+
+    <div class="small-12 columns" id="map">
+      <div id="infoPane">
+        <h3>Date</h3>
+        <h5 id="tripDate">Jan 9, 2014 - Feb, 9 2014</h5>
+        <h3>Trip Time</h3>
+        <h5 id="tripTime">00:00</h5>
+        <h3>Trip #</h3>
+        <h5 id="tripNo">0</h5>
+        <h3>Trip Distance (Mi)</h3>
+        <h5 id="tripDist">00.00</h5>
+        <h3>Total Distance (Mi)</h3>
+        <h5 id="totalDist">000.0</h5>
+        <h3>Total Trips</h3>
+        <h5 id="totalTrips">000</h5>
+
+      </div>
+      <div id='graph'></div>
+    </div>
+    <!--div class="small-2 columns" id="infoPane"-->
+      <!--h3 align="center">Info Pane</h3>
+      <h4 id="Date">Date: Jan 9, 2014 - Feb 9, 2014</4>
+      <h4 id='Time'>Time: </h4>
+      <h4 id="Distance">Distance (Miles):</h4>
+      <h4 id="tripCount">Trips:</h4-->
+    </div>
+  </div>
+
+
+  <footer class="row">
+  <div class="large-12 columns text-center">
+    <p font-color="white">Iowa City • IA</p>
+    <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+      <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+  </div>
+  </footer>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/foundation/js/foundation.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../D3\src_code\d3.min.js"></script>
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

@@ -21,10 +21,15 @@ footer p {
 	display: block !important;
 	vertical-align: middle !important;
 }
-#info {
+#info h3 {
+	padding-top: 0em;
+	padding-bottom: 0em;
+}
+#info p {
 	font-size: .95em;
 	background: #111111;
 	padding-bottom: 0em !important;
+	padding-top: 0em;
 }
 #map {
 	width: 100%;

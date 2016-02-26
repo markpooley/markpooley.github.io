@@ -197,6 +197,11 @@ function drawData(){
 			.attr('id',function(d,i){
 				return 'tripRoute' + (i+1)
 			})
+		trips.transition().ease('linear')
+			.duration(1000)
+			.delay(function(d,i){
+				return (i+1) * 100
+			})
 			.style('opacity', 0.5)
 			.style('stroke-width', 2)
 			.style('stroke','#2892C7')
@@ -216,12 +221,18 @@ function drawData(){
 			.attr('y',function(d){
 				return yScale(d.properties.Length)
 			})
-			.attr('height',function(d){
-				return graphH - yScale(d.properties.Length)
-			})
-			.attr('width',10)
+			.attr('height',0)
+			.attr('width',2.5)
 			.style('fill','#2892C7')
 			.style('opacity',0.90)
+		bars.transition().ease('linear')
+				.duration(1000)
+				.delay(function(d,i){
+					return (i+1) * 100
+				})
+				.attr('height',function(d){
+					return graphH - yScale(d.properties.Length)
+				})
 
 		//bar interactivity
 		bars.on('mouseover',function(d,i){
@@ -236,6 +247,7 @@ function drawData(){
 
 			d3.select(this)
 				.style('fill','#FA8D34')
+				.style('width',5)
 			var tripRoute = '#tripRoute'+(i+1)
 			d3.select(tripRoute)
 				.style('opacity',1)
@@ -250,7 +262,8 @@ function drawData(){
 		bars.on('mouseout',function(d,i){
 			d3.select(this)
 				.style('fill','#2892C7')
-						var tripRoute = '#tripRoute'+(i+1)
+				.style('width',2.5)
+			var tripRoute = '#tripRoute'+(i+1)
 			d3.select(tripRoute)
 				.style('opacity',0.50)
 				.style('stroke','#2892C7')

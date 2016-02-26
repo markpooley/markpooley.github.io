@@ -35,6 +35,10 @@ header h2 {
 	width: 33%;
 	background-color: rgba(211,211,211, 0.7);
 }
+.project {
+	background-color: rgba(47,47,47,0.80) !important;
+}
+
 div.overlay h2{
 	color: white;
 	font-size: 2em;

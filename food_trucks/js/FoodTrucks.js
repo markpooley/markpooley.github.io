@@ -129,19 +129,19 @@ function drawOpArea(){
 		   	.append("path")
 		   	.attr("d", path)
 		   	.attr("class","empClass0")
-		   	.style("opacity", 0.75)
+		   	.style("opacity", 1)
 		   	.style("fill", "rgb(56,56,56)")
 
     	//interactivity
     	opArea = d3.selectAll('.empClass0')
 
     	opArea.on('mouseover',function(d){
-    		var opacity = d3.select(this).style('opacity',0.95);
-    		console.log(opacity)
+
+
     		d3.select('#legend').select('#Leg0').style('background-color',colorScheme["Leg0"][0])
     	});
     	opArea.on('mouseover',function(d){
-    		d3.select(this).style('opacity',0.75);
+
     		d3.select('#legend').select('#Leg0').style('background-color',colorScheme["Leg0"][1])
     	});
 

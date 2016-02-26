@@ -392,6 +392,7 @@
         $('.hideme').each(function(i){
           var bottom_object = $(this).offset().top + $(this).outerHeight();
           var bottom_window = $(window).scrollTop() + $(window).height();
+
           if (bottom_window > bottom_object) {
             $(this).animate({'opacity': '1'},1000);
           }//end if statement

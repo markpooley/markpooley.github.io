@@ -2,7 +2,13 @@
 var aspect = 2.5;
 var width = $("#map").width();
 var height = width/ aspect;
-var infoWidth = $('#infoPane').width()*.25;
+
+
+if (width < 1050){
+	var infoWidth = $('#infoPane').width()*.10;
+} else {
+	var infoWidth = $('#infoPane').width()*.25;
+}
 
 var margin = {
 	top: 20,
@@ -54,10 +60,10 @@ graph = graph.append('g')
 
 
 
-var infoPane = d3.select('#infoPane').append('svg')
-	.append('g')
-		.attr('width',infoWidth)
-		.attr('height',height)
+//var infoPane = d3.select('#infoPane').append('svg')
+//	.append('g')
+//		.attr('width',infoWidth)
+//		.attr('height',height)
 
 var dateTime = d3.time.format('%Y-%m-%d %H:%M:%S')
 var timeISO = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ")
@@ -70,11 +76,11 @@ hr = d3.time.format('%I:%M:%L').parse(hr)
 var hrFormat = d3.time.format('%I:%M %p')
 hr = hrFormat(hr)
 
-console.log(hr)
+
 Start = ('2014-01-09T15:22:00.000Z')
 projectStart = timeISO.parse(Start)
 var hour = d3.time.format('%I:%M %p').parse('15:32')
-console.log(projectStart,hour)
+
 
 function drawData(){
 	d3.json('data/JanuaryTrips.topojson', function(error, trips){
@@ -105,7 +111,7 @@ function drawData(){
 		}
 		data = collection.features
 		data = data.sort(sortTrips)
-		console.log(data[0],data[137])
+
 		//update infoPane data
 		d3.select('#totalDist').text(d3.round(mileTotal,2))
 		d3.select('#totalTrips').text(data.length)
@@ -126,8 +132,6 @@ function drawData(){
 		var end = timeISO.parse(data[data.length - 1].properties.Name)
 		//var end = d3.time.day.offset(timeISO.parse(data[data.length - 1].properties.Name),-2)
 		var utcRange = d3.time.day.range(begin,end)
-		console.log(utcRange)
-		console.log(begin,end)
 
 		var xScale = d3.time.scale.utc()
 			.domain([begin,end])
@@ -140,7 +144,8 @@ function drawData(){
 			.orient('bottom')
 			.ticks(d3.time.days.utc)
 			.tickFormat(d3.time.format('%a'))
-			.tickSize(5)
+			.tickSize(5,2.5,0)
+			.tickSubdivide(2)
 
 			//.ticks(16)
 			.tickPadding(5)
@@ -165,9 +170,7 @@ function drawData(){
 			.attr('transform','translate(0,'+ graphH +')')
 			.call(xAxis)
 				.style('fill','white')
-				//.style('stroke','white')
-				//.style('stroke-width','1.0px')
-			//.call(xTimeAxis)
+
 
 		graph.append('g')
 			.attr('class','axis')
@@ -311,31 +314,38 @@ function drawData(){
 
 				var delay = (i+1) * 500 + 300;
 				var duration = 50;
-				var date = new Date(d[i].properties.DateTime.split(' ')[0]);
-				var startTime = d.properties.DateTime.split(' ')[1];
+				var date = new Date(data[i].properties.DateTime.split(' ')[0])
+				date = format(date)
+
+				var startTime = data[i].properties.DateTime.split(' ')[1];
 				startTime = d3.time.format('%I:%M').parse(startTime);
 				startTime = hrFormat(startTime)
-				date = format(date)
-				d3.selectAll('#tripDate')
+
+				d3.select('#tripDate')
 					.transition()
-					.duration(duration)
+					.ease('linear')
+					.duration(50)
 					.delay(delay)
 					.text(date)
-				d3.selectAll('#tripTime')
+				d3.select('#tripTime')
 					.transition()
-					.duration(duration)
+					.ease('linear')
+					.duration(50)
 					.delay(delay)
 					.text(startTime)
-				d3.selectAll('#tripDist')
+				d3.select('#tripNo')
 					.transition()
-					.duration(duration)
+					.ease('linear')
+					.duration(50)
+					.delay(delay)
+					.text((i+1))
+				d3.select('#tripDist')
+					.transition()
+					.ease('linear')
+					.duration(50)
 					.delay(delay)
 					.text(d3.round(data[i].properties.Length,2))
-				d3.selectAll('#tripNo')
-					.transition()
-					.duration(duration)
-					.delay(delay)
-					.text( (i+1) + ' of ' + data.length)
+
 				}
 
 		})//end animate/transition button

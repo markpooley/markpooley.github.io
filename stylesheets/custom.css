@@ -51,13 +51,24 @@ div.overlay p {
 }
 /*Define mobile stylings*/
 	@media (max-width: 350px) {
-	div.overlay h2 {visibility: hidden !important;} /*Styling for tables*/
-	div.overlay p {	visibility: hidden !important;}
+	div.overlay h2 {display: none !important;} /*Styling for tables*/
+	div.overlay p {	display: none !important;}
 }
 /*iPad stylings*/
 	/*portrait*/
 	@media (max-width: 800px){
-		div.overlay p {visibility: hidden !important}
+		div.overlay p {font-size: 0.55em;}
+		div.overlay h2 {font-size: 1.5em;}
+		li p {font-size: 0.55em;}
+		li h3 {font-size: 1.15em;}
+	}
+/*iPad stylings*/
+	/*landscape*/
+	@media (min-width: 850px) and (max-width: 1100px){
+		div.overlay p {font-size: 0.75em !important}
+		div.overlay h2 {font-size: 1.5em;}
+		li p {font-size: 0.65em;}
+		li h3 {font-size: 1.25em;}
 	}
 
 div.main h2, p {

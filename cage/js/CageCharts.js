@@ -130,6 +130,7 @@ svg.append('text')
 	.attr('y',-height *.75)
 	//.attr('class','svgText')
 	.attr('text-anchor','middle')
+	.attr('id','svgText')
 	.text('The Cage Gauge')
 $('#cageGauge').css('font-size',height*.15 + 'px').css('font-weight','bold')
 
@@ -138,12 +139,16 @@ $('#cageGauge').css('font-size',height*.15 + 'px').css('font-weight','bold')
 var gaugeTipWidth = $('#gaugeTip').width();
 d3.select('#gaugeTip').style('top',(height*.15) + 'px').style('left',(width - gaugeTipWidth)/2 + 'px')
 d3.select('#cageGauge').on('mouseover',function(){
+	d3.select('#cageGauge').select('#svgText').style('opacity',0.5)
 	svg.selectAll('path').style('opacity',0.5)
 	d3.select('#gaugeTip').classed('hidden',false)
+	d3.select('#statusLabel').style('opacity',0.5)
 })
 d3.select('#cageGauge').on('mouseout',function(){
+	d3.select('#cageGauge').select('#svgText').style('opacity',1)
 	svg.selectAll('path').style('opacity',1)
 	d3.select('#gaugeTip').classed('hidden',true)
+	d3.select('#statusLabel').style('opacity',1)
 })
 //status label for Cage Gauge
 var statusLabel = svg.append('text').attr('id','statusLabel')
@@ -187,6 +192,7 @@ timeSVG.append('text')
 	.attr('y',-height *.75)
 	//.attr('class','svgText')
 	.attr('text-anchor','middle')
+	.attr('id','svgText')
 	.text('Days in the Cage')
 $('#timeCage').css('font-size',height*.15 + 'px').css('font-weight','bold')
 //add background to time svg
@@ -241,10 +247,15 @@ d3.select('#timeTip').style('top',(height*.15) + 'px').style('left',(width - tim
 d3.select('#timeCage').on('mouseover',function(){
 	d3.select('#timeCage').selectAll('path').style('opacity',0.5)
 	d3.select('#timeTip').classed('hidden',false)
+	d3.select('#daysLabel').style('opacity',0.5)
+	d3.select('#timeCage').select('#svgText').style('opacity',0.5)
+
 })
 d3.select('#timeCage').on('mouseout',function(){
 	d3.select('#timeCage').selectAll('path').style('opacity',1)
 	d3.select('#timeTip').classed('hidden',true)
+	d3.select('#daysLabel').style('opacity',1)
+	d3.select('#timeCage').select('#svgText').style('opacity',1)
 })
 
 

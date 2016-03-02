@@ -64,6 +64,13 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 }
+div #caption {
+	margin: auto;
+	text-align: center !important;
+	width: 500px;
+	font-size: .80em;
+	font-style: italic;
+}
  /*#gaugeTip, #killTip, #freakTip, #timeTip{
 	position: absolute !important;
 	height: auto;

@@ -429,6 +429,17 @@ function drawViz(){
 //		console.log(title, id)
 //	})
 
+//mouseover movie poster interactivity
+//var posters = d3.select('#posters').selectAll('li')
+//posters.on('mouseover',function(){
+//	d3.select(this).select('img').transition().ease('linear').duration(100)
+//		.style('border','10px solid #d3d3d3')
+//
+//})
+//posters.on('mouseout',function(){
+//	d3.select(this).select('img').transition().ease('linear').duration(100)
+//		.style('border','none')
+//})
 
 
 //wait until the page has fully loaded to run the drawViz function

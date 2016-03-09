@@ -71,7 +71,33 @@ div #caption {
 	font-size: .80em;
 	font-style: italic;
 }
+#chat {
+	width:75%;
+	margin:auto;
+	position: relative;
 
+}
+
+#chat blockquote {
+	border-radius: 10px;
+}
+#talk1 {
+	color: black;
+	background-color: rgba(199,199,204,0.75);
+	border-radius: 10px;
+
+}
+#talk1 cite {
+	color: black;
+}
+#talk2 {
+	background-color: rgba(0,122,255, 0.75);
+	border-radius: 10px;
+	color: white;
+}
+#talk2 cite {
+	color: white
+}
  /*#gaugeTip, #killTip, #freakTip, #timeTip{
 	position: absolute !important;
 	height: auto;

@@ -140,4 +140,16 @@ div #caption {
    	font-size: 0.65em !important;
    	line-height: 0.5;
 }
+.hidden {
+	display: none;
 }
+/*#popUp {
+	position: fixed;
+	display: none;
+	width: 200px;
+	height: auto;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: #d3d3d3;
+
+}*/

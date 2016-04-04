@@ -421,13 +421,26 @@ function drawViz(){
 };//end drawViz function
 //d3 mouseover interactiviy
 //var posters = d3.select('#posters').selectAll('li');
-//	posters.on('mouseover',function(){
-//		id = '#' + d3.select(this).select('a').attr('data-reveal-id')
-//		title = d3.select(this).select('a').select('img').attr('title')
-//		title = title.split('(')[0]
-//		console.log()
-//		console.log(title, id)
-//	})
+//posters.on('mouseover',function(d){
+//	id = '#' + d3.select(this).select('a').attr('data-reveal-id')
+//	title = d3.select(this).select('a').select('img').attr('title')
+//	title = title.split('(')[0]
+//	console.log()
+//	console.log(title, id)
+//	table = d3.select(id).select('#metaCage')
+//	console.log(table)
+//	var character = table.select('#character').text()
+//	var hair = table.select('#hair').text()
+//	var rating = table.select('#rating').text()
+//	var freaks = table.select('#freakouts').text()
+//	var kills = table.select('#kills').text()
+//	console.log(character,hair,rating,freaks,kills)
+//
+//	d3.select('#popUp').classed('hidden',false)
+//		.style('left', d + 'px')
+//		.style('top', d + 'px')
+//
+//})
 
 //mouseover movie poster interactivity
 //var posters = d3.select('#posters').selectAll('li')
@@ -440,7 +453,23 @@ function drawViz(){
 //	d3.select(this).select('img').transition().ease('linear').duration(100)
 //		.style('border','none')
 //})
-
+//var posters = d3.select('#posters').selectAll('li');
+//
+//posters.on('mouseover',function(){
+//	var xPos = d3.event.pageX
+//	var yPos = d3.event.pageY
+//	console.log(xPos,yPos)
+//	d3.select('#popUp').classed('hidden', false)
+//		.attr('display','block')
+//		.style('left', xPos + 'px')
+//		.style('top', yPos + 'px')
+//
+//	d3.select('#popUp').select('#title').text('Title Here')
+//
+//})
+//posters.on('mouseout',function(){
+//	d3.select('#popUp').classed('hidden',true)
+//})
 
 //wait until the page has fully loaded to run the drawViz function
 //this prevents jumpiness/jerky visualizations.

@@ -52,27 +52,6 @@
       <section class="top-bar-section">
         <ul class="right">
           <li><a href="../index.html">Home</a></li>
-          <li class="has-dropdown"><a href="#">Projects</a>
-            <ul class="dropdown">
-              <li class="has-dropdown"><a href="">Geography</a>
-                <ul class="dropdown">
-                  <li><a href="../food_trucks/">Iowa City Food Trucks</a></li>
-                  <li><a href="../yearbuiltjc/">Age of Johnson County Buildings</a></li>
-                  <!--li><a href="../dental_service_areas/">Dental Service Areas</a></li-->
-                </ul>
-              </li>
-              <li class="has-dropdown"><a href="">Cinematic</a>
-                <ul class="dropdown">
-                  <li class="active"><a href="../cage/">A Year in the Cage</a></li>
-                </ul>
-              </li>
-              <li class="has-dropdown"><a href="">Bicycle</a>
-                <ul class="dropdown">
-                  <li><a href="../bike-projects/pugsley/">Pugsley Rebuild</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
           <li><a href="../blog/">Blog</a></li>
           <li><a href="../Resume.html">Resume</a></li>
           <!--li><a href="#">Contact</a></li-->
@@ -116,6 +95,10 @@
     <div class="panel">
         <p align="center"><b>Click on a title thumnbnail to get more information about a film.</b><br>(lightened images haven't been watched yet)</p>
     </div>
+  <!--div id="popUp" class="hidden">
+
+    <h1 id='title'></h1>
+  </div-->
   <ul class="small-block-grid-5" id="posters">
   <li class="watched"><a data-reveal-id="LeftBehind"><img height="317" width="214" alt="Left Behind (2014) Poster" title="Left Behind (2014) Poster" src="images/cage_images/left_behind_2014_poster.jpg"/></a></li>
   <li class="watched"><a data-reveal-id="Stolen"><img height="317" width="214" alt="Stolen (2012) Poster" title="Stolen (2012) Poster" src="images/cage_images/stolen_2012_poster.jpg" itemprop="image" /></a></li>
@@ -173,7 +156,7 @@
   <li class="watched"><a data-reveal-id="GoneIn60Seconds"><img height="317" width="214" alt="Gone in Sixty Seconds (2000) Poster" title="Gone in Sixty Seconds (2000) Poster" src="images/cage_images/gone_in_sixty_seconds_2000_poster.jpg" itemprop="image" /></a></li>
   <li class="watched"><a data-reveal-id="PayTheGhost"><img height="317" width="214" alt="Pay The Ghost (20146) Poster" title="Paying the Ghost (2015) Poster" src="images/cage_images/paying_the_ghost_2015_poster.jpg" itemprop="image" /></a></li>
   <li class="watched"><a data-reveal-id="Grindhouse"><img height="317" width="214" alt="Grindhouse (2007) Poster" title="Grindhouse (2007) Poster" src="images/cage_images/grindhouse_2007_poster.jpg" itemprop="image" /></a></li>
-  <li class="unwatched"><a data-reveal-id="ItCouldHappenToYou"><img height="317" width="214" alt="It Could Happen to You (1994) Poster" title="It Could Happen to You (1994) Poster" src="images/cage_images/it_could_happen_to_you_1994_poster.jpg" itemprop="image" /></a></li>
+  <li class="watched"><a data-reveal-id="ItCouldHappenToYou"><img height="317" width="214" alt="It Could Happen to You (1994) Poster" title="It Could Happen to You (1994) Poster" src="images/cage_images/it_could_happen_to_you_1994_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod19"><img height="317" width="214" alt="Honeymoon in Vegas (1992) Poster" title="Honeymoon in Vegas (1992) Poster" src="images/cage_images/honeymoon_in_vegas_1992_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod23"><img height="317" width="214" alt="Snowden (2015) Poster" title="Snowden (2015) Poster" src="images/cage_images/snowden_2015_poster.jpg" itemprop="image" /></a></li>
   <li class="unwatched"><a data-reveal-id="mod30"><img height="317" width="214" alt="Lord of War (2005) Poster" title="Lord of War (2005) Poster" src="images/cage_images/lord_of_war_2005_poster.jpg" itemprop="image" /></a></li>
@@ -210,11 +193,11 @@
  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
  <div class="small-12 columns">
  <br>
- <table width="100%">
+ <table width="100%" id="metaCage">
  <tr><td colspan="2"><h4 align="center">Meta Cage</h4></td></tr>
- <tr><td colspan="2"><b>The Cage Character:</b></td></tr>
- <tr><td><b>Cage Hair:</b></td><td><b>Cage Rating:</b></td></tr>
- <tr><td><b>Freakouts:</b></td><td><b>Kills:</b></td></tr>
+ <tr><td colspan="2" id='character'><b>The Cage Character:</b> test</td></tr>
+ <tr><td id="hair"><b>Cage Hair:</b> test</td><td id='rating'><b>Cage Rating:</b> Cages out of 10</td></tr>
+ <tr><td id="freakouts"><b>Freakouts:</b> 4</td><td id="kills"><b>Kills:</b> 2</td></tr>
  </table>
   <h3 id="review" align="center">Review</h3><h6 align="center"></h6><hr>
   <p><i>forthcoming</i></p>
@@ -428,14 +411,44 @@
  <br>
  <table width="100%">
  <tr><td colspan="2"><h4 align="center">Meta Cage</h4></td></tr>
- <tr><td colspan="2"><b>The Cage Character:</b></td></tr>
- <tr><td><b>Cage Hair:</b></td><td><b>Cage Rating:</b></td></tr>
- <tr><td><b>Freakouts:</b></td><td><b>Kills:</b></td></tr>
+ <tr><td colspan="2"><b>The Cage Character:</b> Classy and honest NYPD officer gets the girl and humanity rescues them from dire financial straits.</td></tr>
+ <tr><td><b>Cage Hair:</b> Legendary</td><td><b>Cage Rating:</b> 8.5 Cages out of 10</td></tr>
+ <tr><td><b>Freakouts:</b> 3</td><td><b>Kills:</b> 0</td></tr>
  </table>
-  <h3 id="review" align="center">Review</h3><h6 align="center"></h6><hr>
-  <p><i>forthcoming</i></p>
+  <h3 id="review" align="center">Review: Could it Happen to You?</h3><h6 align="center">No, statistically, it's basically impossible</h6><hr>
+  <p>Cage is an honest and resourceful member of NYPD with a gold-digging wife with a voice that's more annoying than Fran Drescher's pitch shifted up two octaves. Honest guy Cage elects to promise half of his lottery winnings to poor Bridget Fonda when he comes up short on a lunch tab. Bridget has had a string of bad luck going as far back as her childhood dog dying of Parvovirus (she still doesn't know what it is). Most recently her scumbag husband (played by the awesome Stanley Tucci) ran up $12,000 on their credit card that she's now responsible for.</p>
+  <p>Cage wins the lottery with his ill-picked numbers. The $65 million jackpot! The problem is that 16 (9 winning tickets) other people picked the same exact winning numbers - leaving only $4 million for Cage and his little yappy wife. This is the point where math is needed to determine just how implausible this scenario is.</p>
+  <p>
+    <table align="center">
+      <tr>
+        <td>Odds of winning New York State Lottery: </td>
+        <td>1:45,057,474</td>
+      </tr>
+      <tr>
+        <td>Odds of being 1 of the <span data-tooltip aria-haspopup="true" class="has-tip" title="This is the simplified math the odds of 9 people winning the jackpot are stupid low something like 1.31*10-69">9</span> jackpot winners: </td>
+        <td>2.16*10 <sup>-5</sup></td>
+      </tr>
+    </table>
+    Basically, Cage is more likely to be struck by lightning twice while drowning than for this scenario to actually unfold.
+    <table align="center">
+      <tr>
+        <td>Immediate payout %</td><td>&#8773 55%</td>
+      </tr>
+      <tr>
+        <td>Lump sum payout for 1/9<sup>th</sup> </td>
+        <td>$3.6 million</td>
+      </tr>
+    </table>
+  </p>
+  <p>Intiially, I thought there would be mathematical erros regarding the payout, but it seems to check out pretyt well. Cage being the stand-up guy he is keeps his word and gives Bridget half his newly acquired $4 million. Cage's little half-pint wife goes on a spending spree - remodeling their tiny apartment, buying a ton of sh*t from fancy department stores, and even contemplates getting fake boobs to with her fake personality. Meanwhile, Bridget squanders her share on buying the restaurant where she works a waitress. Yep, solid idea! Buy the restaurant where you hate to work and have to deal with unruly customers on a regular basis! </p>
+  <p>Classy Cage continues to be an upstanding NYPD officer after winning - even subduing a would-be robber with a can of beans and taking a bullet in the line of duty. Generous Cage continues his charitable ways by treating the neighborhood kids to a day at Yankee Stadium, subway commuters to a free ride, and setting up a wounded officer's fund.</p>
+  <p>Cage and Fonda hit it off, going on several dates - one if which includes Cage on roller blades in jeans! Cage is comically bad at rollerblading. Eventually, Cage and Fonda take a trip to the "bone zone" after Cage's wife demands a divorce. Sadly, Cage has poor legal representation and doesn't get to keep any of the lottery winnings and Fonda has to return her share Cage gave to her. Thankfully, humanity pulls through and donates cash to Cage and Fonda to the tune of $600,000. </p>
+  <p>Sweet justice is served when Cage's gold-digging wife is "gold dug" by a rich old man. She moved in with her sister and returned to her job at a nail salon. Yes! What Cage should have done is immediately divorced his wife after winning the lottery, but done so after giving half of their winnings to Fonda. Cage marries Fonda and then gets 75% of the lottery winnings - leaving him in a better scenario both financially and romantically. It all works out in the end for Cage because he's classy and honest.</p>
   <h3 id="cagisms" align="center">Quotes &amp; Cagisms</h3><hr>
-  <p><i>forthcoming</i></p>
+  <blockquote>If only rich people had kids there wouldn't be public schools. <cite>Cage</cite></blockquote>
+  <blockquote>What are you? Whipped? <cite>12-year-old neighbor to Cage</cite></blockquote>
+  <blockquote>Your father was a nut job! He prayed to chickens! <cite>Cage</cite></blockquote>
+  <blockquote>I'll catch Leprosy from the water, but other than that I'm okay. <cite>Cage after rollerblading into a pond</cite></blockquote>
   </div>
 </div>
 <div id="GhostRider2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">

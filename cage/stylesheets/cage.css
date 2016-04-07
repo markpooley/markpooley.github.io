@@ -1,5 +1,8 @@
 /* CSS Document                             */
-
+* {
+	color: #0b090c;
+	font-family: 'Lato';
+}
 .cageImg {
 	vertical-align: center;
 }

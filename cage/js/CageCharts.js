@@ -423,23 +423,37 @@ function drawViz(){
 //var posters = d3.select('#posters').selectAll('li');
 //posters.on('mouseover',function(d){
 //	id = '#' + d3.select(this).select('a').attr('data-reveal-id')
-//	title = d3.select(this).select('a').select('img').attr('title')
-//	title = title.split('(')[0]
-//	console.log()
-//	console.log(title, id)
-//	table = d3.select(id).select('#metaCage')
-//	console.log(table)
-//	var character = table.select('#character').text()
-//	var hair = table.select('#hair').text()
-//	var rating = table.select('#rating').text()
-//	var freaks = table.select('#freakouts').text()
-//	var kills = table.select('#kills').text()
-//	console.log(character,hair,rating,freaks,kills)
 //
-//	d3.select('#popUp').classed('hidden',false)
-//		.style('left', d + 'px')
-//		.style('top', d + 'px')
+//	console.log(id)
+//	var x = $(id)[0].getBoundingClientRect().left
+//	var y = $(id)[0].getBoundingClientRect().top
+//	//el = el.position();
+//	//var x = el.left
+//	//var y = el.top
+//	xPos = d3.event.pageX
+//	yPos = d3.event.y
+//	var xRatio = xPos/width
+//	console.log(id,xPos,xRatio)
+//	//title = d3.select(this).select('a').select('img').attr('title')
+//	//title = title.split('(')[0]
+//	//console.log()
+//	//console.log(title, id)
+//	//table = d3.select(id).select('#metaCage')
+//	//console.log(table)
+//	//var character = table.select('#character').text()
+//	//var hair = table.select('#hair').text()
+//	//var rating = table.select('#rating').text()
+//	//var freaks = table.select('#freakouts').text()
+//	//var kills = table.select('#kills').text()
+//	//console.log(character,hair,rating,freaks,kills)
 //
+//	d3.select('#toolTip').attr('style','left:'+xPos+'px;top:'+yPos+'px')
+//		.classed('hidden',false);
+//
+//
+//})
+//posters.on('mouseout',function(){
+//	d3.select('#toolTip').classed('hidden',true)
 //})
 
 //mouseover movie poster interactivity

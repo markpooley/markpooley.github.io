@@ -229,9 +229,9 @@ blockquote {
 #pList {
 	margin-left: 5%
 }
-.panel {
+/*.panel {
 	overflow-y: scroll !important;
-}
+}*/
 
 /*Define mobile styling*/
 @media (max-width: 350px) {

@@ -3,6 +3,17 @@
 	color: #0b090c;
 	font-family: 'Lato';
 }
+#toolTip {
+	position: absolute;
+	z-index: 9999;
+	table-layout: fixed;
+}
+.hidden {
+	display: none;
+}
+#quoteHeading {
+	display: inline;
+}
 .cageImg {
 	vertical-align: center;
 }
@@ -11,9 +22,12 @@
 	display:block;
 	margin: auto;
 }
+.panel {
+	overflow: hidden;
+}
 #cagePanel {
 	overflow-y: scroll !important;
-}
+}*/
 .orbit-container{
 	vertical-align: bottom;
 }

@@ -280,6 +280,10 @@ h5.bike {
 #buildData {
 	padding-left: 1em;
 }
+.bikeList li {
+	margin-left: 10%;
+
+}
 @media (min-width: 625px){
 	.clearing-thumbs {
 		display: none;

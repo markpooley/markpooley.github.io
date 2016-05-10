@@ -58,3 +58,8 @@ footer p {
 	/*stroke: white;*/
 
 }
+#disclaimer {
+	font-size: 0.80em;
+	/*color: white;*/
+	float: right;
+}

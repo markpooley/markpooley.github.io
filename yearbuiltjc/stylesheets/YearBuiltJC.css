@@ -23,6 +23,9 @@ footer p {
 .animate {
 	color: white;
 }
+#animate {
+	font: white;
+}
 #directions{
 	background: #111111;
 	float: right;

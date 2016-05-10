@@ -48,20 +48,20 @@
   <code>pip install library</code>
 </pre>
 <pre>
-<code>#import libraries
+<code class="hljs python">#import libraries
 import BeautifulSoup,urllib2,timer,geocoder,csv
 </code>
 </pre>
         In taking a look at the HTML from the 'iowacitymenus.com' page, we find that it's a (mostly) organized list. So, we can use <a href="https://pypi.python.org/pypi/beautifulsoup4">BeautifulSoup</a> to parse the HTML data using python (there's a great tutorial by Zev Ross about using BeautifulSoup to parse HTML in python <a href="http://zevross.com/blog/2014/05/16/using-the-python-library-beautifulsoup-to-extract-data-from-a-webpage-applied-to-world-cup-rankings/">here</a>.) We can use the urllib2 library to open the URL and feed it into BeatifulSoup. We then iterate through the "soup" to find the elements we're interested in and write the output to a CSV. Viola!
 <pre>
-<code>url = <span class='hljs-string'>'http://www.iowacitymenus.com/'</span>
+<code class="hljs python">url = <span class='hljs-string'>'http://www.iowacitymenus.com/'</span>
 page = urllib2.urlopen(url)
 content = urllib2.urlopen(url).<span class="hljs-keyword">read</span>()
 soup = BeautifulSoup(content)</code>
 </pre>
         <p>This was my first foray into scraping web data, so I wasn't able to navigate the HTML tree structure, or use BeautifulSoup very efficiently. Instead, I used some elementary string manipulation to pull the names and address of locations and write them to the CSV.</p>
 <pre>
-<code>with open('ICEats.csv', 'wb') as csvfile:
+<code class="hljs python">with open('ICEats.csv', 'wb') as csvfile:
   writer = csv.writer(csvfile, delimiter=',')
   writer.writerow(('Name','Address','Lat','Lon'))
   for loc in locs:

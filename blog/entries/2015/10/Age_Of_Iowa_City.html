@@ -38,14 +38,14 @@
     <div class="row">
       <div class="small-10 columns small-centered">
         <h3>Building Dataset for the Age of Iowa City</h3>
-        <h6>October 14, 2015.</h6><hr>
+        <h6>May 10, 2016.</h6><hr>
         <p>A Shapefile of Iowa City buildings, and those for all of Johnson County, IA is easy to obtain from a public repository. But, the age/build year of those buildings is not in the data. Originally, I was going to do all of Johnson County, IA but that proved to be very slow to load so I opted to do just Iowa City - which presented a few problems</p>
 
         <h4>First Attempt to Get the Data</h4><hr>
         Originally, I was just going to scrape data from the Iowa City assessors website to obtain build years for each parcel number and attach that to the building data since. I had parcel data from a previous project so I simply spatially joined parcel ids to the buildings. I built a nice little web scraper using urllib2 and BeautiflulSoup libraries into an ArcGIS tool.
 
 <pre>
-<code>
+<code class="hljs python">
 ########################################################################
 #Input Variable loading and environment declaration
 ########################################################################
@@ -65,7 +65,7 @@ parcels_fields = ['PPN','YearBuilt','PropClass']
 </pre>
       <p>This little bit sets up the Shapefile dbf for reading in data and adding it to the appropriate field</p>
 <pre>
-<code>
+<code class="hljs python">
 def makeSoup(ppn):
     temp = url + ppn
     page = urllib2.urlopen(temp)
@@ -92,7 +92,7 @@ def getYrBuilt(soup,PropClass):
       <p>Some simple functions to pull the data I need from the HTML generated in the "makeSoup function. Next it was a simple matter of just iterating through lines in the Shapefile data using an update cursor.</p>
 
 <pre>
-<code>
+<code class="hljs python">
 featureCount = int(arcpy.GetCount_management(parcels).getOutput(0))
 arcpy.SetProgressor('step','finding build years....',0,featureCount,1)
 Query = "YearBuilt = 'unknown'"
@@ -111,6 +111,82 @@ arcpy.AddMessage('Process Complete')
 </pre>
 <h3>Second Attempt at Getting the Data</h3>
         <p>One thing I did not account for was the getting flagged for data mining. As I was testing snippets of code using small lists of parcel numbers I apparently didn't set off any triggers on the assessors website. But, once I tried to pull all the data for every building within the Iowa City limits they flagged me and I had to contact a representative from the assessors office to get the data I wanted - delaying the simple project a couple days.No biggie, but they still have me blocked...</p>
+
+<h3>University of Iowa Buildings</h3><hr>
+<p>Of course University of Iowa Buildings weren't available from the assessor, so I had to fire off a quick little webscraper to grab the address and construction year of those buildings.</p>
+<pre>
+<code class="hljs python">#import modules
+from BeautifulSoup import BeautifulSoup as bs
+from BeautifulSoup import SoupStrainer
+import urllib2
+import re
+import csv
+import time
+import random
+from collections import defaultdict
+from operator import itemgetter
+
+#declare functions
+#---------------------------
+#get address and build year
+def infoGetter(soup):
+   address = soup.find('div',{'class':'panel-pane pane-entity-field pane-node-field-address'})
+   address = address.find('div',{'class': lambda x: x and 'even' in x.split()})
+   address = address.contents[0]
+
+   year = soup.find('div',{'class': 'panel-pane pane-entity-field pane-node-field-year'})
+   year = year.find('div',{'class': lambda x: x and 'even' in x.split()})
+   year = year.contents[0]
+
+   return address, year
+
+
+#generate all soup and create a list of the building locations
+url = 'http://maps.uiowa.edu/buildings'
+page = urllib2.urlopen(url)
+soup = bs(page.read())
+#find URLS
+items = soup.findAll('div',{'class':'item-list'})
+
+# get all the create a list of all the building specific URLS
+locs = []
+for i in items:
+   urls = i.findAll('span',{'class': 'field-content'})
+   for j in urls:
+      base = 'http://maps.uiowa.edu'
+      href = j.find('a',).get('href')
+      url = base + href
+      locs.append(url)
+
+print 'found {0} unique building URLS'.format(len(locs))
+
+#dictionary of addresses and build year
+d = {}
+#go through URLS and scrape the address and build year from each page
+for i in locs:
+   url = i
+   #print current URL working and sleep the loop randomly to hopefully avoid triggering any flags on the server end.
+   print "Working {0} URL of list, URL: {1}".format(locs.index(i),url)
+
+   time.sleep(random.randint(0,10))
+   page = urllib2.urlopen(url)
+   soup = bs(page.read())
+   info = infoGetter(soup)
+   d[info[0]] = info[1]
+
+
+#write output to CSV
+csvHeader = ['Address','City','State','Build_year']
+with open('UiowaBuildings_1.csv','wb') as buildingCSV:
+   writer = csv.writer(buildingCSV)
+   writer.writerow(csvHeader)
+   for k,v in d.iteritems():
+      data = [k,'Iowa City','IA',v]
+      writer.writerow(data)
+</code>
+</pre>
+<p>With the newly acquired construction and address data written to a csv was able to geocode them and spatially join the construciton year of the geocoded point(s) to the nearest University of Iowa Building. This isn't a perfect solution but it was the path of least resistance and worked fairly well for this application.</p>
+<p>There's definitely some inaccuracies in the data, but it's sufficient for gaining an idea of how and when Iowa City has expanded.</p>
         <p>The final map output can be found <a href="../../../../yearbuiltjc/index.html">here.</a> </p>
     </div>
 </div><hr>

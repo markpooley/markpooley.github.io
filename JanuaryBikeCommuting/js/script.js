@@ -219,7 +219,7 @@ function drawData(){
 				return 'Trip'+ (i+1)
 			})
 			.attr('x',function(d){
-				return xScale(timeISO.parse(d.properties.Name))
+				return xScale(timeISO.parse(d.properties.Name)+margin.left)
 			})
 			.attr('y',function(d){
 				return yScale(d.properties.Length)

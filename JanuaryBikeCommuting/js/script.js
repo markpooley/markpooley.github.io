@@ -19,6 +19,7 @@ var margin = {
 
 //temporary empty color that will be used for mouseover and mouseout events
 var tempColor;
+var mouseBool = false;
 
 //add BaseMap
 var map = L.map('map', {center: [41.6480,-91.530168],
@@ -111,6 +112,13 @@ function drawData(){
 		}
 		data = collection.features
 		data = data.sort(sortTrips)
+
+		//activate mouse interactivity
+		setTimeout(function(){
+			mouseBool = true;
+
+		},(data.length+1)*100)
+
 
 		//update infoPane data
 		d3.select('#totalDist').text(d3.round(mileTotal,2))
@@ -219,7 +227,7 @@ function drawData(){
 				return 'Trip'+ (i+1)
 			})
 			.attr('x',function(d){
-				return xScale(timeISO.parse(d.properties.Name)+margin.left)
+				return xScale(timeISO.parse(d.properties.Name))
 			})
 			.attr('y',function(d){
 				return yScale(d.properties.Length)
@@ -239,46 +247,63 @@ function drawData(){
 
 		//bar interactivity
 		bars.on('mouseover',function(d,i){
-			var length = d3.round(d.properties.Length,2);
-			var date = new Date(d.properties.DateTime.split(' ')[0]);
-			var startTime = d.properties.DateTime.split(' ')[1];
+			if (mouseBool == true){
+				var length = d3.round(d.properties.Length,2);
+				var date = new Date(d.properties.DateTime.split(' ')[0]);
+				var startTime = d.properties.DateTime.split(' ')[1];
 
-			var date = format(date);
-			var tripNo = i+1;
-			var time = d3.time.format('%I:%M').parse(startTime)
-			time = hrFormat(time)
+				var date = format(date);
+				var tripNo = i+1;
+				var time = d3.time.format('%I:%M').parse(startTime)
+				time = hrFormat(time)
 
-			d3.select(this)
-				.style('fill','#FA8D34')
-				.style('width',5)
-			var tripRoute = '#tripRoute'+(i+1)
-			d3.select(tripRoute)
-				.style('opacity',1)
-				.style('stroke','#FA8D34')
-				.style('stroke-width',7)
-			d3.select('#tripTime').text(time)
-			d3.select('#tripNo').text(tripNo)
-			d3.select('#tripDist').text(length)
-			d3.select('#tripDate').text(date)
+				d3.select(this)
+					.style('fill','#FA8D34')
+					.style('width',5)
+				var tripRoute = '#tripRoute'+(i+1)
+				d3.select(tripRoute)
+					.style('opacity',1)
+					.style('stroke','#FA8D34')
+					.style('stroke-width',7)
+				d3.select('#tripTime').text(time)
+				d3.select('#tripNo').text(tripNo)
+				d3.select('#tripDist').text(length)
+				d3.select('#tripDate').text(date)
+			};
 		})
 
 		bars.on('mouseout',function(d,i){
-			d3.select(this)
-				.style('fill','#2892C7')
-				.style('width',2.5)
-			var tripRoute = '#tripRoute'+(i+1)
-			d3.select(tripRoute)
-				.style('opacity',0.50)
-				.style('stroke','#2892C7')
-				.style('stroke-width',2)
-			d3.select('#tripTime').text('00:00')
-			d3.select('#TripNo').text(0)
-			d3.select('#tripDist').text('00.00')
-			d3.select('#tripDate').text('Jan 9, 2014 - Feb, 9 2014')
+			if (mouseBool == true){
+				d3.select(this)
+					.style('fill','#2892C7')
+					.style('width',2.5)
+				var tripRoute = '#tripRoute'+(i+1)
+				d3.select(tripRoute)
+					.style('opacity',0.50)
+					.style('stroke','#2892C7')
+					.style('stroke-width',2)
+				d3.select('#tripTime').text('00:00')
+				d3.select('#TripNo').text(0)
+				d3.select('#tripDist').text('00.00')
+				d3.select('#tripDate').text('Jan 9, 2014 - Feb, 9 2014')
+			};
 		})
+
+
 
 		//Trip Animation
 		d3.select('#play').on('click',function(d,i){
+			d3.select('#play').classed('disabled',true);
+			//suspend mouse interactivity for animation
+			mouseBool = false;
+
+			//activate mouse interactivity
+			setTimeout(function(){
+				mouseBool = true;
+				d3.select('#play').classed('disabled',false);
+
+			},(data.length+1)*500+300);
+
 			trips.style('opacity',0)
 			bars.style('opacity',0)
 
@@ -311,6 +336,7 @@ function drawData(){
 
 			//update trip infoPane with the animation
 			for(i = 0; i < data.length; i++){
+
 
 				var delay = (i+1) * 500 + 300;
 				var duration = 50;
@@ -352,43 +378,46 @@ function drawData(){
 
 		//trip interactivity
 		trips.on('mouseover',function(d,i){
+			if (mouseBool == true){
+				d3.select(this)
+					.style('stroke-width',7)
+					.style('opacity',1)
+					.style('stroke','#FA8D34')
+				var time = d.properties.DateTime.split(' ')[1];
+				var startTime = d3.time.format('%I:%M').parse(time);
+				startTime = hrFormat(startTime)
 
-			d3.select(this)
-				.style('stroke-width',7)
-				.style('opacity',1)
-				.style('stroke','#FA8D34')
-			var time = d.properties.DateTime.split(' ')[1];
-			var startTime = d3.time.format('%I:%M').parse(time);
-			startTime = hrFormat(startTime)
+				var date = new Date(d.properties.DateTime.split(' ')[0])
+				date = format(date)
 
-			var date = new Date(d.properties.DateTime.split(' ')[0])
-			date = format(date)
+				var tripNum = data.indexOf(data[d.properties.OBJECTID]);
 
-			var tripNum = data.indexOf(data[d.properties.OBJECTID]);
+				d3.select('#tripNo').text(tripNum)
+				d3.selectAll('#tripTime').text(startTime)
 
-			d3.select('#tripNo').text(tripNum)
-			d3.selectAll('#tripTime').text(startTime)
-
-			var datInfo = d3.selectAll('#tripDate').text(date)
-			var length = d3.round(d.properties.Length,2)
-			d3.selectAll('#tripDist').text(length)
-			trip = '#Trip' + (i+1)
-			d3.select(trip).style('fill','#FA8D34').style('opacity',1)
+				var datInfo = d3.selectAll('#tripDate').text(date)
+				var length = d3.round(d.properties.Length,2)
+				d3.selectAll('#tripDist').text(length)
+				trip = '#Trip' + (i+1)
+				d3.select(trip).style('fill','#FA8D34').style('opacity',1)
+			};
 		})
 		trips.on('mouseout',function(d,i){
-			d3.select(this)
-				.style('stroke-width',1.75)
-				.style('opacity',0.5)
-				.style('stroke',function(d){
-					return '#2892C7'
-				})
-			var datInfo = d3.selectAll('#tripDate').text(" Jan 9, 2014 - Feb 9, 2014")
-			d3.select('#tripTime').text('00:00')
-			d3.select('#tripDist').text('00.00')
-			d3.select('#tripNo').text('0')
-			//d3.select('#tripCount').text('Trip #: ' + data.length)
-			trip = '#Trip' + (i+1)
-			d3.select(trip).style('fill','#2892C7').style('opacity',.90)
+			if (mouseBool == true){
+				d3.select(this)
+					.style('stroke-width',1.75)
+					.style('opacity',0.5)
+					.style('stroke',function(d){
+						return '#2892C7'
+					})
+				var datInfo = d3.selectAll('#tripDate').text(" Jan 9, 2014 - Feb 9, 2014")
+				d3.select('#tripTime').text('00:00')
+				d3.select('#tripDist').text('00.00')
+				d3.select('#tripNo').text('0')
+				//d3.select('#tripCount').text('Trip #: ' + data.length)
+				trip = '#Trip' + (i+1)
+				d3.select(trip).style('fill','#2892C7').style('opacity',.90)
+			};
 
 		})
 

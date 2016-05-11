@@ -1,5 +1,6 @@
 body {
 	background-color: #111111;
+	font-family: Lato !important;
 }
 
 footer p {
@@ -14,17 +15,29 @@ footer p {
 	font-size: .95em;
 	background: #111111;
 }
+#title {
+	margin-bottom: 0em;
+	margin-top: 0em;
+}
 #legend {
 	border: 2px;
 	border-color: #111111;
 	background: #111111;
 	float: right;
 }
+#legend table {
+	margin-bottom: 0em !important;
+}
+
 .animate {
 	color: white;
 }
 #animate {
 	font: white;
+
+}
+#animate.text {
+	padding: 0em;
 }
 #directions{
 	background: #111111;
@@ -62,4 +75,13 @@ footer p {
 	font-size: 0.80em;
 	/*color: white;*/
 	float: right;
+	margin: 0em !important;
+}
+.title {
+	display: inline-block;
+	margin-top: 0.5em !important;
+	padding-bottom: 0.15em;
+}
+h6.subheader {
+	margin: 0em !important;
 }

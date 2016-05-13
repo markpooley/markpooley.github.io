@@ -69,7 +69,7 @@ var g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 function makeMap(){
   //group variable to zoom behavior works correctly
-  d3.json('data/icbuildings.topojson', function(error, buildings){
+  d3.json('data/icbuildings_2.topojson', function(error, buildings){
   var collection = topojson.feature(buildings, buildings.objects.collection);
   var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform)
@@ -101,12 +101,18 @@ function makeMap(){
     .tickFormat(d3.format(""))
 
    //set up yAxis
+   var maxBuildCount = d3.max(collection.features, function(d){
+    return d.properties.COUNT_Year
+   });
+   var yearPos = 1500;
+   console.log(maxBuildCount)
    var yScale = d3.scale.linear()
-    .domain([0,d3.max(collection.features, function(d){
-      return d.properties.COUNT_Year
-    })])
+    //.domain([0,d3.max(collection.features, function(d){
+    //  return d.properties.COUNT_Year
+    //})])
+    .domain([0,1500])
     .range([(graphHeight-margin.top-margin.bottom),0])
-    .nice()
+    //.nice()
 
 
     var yAxis = d3.svg.axis()
@@ -163,7 +169,7 @@ function makeMap(){
   //add a year progress bar to the graph that will showup on animation.
     graph.append('rect')
       .attr('x',xScale(1800))
-      .attr('height',graphHeight-margin.top-margin.bottom - yScale(2000))
+      .attr('height',graphHeight-margin.top-margin.bottom - yScale(1500))
       .attr('width',(1.5))
       .attr('fill','white')
       .attr('id','yearLine')
@@ -199,7 +205,7 @@ function makeMap(){
 
         d3.select('#yearLineYear').style('opacity',1)
           .attr('x',xScale(yr) + margin.left)
-          .attr('y',yScale(2200))
+          .attr('y',yScale(yearPos))
           .text(yr)
 
         d3.select('#yearLine').style('opacity',0.50)
@@ -265,7 +271,7 @@ function makeMap(){
             .text(d.properties.COUNT_Year)
           d3.select('#yearLineYear').style('opacity',1)
             .attr('x',xScale(yr)+margin.left+2.5)
-            .attr('y',yScale(2200))
+            .attr('y',yScale(yearPos))
             .text(yr)
         };
       };
@@ -334,7 +340,7 @@ function makeMap(){
               .text(buildCount)
             d3.select('#yearLineYear')
               .attr('x',xScale(year)+margin.left)
-              .attr('y',yScale(2200))
+              .attr('y',yScale(yearPos))
               .text(year)
 
             animate(data, ++index);

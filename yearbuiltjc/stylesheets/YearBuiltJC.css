@@ -85,3 +85,6 @@ footer p {
 h6.subheader {
 	margin: 0em !important;
 }
+div.reveal-modal {
+	z-index: 9999
+}

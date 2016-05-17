@@ -88,3 +88,6 @@ h6.subheader {
 div.reveal-modal {
 	z-index: 9999
 }
+#pList {
+	margin-left: 5% !important;
+}

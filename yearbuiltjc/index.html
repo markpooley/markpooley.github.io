@@ -13,6 +13,7 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 
   </head>
   <body>
@@ -56,12 +57,25 @@
         </tr>
         </table>
 
-        <h6 id="disclaimer" class="subheader">*Data may contain inaccuracies due to source availability. </h6>
+        <h6 id="disclaimer" class="subheader"> <a data-reveal-id="testModal">*Data may contain inaccuracies due to source availability</a></h6>
       </div>
     </div>
     <div class="fullwidth" id="map">
       <div id="graph"></div>
     </div>
+  <div id="testModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <br>
+    <p>The data aren't perfect. Instead of painstakingly checking everything I released the map to so the public could take a look and notify me of any errors they might find</p>
+    <h5>Causes/sources of errors can be attributed to the following:</h5>
+    <ul id="pList">
+      <li>Incorrect data from government resources (notice Kinnick is missing! I'm working on that)</li>
+      <li>For old houses/structures have "estimated" constructions years based on criteria the Assessors use (see comment <a href="http://www.press-citizen.com/story/news/local/2016/05/15/map-shows-177-years-iowa-city-growth-90-seconds/84329530/">here</a>)</li>
+      <li>Missing data points. School construction years aren't in parcel or assessor data, and aren't availble on one nice web page like UI data.</li>
+      <li>Spatial join/proximity issues. I geocoded some data scraped from web pages. Buildings with no data were assigned a construction year based on the nearest point, or the median build year of thsoe surrounding it. </li>
+    </ul>
+    <p align="center">If you see any errors <a href="mailto:mawwwk@gmail.com">drop me a line</a> and I'll work to correct them!</p>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
   </div>
 
 

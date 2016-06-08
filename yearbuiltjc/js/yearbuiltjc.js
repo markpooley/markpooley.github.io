@@ -69,7 +69,7 @@ var g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 function makeMap(){
   //group variable to zoom behavior works correctly
-  d3.json('data/icbuildings_2.topojson', function(error, buildings){
+  d3.json('data/ic_buildings.topojson', function(error, buildings){
   var collection = topojson.feature(buildings, buildings.objects.collection);
   var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform)

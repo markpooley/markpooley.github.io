@@ -328,7 +328,7 @@ function makeMap(error, states, shootings){
 
       legend.append('text')
         .attr('x',legRectWidth/2)
-        .attr('y',(y+legRectHeight/2)+ 2.5)
+        .attr('y',(y+legRectHeight/2)+ legRectHeight*.08)
         .attr('text-anchor','middle')
         .text(state_domain[i])
         .style('font-size',textRatio)
@@ -356,10 +356,12 @@ function makeMap(error, states, shootings){
         .attr('x',cx)
         .attr('y',function(){
           var loc;
-          if (i == 0){
+          if (i == 0 ){
             loc = cy * 1.75
-          } else {
-            loc = cy+2.5
+          } else if (i == 1){
+            loc = cy + (cy*.25)
+          }  else {
+            loc = (y+legRectHeight/2)+ legRectHeight*.08
           }
           return loc
          })

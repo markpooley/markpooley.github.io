@@ -11,7 +11,7 @@ var margin = {
   top: 20,
   left: 35,
   bottom: 25,
-  right: 50
+  right: 75
 }
 
 //temporary empty color that will be used for mouseover and mouseout events

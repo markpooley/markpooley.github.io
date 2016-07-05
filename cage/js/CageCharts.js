@@ -22,7 +22,7 @@ var watched = 0, //count of watched
 var font = 'Lato';
 
 ///variables for determining time spent in the cage
-var yrstart = new Date('2015-06-01'),
+var yrstart = new Date('2015-07-15'),
 	today = new Date();
 
 //get number of days in the cage

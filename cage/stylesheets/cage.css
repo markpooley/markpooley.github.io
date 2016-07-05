@@ -57,13 +57,20 @@ body {
  #poster {
  	margin-bottom: 1em;
  }
- #pQuote {
+a img:hover {
+	opacity: 0.75;
+}
+a img {
+	margin: 0 auto;
+}
+
+#pQuote {
  	margin-left: 10%;
  }
- .hidden {
+.hidden {
 	display: none;
 }
- .toolTip{
+.toolTip{
 	position: absolute !important;
 	height: auto;
 	margin: 0 auto;
@@ -76,10 +83,9 @@ body {
 #pList {
 	margin-left: 10% !important;
 }
-#img {
+#posters li a img {
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin: auto;
 }
 div #caption {
 	margin: auto;

@@ -48,13 +48,15 @@
         </ul>
       </section>
     </nav>
-    <div class="row-full-width">
+    <div class="row-full-width" id="header">
 
-        <img src="images/index_images/banner_main_alt.jpg" class="banner" alt="Banner" class="bottomspace">
-        <div class="overlay main">
+        <!--img src="images/index_images/trestletrail.JPG" class="banner" alt="Banner" class="bottomspace"-->
+        <!--div class="overlay main">
           <h2>Oh High There!</h2>
           <p>I like to ride bikes and write code. I'm a geographic analyst for public health researchers - using ESRI ArcGIS and Python for most of the "heavy lifting". I also create and design interactive web maps using D3. When not at a computer I build and ride bicycles.</p>
-        </div>
+        </div-->
+        <div id="imgSource">
+          <p>Image Source: https://unsplash.com/photos/F9o7u-CnDJk</p></div>
       <!--/div-->
     </div class="bottomspace">
       <div class="row"><h1 align="center">Projects</h1>
@@ -69,12 +71,15 @@
     <div class="break"></div>
 
     <!--Mapping and data visualization section-->
-    <div class="row-full-width" style="position:relative;" >
-        <img id="mapping" class="banner"src="images/index_images/map_banner_large.jpg" alt="Banner" class="bottomspace">
+    <div class="row-full-width" style="position:relative;" id="mapping" >
+        <!--img id="mapping" class="banner"src="images/index_images/map_banner_large.jpg" alt="Banner" class="bottomspace"-->
 
           <div class="overlay project">
           <h2>Mapping and Data Visualization</h2>
           <p>I like to build interactive web maps and visualizations. I use ESRI ArcGIS for most of the geographic data mining and manipulation. For web development I use <a href="http://d3js.org/">D3</a> and javascript.</p>
+        </div>
+        <div id="imgSource">
+          <p>Image Source: https://unsplash.com/photos/whDrFMucHkc</p>
         </div>
 
     </div>
@@ -117,8 +122,8 @@
 
     <div class="break"></div>
     <!--Bicycle Projects-->
-    <div class="row-full-width" style="position:relative;">
-    <img id="bicycle" class="banner" src="images/index_images/bike_banner_large.jpg" alt="Banner" class="bottomspace">
+    <div class="row-full-width" style="position:relative;" id="bicycle">
+    <!--img id="bicycle" class="banner" src="images/index_images/bike_banner_large.jpg" alt="Banner" class="bottomspace"-->
       <div class="overlay project">
         <h2>Bicycle Projects</h2>
           <p>I like bikes. They provide me with a source of transportation and they're cheaper than therapy. I've built one frame from the ground up, and several bikes done several "frame up" builds.</p>
@@ -206,7 +211,7 @@
         );
       $('.cat').click(function(){
         loc = $(this).find('a').attr('href')
-        console.log(loc)
+
         $('html,body').animate({
           scrollTop: $(loc).offset().top},1000);
       })

@@ -32,13 +32,41 @@ header h2 {
 	position: relative;
 	opacity: .90;
 }
+#header {
+	background: url("../images/index_images/trestletrail.jpg") no-repeat top center fixed;
+    background-size: cover;
+    height: 75%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+
+}
+#mapping {
+	background: url("../images/index_images/mapping.jpg") no-repeat top center fixed;
+    background-size: cover;
+    height: 50%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#bicycle {
+	background: url("../images/index_images/Kona.jpg") no-repeat top center fixed;
+    background-size: cover;
+    height: 50%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
 .overlay {
 	position: absolute;
 	top: 50px;
 	left: 50px;
-	width: 33%;
+	width: 50%;
 	border-radius: 10px;
-	background-color: rgba(211,211,211, 0.7);
+	background-color: rgba(211,211,211, 0.15);
 }
 .project {
 	background-color: rgba(47,47,47,0.80) !important;
@@ -55,6 +83,16 @@ div.overlay p {
 	font-size: 1.5em;
 	padding-left: 0.25em;
 	padding-right: 0.25em;
+}
+#imgSource {
+   position: absolute;
+   right: 4px;
+   bottom: 2px;
+}
+#imgSource p {
+	color: white;
+	font-size: 0.75em;
+	opacity: 0.75;
 }
 /*Define mobile stylings*/
 	@media (max-width: 350px) {
@@ -78,13 +116,18 @@ div.overlay p {
 		li h3 {font-size: 1.25em;}
 	}
 
-div.main h2, p {
-	color: black;
-}
+/*div.main h2, p {
+	color: white;
+}*/
 div.main p {
-	color: black;
+	color: white;
 }
+.overlay.main {
+	margin-top: 1.5%;
+	margin-left: auto;
+	margin-right: auto;
 
+}
 
 /*project desription stylings*/
 #proj {

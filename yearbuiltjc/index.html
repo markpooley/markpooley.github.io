@@ -71,7 +71,8 @@
       <li>Incorrect data from government resources</li>
       <li>Old houses/structures have "estimated" constructions years based on criteria the Assessors use (see comment <a href="http://www.press-citizen.com/story/news/local/2016/05/15/map-shows-177-years-iowa-city-growth-90-seconds/84329530/">here</a>). I adjusted for this by using the median build year of surrounding structures for each building with a build year of "1900". You can read more about how I approached this issue <a href="../blog/entries/2015/10/Age_Of_Iowa_City.html#prob1900">here</a> </li>
       <li>Missing data points. School construction years aren't in parcel or assessor data, and aren't availble on one nice web page like UI data.</li>
-      <li>Spatial join/proximity issues. I geocoded some data scraped from web pages. Buildings with no data were assigned a construction year based on the nearest point, or the median build year of thsoe surrounding it. </li>
+      <li>Spatial join/proximity issues. I geocoded some data scraped from web pages. Buildings with no data were assigned a construction year based on the nearest point, or the median build year of those surrounding it. </li>
+      <li>You may notice building footprints aren't 100% accurate. I simplified the JSON to reduce load time and improve performance - which resulted in the building footprints changing in some cases.</li>
     </ul>
     <p align="center">If you see any errors <a href="mailto:mawwwk@gmail.com">drop me a line</a> and I'll work to correct them!</p>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>

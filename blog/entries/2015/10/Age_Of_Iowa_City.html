@@ -113,15 +113,17 @@ arcpy.AddMessage('Process Complete')
         <p>One thing I did not account for was the getting flagged for data mining. As I was testing snippets of code using small lists of parcel numbers I apparently didn't set off any triggers on the assessors website. But, once I tried to pull all the data for every building within the Iowa City limits they flagged me and I had to contact a representative from the assessors office to get the data I wanted - delaying the simple project a couple days.No biggie, but they still have me blocked...</p>
 
 <h3>University of Iowa Buildings</h3><hr>
-<p>Of course University of Iowa Buildings weren't available from the assessor, so I had to fire off a quick little webscraper to grab the address and construction year of those buildings.</p>
+<p>Of course University of Iowa Buildings weren't available from the assessor. Thankfully, the University was eager to share a facilities web page with construction years for all their buildings. I used a simple web scraper script to make this go quicker. I still had to do some manual editing...</p>
 <pre>
 <code class="hljs python">#import modules
+#import modules
 from BeautifulSoup import BeautifulSoup as bs
 from BeautifulSoup import SoupStrainer
 import urllib2
 import re
 import csv
 import time
+import string
 import random
 from collections import defaultdict
 from operator import itemgetter
@@ -129,64 +131,177 @@ from operator import itemgetter
 #declare functions
 #---------------------------
 #get address and build year
-def infoGetter(soup):
-   address = soup.find('div',{'class':'panel-pane pane-entity-field pane-node-field-address'})
-   address = address.find('div',{'class': lambda x: x and 'even' in x.split()})
-   address = address.contents[0]
-
-   year = soup.find('div',{'class': 'panel-pane pane-entity-field pane-node-field-year'})
-   year = year.find('div',{'class': lambda x: x and 'even' in x.split()})
-   year = year.contents[0]
-
-   return address, year
-
-
-#generate all soup and create a list of the building locations
-url = 'http://maps.uiowa.edu/buildings'
-page = urllib2.urlopen(url)
+baseUrl = 'http://www.facilities.uiowa.edu/bldg/bldg-list.asp?submenuheader=3'
+page = urllib2.urlopen(baseUrl)
 soup = bs(page.read())
-#find URLS
-items = soup.findAll('div',{'class':'item-list'})
+base = 'http://www.facilities.uiowa.edu/bldg/'
 
-# get all the create a list of all the building specific URLS
-locs = []
-for i in items:
-   urls = i.findAll('span',{'class': 'field-content'})
-   for j in urls:
-      base = 'http://maps.uiowa.edu'
-      href = j.find('a',).get('href')
-      url = base + href
-      locs.append(url)
+urlList = []
 
-print 'found {0} unique building URLS'.format(len(locs))
+def getUrls(base,soup,urlList):
+   table = soup.findAll('td', {'width': '294'})
+   for i in table:
+      if len(i) > 1:
+         href = i.find('a').get('href')
+         href = base + href
+         urlList.append(href)
+   return urlList
+def getBuildNo(url):
+   ind = url.index('=') + 1
+   num = url[ind:]
+   return num
+#get address
 
-#dictionary of addresses and build year
-d = {}
-#go through URLS and scrape the address and build year from each page
-for i in locs:
-   url = i
-   #print current URL working and sleep the loop randomly to hopefully avoid triggering any flags on the server end.
-   print "Working {0} URL of list, URL: {1}".format(locs.index(i),url)
+def getAddress(soup):
+   items = soup.findAll('tr')[4]
+   address = items.findAll('td')[1]
+   address = address.contents[0]
+   address =  address.renderContents()
+   address = address.replace('\r\n',' ')
+   address = address.split()
+   address = (' ').join(address)
+   return address
 
-   time.sleep(random.randint(0,10))
+def getYear(soup):
+   year = soup.findAll('tr')[7]
+   year = year.findAll('td')[1]
+   year = year.renderContents()
+   return year
+
+#create list of URLS
+urls = getUrls(base,soup,urlList)
+#List of buildings that will have lists
+buildings = []
+
+for url in urls:
+   print 'working on {0}...'.format(url)
+   time.sleep(random.random())
    page = urllib2.urlopen(url)
    soup = bs(page.read())
-   info = infoGetter(soup)
-   d[info[0]] = info[1]
+   address = getAddress(soup)
+   year = getYear(soup)
+   Num = getBuildNo(url)
+   buildings.append([url,address,year])
 
 
 #write output to CSV
-csvHeader = ['Address','City','State','Build_year']
-with open('UiowaBuildings_1.csv','wb') as buildingCSV:
+csvHeader = ['Building Number', 'Address','Build_year']
+with open('UiowaBuildings_2.csv','wb') as buildingCSV:
    writer = csv.writer(buildingCSV)
    writer.writerow(csvHeader)
-   for k,v in d.iteritems():
-      data = [k,'Iowa City','IA',v]
+   for i in buildings:
+      data = [i[0],i[1],i[2]]
       writer.writerow(data)
+
+
 </code>
 </pre>
-<p>With the newly acquired construction and address data written to a csv was able to geocode them and spatially join the construciton year of the geocoded point(s) to the nearest University of Iowa Building. This isn't a perfect solution but it was the path of least resistance and worked fairly well for this application.</p>
-<p>There's definitely some inaccuracies in the data, but it's sufficient for gaining an idea of how and when Iowa City has expanded.</p>
+<h3 id="prob1900">The "1900" Prolem</h3><hr>
+<p>According the the assessor any structure without a known construction date (or one that predates 1930) and a limestone foundation they just assign a construction year of 1900. This creates an artificial "boom" in construction at the turn of the century. To "disperse" the boom I created a script in ArcGIS that looked at every neighbor within 200 feet of each structure with a build year of 1900. The median build year of neighboring structures was then assigned to the building in question. Here's the code I wrote for that</p>
+<pre>
+<code class="hljs python">
+###################################################################################################
+#Import python modules
+###################################################################################################
+import os
+import arcpy
+from arcpy import env
+from itertools import *
+from operator import itemgetter
+from collections import defaultdict
+import numpy
+from random import randint
+################################################################################################
+#Input Variable loading and environment declaration
+################################################################################################
+buildings = arcpy.GetParameterAsText(0) #feature class of buildings
+
+featureCount = int(arcpy.GetCount_management(buildings).getOutput(0)) # get a count of rows in dyad table.
+
+################################################################################################
+# Defining global functions
+################################################################################################
+buildingIDs = []
+randDict = {}
+
+################################################################################################
+#Global variables to be used in process
+################################################################################################
+#create field lists
+fields = [u'OBJECTID',u'YearBuilt']
+#building IDs and dictionary to track new build year
+
+layer = arcpy.MakeFeatureLayer_management(buildings,"Temporary_Layer")
+################################################################################################
+#get a list of all the buildings with a build year of 1900 and the corresponding object IDs to select them
+################################################################################################
+arcpy.SetProgressor("step","creating list of buildings with build year 1900 ",0,featureCount,1)
+
+with arcpy.da.SearchCursor(buildings, fields) as cursor:
+  for row in cursor:
+    if int(row[1]) == 1900:
+      buildingIDs.append(row[0])
+    arcpy.SetProgressorPosition() #update progressor positon
+
+
+arcpy.AddMessage("{0} buildings found with build year of 1900".format((len(buildingIDs))))
+
+################################################################################################
+#update Assigned_To field with matches in the seed List
+################################################################################################
+arcpy.SetProgressor("step","Iterating through buildings...",0,len(buildingIDs),1)
+for building in buildingIDs:
+  #query to select
+  query = "OBJECTID = {0}".format(building)
+  #update progressor label
+  arcpy.SetProgressorLabel('creating selection for {0}'.format(building))
+  #create selection for specific building
+  selection = arcpy.SelectLayerByAttribute_management(layer,"NEW_SELECTION",query)
+  arcpy.SetProgressorLabel('selecting buildings within 200 feet of {0}'.format(building))
+  #get neighbors within 200 feet of selection
+  neighbors = arcpy.SelectLayerByLocation_management(selection,"WITHIN_A_DISTANCE",layer,"200 feet","NEW_SELECTION")
+
+  neighborYears = []
+  with arcpy.da.SearchCursor(neighbors,fields) as cursor:
+    for row in cursor:
+      neighborYears.append(int(row[1]))
+
+  #remove duplicate build years
+  neighborYears = list(set(neighborYears))
+
+  avg = sum(neighborYears)/len(neighborYears)
+  med = int(numpy.median(numpy.array(neighborYears)))
+
+  #if median is 1900 randomly assign a construction year
+  if med == 1900:
+    med = randint(1880,1930)
+
+  #create entry in dictionary
+  randDict[building] = med
+  arcpy.SetProgressorLabel('{0} avg build year: {1}, median build year: {2}'.format(building,avg,med))
+  arcpy.SetProgressorPosition()
+
+################################################################################################
+#Use udpate cursor to update the entries with new build years
+################################################################################################
+arcpy.SetProgressor('step','updating building years for {0} buildings'.format(len(buildingIDs)),0,featureCount,1)
+with arcpy.da.UpdateCursor(buildings,fields) as cursor:
+  for row in cursor:
+    try:
+      row[1] = str(int(randDict[row[0]]))
+      cursor.updateRow(row)
+    except KeyError:
+      pass
+  arcpy.SetProgressorPosition()
+
+################################################################################################
+#Final Output and cleaning of temp data/variables
+################################################################################################
+del layer
+arcpy.AddMessage("Process complete!")
+</code>
+</pre>
+<p>There's still some inaccuracies in the data, but it's sufficient for gaining an idea of how and when Iowa City has expanded.</p>
         <p>The final map output can be found <a href="../../../../yearbuiltjc/index.html">here.</a> </p>
     </div>
 </div><hr>

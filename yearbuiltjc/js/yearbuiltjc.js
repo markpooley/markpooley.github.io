@@ -14,7 +14,7 @@ var margin = {
 var colors = ['rgb(213,62,79)','rgb(244,109,67)','rgb(253,174,97)','rgb(254,224,139)','rgb(255,255,191)','rgb(230,245,152)','rgb(171,221,164)','rgb(102,194,165)','rgb(50,136,189)']
 var colLow = "#2892C7"
 var colHigh = "#E81014"
-var colorScale = d3.scale.quantize().domain([1800,2015]).range(colors)
+var colorScale = d3.scale.quantize().domain([1800,2016]).range(colors)
 //temporary empty color that will be used for mouseover and mouseout events
 var tempColor;
 
@@ -69,7 +69,7 @@ var g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 function makeMap(){
   //group variable to zoom behavior works correctly
-  d3.json('data/ic_buildings.topojson', function(error, buildings){
+  d3.json('data/ic_buildings_simple.topojson', function(error, buildings){
   var collection = topojson.feature(buildings, buildings.objects.collection);
   var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform)
@@ -105,7 +105,7 @@ function makeMap(){
     return d.properties.COUNT_Year
    });
    var yearPos = 1500;
-   console.log(maxBuildCount)
+
    var yScale = d3.scale.linear()
     //.domain([0,d3.max(collection.features, function(d){
     //  return d.properties.COUNT_Year
@@ -256,11 +256,10 @@ function makeMap(){
         var yr = d.properties.YearBuilt;
         var barID = '#yr'+yr;
         if (yr  < 1800){
-          //say build year is unknown
-        //d3.select("#buildyear").text("Year: unknown" )
+
         } else {
           //add build year
-          //d3.select("#buildyear").text("Year: " + yr)
+
           d3.select(barID).style('opacity',1)
           d3.select(this).style('opacity',1)
           d3.select('#yearLine').style('opacity',0.50)
@@ -280,7 +279,7 @@ function makeMap(){
     .on('mouseout',function(d){
       if (buildingMouseOver == true){
         //transition text back
-        //d3.select("#buildyear").text("Year: ")
+
         var barID = '#yr'+d.properties.YearBuilt;
         d3.select(barID).style('opacity',0.75)
         d3.select(this).style('opacity',0.60)
@@ -299,7 +298,10 @@ function makeMap(){
     $('#animate').on('click', function(){
       d3.select('#animate').classed('disabled', true)
       buildings.style('opacity', .10)
-      bars.style('opacity',0)
+      //transition bars to drop down to 0
+      bars.transition()
+        .attr('y',yScale(0))
+        .attr('height',0)
       var tempBuidlings = d3.selectAll('.buildings').data();
       var legendOpac = d3.selectAll('.legend').style('opacity',0.25);
       buildingMouseOver = false;
@@ -322,18 +324,21 @@ function makeMap(){
           d3.select('#legend').select('#legyr1800').style('opacity',0.85)
         };
 
-        if (year <= 2014){
-          setTimeout(function(){
+        if (year <= 2016){
+          var timer = setTimeout(function(){
             //update legend category
             d3.select(legSelector).style('opacity',0.85)
             d3.select('#yearLine').style('opacity',.75)
               .attr('x',xScale(year) + margin.left + 2.5)
             d3.select(selector).style('opacity',0.85);
-            //d3.select('#buildyear').text('Year: ' + year + ', Count: ' + buildCount);
-            d3.select(barSelector).style('opacity',1)
-              .transition()
-              .duration(500)
-              .style('opacity',0.75)
+            //update bars
+            d3.select(barSelector).transition().duration(450)
+                .attr('height',function(d){
+                  return graphHeight-margin.top-margin.bottom - yScale(d.properties.COUNT_Year)
+                })
+                .attr('y',function(d){
+                  return yScale(d.properties.COUNT_Year)
+                })
             d3.select('#yearLineCount')
               .attr('x',xScale(year)+margin.left+ 5)
               .attr('y',yScale(buildCount) - 2)
@@ -346,13 +351,15 @@ function makeMap(){
             animate(data, ++index);
           },500)
         };
-        if (year == 2014) {
+        if (year == 2016) {
+          d3.select(selector).style('opacity',0.85);
           d3.select('#yearLine').transition().duration(1500).style('opacity',0)
           d3.select('#yearLineCount').transition().duration(1500).style('opacity',0)
           d3.select('#yearLineYear').transition().duration(1500).style('opacity',0)
           d3.select('#animate').classed('disabled', false)
           buildingMouseOver = true;
           barMouseOver = true;
+          clearTimeout(timer);
         };
 
 

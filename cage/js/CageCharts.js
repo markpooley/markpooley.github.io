@@ -93,7 +93,7 @@ var pctDone = function(watched,unwatched){
 	if (watched == 0){
 		done = 0
 	} else {
-		done = watched/total * 100
+		done = (watched-1)/total * 100
 	}
 	return done
 }

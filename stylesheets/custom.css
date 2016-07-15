@@ -60,6 +60,15 @@ header h2 {
     padding: 0;
     position: relative;
 }
+#randomBanner {
+	background: url("../images/index_images/random.jpg") no-repeat top center fixed;
+    background-size: cover;
+    height: 50%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
 .overlay {
 	position: absolute;
 	top: 50px;

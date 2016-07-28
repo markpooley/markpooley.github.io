@@ -16,7 +16,6 @@ var textY = $('#cageGauge').height()
 //set up variables for drawing cage Gague
 var start = 0 - Math.PI/2; //Starting point of arc gauge
 var p = Math.PI/2; //ending point of arc on gauge
-var intervals = [0,20,40,60,80,100]; //intervals for Cage Guage animation
 var watched = 0, //count of watched
 	total = 0; //total count of entries
 var font = 'Lato';
@@ -84,7 +83,7 @@ freakSVG.append('text')
 
 
 //get number of elements watched and unwatched
-var unwatched = d3.selectAll('.unwatched')[0].length
+var unwatched = d3.selectAll('.unwatched')[0].length - 1
 var watched = d3.selectAll('.watched')[0].length
 
 //calculate the pct done
@@ -97,8 +96,8 @@ var pctDone = function(watched,unwatched){
 	}
 	return done
 }
-pctWatched = pctDone(watched,unwatched)
-
+//pctWatched = pctDone(watched,unwatched)
+pctWatched = 100
 //set up the arcs for the gauges
 var arc = d3.svg.arc()
 	.innerRadius(arcInnerRadius)
@@ -320,7 +319,6 @@ function drawViz(){
 			.delay(500)
 			.duration(3000)
 			.tween('text',tweenText(days));
-
 
 	//draw Cage Gauge, which is the pct of movies watched
 	var delay = 3500; //delay the the bottom counters

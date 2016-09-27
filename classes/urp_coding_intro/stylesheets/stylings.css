@@ -1,0 +1,21 @@
+/*wWeek class exercises worksheet stylings*/
+span {
+	font-family:  Consolas, "Liberation Mono", Courier, monospace !important;
+	font-weight: bold;
+}
+h3 {
+	text-align: center;
+}
+p#hint  {
+	text-align: center;
+	font-style: italic;
+}
+p#challenge, p#solution {
+	text-align: center;
+}
+#heading {
+	text-align: center;
+}
+#solution {
+	bottom:0 !important;
+}

@@ -1,0 +1,434 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/rainbow.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <meta name="keywords" content="generating random points in ArcGIS, ArcGIS, ArcMap, arcpy, python, search cursor, zip codes, shapefile, ESRI">
+    <meta name="description" content="generating random points within defined geographic boundries using an interative python process and creating a tool in ESRI ArcGIS.">
+    <title>Week 3 Class Exercises</title>
+    <link rel="stylesheet" href="../../../../stylesheets/app.css"/>
+    <link rel="stylesheet" href="../../../stylesheets/custom.css"/>
+    <link rel="stylesheet" href="stylesheets/stylings.css"/>
+    <script src="../../../../bower_components/modernizr/modernizr.js"></script>
+  </head>
+  <body>
+        <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"></li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../blog/">Blog</a></li>
+          <li><a href="../../Resume.html">Resume</a></li>
+          <!--li><a href="#">Contact</a></li-->
+
+        </ul>
+      </section>
+    </nav>
+    <br>
+<div data-magellan-expedition="fixed">
+  <dl class="sub-nav">
+    <dd data-magellan-arrival="week1"><a href="#week1">Week 1:</a></dd>
+    <dd data-magellan-arrival="week2"><a href="#week2">Week 2:</a></dd>
+    <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Loops</a></dd>
+    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: </a></dd>
+  </dl>
+</div>
+<div class=row>
+  <div class="Large-10 columns" id="week3" data-magellan-destination="week3">
+    <h1 id="heading">Working with <code>loops</code></h1>
+    <div class="panel">
+      <p>Working with loops and understanding how to structure them is how you leverage programming skills into working for you - reducing monotous work. You can loop through thousands of lines of data looking for specific occurences or data types in seconds. You can add conditional statements to loops, do loops within loops. We'll work with small lists to get the hang of working with loops. The structure is the same no matter if you have a list/array of 5 data points or 5 million.</p>
+    </div>
+  </div>
+
+</div>
+<div class="row">
+    <div class="large-6 columns" id="instructionWindow">
+
+      <h3>Review</h3>
+      <ol>
+        <li>Start by creating a function that takes input from the user.
+          <ol>
+            <li>Check that the <code>raw_input</code> is a string using <code>.isalpha()</code></li>
+            <li>use an <code>if else</code> statement to print a statement for each condition.</li>
+            <li>Test your function by calling it.</li>
+          </ol>
+        </li>
+        <li>Create three variables that are comparisons
+          <ol>
+            <li>Have <code>comp1</code> evalute to <code>True</code></li>
+            <li>Have <code>comp2</code> evaluate to <code>False</code> using  an <code>and</code> statement</li>
+            <li>Have <code>comp3</code> evalute to <code>True</code> using an <code>or</code> statement</li>
+          </ol>
+        </li>
+        <li>Create a string variable and convert it to all upper case using <code>.upper()</code> notation.
+          <ol>
+            <li>Access the first letter of the string using the <code>[]</code> notation</li>
+            <li>Access the last letter of the string</li>
+            <li>Create new string with the first and last letter swapped</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+
+
+<div class="large-6 columns" id="codeWindow">
+<h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+#variable to get input from user
+var = raw_input('Type a string. Any string you like. So long as it\'s a string: ')
+#define/create function
+def function(variable):
+  if variable.isalpha():
+    print "Thank you! You typed a string"
+  else:
+    print "False! That's not a string!"
+
+#call function
+function(var)
+
+#create three comparison variables
+comp1 = #evaluates to True
+comp2 = #evalutes to False using 'and'
+comp3 = #evaluates to True using 'or'
+print comp1, comp2, comp3
+
+#string variable
+s = 'I\'m the Dude. You\'re Mr. Lebowski!'
+s1 = s[0] #acces first letter using brackets
+</code>
+</pre>
+</div>
+</div><!--end of row-->
+<hr>
+<div class="row">
+  <div class="large-6 columns">
+    <h3><code>for</code> Loops</h3>
+    <p>Loops are way of iterating through lists, arrays, strings, and the like. You can loop through and look for certain variables, perform an operation on all of them, or any number of other things. Understanding loops is a fundamental lesson in programming.</p>
+    <ol>
+      <li>Create a list with 5 elements in it. They can be numbers, strings, booleans, anything you like.
+        <ol>
+          <li>Using the <code>for</code> accessor loop through your list and print each variable.</li>
+        </ol>
+      </li>
+      <i>**You'll notice the "<code>thing</code>" is just a place holder. Commonly <code>i</code> is used in loops (i.e. <code>For i in ls:</code>).**</i>
+      <li>Append two more elements to your list. They can be any data type so long as one of them is a float (i.e. 1.23). use the list<code>.append(thing)</code> accessor to to this</li>
+      <br>
+      <div class=panel><p id=challenge>If you want to challenge yourself <a href="#" data-reveal-id="challenge1">click here</a></p></div>
+      <li>Modify your <code>for</code> loop to print the thing if the thing is a digit.
+        <ol>
+          <li>To check of a variable is numeric you need to check if it's an integer (<code>int</code>)</li>
+          <li>Use the <code>type(variable)</code> to determine the type for each thing in list</li>
+          <li>If the type is a number print a string notifying the user that it's a number. If not, print a string notifying it isn't</li>
+          <i>**You'll notice that the float isn the list isn't evaluated as a number..**</i>
+          <li>Add an <code>or</code> to the <code>if</code> conditional statement to check if a list element is a float.</li>
+        </ol>
+      </li>
+      <li>Add an <code>elif</code> to check of a variable is a boolean (<code>True</code> or <code>False</code>)
+        <ol>
+          <li>Add a print statement to this condtion similar to those in step 3.3 </li>
+        </ol>
+      </li>
+      <li>Add another <code>elif</code> to check of an element is text using <code>.isalpha()</code></li>
+    </ol>
+    <div class="panel">
+    <p id=hint><a href="#" data-reveal-id="hint1">click for hint</a> if you're noticing a problem with one of the outputs of the loop</p>
+    </div>
+  </div>
+
+<div class="large-6 columns" id="codeWindow">
+  <h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+ls = [1,True,'text',1.23,'Some more text']
+for thing in ls:
+  print thing
+
+#modified loop
+for thing in ls:
+  if type(thing) == int:
+    print '%s is a number' %(thing)
+  else:
+    print '% is not a number' %(thing)
+
+</code>
+</pre>
+    <div class="panel">
+    <p id=solution ><a href="#" data-reveal-id="solution0">click here for the solution</a></p>
+    </div>
+
+</div>
+</div> <!-- end of row-->
+
+
+<hr>
+<div class="row">
+<div class="large-6 columns">
+  <h3><code>for i in range()</code> Loops</h3>
+  <p>The <code>for i in range()</code> loop type is a bit different than the standard <code>for i in ... </code> loop. Think of <code>for i in range()</code> as accessing the index of an array of elements. As an example, we'll do two of these loops with one small difference. you can read more about the range function <a href="https://docs.python.org/2/library/functions.html#range">here</a>.</p>
+  <ol>
+    <li>You can use the same list you created for in the <code>for</code> loop section, except use the <code>for i in range(len(list_varaible))</code>.The built in <code>range()</code> function combined with a <code>for</code> loop will iterate the number times as your list is long which is fed into the range function. </li>
+    <li>As an exercise, create a variable equal to the <code>range(len(list_variable))</code> and print it. How many elements are in the list?</li>
+    <li>Modify your loop for each element in the list it will print the element and the index where it is in the list.</li>
+    <li>Modify the loop so it prints the variable, type and index</li>
+    <li>Modify the loop so that you only print elements in the list occuring at odd indices. <i>**hint use the % operator**</i></li>
+  </ol>
+</div><!--end of instruction div-->
+
+<div class="large-6 columns" id="codeWindow">
+<h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+#use the for i in range loop on a list
+for i in range(len(list_variable)):
+  print i
+list_range = range(len(list_variable)
+print list_range
+
+#print element and index
+for i in range(len(list_variable)):
+  print '%s is at index: %s' %(list_variable[i],i)
+</code>
+</pre>
+
+    <div class="panel">
+    <p id=solution><a href="#" data-reveal-id="solution1">click here for the solution</a></p>
+    </div>
+</div>
+</div><!-- end of row-->
+<hr>
+<div class="row">
+  <div class="large-6 columns">
+    <h3><code>while</code> Loops</h3>
+    <p>A <code>while</code> loop will continue to as long as a condition is true. This can be dangerous. If you don't specify how to break the loop it will continue infinitely - hence the term infinte loop. Much like the "revolving door of experience" where you can't get a job w/o experience, but you need a job to get experience...</p>
+    <ol>
+      <li>import the random library by using <code>import random</code>.</li>
+      <li>Use a <code>while</code> loop that will continue to append random numbers to a list until the list length is greater than 10
+        <ol>
+          <li>create an empty list</li>
+          <li>create a <code>bool</code> variable and set it to <code>True</code></li>
+          <li>establish a <code>while</code> with your boolean condition. </li>
+          <li>Generate a random number between 0 and 100 and store it to a variable.</li>
+          <li>Append the number to your list.</li>
+          <li>Create a condtional statement using <code>if</code> to check the list length. If it's <code>&gt;= 10</code> set your continue variable to <code>False</code>.</li>
+          <li>Print your list after each append opeartion.</li>
+          <i>**what happens if you check your list length before appending the variable. </i>
+        </ol>
+      </li>
+    </ol>
+
+
+
+  </div>
+<div class="large-6 columns">
+  <h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+#import random library
+import random
+
+#print a random number between 0 and 100
+#numbers in the parenthesis are the lower, and upper bounds
+#of where you want a random number created
+print random.randint(0,100)
+
+#empty list
+ls = []
+
+#create a boolean variable
+
+
+while addNumbers:
+  #your while loop contents will go here!
+
+</code>
+</pre>
+<div class=panel><p id=solution><a href="#" data-reveal-id="solution2">click here for the solution</a></p></div>
+</div>
+
+</div><!-- end of row-->
+<hr>
+<!--challenge problem-->
+<div class="row">
+  <h1 id="heading">Challenge</h1>
+  <div class="large-12 columns">
+    <p>Here's a challenge for you. You don't have to tackle this, as with the entire class - <span data-tooltip aria-haspopup="true" class="has-tip" title="Well, everything you've done is optional. So, you're clearly an overachiever. So, maybe you should give this a go to?">it's optional</span>. Create a list of 20 random numbers between 0 and 20 using the <code>while</code> loop from the last sections. Now, define a function called targetCounter that takes two arguments as input <code>def targetCounter(list_variable,target)</code>. This function will count the number of times your target occurs in the list of random numbers. So, the steps are as follows:</p>
+    <ol>
+      <li>Create function called <code>targetCounter</code> that takes a list and number as arguments</li>
+      <li>create a variable inside the function that will count the number of times a target occurs <a href="#" data-reveal-id="challengeHint1">hint</a></li>
+      <li>loop through the list using a simple <code>for</code> loop
+        <ol>
+          <li>inside this loop check if the current number is equal to the target using an <code>if</code> conditional statement</li>
+          <li>if the above condition is satisfied increment the counter using one of two methods
+          <ol>
+            <li>incrementing the counter variable using <code>counter += 1</code></li>
+            <li>incrementing the counter using <code>counter = counter + 1</code></li>
+          </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+</div><!--end of row-->
+<div class='row'>
+  <div class="panel">
+    <p id="solution"><a href="#" data-reveal-id="week3Challenge">click here for solution</a> (after you've at least given it the old "college try"...</p>
+  </div>
+</div>
+
+<div id="challenge1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+  <p>create a list of two elements (with one of them being a floating point/decimal number). Then use a <code>for</code> loop to iterate through your list of two elements and <code>append()</code> each element to your list of 5 elements.</p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+<div id="hint1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+  <p>If one of the elements is a string with multiple words (has spaces between words) <code>.isalpha()</code> will evaluate to false. You can use string<code>.replace(" ", "")</code> to remove any spaces from a string. The <code>.replace()</code> function looks for the first thing in the parenthesis and replaces it with the second. So, <code>.replace(thing to find, thing to replace it with)</code></p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+<div id="solution0" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+#list of things
+ls = [1,'two',3.23,'number four',True, 'six thousand']
+#for loop
+for item in ls:
+    #checck for integer or float
+    if type(item) == int or type(item) == float:
+        print '%s is a number' %(item)
+    #check for boolean
+    elif type(item) == bool:
+        print '%s is a boolean' %(item)
+    #check for text
+    elif item.isalpha():
+        print '%s is text' %(item)
+    #here's the tricky one of chaining functions
+    #
+    elif item.replace(" ",'').isalpha():
+        print 'Ahhh! %s is text too!' %(item)
+    else:
+        print 'I don\'t know what type of variable %s is!' %(item)
+
+
+</code>
+
+</pre>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+<div id="solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+#This is the solution for steps 3,4,5 combined.
+#loop through list
+for i in range(len(ls)):
+    #check for odd indices using modulo
+    if i % 2 > 0:
+        print "%s is at index %s in the list and is type: " %(ls[i],i,type(ls[i]))
+</code>
+
+</pre>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+<div id="solution2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+
+import random
+
+#empty list
+ls = []
+
+#create a boolean variable
+addNumbers = True
+
+while addNumbers:
+  number = random.randint(0,100)
+  ls.append(number)
+
+  if len(ls) >= 10:
+    addNumbers = False
+
+print len(ls), ls #list should be 10 items long
+
+#what if you move your if condition up to before you append insruction?
+while addNumbers:
+  number = random.randint(0,100)
+
+  if len(ls) >= 10:
+    addNumbers = False
+
+  ls.append(number)
+
+print len(ls), ls #list should be 11 items long
+
+</code>
+
+</pre>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+<div id="week3Challenge" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+import random
+#empty list
+ls = []
+
+#create a boolean variable
+addNumbers = True
+
+#create your list of random numbers
+while addNumbers:
+  number = random.randint(0,20)
+  ls.append(number)
+
+  if len(ls) >= 20:
+    addNumbers = False
+
+def targetCounter(ls,target):
+  counter = 0 #target counter/tracker variable
+  #loop through list
+  for i in ls:
+    if i == target: #check if i is the target
+      counter += 1 #increment counter
+
+  #lets use a return statemetn here
+  return counter
+
+#call the function on your list of random numbers and assign it to a variable
+#without a return statement in the targetCounter function this varible wouldn't
+#actually have anything assigned to it.
+targetCount = targetCounter(ls,5)
+print ls
+print targetCount
+
+</code>
+</pre>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+
+
+
+  <footer class="row" id="footer">
+
+  <div class="large-12 columns text-center">
+
+    <br>
+    <p font-color="white">Iowa City • IA <br>
+    <a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+    <a href="http://markpooley.github.io/">www.markpooley.github.io</a><p>
+  </footer>
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../../bower_components/foundation/js/foundation.min.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

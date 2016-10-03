@@ -34,14 +34,379 @@
 <div data-magellan-expedition="fixed">
   <dl class="sub-nav">
     <dd data-magellan-arrival="week1"><a href="#week1">Week 1:</a></dd>
-    <dd data-magellan-arrival="week2"><a href="#week2">Week 2:</a></dd>
+    <dd data-magellan-arrival="week2"><a href="#week2">Week 2: Introduction</a></dd>
     <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Loops</a></dd>
-    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: </a></dd>
+    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: Creating Functions </a></dd>
   </dl>
 </div>
+<!--week 2 class-->
+<div class="row">
+  <h1 id="heading" data-magellan-destination="week2">Week 2</h1>
+  <div class="Large-12 columns" id="week2" >
+    <h2 id="heading">Introduction to <code>Python</code></h2>
+    <div class="panel">
+      <p>Python is a versatile and widely used language. It can be used for data processing/data mining, web development, and inside of ESRI's ArcGIS environment. The documentation is extensive and there are numerous libraries to help make your life easier.</p>
+    </div>
+  </div>
+</div><!--end of row-->
+<hr>
+<div class="row">
+  <div class="large-6 columns id=instructionWindow">
+    <h3 id="heading">Variables</h3>
+    <ol>
+      <li>Create a new document in Wing and enter a <code>print</code> statement in the window. You should see it print to the lower right after clicking the "run"/"play" button.</li>
+      <li>Assign a number to a variable using the <code>=</code></li>
+      <li>Create three more variables
+        <ol>
+          <li>Integer (no decimal)</li>
+          <li>Floating point (decimal)</li>
+          <li>Boolean (true or false)</li>
+        </ol>
+      </li>
+      <li>print one of your integer variables, below the <code>print</code> statement assign that variable to a new value and <code>print</code> it again.</li>
+      <li></li>
+    </ol>
+  </div>
+  <div class="large-6 columns">
+<h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+#print statement
+print "Oh hi there! This is a python print statement!"
+
+#variable assignment
+var = 123
+
+var_int = 123
+var_float = 1.23
+var_bool = True
+
+</code>
+</pre>
+  </div>
+</div><!--end of row-->
+<hr>
+<div class="row">
+  <div class="large-6 columns">
+    <h3 id="heading"><code>Functions</code></h3>
+    <p>Functions are a set of organized and reusable code. You're already familiar with one of Python's built in funcitons - <code class="python">print</code>. Python has numerous built in functions, but you can also define your own. Functions in Python follow a consistent structure
+      <ul>
+        <li>A <code>def</code> followed by the function name, parentheis and a colon (<code class="python">def function(parementer1,parameter2):</code></li>
+        <li>Any parameters/arguments passed into the function are put inside the parenthesis separated by a comma. Arguments/paramters aren't required..</li>
+        <li>Code inside a function has to be indented</li>
+        <li>A <code class="python">return</code> statement will exit the function and return any variables/data you want as an output.</li>
+      </ul>
+    </p>
+    <ol>
+      <li>Create a new function using <code>def</code> and call it <code>multiply</code> </li>
+      <li>Have this function take two numbers as arguments</li>
+      <li>Inside the function multiply the first number by the second and return it</li>
+      <li>Call the function <code>multiply(3,5)</code>. What happens? What if you add a <code>print</code> statement fore calling the <code>multiply</code> function?</li>
+    </ol>
+  </div>
+  <div class="large-6 columns">
+    <h3 id="heading"><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+def multiply(number1,number2):
+  newNumber = number1 * number2
+  return newNumber
+
+multiply(3,5)
+
+</code>
+</pre>
+  </div>
+
+</div><!--end of row-->
+<hr>
+<div class="row">
+  <div class="large-6 columns">
+    <h3 id="heading">Math Operations</h3>
+    <p>You're already somewhat familiar with math operations from creating the <code>multiply</code> function</p>
+    <ol>
+      <li>Create the following variables:
+        <ol>
+          <li><code>add</code> (add two numbers)</li>
+          <li><code>subract</code>(by subtracting two numbers)</li>
+          <li><code>multi</code> (multiply two numbers)</li>
+          <li><code>divide</code> (divide two numbers)</li>
+          <li><code>power</code> (raise one number to the power of another)</li>
+          <li><code>remainder</code> (use the <code>%</code>(modulo) to get the remainder of a division operation)</li>
+        </ol>
+      </li>
+      <li><code>print</code> your variables</li>
+      <li>Use some math operations to figure out your bar tab:
+        <ol>
+          <li>bar tab is 15.75</li>
+          <li>local sales tax is 6.75% (0.0675)</li>
+          <li>you tip generously at 18%</li>
+        </ol>
+      </li>
+    </ol>
+  </div>
+  <div class="large-6 columns">
+    <h3 id="heading"><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+add = 123 + 456
+subract = 456 - 123
+multi = 5 * 4
+divide =  9 / 4
+power = 5 ** 6
+remainder = 9 / 4
+print add, subract, multi, divide, power, remainder
+
+barTab = 15.75
+tax = 0.0675
+tip = 0.18
+
+#calculate the total bill
+barTotal =
+
+print barTotal
+</code>
+</pre>
+
+  </div>
+</div><!--end of row-->
+<hr>
+<div class="row">
+<div class="large-6 columns">
+  <h3 id="heading">Strings</h3>
+  <ol>
+  <li>Create a string variable and set it equal to some text.</li>
+  <li><code>print</code> the string</li>
+  <li>Strings can be contained in single quotes (<code>'text'</code>) or double quotes <code>"text"</code>. But, if an apostrophe (single quote) occurs in the string contained by single quotes you need a <code>\</code> before it.</li>
+  <li>You can use <code>[]</code> to access characters at a specifice index in a string, or to access part of a string
+    <ol>
+      <li>access the first character of one of your string variables</li>
+      <li>access the last character of one of your string variables</li>
+      <li>access the 2<sup>nd</sup> through the 5<sup>th</sup> character in your string (<a href="#" data-reveal-id="stringHint1">hint</a>)</li>
+    </ol>
+  </li>
+  <li>Use the <code>len()</code> function to determine the length of a string. Assign that length to the variable <code>stringLength</code> and <code>print</code> it.</li>
+  <li>Use the <code>.upper()</code> and <code>.lower()</code> to convert as string to all upper case or all lower case.</li>
+  <li>Convert a number to a string using <code>str()</code>.</li>
+  <li>String Concatenation
+    <ol>
+      <li>strings can be concantenated using the <code>+</code> operation.</li>
+      <li>convert a number to a string and concantenate it with another string.</li>
+      <li>You can also use a place holder in a string to fill it in later. This is useful for putting numbers in strings w/o converting them to a string first. Use the <code>%s</code> place holder in a string with <code>%(variable_to_put_in_string)</code>.</li>
+    </ol>
+  </li>
+  <li>Use the <code>raw_input('enter some text: ')</code> to get input from the user and insert into a string using the <code>%s</code>.</li>
+  </ol>
+</div>
+<div class="large-6 columns">
+<h3 id="heading"><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+#text variable
+text = 'The Dude Abides'
+
+#adding apostrohpe inside string with double quotes using \
+dudeRug = 'That\'s the Dude\'s rug!'
+
+#print specific indices
+ind1 = text[0]
+indlast = text[-1]
+indMiddle = text[1:5]
+print ind1, indLast, indMiddle
+
+#text length
+textLength = len(text)
+
+textUpper = text.upper()
+textLower = text.lower()
+print textUpper, textLower
+
+number = 123
+numberString = str(number)
+print numberString
+
+#string concantenation
+concat1 = 'The' + 'Dude' + 'Abides'
+concat2 = 'The answer to the Universe is: ' + str(42)
+concat3 = 'That %s really tide the %s together Dude.' %('rug','room')
+
+name = raw_input('What's your name? )
+print 'Hi %s. I'm HAL' %(name)
+
+</code>
+</pre>
+</div>
+</div><!--end of row-->
+<hr>
+<div class="row">
+<div class="large-6 columns">
+  <h3 id="heading">Comparisons</h3>
+  <p>You're already likely familiar with comparisons. The <code>&lt;</code> is an example of a comparison. Comparisons are result in a boolean variable <code>True</code> or <code>False</code>.</p>
+  <ol>
+  <li>Create variables that are assigned to a comparison statement
+    <ol>
+      <li>Use the <code>==</code> (equal to)</li>
+      <li>Use the <code>!=</code> (not equal to</li>
+      <li>Use the <code>&lt;</code> or <code>&gt;</code>(less than or greater than)</li>
+      <li>use the <code>&lt;=</code> or <code>&gt;=</code>(less/greater than or equal to.</li>
+    </ol>
+  </li>
+  <li>As an exercise change the b1 through b5 variables so that they now evalaute oppostite of their original value (if originally <code>True</code> change the values or comparison signs so they evalute <code>False</code>.</li>
+  <li>The <code>and</code> and <code>or</code> operators can be used in conjunction with comparisons to use multiple arguments. Below is a table of how these operate and the boolean variable they create.
+    <table>
+      <th colspan=4><code>or</code> Table</th>
+      <tr>
+        <td>Statement 1</td>
+        <td>operator</td>
+        <td>Statement 2</td>
+        <td>True or False?</td>
+      </tr>
+      <tr>
+        <td><code>True</code></td>
+        <td><code>or</code></td>
+        <td><code>True</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>True</code></td>
+        <td><code>or</code></td>
+        <td><code>False</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>False</code></td>
+        <td><code>or</code></td>
+        <td><code>True</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>False</code></td>
+        <td><code>or</code></td>
+        <td><code>False</code></td>
+        <td><code>False</code></td>
+      </tr>
+      <th colspan=4><code>and</code> Table</th>
+      <tr>
+        <td>Statement 1</td>
+        <td>operator</td>
+        <td>Statement 2</td>
+        <td>True or False?</td>
+      </tr>
+      <tr>
+        <td><code>True</code></td>
+        <td><code>and</code></td>
+        <td><code>True</code></td>
+        <td><code>True</code></td>
+      </tr>
+      <tr>
+        <td><code>True</code></td>
+        <td><code>and</code></td>
+        <td><code>False</code></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>False</code></td>
+        <td><code>and</code></td>
+        <td><code>True</code></td>
+        <td><code>False</code></td>
+      </tr>
+      <tr>
+        <td><code>False</code></td>
+        <td><code>and</code></td>
+        <td><code>False</code></td>
+        <td><code>False</code></td>
+      </tr>
+    </table>
+  </li>
+  <li>The <code>not</code> operator reverses the boolean created by the statement following it. </li>
+  <li>Work through the b1 through b5 variables under the <code>#Exercises</code> to make them evaluate correctly based on the comment above them.</li>
+  </ol>
+</div>
+<div class="large-6 columns">
+<h3 id="heading"><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+b1 = 25 ==5**5
+b2 = 4 !- 5
+b3 = 72 &lt; 43
+b4 = 72 &gt; 43
+b5 = 25 &gt;= 25
+print b1, b2, b3, b4, b5
+
+bAnd1 = 1&gt; 2 and 2 &gt; 3
+bAnd2 = True and False
+bAnd3 = False or True
+bAnd4 = True and 4*3 &gt; 10
+bAnd5 2 ==2 and 3 == 5
+print bAnd1, bAnd2, bAnd3, bAnd4, bAnd5
+
+bOr1 = 1 &gt; 2 or 2 &gt; 3
+bOr2 = True or False
+bOr3 = False or 1 == 1
+bOr4 = True or 2 &gt; 5
+bOr5 = 2 == 2 or 4 == 3
+print bOr1, bOr2, bOr3, bOr4, bOr5
+
+bNot1 = not 2 &gt; 3
+bNot2 = not True
+bNot3 = not 3 &gt; 2
+bNot4 = not 2 == 3
+print bNot1, bNot2, bNot3, bNot4
+
+#Exercises for you
+
+#Make me False
+b1 = 1 &gt; 2 and 3 == 3
+
+#make me true
+b2 = 1 &gt; 0 and not True
+
+#make me false
+b3 = not True or 3 == 3
+
+#make me True
+b4 = not False and 3*4 != 12
+
+#make me False
+b5 = 1 != 2 and 1 == 1
+
+</code>
+</pre>
+    <div class="panel">
+    <p id=solution ><a href="#" data-reveal-id="week2Solution0">click here for the solution</a></p>
+    </div>
+<div id="week2Solution0" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+#Make me False
+b1 = 1 &gt; 2 and 3 != 3
+
+#make me true
+b2 = 1 &gt; 0 and not False
+
+#make me false
+b3 = not True or 3 != 3
+
+#make me True
+b4 = not False and 3*4 == 12
+
+#make me False
+b5 = 1 &gt; 2 and 1 == 2
+</code>
+
+</pre>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+</div>
+</div><!--end of row-->
+<hr class='week'>
+<hr class='week'>
+<!--week3 class-->
+<h1 id="heading" data-magellan-destination="week3"s>Week 3</h1>
 <div class=row>
-  <div class="Large-10 columns" id="week3" data-magellan-destination="week3">
-    <h1 id="heading">Working with <code>loops</code></h1>
+  <div class="Large-12 columns" id="week3" >
+    <h2 id="heading">Working with <code>loops</code></h2>
     <div class="panel">
       <p>Working with loops and understanding how to structure them is how you leverage programming skills into working for you - reducing monotous work. You can loop through thousands of lines of data looking for specific occurences or data types in seconds. You can add conditional statements to loops, do loops within loops. We'll work with small lists to get the hang of working with loops. The structure is the same no matter if you have a list/array of 5 data points or 5 million.</p>
     </div>
@@ -156,7 +521,7 @@ for thing in ls:
   if type(thing) == int:
     print '%s is a number' %(thing)
   else:
-    print '% is not a number' %(thing)
+    print '%s is not a number' %(thing)
 
 </code>
 </pre>
@@ -167,8 +532,8 @@ for thing in ls:
 </div>
 </div> <!-- end of row-->
 
-
 <hr>
+
 <div class="row">
 <div class="large-6 columns">
   <h3><code>for i in range()</code> Loops</h3>
@@ -204,6 +569,7 @@ for i in range(len(list_variable)):
 </div>
 </div><!-- end of row-->
 <hr>
+
 <div class="row">
   <div class="large-6 columns">
     <h3><code>while</code> Loops</h3>
@@ -277,10 +643,16 @@ while addNumbers:
     </ol>
   </div>
 </div><!--end of row-->
+
 <div class='row'>
   <div class="panel">
     <p id="solution"><a href="#" data-reveal-id="week3Challenge">click here for solution</a> (after you've at least given it the old "college try"...</p>
   </div>
+</div>
+
+<div id="stringHint1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+  <p>The <code>[]</code> notation access up to the index before the second number. So <code>textVar[1:4]</code> will give start at index 1 (second character) and go up to index 3 (the 4<sup>th</sup> character).</p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
 <div id="challenge1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
@@ -329,7 +701,7 @@ for item in ls:
 for i in range(len(ls)):
     #check for odd indices using modulo
     if i % 2 > 0:
-        print "%s is at index %s in the list and is type: " %(ls[i],i,type(ls[i]))
+        print "%s is at index %s in the list and is type: %s" %(ls[i],i,type(ls[i]))
 </code>
 
 </pre>
@@ -412,7 +784,309 @@ print targetCount
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
+<!--week 4 class-->
+<hr class="week">
+<hr class="week">
+<h1 id="heading" data-magellan-destination="week4">Week 4:</h1>
+<div class=row>
+  <div class="Large-12 columns" id="week4" >
+    <h2 id="heading">Putting it all <code>Together</code></h2>
+    <div class="panel">
+      <p>This week we'll work on putting together lessons from the past three weeks to create some function's that will challenge you to think "programatically" - basically figuring out the steps required to get the desired outcome.</p>
+    </div>
+  </div>
 
+</div>
+<div class="row">
+    <div class="large-6 columns" id="instructionWindow">
+
+      <h3>Review</h3>
+      <ol>
+        <li>Start by creating a function that takes input from the user.
+          <ol>
+            <li>Check that the <code>raw_input</code> is numeric using an <code>if</code> statement</li>
+            <li>If the user input is numeric, convert it to an integer using <code>int</code></li>
+            <li><code>print</code> a string for the <code>if</code> and <code>else</code> function respectively</li>
+            <li>Create a list of numbers 1-10 inside the function.</li>
+            <li>Change the <code>raw_input</code> statement to something like "I'm thinking of a number between 1 and 10 (inclusive)". Guess a number.</li>
+            <li>Use the <code>random</code> library to randomly select an element from the list.</li>
+            <li>If the user guesses the number correctly, print a "Lucky Guess" statement. If incorrect, <code>print</code> "You chose...poorly".</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+
+
+<div class="large-6 columns" id="codeWindow">
+<h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+#import random library
+import random
+
+#define the function
+def numberGuesser()
+  numberList = []#insert numbers 1 - 10 here
+
+  #randomly select a number from the list you created
+  number = random.choice(#put the numbers list variable here)
+
+  guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
+
+  #use a 'nested if' to check if that guess is the number
+  if number == guess:
+    print "Lucky Guess"
+
+  else:
+    print "You chose...poorly"
+
+#call the function
+numberGuesser()
+</code>
+</pre>
+<div class=panel><p id="solution"><a href="#" data-reveal-id="week4_solution1">click here for the solution</a></p></div>
+</div>
+
+<div id="week4_solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+#import random library
+import random
+
+#define the function
+def numberGuesser()
+  #list of numbers
+  numberList = [1,2,3,4,5,6,7,8,9,10]
+
+
+  #randomly select a number from the list you created
+  number = random.choice(numberList)
+
+  guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
+
+  #convert guess to an integer for good measure
+  guess = int(guess)
+
+  #use a 'nested if' to check if that guess is the number
+  if number == guess:
+    print "Lucky Guess"
+
+  else:
+    print "You chose...poorly"
+
+#call the function
+numberGuesser()
+</code>
+</pre>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+</div><!--end of row-->
+
+<div class="row">
+    <div class="large-6 columns" id="instructionWindow">
+      <h3>Building a Better Number Guesser</h3>
+
+      <p>What if we wanted to give someone more than just 1 chance to guess a number. Here we'll work to modify the function you just wrote to track guesses and allow the user to guess up to 3 times.</p>
+      <ol>
+        <li>We'll need a variable to count/track the number of guesses. Let's call it <code>counter</code>.</li>
+        <li>we'll use a <code>while</code> loop so the function will continue to ask for a guess from the user so long as our <code>counter &lt; 3</code></li>
+        <li>After each guess we'll check if the guess is the number, if not we'll increment our counter.</li>
+      </ol>
+      <h4>Higher or Lower?</h4>
+      <p>It'd be nice to provide feedback to the user after a guess regarding if the numbrer they guessed is too high or too low. Let's add that functionality to the function</p>
+      <ol>
+        <li>We'll add the the current <code>if</code> statement in the function you've build thus far. But, we'll re-arrange the order of the if conditions.</li>
+        <li>Change the first <code>if</code> to an<code>elif</code></li>
+        <li>Create <code>if</code> to check if the guess is greater than the number and if the counter &lt; 3. If so, <code>print "Guess too high, you did!"</code>. <i>**We only want these two statemetns to trigger if the counter is less than 3, so on the third guess they won't be triggered**.</i></li>
+        <li>Add an <code>elif</code> to check if the guess is less than the number and if the counter &lt; 3. If so, <code>print "Guess too low, you did!"</code></li>
+      </ol>
+      <h4>More Guesses?</h4>
+      <p>What if the game is just too much fun and you want to keep guessing? Let's add an option to ask for more guesses by nesting anotehr <code>if</code> statement inside the last <code>else</code> condition..</p>
+      <ol>
+        <li>Inside the final <code>else</code> statment add another <code>raw_input</code> statement asking the user if they would like more guesses.</li>
+        <li>check the response. If the user answered 'y' reset the counter. if not, then close the game.</li>
+      </ol>
+    </div>
+
+<div class="large-6 columns" id="codeWindow">
+<h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python">
+#import random library
+import random
+
+#define the function
+def numberGuesser()
+  numberList = []#insert numbers 1 - 10 here
+
+  #counter variable
+  counter = 0
+
+  #randomly select a number from the list you created
+  number = random.choice(#put the numbers list variable here)
+
+  #while loop
+  while #insert your condition here
+
+    guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
+
+    #increment counter here
+
+
+    #use a 'if' to check if guess is the number
+    if number == guess:
+      print "Lucky Guess"
+
+    else:
+      print "You chose...poorly"
+
+#call the function
+numberGuesser()
+</code>
+</pre>
+<div class=panel><p id="solution"><a href="#" data-reveal-id="week4_solution2">click here for the solution part 1</a></p>
+<p id="solution"><a href="#" data-reveal-id="week4_solution3">click here for the solution part 2</a></p>
+<p id="solution"><a href="#" data-reveal-id="week4_solution4">click here for the solution part 3</a></p></div>
+
+<!--reveal solution-->
+<div id="week4_solution2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+#import random library
+import random
+
+#define the function
+def numberGuesser()
+  numberList = []#insert numbers 1 - 10 here
+
+  #counter variable
+  counter = 0
+
+  #randomly select a number from the list you created
+  number = random.choice(#put the numbers list variable here)
+
+  #while loop
+  while &lt; 3:
+
+    guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
+
+    counter +=1
+
+    #use a 'if' to check if guess is the number
+    if number == guess:
+      print "Lucky Guess the number was %s!" %(number)
+
+    else:
+      print "You chose...poorly"
+
+#call the function
+numberGuesser()
+</code>
+</pre>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+<div id="week4_solution3" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+#import random library
+import random
+
+#define the function
+def numberGuesser()
+  numberList = []#insert numbers 1 - 10 here
+
+  #counter variable
+  counter = 0
+
+  #randomly select a number from the list you created
+  number = random.choice(#put the numbers list variable here)
+
+  #while loop
+  while &lt; 3:
+
+    guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
+
+    counter +=1
+
+    #use a 'if' to check of guess is the number
+    if guess &lt; number and counter &lt; 3:
+      print "guess too low, you did"
+
+    elif guess &gt; number and counter &lt; 3:
+      print "guess too high, you did"
+
+    elif number == guess:
+      print "Lucky Guess the number was %s!" %(number)
+
+    else:
+      print "You've chosen...poorly."
+
+
+#call the function
+numberGuesser()
+</code>
+</pre>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+<div id="week4_solution4" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python">
+#import random library
+import random
+
+#define the function
+def numberGuesser()
+  numberList = []#insert numbers 1 - 10 here
+
+  #counter variable
+  counter = 0
+
+  #randomly select a number from the list you created
+  number = random.choice(#put the numbers list variable here)
+
+  #while loop
+  while &lt; 3:
+
+    guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
+
+    counter +=1
+
+    #use a 'if' to check of guess is the number
+    if guess &lt; number and counter &lt; 3:
+      print "guess too low, you did"
+
+    elif guess &gt; number and counter &lt; 3:
+      print "guess too high, you did"
+
+    elif number == guess:
+      print "Lucky Guess the number was %s!" %(number)
+
+    else:
+      print "You've chosen...poorly."
+
+      #get response from user
+      moreGuesses = raw_input("Would you like more guesses? answer with y or n: ")
+      #add another if statment to check the user response
+      if moreGuesses.lower() == 'y':
+        counter = 0
+
+      else:
+        print "That's okay. This game bores me."
+
+
+#call the function
+numberGuesser()
+</code>
+</pre>
+
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+</div>
 
 
   <footer class="row" id="footer">

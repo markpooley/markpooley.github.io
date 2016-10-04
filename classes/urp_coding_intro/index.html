@@ -939,7 +939,7 @@ print targetCount
 <h1 id="heading" data-magellan-destination="week4">Week 4:</h1>
 <div class=row>
   <div class="Large-12 columns" id="week4" >
-    <h2 id="heading">Putting it all <code>Together</code></h2>
+    <h2 id="heading">Working with <code>Functions</code></h2>
     <div class="panel">
       <p>This week we'll work on putting together lessons from the past three weeks to create some function's that will challenge you to think "programatically" - basically figuring out the steps required to get the desired outcome.</p>
     </div>
@@ -953,8 +953,8 @@ print targetCount
       <ol>
         <li>Start by creating a function that takes input from the user.
           <ol>
-            <li>Check that the <code>raw_input</code> is numeric using an <code>if</code> statement</li>
-            <li>If the user input is numeric, convert it to an integer using <code>int</code></li>
+            <li>assume the user follows instructions and enters a number.</li>
+            <li>Convert it to an integer using <code>int</code>. Just encase they entered a decimal for some reason...</li>
             <li><code>print</code> a string for the <code>if</code> and <code>else</code> function respectively</li>
             <li>Create a list of numbers 1-10 inside the function.</li>
             <li>Change the <code>raw_input</code> statement to something like "I'm thinking of a number between 1 and 10 (inclusive)". Guess a number.</li>
@@ -974,7 +974,7 @@ print targetCount
 import random
 
 #define the function
-def numberGuesser()
+def numberGuesser():
   numberList = []#insert numbers 1 - 10 here
 
   #randomly select a number from the list you created
@@ -1003,7 +1003,7 @@ numberGuesser()
 import random
 
 #define the function
-def numberGuesser()
+def numberGuesser():
   #list of numbers
   numberList = [1,2,3,4,5,6,7,8,9,10]
 
@@ -1032,7 +1032,7 @@ numberGuesser()
 </div>
 
 </div><!--end of row-->
-
+<hr>
 <div class="row">
     <div class="large-6 columns" id="instructionWindow">
       <h3>Building a Better Number Guesser</h3>
@@ -1067,7 +1067,7 @@ numberGuesser()
 import random
 
 #define the function
-def numberGuesser()
+def numberGuesser():
   numberList = []#insert numbers 1 - 10 here
 
   #counter variable
@@ -1107,8 +1107,8 @@ numberGuesser()
 import random
 
 #define the function
-def numberGuesser()
-  numberList = []#insert numbers 1 - 10 here
+def numberGuesser():
+  numberList = [1,2,3,4,5,6,7,8,9,10]
 
   #counter variable
   counter = 0
@@ -1117,7 +1117,7 @@ def numberGuesser()
   number = random.choice(#put the numbers list variable here)
 
   #while loop
-  while &lt; 3:
+  while counter &lt; 3:
 
     guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
 
@@ -1145,8 +1145,8 @@ numberGuesser()
 import random
 
 #define the function
-def numberGuesser()
-  numberList = []#insert numbers 1 - 10 here
+def numberGuesser():
+  numberList = [1,2,3,4,5,6,7,8,9,10]
 
   #counter variable
   counter = 0
@@ -1155,7 +1155,7 @@ def numberGuesser()
   number = random.choice(#put the numbers list variable here)
 
   #while loop
-  while &lt; 3:
+  while counter &lt; 3:
 
     guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
 
@@ -1189,8 +1189,8 @@ numberGuesser()
 import random
 
 #define the function
-def numberGuesser()
-  numberList = []#insert numbers 1 - 10 here
+def numberGuesser():
+  numberList = [1,2,3,4,5,6,7,8,9,10]
 
   #counter variable
   counter = 0
@@ -1199,7 +1199,7 @@ def numberGuesser()
   number = random.choice(#put the numbers list variable here)
 
   #while loop
-  while &lt; 3:
+  while counter &lt; 3:
 
     guess = raw_input("I'm thinking of a number between 1 &amp; 10 (inclusive). Guess a number: ")
 

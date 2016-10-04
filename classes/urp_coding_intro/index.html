@@ -36,7 +36,7 @@
     <dd data-magellan-arrival="week1"><a href="#week1">Week 1:</a></dd>
     <dd data-magellan-arrival="week2"><a href="#week2">Week 2: Introduction</a></dd>
     <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Loops</a></dd>
-    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: Creating Functions </a></dd>
+    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: Working with Functions</a></dd>
   </dl>
 </div>
 <!--week 2 class-->
@@ -70,7 +70,7 @@
   <div class="large-6 columns">
 <h3><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 #print statement
 print "Oh hi there! This is a python print statement!"
 
@@ -89,12 +89,12 @@ var_bool = True
 <div class="row">
   <div class="large-6 columns">
     <h3 id="heading"><code>Functions</code></h3>
-    <p>Functions are a set of organized and reusable code. You're already familiar with one of Python's built in funcitons - <code class="python">print</code>. Python has numerous built in functions, but you can also define your own. Functions in Python follow a consistent structure
+    <p>Functions are a set of organized and reusable code. You're already familiar with one of Python's built in funcitons - <code class="python hljs">print</code>. Python has numerous built in functions, but you can also define your own. Functions in Python follow a consistent structure
       <ul>
-        <li>A <code>def</code> followed by the function name, parentheis and a colon (<code class="python">def function(parementer1,parameter2):</code></li>
+        <li>A <code>def</code> followed by the function name, parentheis and a colon (<code class="python hljs">def function(parementer1,parameter2):</code></li>
         <li>Any parameters/arguments passed into the function are put inside the parenthesis separated by a comma. Arguments/paramters aren't required..</li>
         <li>Code inside a function has to be indented</li>
-        <li>A <code class="python">return</code> statement will exit the function and return any variables/data you want as an output.</li>
+        <li>A <code class="python hljs">return</code> statement will exit the function and return any variables/data you want as an output.</li>
       </ul>
     </p>
     <ol>
@@ -107,7 +107,7 @@ var_bool = True
   <div class="large-6 columns">
     <h3 id="heading"><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 def multiply(number1,number2):
   newNumber = number1 * number2
   return newNumber
@@ -148,7 +148,7 @@ multiply(3,5)
   <div class="large-6 columns">
     <h3 id="heading"><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 add = 123 + 456
 subract = 456 - 123
 multi = 5 * 4
@@ -201,7 +201,7 @@ print barTotal
 <div class="large-6 columns">
 <h3 id="heading"><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 #text variable
 text = 'The Dude Abides'
 
@@ -325,7 +325,7 @@ print 'Hi %s. I'm HAL' %(name)
 <div class="large-6 columns">
 <h3 id="heading"><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 b1 = 25 ==5**5
 b2 = 4 !- 5
 b3 = 72 &lt; 43
@@ -377,7 +377,7 @@ b5 = 1 != 2 and 1 == 1
     </div>
 <div id="week2Solution0" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 #Make me False
 b1 = 1 &gt; 2 and 3 != 3
 
@@ -417,7 +417,7 @@ b5 = 1 &gt; 2 and 1 == 2
 <div class="large-6 columns">
   <h3 id="heading"><code>&lt;Code&gt;</code></h3>
   <pre>
-  <code class="python">
+  <code class="python hljs">
 var = #pick a number
 if var &lt; 10:
   print 'Far out man! %s is less than 10!' %s(var)
@@ -426,13 +426,13 @@ else:
 
 
 </code>
-<pre>
+</pre>
 <div class="panel">
 <p id=solution ><a href="#" data-reveal-id="week2Solution1">click here for the solution</a></p>
 </div>
 <div id="week2Solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 var = #pick a number
 if var &lt; 10:
   print 'Far out man! %s is less than 10!' %s(var)
@@ -453,12 +453,98 @@ else:
 <div class="large-6 columns">
   <h3 id="heading">Pig Latin Translator</h3>
   <p>Using what you've learned we'll make a Pig Latin translator that takes a string as input from the user and translates it to Pig Latin using conditional statements.</p>
+  <ol>
+    <li>Start with a <code>print</code> statement welcoming the user to the Pig Latin translator</li>
+    <li>Create a variable that asks the user to input a word
+      <ol>
+        <li>Check that the word has a length greater than 1 using the <code>len()</code> function.</li>
+        <li>if word given by the user doesn't have a length greater than 1, print a statement alerting the user</li>
+      </ol>
+    </li>
+    <li>Check that the word is a word using <code>.isalpha()</code>. Add this to the first <code>if</code> condition using an <code>and</code>. Click <a href="#" data-reveal-id="pigHint1">here</a> for a hint</li>
+    <li>inside the condtion checking for word length and validity, convert the word to all lower case using <code>.lower()</code>. <a href="#" data-reveal-id="pigHint2">Why don't you do this sooner?</a></li>
+    <li>Save the first letter in the word to a new variable (i.e. "firstLetter"). You can use the <code>[]</code> at the end of the word/string variable with a number inside to accees a character at a particular index of a string.</li>
+    <li>save all but the first letter of the word to another variable (i.e. "otherLetters").</li>
+    <li>For Pig Latin, you translate word depending on the first letter
+      <ol>
+        <li>if the first letter is a vowel, the tranlstion is simply word + "ay" ending.</li>
+        <li>If the first letter is a consonant the translation is: (word - first letter) + first letter + "ay"</li>
+      </ol>
+    </li>
+  </ol>
+<div id="pigHint1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+  <p>remember <code>.isalpha()</code> checks that a variable contains only letters. A space in a string will return false if <code>.isalpha()</code> is run on it.</p>
+</div>
+<div id="pigHint2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+  <p>You want to make sure the user input an actual word. If you try to convert an integer to lower case an error will be returned - hence waiting until you've verified the user has typed a real word.</p>
+</div>
+
 </div>
 <div class="large-6 columns">
 <h3 id="heading"><code>&lt;Code&gt;</code></h3>
 <pre>
-<code></code>
+<code>
+#Pig Latin Translator
+print "Welcome to the Pig Latin Translator"
+
+#get word from user
+word = raw_input("Please type a word for translation. ")
+
+if #insert your conditions after the "if" followed by a colon to check for word length and validity
+  print word + ' appears to be a real word'
+
+  firstLetter = word[]#insert the correct index in the brackets
+  otherLetters = word[:]#insert the correct numbers before and after the colon to get the rest of the word
+
+  list_of_vowels = [] #create a list of vowels inside the brackets. each letter must be enclosed in quotes
+
+  if ## in list_of_vowels: #insert the correct variable in the double hashtags
+    print #print the pig latin translation here
+
+  else:
+    print #print the pig latin translation for a word that begins with a consonant.
+
+else:
+  print 'sorry. You didn\'t follow directions. %s is not a real word' %(word)
+
+</code>
 </pre>
+<div class="panel">
+<p id=solution ><a href="#" data-reveal-id="week2PigLatinSolution">click here for the solution</a></p>
+</div>
+<div id="week2PigLatinSolution" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python hljs">
+#Pig Latin Translator
+print "Welcome to the Pig Latin Translator"
+
+#get word from user
+word = raw_input("Please type a word for translation. ")
+
+if #insert your conditions after the "if" followed by a colon to check for word length and validity
+  print word + ' appears to be a real word'
+
+  #use 0 to get the letter at the first index of the word
+  firstLetter = word[0]
+
+  #use 1 and -1 to get the 2nd through the last letter in the word
+  otherLetters = word[1:-1]
+
+  list_of_vowels = ['a','e','i','o','u'] #create a list of vowels inside the brackets. each letter must be enclosed in quotes
+
+  #check if first letter is a vowel
+  if firstLetter in list_of_vowels:
+    print word + 'ay'
+
+  else:
+    print otherLetters + firstLetter + 'ay'
+
+else:
+  print 'sorry. You didn't follow directions. %s is not a real word' %(word)
+</code>
+</pre>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
 </div>
 </div><!--end of row-->
 
@@ -509,7 +595,7 @@ else:
 <div class="large-6 columns" id="codeWindow">
 <h3><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 #variable to get input from user
 var = raw_input('Type a string. Any string you like. So long as it\'s a string: ')
 #define/create function
@@ -574,7 +660,7 @@ s1 = s[0] #acces first letter using brackets
 <div class="large-6 columns" id="codeWindow">
   <h3><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 ls = [1,True,'text',1.23,'Some more text']
 for thing in ls:
   print thing
@@ -613,7 +699,7 @@ for thing in ls:
 <div class="large-6 columns" id="codeWindow">
 <h3><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 #use the for i in range loop on a list
 for i in range(len(list_variable)):
   print i
@@ -659,7 +745,7 @@ for i in range(len(list_variable)):
 <div class="large-6 columns">
   <h3><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 #import random library
 import random
 
@@ -729,7 +815,7 @@ while addNumbers:
 </div>
 <div id="solution0" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 #list of things
 ls = [1,'two',3.23,'number four',True, 'six thousand']
 #for loop
@@ -758,7 +844,7 @@ for item in ls:
 </div>
 <div id="solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 #This is the solution for steps 3,4,5 combined.
 #loop through list
 for i in range(len(ls)):
@@ -772,7 +858,7 @@ for i in range(len(ls)):
 </div>
 <div id="solution2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 
 import random
 
@@ -809,7 +895,7 @@ print len(ls), ls #list should be 11 items long
 </div>
 <div id="week3Challenge" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 import random
 #empty list
 ls = []
@@ -883,7 +969,7 @@ print targetCount
 <div class="large-6 columns" id="codeWindow">
 <h3><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 #import random library
 import random
 
@@ -912,7 +998,7 @@ numberGuesser()
 
 <div id="week4_solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 #import random library
 import random
 
@@ -976,7 +1062,7 @@ numberGuesser()
 <div class="large-6 columns" id="codeWindow">
 <h3><code>&lt;Code&gt;</code></h3>
 <pre>
-<code class="python">
+<code class="python hljs">
 #import random library
 import random
 
@@ -1016,7 +1102,7 @@ numberGuesser()
 <!--reveal solution-->
 <div id="week4_solution2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 #import random library
 import random
 
@@ -1054,7 +1140,7 @@ numberGuesser()
 
 <div id="week4_solution3" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 #import random library
 import random
 
@@ -1098,7 +1184,7 @@ numberGuesser()
 </div>
 <div id="week4_solution4" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
-<code class="python">
+<code class="python hljs">
 #import random library
 import random
 
@@ -1150,6 +1236,96 @@ numberGuesser()
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 </div>
+</div><!--end of row-->
+<hr>
+<div class="row">
+    <div class="large-6 columns" id="instructionWindow">
+      <h3>Final Challenge</h3>
+      <p>Do you have a hard time making decision? Do you find carrying around a "Magic 8 ball" cumbersome to help you with your indecisiveness? If so, you can create a small function to help you make decisions that's much lighter than a Magic 8 Ball. (It's esier than the number guesser)</p>
+      <ol>
+        <li>Define a function named <code>magicBall</code></li>
+        <li>Inside the function prompt the user to type a question and store it to a variable name</li>
+        <li>create an <code>answerList</code> with the following responses:
+          <ol>
+            <li>It is certain</li>
+            <li>Without a doubt</li>
+            <li>Yes definitely</li>
+            <li>As I see it, yes</li>
+            <li>Most Likely</li>
+            <li>Outlook good</li>
+            <li>Yes</li>
+            <li>Reply Hazy try again</li>
+            <li>Ask again later</li>
+            <li>Cannot predict now</li>
+            <li>Don't count on it</li>
+            <li>My sources say no</li>
+            <li>Outlook not so good</li>
+            <li>Very doubtful</li>
+          </ol>
+        </li>
+        <li>Randomly select an answer from the list using the <code>random.choice()</code> function and print it.</li>
+      </ol>
+</div>
+<div class="row">
+    <div class="large-6 columns" id="codeWindow">
+      <h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python hljs">
+import random
+
+#define function
+def magicBall():
+  question = #prompt user to type quesiton with raw_input
+
+  responses = [] #fill this list with responses
+
+  answer = #randomly choose item from the response list using random.choice list
+  print answer
+
+#call function
+magicBall
+</code>
+</pre>
+<!--solution stuff-->
+<div class=panel><p id="solution"><a href="#" data-reveal-id="week4_challenge">click here for the solution part 1</a></p>
+</div>
+
+<div id="week4_challenge" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<pre>
+<code class="python hljs">
+import random
+
+def magicBall():
+  #variable prompting the user to ask a question
+  question = raw_input("Ask a question for which you want an answer: ")
+
+  #list of responses which will be used to generate a response from the user's
+  #question, much like a traditional Magic Eight Ball - the source of all wisdom
+  #from my childhood.
+  response = ["It is certain","Signs point to yes","Outlook good",
+              "Reply hazy try again","Ask again Later","Better not tell you",
+              "Don't count on it","My reply is no","Sources say no","no so much",
+              "I sincerely doubt it","My reply is no","Of course, yes!",
+              "Umm...yeah I'm just not sure about that right now","fo shizzle"]
+
+
+  #shuffle list of responses from the "response" list and generate a random
+  #integer. Then print a randomly selected response to the question the user
+  #asked.  This not only shuffles the list, but also generates a random number
+  #- ensuring truly random response each time.
+  answer = random.choice(response)
+
+  print answer
+
+#call function
+magicBall()
+</code>
+</pre>
+</div>
+</div> <!--end of code window-->
+
+
+</div><!--end of row-->
 
 
   <footer class="row" id="footer">

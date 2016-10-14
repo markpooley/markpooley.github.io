@@ -12,7 +12,7 @@
 	font-weight: bold;
 }
 tr:hover {
-	background-color: #D9D9D9;
+	background-color: #D9D9D9 !important;
 }
 .header {
 	text-align: center;

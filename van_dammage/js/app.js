@@ -8,7 +8,7 @@ var arcOuterRadius = width / 2,
 	arcInnerRadius =  arcOuterRadius *.55;
 var textRatio = height *.18 + 'px'
 var punchTextRatio = height *.18 *.85 + 'px'
-var decFormat = d3.format('.3n')
+var decFormat = d3.format('.2f')
 
 //color variables for the arc gauges
 var colLow = "#FFFF00",
@@ -94,27 +94,30 @@ freakSVG.append('text')
 
 
 //get number of elements watched and unwatched
-var unwatched = d3.selectAll('.unwatched')[0].length - 1
+var unwatched = d3.selectAll('.unwatched')[0].length
 var watched = d3.selectAll('.watched')[0].length
-watched  = decFormat(watched)
+weeks = decFormat(weeks);
 
-var watchRate = watched/weeks;
+var watchRate = decFormat(watched/weeks);
 
 
 //calculate the pct done
 var pctDone = function(watched,unwatched){
 	total = watched + unwatched;
+
 	if (watched == 0){
 		done = 0
 	} else {
-		done = (watched-1)/total * 100
-		if (done < 1){
-			done = 1
-		};
+		done = (watched)/total * 100
+		//if (done < 1){
+		//	done = 1
+		//};
 	}
-	return done
+
+	return decFormat(done)
 }
-pctWatched = pctDone(watched,unwatched)
+pctWatched = pctDone(watched,unwatched);
+console.log(watched, unwatched, pctWatched)
 
 //set up the arcs for the gauges
 var arc = d3.svg.arc()
@@ -160,7 +163,13 @@ d3.select('#dammageLevel').on('mouseover',function(){
 	d3.select('#watchedCount').transition()
 			.delay(100)
 			.duration(500)
-			.tween('text',tweenText(watchRate))
+			.tween('text',function(){
+				var i = d3.interpolate(0, watchRate)
+				return function(t){
+					d3.select(this).text(decFormat(i(t)))
+				}
+			});
+			//	tweenText(watchRate))
 
 	svg.selectAll('path').style('opacity',0.5)
 	d3.select('#dammageTip').classed('hidden',false)
@@ -199,59 +208,6 @@ var foreground = svg.append('path')
 
 //current status label that will be updated on the cage gauge
 var text = svg.append('text').attr('id','status')
-
-
-//creation svg, background and foreground for the time gauge
-// Add SVG to time gauge
-//var timeSVG = d3.select('#timeCage').append('svg')
-//	.attr("width",width)
-//	.attr('height',height)
-//	.attr('id','timeGauge')
-//	.append('g')
-//		.attr("transform", "translate(" + width / 2 + "," + height*.90 + ")")
-//
-//timeSVG.append('text')
-//	.attr('x', 0 )
-//	.attr('y',-height *.75)
-//	//.attr('class','svgText')
-//	.attr('text-anchor','middle')
-//	.attr('id','svgText')
-//	.text('Dammage Level')
-//$('#timeCage').css('font-size',height*.15 + 'px').css('font-weight','bold')
-//add background to time svg
-
-//var timeBackground = timeSVG.append('path')
-//	.datum({endAngle:(Math.PI/2)})
-//	.style('fill','#ddd')
-//	.attr('d',arc)
-//	.attr('id','timeArc')
-//	.attr('x',width/2);
-//
-//foreground for time gauge
-//var timeForeground = timeSVG.append('path')
-//	.datum({endAngle: start})
-//	.style('fill',function(d){
-//		return colorScale(d.endAngle);
-//	})
-//	.style('opacity',1)
-//	.attr('arc',arc)
-
-//great svg text element for time gauge
-//var daysText = timeSVG.append('text').attr('id','daysLabel')
-//	.attr('x',0)
-//	.attr('y',0)
-//	.style('text-anchor','middle')
-//	.style('font-size','40px')
-
-//select the SVG text elements and add Zeros to all of them intially
-//
-//days label
-//d3.select('#daysLabel')
-//	.attr('x',textX)
-//	.attr('y', 0)
-//	.text(0)
-//	.attr('text-anchor', 'middle')
-//$('#daysLabel').css('font-size',height*.25 + 'px').css('font-weight','bold').css('font-family','Lato')
 
 //status label
 d3.select('#statusLabel')
@@ -333,11 +289,11 @@ function drawViz(){
 
 
 	//draw Cage Gauge, which is the pct of movies watched
-	var delay = 3500; //delay the the bottom counters
+	var delay = 2250; //delay the the bottom counters
 
 	foreground.transition()
 		.delay(500)
-		.duration(3000)//250*pctWatched)
+		.duration(2000)//250*pctWatched)
 		.ease('linear')
 		.call(arcTween,arcScale(pctWatched))
 	.style('fill',function(){
@@ -347,20 +303,26 @@ function drawViz(){
 	//tweentext/transition the Cage Gauge numbers
 	d3.select('#statusLabel').transition()
 			.delay(500)
-			.duration(3000)
-			.tween('text',tweenText(pctWatched));
+			.duration(2000)
+			//.tween('text',tweenText(pctWatched));
+			.tween('text',function(){
+				var i = d3.interpolate(0, pctWatched)
+				return function(t){
+					d3.select(this).text(decFormat(i(t)))
+				}
+			});
 
 
 	//animate counter for kills
 	killSVG.select('#splitsCounter').transition()
 			.delay(delay)
-			.duration(3000)
+			.duration(1500)
 			.tween('text',tweenText(splits));
 
 	//animate counter for freakouts
 	freakSVG.select('#punchCounter').transition()
 			.delay(delay)
-			.duration(3000)
+			.duration(1500)
 			.tween('text',tweenText(nutPunches));
 
 	//edit avg kills number in tooltip
@@ -404,7 +366,13 @@ function drawViz(){
 		d3.select('#tipSplits').transition()
 			.delay(100)
 			.duration(500)
-			.tween('text',tweenText(avgSplits))
+			//.tween('text',tweenText(avgSplits))
+			.tween('text',function(){
+				var i = d3.interpolate(0, avgSplits)
+				return function(t){
+					d3.select(this).text(decFormat(i(t)))
+				}
+			});
 		d3.select('#splitsTip').classed('hidden',false)
 	})
 
@@ -425,6 +393,12 @@ function drawViz(){
 			.delay(100)
 			.duration(500)
 			.tween('text',tweenText(avgNutPunches))
+			.tween('text',function(){
+				var i = d3.interpolate(0, avgNutPunches)
+				return function(t){
+					d3.select(this).text(decFormat(i(t)))
+				}
+			});
 		d3.select('#punchTip').classed('hidden',false)
 	})
 	d3.select('#nutPunches').on('mouseout',function(){
@@ -437,71 +411,6 @@ function drawViz(){
 	$('body').css('overflow','auto')
 }); //end of d3 callback
 };//end drawViz function
-//d3 mouseover interactiviy
-//var posters = d3.select('#posters').selectAll('li');
-//posters.on('mouseover',function(d){
-//	id = '#' + d3.select(this).select('a').attr('data-reveal-id')
-//
-//	console.log(id)
-//	var x = $(id)[0].getBoundingClientRect().left
-//	var y = $(id)[0].getBoundingClientRect().top
-//	//el = el.position();
-//	//var x = el.left
-//	//var y = el.top
-//	xPos = d3.event.pageX
-//	yPos = d3.event.y
-//	var xRatio = xPos/width
-//	console.log(id,xPos,xRatio)
-//	//title = d3.select(this).select('a').select('img').attr('title')
-//	//title = title.split('(')[0]
-//	//console.log()
-//	//console.log(title, id)
-//	//table = d3.select(id).select('#metaCage')
-//	//console.log(table)
-//	//var character = table.select('#character').text()
-//	//var hair = table.select('#hair').text()
-//	//var rating = table.select('#rating').text()
-//	//var freaks = table.select('#freakouts').text()
-//	//var kills = table.select('#kills').text()
-//	//console.log(character,hair,rating,freaks,kills)
-//
-//	d3.select('#toolTip').attr('style','left:'+xPos+'px;top:'+yPos+'px')
-//		.classed('hidden',false);
-//
-//
-//})
-//posters.on('mouseout',function(){
-//	d3.select('#toolTip').classed('hidden',true)
-//})
-
-//mouseover movie poster interactivity
-//var posters = d3.select('#posters').selectAll('li')
-//posters.on('mouseover',function(){
-//	d3.select(this).select('img').transition().ease('linear').duration(100)
-//		.style('border','10px solid #d3d3d3')
-//
-//})
-//posters.on('mouseout',function(){
-//	d3.select(this).select('img').transition().ease('linear').duration(100)
-//		.style('border','none')
-//})
-//var posters = d3.select('#posters').selectAll('li');
-//
-//posters.on('mouseover',function(){
-//	var xPos = d3.event.pageX
-//	var yPos = d3.event.pageY
-//	console.log(xPos,yPos)
-//	d3.select('#popUp').classed('hidden', false)
-//		.attr('display','block')
-//		.style('left', xPos + 'px')
-//		.style('top', yPos + 'px')
-//
-//	d3.select('#popUp').select('#title').text('Title Here')
-//
-//})
-//posters.on('mouseout',function(){
-//	d3.select('#popUp').classed('hidden',true)
-//})
 
 //function for animating the counting of numbers
 	function tweenText(newVal){
@@ -528,16 +437,4 @@ $(window).load(function(){
 
 })
 
-//event listener to activate viz generations on the modal divs
-//$(document).ready(function(){
-//	$("#posters").click(function(event){
-//		 id = event.target.title;
-//		 split = id.indexOf('(') - 1
-//		 title = id.slice(0,split)
-//		 console.log(title)
-//
-//
-//	});
-//});
 
-//draw gauges

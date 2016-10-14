@@ -486,6 +486,13 @@ function drawViz(){
 //wait until the page has fully loaded to run the drawViz function
 //this prevents jumpiness/jerky visualizations.
 $(window).load(function(){
+
+	$('img.lazy').lazyload({
+	placeholder: 'http://placehold.it/214x317',
+	effect: "fadeIn",
+	effectspeed: 1000
+	})
+
 	drawViz();
 
 })

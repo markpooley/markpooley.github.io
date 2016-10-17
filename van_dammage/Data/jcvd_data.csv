@@ -12,7 +12,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Status,splits,nut
 2001,The Order,"Action, Adventure, Comedy",R,4.6/10,12000000,0,129,Unwatched,,
 2008,JCVD,"Comedy, Crime, Drama",R,7.2/10,10000000,470691,137,Unwatched,,
 1994,Timecop,"Action, Crime, Sci-Fi",R,5.8/10,27000000,44450000,139,Unwatched,,
-2013,Welcome to the Jungle,"Action, Adventure, Comedy",NOT RATED,5.0/10,3500000,0,135,Unwatched,,
+2013,Welcome to the Jungle,"Action, Adventure, Comedy",NOT RATED,5.0/10,3500000,87397,135,Watched,0,0
 1999,Universal Soldier: The Return,"Action, Sci-Fi",R,4.1/10,45000000,10431220,123,Unwatched,,
 2014,JCVD's Make My Movie Challenge,"Short, Comedy",Unrated,8.4/10,0,0,0,Unwatched,,
 1995,Street Fighter: The Movie,Action,Unrated,4.0/10,0,0,0,Unwatched,,
@@ -48,7 +48,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Status,splits,nut
 1984,Monaco Forever,Comedy,Unrated,4.0/10,0,0,48,Unwatched,,
 2012,6 Bullets,"Action, Crime, Drama",R,6.1/10,10000000,0,155,Unwatched,,
 2012,U.F.O.,"Comedy, Sci-Fi",R,3.1/10,2500000,0,141,Unwatched,,
-1988,Bloodsport,"Action, Biography, Drama",R,6.8/10,1100000,11806119,132,watched,10,1
+1988,Bloodsport,"Action, Biography, Drama",R,6.8/10,1100000,11806119,132,Watched,10,1
 2012,Dragon Eyes,"Action, Crime, Drama",R,4.5/10,3000000,0,131,Unwatched,,
 1996,Maximum Risk,"Action, Crime, Mystery",R,5.4/10,25000000,14095303,141,Unwatched,,
 1999,Desert Heat,"Action, Comedy, Drama",R,5.1/10,15000000,0,135,Unwatched,,

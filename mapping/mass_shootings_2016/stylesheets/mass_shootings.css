@@ -1,0 +1,139 @@
+body {
+	background-color: #111111;
+	font-family: Lato !important;
+}
+
+footer p {
+	color: white;
+}
+#name {
+    margin-left: 1em;
+    color: white;
+    font-size: 1.25em;
+    margin-bottom: 2px;
+}
+path:hover {
+	opacity: .85;
+}
+div.tooltip {
+  position: absolute;
+  padding: 0 0 0 0;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-weight: bold;
+  display: none;
+  width:auto;
+}
+.fullwidth {
+	width: 100% !important;
+   	margin-left: auto;
+   	margin-right: auto;
+   	max-width: initial;
+
+}
+.tooltip table {
+	margin-bottom: 0rem;
+}
+.data {
+  text-align: right;
+}
+thead {
+  background-color: rgba(0,0,0,0.1)
+}
+.badge {
+	color: white;
+	background: #111111;
+}
+#info {
+	font-size: .95em;
+	background: #111111;
+}
+#info h3 {
+	color: white;
+	z-index: 9999;
+}
+.tick text {
+	text-anchor: left;
+}
+#title {
+	margin-bottom: 0em;
+	margin-top: 0em;
+}
+#legend {
+	border: 2px;
+	border-color: #111111;
+	background: #111111;
+	float: right;
+}
+
+.animate {
+	color: white;
+}
+#animate {
+	font: white;
+
+}
+#animate.text {
+	padding: 0em;
+}
+#directions{
+	background: #111111;
+	float: right;
+}
+#map {
+	width: 100%;
+	height: 75%;
+	background-color: #111111;
+	position: relative;
+}
+
+#graph {
+	position: relative;
+	bottom: 0;
+	z-index: 1000;
+	padding:5px;
+	background-color: #111111;
+}
+.axis line,
+.axis path {
+	fill: none;
+	stroke: white;
+	shape-rendering: cripsEdges;
+}
+.tick{
+	fill: white;
+	/*stroke: white;*/
+
+}
+.title {
+	display: inline-block;
+	margin-top: 0.5em !important;
+	padding-bottom: 0.15em;
+}
+h6.subheader {
+	margin: 0em !important;
+	text-align: center;
+}
+h5.subheader {
+	text-align: center;
+}
+div.reveal-modal {
+	z-index: 9999
+}
+#pList {
+	margin-left: 5% !important;
+}
+.reveal-modal {
+	background-color: rgba(88,88,88,0.95);
+}
+.reveal-modal p {
+	color: white;
+}
+.reveal-modal a {
+	color: #009FD3;
+	text-decoration: underline;
+}
+a:hover {
+	color: #008cba;
+}

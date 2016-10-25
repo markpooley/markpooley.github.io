@@ -1,0 +1,97 @@
+body {
+    font-family: 'Lato';
+    font-weight: 400;
+    margin: 0px;
+    border: 0px;
+    background: #fff;
+    /*margin-top: 44px;*/
+    /*margin-bottom: 20px;*/
+}
+#name {
+    margin-left: 1em;
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 2px;
+}
+.row {
+    width:75%;
+    max-width: initial;
+    margin-left: auto;
+    margin-right: auto;
+    /*background: rgba(30,30,30,0.8);*/
+}
+.imgContainer {
+    background:black;
+    overflow: hidden;
+    max-height: 275px;
+    min-width: 250px;
+}
+.columns {
+    position: relative;
+    padding-top: 1.5em;
+
+}
+.imgContainer {
+    background:black;
+    min-width: 100%;
+    overflow: hidden;
+}
+.projLink{
+
+    text-align: right !important;
+    position: absolute;
+    bottom: 0%;
+    padding-right: 20px;
+    background-color: rgba(30,30,30,0.8);
+    z-index: 9999;
+    width: 100% !important;
+}
+.projectLink {
+    position: absolute;
+    bottom: 0%;
+    /*background-color: rgba(30,30,30,0.8);*/
+    width:auto;
+    z-index: 9999;
+}
+.projectLink span {
+    float:right;
+    width: 100%;
+    text-align: right;
+    margin-right: 0.25em;
+    font-size: 1.35em;
+    color: white;
+    margin-left: 0.5em;
+}
+.projectLink aside:hover {
+    opacity: 0.80;
+}
+
+.catwrap {
+    background: black;
+    background-color: rgba(50,50,50,1);
+}
+.catwrap a:hover {
+    opacity: 0.80;
+}
+.catwrap *{
+    font-size: 1.5em;
+    color:white;
+    margin-left: 0.25em;
+
+}
+.category {
+    font-size: 1.5em;
+    color: white;
+}
+.projImage {
+    background-color: black;
+}
+
+.projImage:hover {
+    opacity: 0.90;
+}
+
+footer {
+    margin-top: 44px;
+    background: white !important;
+}

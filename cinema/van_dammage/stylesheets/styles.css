@@ -1,0 +1,194 @@
+/* CSS Document                             */
+* {
+	color: #0b090c;
+	font-family: 'Lato';
+}
+
+#toolTip {
+	position: absolute;
+	z-index: 9999;
+	table-layout: fixed;
+}
+.item {
+	font-weight: bold;
+}
+tr:hover {
+	background-color: #D9D9D9 !important;
+}
+.header {
+	text-align: center;
+}
+#dammageTip {
+	height: 50%;
+}
+#punchTip, #splitsTip {
+	width: 75%;
+	height: 50%;
+	line-height: 2.5em;
+}
+.hidden {
+	display: none;
+}
+#quoteHeading {
+	display: inline;
+}
+.cageImg {
+	vertical-align: center;
+}
+#cageImg{
+	vertical-align: bottom;
+	display:block;
+	margin: auto;
+}
+.panel {
+	overflow: hidden;
+}
+#cagePanel {
+	overflow-y: scroll !important;
+}
+
+.orbit-container{
+	vertical-align: bottom;
+}
+iframe {
+	display: block;
+	margin: auto;
+}
+.svgText{
+	font-size: 3.75em;
+	font-weight: bold;
+}
+#divModList {
+	padding-left: 10px !important;
+}
+body {
+	overflow: hidden;
+}
+#modImage {
+	display: block;
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+#iFrame {
+	display: block;
+	width: 75%;
+  }
+ #poster {
+ 	margin-bottom: 1em;
+ }
+a img:hover {
+	opacity: 0.75;
+}
+a img {
+	margin: 0 auto;
+}
+
+#pQuote {
+ 	margin-left: 10%;
+ }
+.hidden {
+	display: none;
+}
+.toolTip{
+	position: absolute !important;
+	height: auto;
+	margin: 0 auto;
+	margin-bottom: auto;
+	padding: 10px;
+	background: #d3d3d3;
+	opacity: .95;
+	border-radius: 10px;
+}
+#pList {
+	margin-left: 10% !important;
+}
+#posters li a img {
+	display: block;
+	margin: auto;
+}
+div #caption {
+	margin: auto;
+	text-align: center !important;
+	width: 500px;
+	font-size: .80em;
+	font-style: italic;
+}
+#chat {
+	width:75%;
+	margin:auto;
+	position: relative;
+
+}
+
+#chat blockquote {
+	border-radius: 10px;
+}
+#talk1 {
+	color: black;
+	background-color: rgba(199,199,204,0.75);
+	border-radius: 10px;
+
+}
+#talk1 cite {
+	color: black;
+}
+#talk2 {
+	background-color: rgba(0,122,255, 0.75);
+	border-radius: 10px;
+	color: white;
+}
+#talk2 cite {
+	color: white
+}
+#reviewImage {
+	width:500px;
+	vertical-align: middle;
+	padding-bottom: 0.5em;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+#plotSummary {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.unwatched {
+	opacity: .60;
+}
+ /*#gaugeTip, #killTip, #freakTip, #timeTip{
+	position: absolute !important;
+	height: auto;
+	margin: 0 auto;
+	padding: 10px;
+	background: #d3d3d3;
+	opacity: .95;
+	border-radius: 10px;
+}
+ /*Define mobile styling
+@media only screen {
+	body,p,table tr td {font-size: 0.9em !important;}
+	table tr td {font-size: 0.9em !important;}
+	table tr td h4 {font-size: 1.5em;}
+	h3,h4 {font-size: 1.10em;}
+	h6 {font-size: 0.9em;}
+}*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 600px) and (-webkit-min-device-pixel-ratio: 2) {
+  .toolTip {
+  	margin-bottom: -50px;
+  }
+  .toolTip > p{
+  	font-size: 0.55em !important;
+  	line-height: 1.25;
+  	margin-bottom: 0.05rem;
+}
+  #killTip > p, #freakTip > p {
+  	line-height: 0.5;
+  	margin-bottom: 0.5rem;
+  }
+  .toolTip > h2{
+   	font-size: 0.65em !important;
+   	line-height: 0.5;
+}
+.hidden {
+	display: none;
+}

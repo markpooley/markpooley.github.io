@@ -1,0 +1,71 @@
+#name {
+    margin-left: 1em;
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 2px;
+}
+/***********************/
+/*Bike Projects styling*/
+/***********************/
+.toppadding {
+    margin-top: 1em;
+}
+.row {
+    max-width: 85%;
+}
+.hideme {
+    opacity: 0;
+    border-style: solid;
+    border-color: black;
+    border-width: 5px 0px 3px 0px;
+    margin: 10px 10px 0px 0px;
+
+}
+
+.orbit-hide {
+    visibility: none;
+}
+.hideme p {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+h3.bike {
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 0px 5px 0px;
+}
+h5.bike {
+    border-style: double;
+    border-color: black;
+    border-width: 0px 0px 3px 0px;
+}
+.orbit-list {
+    background-color:  rgba(51, 51, 51, 0.8);
+    height: 500px;
+    width: auto;
+}
+.orbit-list img {
+    height: auto;
+    margin-top: auto;
+    margin: auto;
+}
+#buildData {
+    padding-left: 1em;
+}
+.bikeList li {
+    margin-left: 10%;
+
+}
+@media (min-width: 625px){
+    .clearing-thumbs {
+        display: none;
+    }
+    .orbit-caption {
+        font-size: .75em;
+    }
+}
+@media (max-width: 600px) {
+    .orbit-list {
+        display: none;
+    }
+

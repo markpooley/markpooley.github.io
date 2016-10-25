@@ -55,16 +55,6 @@ queue()
 	.defer(d3.json, "FoodTrucks_data/OpArea.topojson")
 	.await(makeMap);
 
-//Leaflet adding the basemap to the div
-//var map = L.map('map').setView([41.65676282716673,-91.53614830925925], 12);
-//mapLink =
-//    '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-//L.tileLayer(
-//    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//    attribution: '&copy; ' + mapLink + ' Contributors',
-//    maxZoom: 18,
-//    }).addTo(map);
-
 //D3 callback for generating the actualy map features and appending them to the features goup
 function makeMap(error, Emp, OpArea){
 

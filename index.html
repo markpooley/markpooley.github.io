@@ -5,270 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mark Pooley</title>
     <link rel="stylesheet" href="stylesheets/app.css"/>
-    <link rel="stylesheet" href="stylesheets/custom.css"/>
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="stylesheets/styles.css"/>
     <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/foundation/js/foundation/foundation.orbit.js"></script>
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 
   </head>
   <body>
-    <nav class="top-bar" data-topbar id="top">
+      <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
-        <li class="name"></li>
+        <li class="name">
+          <h3 id="name">markpooley.github.io</h3>
+          </li>
         <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       </ul>
       <section class="top-bar-section">
         <ul class="right">
           <li class="active"><a href="#">Home</a></li>
-          <!--li class="has-dropdown"><a href="#">Projects</a>
+          <li class="has-dropdown"><a href="#">Mapping</a>
             <ul class="dropdown">
-              <li class="has-dropdown"><a href="">Geography</a>
-                <ul class="dropdown">
-                  <li><a href="food_trucks/">Iowa City Food Trucks</a></li>
-                  <li><a href="../yearbuiltjc/">Age of Johnson County Buildings</a></li>
-                  <li><a href="dental_service_areas/">Dental Service Areas</a></li>
-                </ul>
-              </li>
-              <li class="has-dropdown"><a href="">Cinematic</a>
-                <ul class="dropdown">
-                  <li><a href="cage/">A Year in the Cage</a></li>
-                </ul>
-              </li>
-              <li class="has-dropdown"><a href="">Bicycle</a>
-                <ul class="dropdown">
-                  <li><a href="bike-projects/pugsley/">Pugsley Rebuild</a></li>
-                  <li><a href="bike-projects/handbuilt/">Handbuilt Frame Build</a></li>
-                </ul>
-              </li>
-            </ul-->
+              <li><a href="mapping/mass_shootings_2016/">Mass Shootings: 2016</a></li>
+              <li><a href="mapping/mass_shootings_2015/">Mass Shootings 2015</a></li>
+              <li><a href="mapping/iowa_city_growth/">Iowa City Growth</a></li>
+              <li><a href="mapping/winter_bike_commuting/">Winter Bike Commuting</a></li>
+              <li><a href="mapping/iowa_city_food_trucks/">Iowa City Food Trucks</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown"><a href="">Bicycles</a>
+            <ul class="dropdown">
+              <li><a href="bicycles/schwinn_shimergo_conversion/">Schwinn Shimergo Conversion</a></li>
+              <li><a href="bicycles/pugsley_rebuild/">Pugsley Rebuild</a></li>
+              <li><a href="bicycles/handbuilt/">Handbuilt</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown"><a href="">Cinema</a>
+            <ul class="dropdown">
+              <li><a href="cinema/a_year_in_the_cage/">A Year in the CAGE!</a></li>
+              <li><a href="cinema/van_dammage/">Let's Do Some Van Dammage!</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown"><a href="">Classes</a>
+            <ul class="dropdown">
+              <li><a href="classes/urp_coding_intro/">URP Python Introductory Course</a></li>
+            </ul>
           </li>
           <li><a href="blog/">Blog</a></li>
           <li><a href="Resume.html">Resume</a></li>
-          <!--li><a href="chart.html">Chart</a></li-->
         </ul>
       </section>
     </nav>
-    <div class="row-full-width" id="header">
 
-        <!--img src="images/index_images/trestletrail.JPG" class="banner" alt="Banner" class="bottomspace"-->
-        <!--div class="overlay main">
-          <h2>Oh High There!</h2>
-          <p>I like to ride bikes and write code. I'm a geographic analyst for public health researchers - using ESRI ArcGIS and Python for most of the "heavy lifting". I also create and design interactive web maps using D3. When not at a computer I build and ride bicycles.</p>
-        </div-->
-        <div id="imgSource">
-          <p>Image Source: https://unsplash.com/photos/F9o7u-CnDJk</p></div>
-      <!--/div-->
-    </div class="bottomspace">
-      <div class="row">
-        <br><!--h1 align="center">Projects</h1-->
-        <ul class="medium-block-grid-4 small-block-grid-4">
-      <li id="Mapping/GIS" class="cat" align="middle"><a href="#mapping"><img class="projectCategory" src="images/index_images/Mapping_th.JPG"></a><h3 class="type">Mapping</h3></li>
-      <li id="Bicycle" class="cat" align="middle"><a href="#bicycle"><img class="projectCategory" src="images/index_images/Bicycle_th.jpg"></a><h3 class="type">Bicycle</h3></li>
-      <li id="Cinematic" class="cat" align="middle"><a href="#cinema"><img class="projectCategory" src="images/index_images/Cinema_th.jpg"></a><h3 class="type">Cinema</h3></li>
-      <li class="cat" align="middle"><a href="#classBanner"><img class="projectCategory" src="images/index_images/classes_th.jpg"></a><h3 class="type">Classes</h3></li>
-
-      <!--li id="random" class="cat" align="middle">
-        <a href="#randomBanner"><img class="projectCategory" src="images/index_images/random_th.jpg"></a>
-        <h3 class="type">Random</h3>
-      </li-->
-      <!--li id="Outdoors" class="cat" align="middle"><a href=""><img class="projectCategory" src="images/index_images/Outdoors_th.jpg"></a><h3 class="type">Outdoors</h3></li-->
-      </ul>
-    </div>
-    <div class="break"></div>
-    <div class="break"></div>
-
-    <!--Mapping and data visualization section-->
-    <div class="row-full-width" style="position:relative;" id="mapping" >
-        <!--img id="mapping" class="banner"src="images/index_images/map_banner_large.jpg" alt="Banner" class="bottomspace"-->
-
-          <div class="overlay project">
-          <h2>Mapping and Data Visualization</h2>
-          <p>I like to build interactive web maps and visualizations. I use ESRI ArcGIS for most of the geographic data mining and manipulation. For web development I use <a href="http://d3js.org/">D3</a> and javascript.</p>
-        </div>
-        <div id="imgSource">
-          <p>Image Source: https://unsplash.com/photos/whDrFMucHkc</p>
-        </div>
-
-    </div>
     <br>
-    <div class="row">
-      <div class="large-12 columns">
-        <ul class="medium-block-grid-3 small-block-grid-2">
-          <li align="middle">
-            <a href="mass_shootings_2016/"><img align="middle" id="proj" src="images/shootings_2016.JPG"></a>
-            <h3>Mass Shootings 2016: 6 months</h3>
-            <p>Locations of mass shootings from 2016 mapped with animation and victim # data.</p>
-          </li>
-          <li align="middle">
-            <a href="mass_shootings_2015/"><img align="middle" id="proj" src="images/shootings.JPG"></a>
-            <h3>Mass Shootings in 2015</h3>
-            <p>Locations of mass shootings from 2015 mapped with animation and victim # data.</p>
-          </li>
-          <li align="middle">
-            <a href="yearbuiltjc/"><img align="middle" id="proj" src="images/YearBuilt_resized.PNG"></a>
-            <h3>Build Year of Iowa City Structures</h3>
-            <p>Take a look at all the buildings in Iowa City, and the year they were built. This was just a quick and dirty map I threw together trying to figure out some <a href="http://d3js.org/">D3</a> stuff.</p>
-          </li>
-          <li align="middle">
-            <a href="JanuaryBikeCommuting/"><img align="middle" id="proj" src="images/BikeCommuting.png"></a>
-            <h3>1 Month of Winter Bike Commuting</h3>
-            <p>I tracked bike trips for one month during Iowa Winter back in 2014. Mostly commuting trips...</p>
-          </li>
-          <li align="middle">
-            <a href="food_trucks/"><img align="middle" id="proj" src="images/FoodTrucks_resized.PNG"></a>
-            <h3>Iowa City Food Truck Operation Areas</h3>
-            <p>Iowa City City Council voted to expand operation areas for Food Trucks. Take a look at where they are allowed to operate under the new rules, and where they shoulf focus operations based on employment density.</p>
-          </li>
+<div class="row collapse">
+  <div class="catwrap"><a href="mapping/"><span>Mapping</span></a></div>
+<div class="large-4 columns imgContainer">
 
-        </ul>
-        </div>
+    <a href="mapping/mass_shootings_2016/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="mapping/mass_shootings_2016/"><aside><span>Mass Shootings: 2016</span></aside></a>
+    <a href="mapping/mass_shootings_2016/">
+    <img class="projImage" src="../../images/shootings_2016.JPG"></a>
 
-      </div>
-      <div class="cat"><a href="#top" align="middle"><span><h3>Back to Top</h3></span></a></div>
-    </div>
+</div>
+<div class="large-4 column imgContainer">
 
-    <div class="break"></div>
-    <!--Bicycle Projects-->
-    <div class="row-full-width" style="position:relative;" id="bicycle">
-    <!--img id="bicycle" class="banner" src="images/index_images/bike_banner_large.jpg" alt="Banner" class="bottomspace"-->
-      <div class="overlay project">
-        <h2>Bicycle Projects</h2>
-          <p>I like bikes. They provide me with a source of transportation and they're cheaper than therapy. I've built one frame from the ground up, and several "frame up" builds.</p>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-       <div class="large-12 columns">
-        <ul class="medium-block-grid-3 small-block-grid-2">
-          <li align="middle">
-            <a href="bike-projects/shimergo/"><img align="middle" id="proj" src="images/shimergo.jpg"></a>
-            <h3>Shimergo Conversion</h3>
-            <p>Doing a Shimgero (Campagonolo 10 speed shifters with Shimano 8 speed drivetrain) on 1974 Schwinn Voyageur II. It's a bike I hardly every ride, but wanted to make it even more flashy. </p>
-          </li>
-          <li align="middle">
-            <a href="bike-projects/pugsley/"><img align="middle" id="proj" src="images/Pugs_resized.png"></a>
-            <h3>Pugsley Rebuild</h3>
-            <p>The fatbike that started the movement. This machine is well buitl and thought out, but suffered from a poor paint job and much abuse from the rider. Read about breathing new life in to an old rusted out Surly Pugsley.</p>
-          </li>
-          <li align="middle">
-            <a href="bike-projects/handbuilt/"><img align="middle" id="proj" src="images/handbuilt_resized.png"></a>
-            <h3>Handbuilt Project</h3>
-            <p>Read about building a bike from nothing. Everything from the inspiration and design process, to welding, building wheels, assembling, and taking it for a test ride.</p>
-          </li>
-        </ul>
-        </div>
+    <a href="mapping/mass_shootings_2015/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="mapping/mass_shootings_2015/"><aside><span>Mass Shootings: 2015</span></aside></a>
+    <a href="mapping/mass_shootings_2015/">
+    <img class="projImage" src="../../images/shootings_2016.JPG"></a>
 
-      <div class="cat"><a href="#top" align="middle"><h3>Back to Top</h3></a></div>
+</div>
+<div class="large-4 columns imgContainer">
 
-    </div>
-    <div class="break"></div>
-    <div class="row-full-width" style="position:relative;">
-    <img id="cinema" class="banner" src="images/index_images/cinema_banner_large.jpg" alt="Banner" class="bottomspace">
-      <div class="overlay project">
-        <h2>Cinematic Challenges</h2>
-          <p>These are challenges to watch an entire actor's body of work in one year. I started with Sir Doctor Professor Nicolas Cage. Others will certainly follow.  </p>
-      </div>
+    <a href="mapping/iowa_city_growth/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="mapping/iowa_city_growth/"><aside><span>Iowa City Growth</span></aside></a>
+    <a href="mapping/iowa_city_growth/">
+    <img class="projImage" src="../../images/YearBuilt_resized.PNG">
+    </a>
+
+</div>
+</div><!--end of row-->
+<br>
+
+<div class="row collapse">
+  <div class="catwrap"><a href=""><span>Bicycles</span></a></div>
+  <div class="large-4 columns">
+  <div class="imgContainer">
+    <a href="bicycles/schwinn_shimergo_conversion/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="bicycles/schwinn_shimergo_conversion/"><aside><span>Schwinn</span></aside></a>
+    <a href="bicycles/schwinn_shimergo_conversion/">
+    <img class="projImage" src="../../images/shimergo.jpg"></a>
   </div>
-  <br>
-  <div class="row">
-    <div class="large-12 columns">
-      <ul class="medium-block-grid-3 small-block-grid-2">
-        <li align="middle">
-          <a href="cage/"><img align="middle" id="proj" src="images/Cage_resized.png"></a><h3>A Year in the CAGE!</h3>
-          <p>The challenge to watch all 75 Nicolas Cage movies in one year. As movies are watched Cage freakouts and Kills are documented, as well as notable quotes and a review of the movie. Why do it? Because once completed you become a member of the St. Nicolas Cage Society!</p>
-        </li>
-        <li align="middle">
-          <a href="van_dammage/"><img align="middle" id="proj" src="images/jcvd_main.jpg"></a><h3>Let's Do Some Van Dammage!</h3>
-          <p>An effort to watch the entire JCVD catalog and score it based on the JCVD review matrix.</p>
-        </li>
-      </ul>
-    </div>
-      <div class="cat"><a href="#top" align="middle"><h3>Back to Top</h3></a></div>
-
+</div>
+<div class="large-4 columns">
+  <div class="imgContainer">
+    <a href="bicycles/pugsley_rebuild/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="bicycles/pugsley_rebuild/"><aside><span>Pugsley Rebuild</span></aside></a>
+    <a href="bicycles/pugsley_rebuild/">
+    <img class="projImage" src="../../images/Pugs_resized.png"></a>
   </div>
-  <div class="break"></div>
-    <div class="row-full-width" style="position:relative;" id="classBanner">
-      <div class="overlay project">
-        <h2>Classes</h2>
-          <p>Sometimes it's just easier to put class content up on the web...  </p>
-      </div>
+</div>
+<div class="large-4 columns">
+  <div class="imgContainer">
+    <a href="bicycles/handbuilt/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="bicycles/handbuilt/"><aside><span>Handbuilt</span></aside></a>
+    <a href="bicycles/handbuilt/">
+    <img class="projImage" src="../../images/handbuilt_resized.png"></a>
   </div>
-  <br>
-  <div class="row">
-    <div class="large-12 columns">
-      <ul class="medium-block-grid-3 small-block-grid-2">
-        <li align="middle">
-          <a href="classes/urp_coding_intro/"><img align="middle" id="proj" src="images/pythonlogo.jpg"></a><h3>URP introduction to coding in Python</h3>
-          <p>An elective class for 1st and 2nd year students to learn some introductory coding concepts using python. </p>
-        </li>
-      </ul>
-    </div>
-      <div class="cat"><a href="#top" align="middle"><h3>Back to Top</h3></a></div>
+</div>
+</div><!--end of row-->
 
+<br>
+
+<div class="row collapse">
+  <div class="catwrap"><a href=""><span>Cinema</span></a></div>
+  <div class="large-4 columns">
+  <div class="imgContainer">
+    <a href="cinema/a_year_in_the_cage/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="cinema/a_year_in_the_cage/"><aside><span>A Year in the CAGE!</span></aside></a>
+    <a href="cinema/a_year_in_the_cage/">
+    <img class="projImage" src="../../images/Cage_resized.png"></a>
   </div>
-  <!--div class="break"></div>
-      <div class="row-full-width" style="position:relative;" id="randomBanner">
-       <div class="overlay project">
-        <h2>Random</h2>
-          <p>Random (often childish) projects I've done while bored or trying to figure out something.  </p>
-      </div>
-              <div id="imgSource">
-          <p>Image Source: https://unsplash.com/photos/wOHH-NUTvVc</p>
-        </div>
+</div>
+<div class="large-4 columns">
+  <div class="imgContainer">
+    <a href="cinema/van_dammage/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="cinema/van_dammage/"><aside><span>Let's Do Some Van Dammge!</span></aside></a>
+    <a href="cinema/van_dammage/">
+    <img class="projImage" src="../../images/jcvd_main.jpg"></a>
   </div>
-  <br>
-  <div class="row">
-    <div class="large-12 columns">
-      <ul class="medium-block-grid-3 small-block-grid-2">
-        <li align="middle">
-          <a href="misc/insult_generator/"><img align="middle" id="proj" src="images/insult_generator.jpg"></a><h3>Insult Generator</h3>
-          <p>Just a little insult generator that allows for PG 13 selection and/or a Shakespearean style of insult to be generated.</p>
-        </li>
-      </ul>
-    </div>
+</div>
+<div class="large-4 columns">
+  <div class="imgContainer">
+    <a href=""><span class="box-spanner"></span></a>
+    <!--a class="projectLink" href=""><aside><span>...</span></aside></a>
+    <img class="projImage" src=""-->
+  </div>
+</div>
+</div><!--end of row-->
+<br>
 
-      <div class="cat"><a href="#top" align="middle"><h3>Back to Top</h3></a></div>
+<div class="row collapse">
+  <div class="catwrap"><a href=""><span>Classes</span></a></div>
+  <div class="large-4 columns">
+  <div class="imgContainer">
+    <a href="classes/urp_coding_intro/"><span class="box-spanner"></span></a>
+    <a class="projectLink" href="classes/urp_coding_intro/"><aside><span>Python</span></aside></a>
+    <a href="classes/urp_coding_intro/">
+    <img class="projImage" src="../../images/pythonlogo.jpg"></a>
+  </div>
+</div>
+<div class="large-4 columns">
+  <div class="imgContainer">
+    <a href=""><span class="box-spanner"></span></a>
+    <!--a class="projectLink" href=""><aside><span>...</span></aside></a>
+    <img class="projImage" src=""-->
+  </div>
+</div>
+<div class="large-4 columns">
+  <div class="imgContainer">
+    <a href=""><span class="box-spanner"></span></a>
+    <!--a class="projectLink" href=""><aside><span>...</span></aside></a>
+    <img class="projImage" src=""-->
+  </div>
+</div>
+</div><!--end of row-->
+<br>
+<hr>
+<footer class="row footer">
+  <div class="large-12 columns text-center">
+    <p>Iowa City • IA</p>
+    <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
+      <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
+  </div>
+</footer>
 
-  </div-->
 
-    <footer class="row ">
-      <div class="large-12 columns text-center">
-        <p>Iowa City • IA</p>
-        <p><a href="mailto:mawwwk@gmail.com">mawwwk@gmail.com</a> •
-          <a href="http://markpooley.github.io/">www.markpooley.github.io</a></p>
-      </div>
-    </footer>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/foundation/js/foundation.min.js"></script>
 
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
-
-
-    <script src="js/app.js"></script>
-    <script>
+<!--script src="js/app.js"></script-->
+<script>
       $(document).foundation();
-      $('li').find('img').hover(
-        function(){
-          $(this).css('opacity','.75');
-          $(this).css('border','1.5px');
-        }, function(){
-          $(this).css('opacity','1');
-          $(this).css('border','none');
-        }
-      );
-      $('span').hover(
-        function(){
-          $(this).css('opacity', '1');
-        }, function(){
-          $(this).css('opacity', '0')
-        }
-        );
-      $('.cat').click(function(){
-        loc = $(this).find('a').attr('href')
-
-        $('html,body').animate({
-          scrollTop: $(loc).offset().top},1000);
-      })
-    </script>
-  </body>
+</script>
+</body>
 </html>

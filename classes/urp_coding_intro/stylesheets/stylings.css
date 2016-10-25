@@ -1,4 +1,7 @@
 /*wWeek class exercises worksheet stylings*/
+.row {
+	max-width: 75% !important;
+}
 span {
 	font-family:  Consolas, "Liberation Mono", Courier, monospace !important;
 	font-weight: bold;

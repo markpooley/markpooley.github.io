@@ -1,4 +1,4 @@
- var map = L.map('map', {center: [42,-93.4],zoom: 8})
+var map = L.map('map', {center: [42,-93.4],zoom: 8})
         .addLayer(new L.TileLayer("http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"));
 
     var colors = ['rgb(213,62,79)','rgb(253,174,97)','rgb(255,255,191)','rgb(171,221,164)','rgb(50,136,189)']
@@ -23,18 +23,19 @@
     //read in the GeoJSON. This function is asynchronous so
     // anything that needs the json file should be within
 
-//queue()
-//  .defer(d3.json,"data/DSA_data/ZCTAs.topojson")
-//  .defer(d3.json,"data/DSA_data/DSA40pct.topojson")
-//  .await(makeMap)
+queue()
+  .defer(d3.json,"data/DSA_data/ZCTAs.topojson")
+  .defer(d3.json,"data/DSA_data/DSA40pct.topojson")
+  .await(makeMap)
 
-function drawZctas(){
-  d3.json("../DSA_data/ZCTAs.topojson", function(error, zctas){
-    collection = topojson.feature(zctas, zctas.objects.collection);
+function makeMap(error, zctas, dsas){
+//function drawZctas(){
+  //d3.json("../DSA_data/ZCTAs.topojson", function(error, zctas){
+    zctaCollection = topojson.feature(zctas, zctas.objects.collection);
     var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform)
     var zctas = g.append('g').attr('id','zctas').selectAll("path")
-      .data(collection.features)
+      .data(zctaCollection.features)
       .enter().append('path')
       .attr('fill','#6e6e6e')
       .style('opacity', 0.25)
@@ -61,18 +62,18 @@ function drawZctas(){
           this.stream.point(point.x,point.y);
         }
 
-  });
-};
+  //});//end json callback
+//};//end drawZctas function
 function drawDSAs(){
 
-  d3.json("../DSA_data/DSA40pct.topojson", function(error, dsas){
-    var collection = topojson.feature(dsas, dsas.objects.collection)
+  //d3.json("../DSA_data/DSA40pct.topojson", function(error, dsas){
+    var dsaCollection = topojson.feature(dsas, dsas.objects.collection)
 
     var transform = d3.geo.transform({point: projectPoint}),
       path = d3.geo.path().projection(transform)
 
       var dsas = g.append('g').attr('id','dsas').selectAll("path")
-        .data(collection.features)
+        .data(dsaCollection.features)
         //.data(zctas.features)
         .enter().append("path")
         .style('fill', function(d){
@@ -138,13 +139,20 @@ function drawDSAs(){
         function projectPoint(x,y){
           var point = map.latLngToLayerPoint(new L.LatLng(y,x));
           this.stream.point(point.x,point.y);
-        }
+        }//end projectPoint
 
 
-    });
-}
+    //}); //end json callback
+//})//end of DSAs function
+//}//end draw DSAs function
+}//end makeMap function
+var legendtip = d3.select('#legend');
+legendTip.on('mouseover',function(){
+    var id = d3.select(this).attr('id');
+    console.log(legendTip)
+
       //create a tool tip that will be invisble at page load
-      var zctas = "data/DSA_data/ZCTAs.topojson",
-          dsas = "data/DSA_data/DSA40pct.topojson";
-      $(document).ready(drawZctas());
-      $(document).ready(drawDSAs());
+     // var zctas = "data/DSA_data/ZCTAs.topojson",
+      //    dsas = "data/DSA_data/DSA40pct.topojson";
+      //$(window).load(function(){drawZctas()});
+      //$(window).load(function(){drawDSAs()});

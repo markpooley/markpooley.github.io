@@ -97,7 +97,7 @@ freakSVG.append('text')
 var unwatched = d3.selectAll('.unwatched')[0].length
 var watched = d3.selectAll('.watched')[0].length
 weeks = decFormat(weeks);
-
+console.log(unwatched,watched)
 var watchRate = decFormat(watched/weeks);
 
 
@@ -117,7 +117,7 @@ var pctDone = function(watched,unwatched){
 	return decFormat(done)
 }
 pctWatched = pctDone(watched,unwatched);
-console.log(watched, unwatched, pctWatched)
+
 
 //set up the arcs for the gauges
 var arc = d3.svg.arc()
@@ -274,6 +274,7 @@ $('#nutPunches').css('font-size',(height/5.5) + 'px').css('font-weight','bold')
 function drawViz(){
 	d3.csv('Data/jcvd_data.csv', function(data){
 	dataset = data;
+	console.log(data)
 	jcvdArray = []
 	var splits = 0,
 		nutPunches = 0;
@@ -286,6 +287,7 @@ function drawViz(){
 			nutPunches: d.nutPunches
 		})
 	})
+	console.log(jcvdArray)
 
 
 	//draw Cage Gauge, which is the pct of movies watched

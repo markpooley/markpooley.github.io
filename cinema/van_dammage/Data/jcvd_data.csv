@@ -3,7 +3,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Status,splits,nut
 2004,Wake of Death,"Action, Drama",R,5.8/10,14000000,0,131,Unwatched,,
 2006,Sinav,"Comedy, Drama",Unrated,6.6/10,0,0,120,Unwatched,,
 2001,Replicant,"Action, Sci-Fi, Thriller",R,5.3/10,17000000,0,140,Unwatched,,
-1993,Hard Target,"Action, Thriller",R,6.1/10,18000000,32534954,137,Unwatched,,
+1993,Hard Target,"Action, Thriller",R,6.1/10,18000000,32534954,137,watched,2,0
 1998,Legionnaire,"Action, Adventure, Drama",R,5.4/10,20000000,0,139,Unwatched,,
 1993,Nowhere to Run,"Action, Crime, Drama",R,5.5/10,15000000,22189039,134,Unwatched,,
 2016,Kung Fu Panda 3,"Animation, Action, Adventure",PG,7.2/10,145000000,143523463,135,Unwatched,,
@@ -31,7 +31,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Status,splits,nut
 2011,Beur sur la ville,"Comedy, Crime",Unrated,4.7/10,0,0,139,Unwatched,,
 2015,Pound of Flesh,"Action, Thriller",R,5.1/10,7500000,0,144,Unwatched,,
 2012,The Expendables 2,"Action, Adventure, Thriller",R,6.7/10,100000000,85017401,143,Unwatched,,
-1998,Knock Off,"Action, Comedy, Thriller",R,4.8/10,35000000,10076136,131,Unwatched,,
+1998,Knock Off,"Action, Comedy, Thriller",R,4.8/10,35000000,10076136,131,Unwatched,0,0
 2011,Assassination Games,"Action, Crime, Drama",R,6.2/10,8000000,0,141,Unwatched,,
 1994,Street Fighter,"Action, Adventure, Comedy",PG-13,3.8/10,35000000,33423521,142,Unwatched,,
 1997,Double Team,"Action, Comedy, Sci-Fi",R,4.7/10,30000000,11313010,133,Watched,2,0

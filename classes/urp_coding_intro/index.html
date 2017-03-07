@@ -8,7 +8,7 @@
     <script>hljs.initHighlightingOnLoad();</script>
     <meta name="keywords" content="generating random points in ArcGIS, ArcGIS, ArcMap, arcpy, python, search cursor, zip codes, shapefile, ESRI">
     <meta name="description" content="generating random points within defined geographic boundries using an interative python process and creating a tool in ESRI ArcGIS.">
-    <title>Week 3 Class Exercises</title>
+    <title>Introduction to Python Class</title>
     <link rel="stylesheet" href="../../../stylesheets/app.css"/>
     <link rel="stylesheet" href="../../stylesheets/styles.css"/>
     <link rel="stylesheet" href="stylesheets/stylings.css"/>
@@ -34,16 +34,16 @@
     <br>
 <div data-magellan-expedition="fixed">
   <dl class="sub-nav">
-    <dd data-magellan-arrival="week1"><a href="#week1">Week 1:</a></dd>
-    <dd data-magellan-arrival="week2"><a href="#week2">Week 2: Introduction</a></dd>
-    <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Loops</a></dd>
-    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: Working with Functions</a></dd>
+    <dd data-magellan-arrival="week1"><a href="#week1">Week 1: Introduction</a></dd>
+    <dd data-magellan-arrival="week2"><a href="#week2">Week 2: Loops</a></dd>
+    <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Working with Function</a></dd>
+    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: TBD</a></dd>
   </dl>
 </div>
 <!--week 2 class-->
 <div class="row">
-  <h1 id="heading" data-magellan-destination="week2">Week 2</h1>
-  <div class="Large-12 columns" id="week2" >
+  <h1 id="heading" data-magellan-destination="week1">Week 1</h1>
+  <div class="Large-12 columns" id="week1" >
     <h2 id="heading">Introduction to <code>Python</code></h2>
     <div class="panel">
       <p>Python is a versatile and widely used language. It can be used for data processing/data mining, web development, and inside of ESRI's ArcGIS environment. The documentation is extensive and there are numerous libraries to help make your life easier.</p>
@@ -90,19 +90,19 @@ var_bool = True
 <div class="row">
   <div class="large-6 columns">
     <h3 id="heading"><code>Functions</code></h3>
-    <p>Functions are a set of organized and reusable code. You're already familiar with one of Python's built in funcitons - <code class="python hljs">print</code>. Python has numerous built in functions, but you can also define your own. Functions in Python follow a consistent structure
+    <p>Functions are a set of organized and reusable code. You're already familiar with one of Python's built in funcitons - <code>print</code>. Python has numerous built in functions, but you can also define your own. Functions in Python follow a consistent structure
       <ul>
-        <li>A <code>def</code> followed by the function name, parentheis and a colon (<code class="python hljs">def function(parementer1,parameter2):</code></li>
-        <li>Any parameters/arguments passed into the function are put inside the parenthesis separated by a comma. Arguments/paramters aren't required..</li>
+        <li>A <code>def</code> followed by the function name, parentheis and a colon (<code>def function(parementer1,parameter2):</code></li>
+        <li>Any parameters/arguments passed into the function are put inside the parenthesis separated by a comma. Arguments/paramters aren't required.</li>
         <li>Code inside a function has to be indented</li>
-        <li>A <code class="python hljs">return</code> statement will exit the function and return any variables/data you want as an output.</li>
+        <li>A <code>return</code> statement will exit the function and return any variables/data you want as an output.</li>
       </ul>
     </p>
     <ol>
       <li>Create a new function using <code>def</code> and call it <code>multiply</code> </li>
       <li>Have this function take two numbers as arguments</li>
       <li>Inside the function multiply the first number by the second and return it</li>
-      <li>Call the function <code>multiply(3,5)</code>. What happens? What if you add a <code>print</code> statement fore calling the <code>multiply</code> function?</li>
+      <li>Call the function <code>multiply(3,5)</code>. What happens? What if you add a <code>print</code> statement before calling the <code>multiply</code> function?</li>
     </ol>
   </div>
   <div class="large-6 columns">
@@ -179,7 +179,7 @@ print barTotal
   <li>Create a string variable and set it equal to some text.</li>
   <li><code>print</code> the string</li>
   <li>Strings can be contained in single quotes (<code>'text'</code>) or double quotes <code>"text"</code>. But, if an apostrophe (single quote) occurs in the string contained by single quotes you need a <code>\</code> before it.</li>
-  <li>You can use <code>[]</code> to access characters at a specifice index in a string, or to access part of a string
+  <li>You can use <code>[]</code> to access characters at a specific index in a string, or to access part of a string
     <ol>
       <li>access the first character of one of your string variables</li>
       <li>access the last character of one of your string variables</li>
@@ -229,7 +229,7 @@ print numberString
 #string concantenation
 concat1 = 'The' + 'Dude' + 'Abides'
 concat2 = 'The answer to the Universe is: ' + str(42)
-concat3 = 'That %s really tide the %s together Dude.' %('rug','room')
+concat3 = 'That %s really tied the %s together Dude.' %('rug','room')
 
 name = raw_input('What's your name? )
 print 'Hi %s. I'm HAL' %(name)
@@ -242,7 +242,7 @@ print 'Hi %s. I'm HAL' %(name)
 <div class="row">
 <div class="large-6 columns">
   <h3 id="heading">Comparisons</h3>
-  <p>You're already likely familiar with comparisons. The <code>&lt;</code> is an example of a comparison. Comparisons are result in a boolean variable <code>True</code> or <code>False</code>.</p>
+  <p>You're already likely familiar with comparisons. The <code>&lt;</code> is an example of a comparison. Comparisons result in a boolean variable <code>True</code> or <code>False</code>.</p>
   <ol>
   <li>Create variables that are assigned to a comparison statement
     <ol>
@@ -374,9 +374,9 @@ b5 = 1 != 2 and 1 == 1
 </code>
 </pre>
     <div class="panel">
-    <p id=solution ><a href="#" data-reveal-id="week2Solution0">click here for the solution</a></p>
+    <p id=solution ><a href="#" data-reveal-id="week1Solution0">click here for the solution</a></p>
     </div>
-<div id="week2Solution0" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week1Solution0" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 #Make me False
@@ -407,8 +407,9 @@ b5 = 1 &gt; 2 and 1 == 2
   <h3 id="heading">Comparisons</h3>
   <p>Comparisons evalute one thing to another, or check if something is true. Here we'll learn <code>if</code>, <code>and</code>, and <code>or</code> statemetns.</p>
   <ol>
-    <li>create a numeric variable that is an intiger between 1 and 20.</li><<li>Using <code>if</code> check if the variable is less than 10</li>
-    <li>using <code>else</code> after the <code>if</code> statemetn we can assign another task if the the <code>if</code> condition isn't satisfied</li>
+    <li>Create a numeric variable that is an intiger between 1 and 20.</li>
+    <li>Using <code>if</code> check if the variable is less than 10</li>
+    <li>using <code>else</code> after the <code>if</code> statement we can assign another task if the the <code>if</code> condition isn't satisfied</li>
   <ol>
     <li>Now, let's ammend the conditional statment you just created by adding another <code>if</code> statement in the form of <code>elif</code>. <code>elif</code> is short hand for "else if". If the first <code>if</code> isn't statisfied, but you have more than one thing to check for you can use <code>elif</code>. You can use as many <code>elif</code>s as you like before the final <code>else</code>.</li>
     <li>Add an <code>elif</code> after the <code>if</code> to check if the number is less than 5</li>
@@ -429,16 +430,16 @@ else:
 </code>
 </pre>
 <div class="panel">
-<p id=solution ><a href="#" data-reveal-id="week2Solution1">click here for the solution</a></p>
+<p id=solution ><a href="#" data-reveal-id="week1Solution1">click here for the solution</a></p>
 </div>
-<div id="week2Solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week1Solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 var = #pick a number
 if var &lt; 10:
   print 'Far out man! %s is less than 10!' %s(var)
 elif var &lt; 5:
-  print "What second dude. That's over the line. This isn't Nam, Dude. There are rules here!"
+  print "Wait a second Dude. That's over the line. This isn't Nam, Dude. There are rules here!"
 else:
   print "That's a real bummer man. A number less than 10 really ties the room together..."
 </code>
@@ -506,14 +507,14 @@ if #insert your conditions after the "if" followed by a colon to check for word 
     print #print the pig latin translation for a word that begins with a consonant.
 
 else:
-  print 'sorry. You didn\'t follow directions. %s is not a real word' %(word)
+  print "sorry. You didn\'t follow directions. %s is not a real word" %(word)
 
 </code>
 </pre>
 <div class="panel">
-<p id=solution ><a href="#" data-reveal-id="week2PigLatinSolution">click here for the solution</a></p>
+<p id=solution ><a href="#" data-reveal-id="week1PigLatinSolution">click here for the solution</a></p>
 </div>
-<div id="week2PigLatinSolution" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week1PigLatinSolution" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 #Pig Latin Translator
@@ -553,9 +554,9 @@ else:
 <hr class='week'>
 <hr class='week'>
 <!--week3 class-->
-<h1 id="heading" data-magellan-destination="week3"s>Week 3</h1>
+<h1 id="heading" data-magellan-destination="week2">Week 2</h1>
 <div class=row>
-  <div class="Large-12 columns" id="week3" >
+  <div class="Large-12 columns" id="week2" >
     <h2 id="heading">Working with <code>loops</code></h2>
     <div class="panel">
       <p>Working with loops and understanding how to structure them is how you leverage programming skills into working for you - reducing monotous work. You can loop through thousands of lines of data looking for specific occurences or data types in seconds. You can add conditional statements to loops, do loops within loops. We'll work with small lists to get the hang of working with loops. The structure is the same no matter if you have a list/array of 5 data points or 5 million.</p>
@@ -630,11 +631,11 @@ s1 = s[0] #acces first letter using brackets
     <ol>
       <li>Create a list with 5 elements in it. They can be numbers, strings, booleans, anything you like.
         <ol>
-          <li>Using the <code>for</code> accessor loop through your list and print each variable.</li>
+          <li>Using the <code>for</code> accessor, loop through your list and print each variable.</li>
         </ol>
       </li>
       <i>**You'll notice the "<code>thing</code>" is just a place holder. Commonly <code>i</code> is used in loops (i.e. <code>For i in ls:</code>).**</i>
-      <li>Append two more elements to your list. They can be any data type so long as one of them is a float (i.e. 1.23). use the list<code>.append(thing)</code> accessor to to this</li>
+      <li>Append two more elements to your list. They can be any data type so long as one of them is a float (i.e. 1.23). use the list<code>.append(thing)</code> accessor to do this</li>
       <br>
       <div class=panel><p id=challenge>If you want to challenge yourself <a href="#" data-reveal-id="challenge1">click here</a></p></div>
       <li>Modify your <code>for</code> loop to print the thing if the thing is a digit.
@@ -775,13 +776,13 @@ while addNumbers:
 <div class="row">
   <h1 id="heading">Challenge</h1>
   <div class="large-12 columns">
-    <p>Here's a challenge for you. You don't have to tackle this, as with the entire class - <span data-tooltip aria-haspopup="true" class="has-tip" title="Well, everything you've done is optional. So, you're clearly an overachiever. So, maybe you should give this a go to?">it's optional</span>. Create a list of 20 random numbers between 0 and 20 using the <code>while</code> loop from the last sections. Now, define a function called targetCounter that takes two arguments as input <code>def targetCounter(list_variable,target)</code>. This function will count the number of times your target occurs in the list of random numbers. So, the steps are as follows:</p>
+    <p>Here's a challenge for you. You don't have to tackle this, as with the entire class - <span data-tooltip aria-haspopup="true" class="has-tip" title="Well, everything you've done is optional. So, you're clearly an overachiever. So, maybe you should give this a go to?">it's optional</span>. Create a list of 20 random numbers between 0 and 20 using the <code>while</code> loop from the last section. Now, define a function called targetCounter that takes two arguments as input <code>def targetCounter(list_variable,target)</code>. This function will count the number of times your target occurs in the list of random numbers. So, the steps are as follows:</p>
     <ol>
       <li>Create function called <code>targetCounter</code> that takes a list and number as arguments</li>
-      <li>create a variable inside the function that will count the number of times a target occurs <a href="#" data-reveal-id="challengeHint1">hint</a></li>
-      <li>loop through the list using a simple <code>for</code> loop
+      <li>Create a variable inside the function that will count the number of times a target occurs.</li>
+      <li>Loop through the list using a simple <code>for</code> loop.
         <ol>
-          <li>inside this loop check if the current number is equal to the target using an <code>if</code> conditional statement</li>
+          <li>Inside this loop check if the current number is equal to the target using an <code>if</code> conditional statement</li>
           <li>if the above condition is satisfied increment the counter using one of two methods
           <ol>
             <li>incrementing the counter variable using <code>counter += 1</code></li>
@@ -796,7 +797,7 @@ while addNumbers:
 
 <div class='row'>
   <div class="panel">
-    <p id="solution"><a href="#" data-reveal-id="week3Challenge">click here for solution</a> (after you've at least given it the old "college try"...</p>
+    <p id="solution"><a href="#" data-reveal-id="week2Challenge">click here for solution</a> (after you've at least given it the old "college try"...</p>
   </div>
 </div>
 
@@ -894,7 +895,7 @@ print len(ls), ls #list should be 11 items long
 </pre>
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
-<div id="week3Challenge" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week2Challenge" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 import random
@@ -937,9 +938,9 @@ print targetCount
 <!--week 4 class-->
 <hr class="week">
 <hr class="week">
-<h1 id="heading" data-magellan-destination="week4">Week 4:</h1>
+<h1 id="heading" data-magellan-destination="week3">Week 3:</h1>
 <div class=row>
-  <div class="Large-12 columns" id="week4" >
+  <div class="Large-12 columns" id="week3" >
     <h2 id="heading">Working with <code>Functions</code></h2>
     <div class="panel">
       <p>This week we'll work on putting together lessons from the past three weeks to create some function's that will challenge you to think "programatically" - basically figuring out the steps required to get the desired outcome.</p>
@@ -954,8 +955,8 @@ print targetCount
       <ol>
         <li>Start by creating a function that takes input from the user.
           <ol>
-            <li>assume the user follows instructions and enters a number.</li>
-            <li>Convert it to an integer using <code>int</code>. Just encase they entered a decimal for some reason...</li>
+            <li>Assume the user follows instructions and enters a number.</li>
+            <li>Convert it to an integer using <code>int</code>. Just encase they entered a decimal for some reason.</li>
             <li><code>print</code> a string for the <code>if</code> and <code>else</code> function respectively</li>
             <li>Create a list of numbers 1-10 inside the function.</li>
             <li>Change the <code>raw_input</code> statement to something like "I'm thinking of a number between 1 and 10 (inclusive)". Guess a number.</li>
@@ -994,10 +995,10 @@ def numberGuesser():
 numberGuesser()
 </code>
 </pre>
-<div class=panel><p id="solution"><a href="#" data-reveal-id="week4_solution1">click here for the solution</a></p></div>
+<div class=panel><p id="solution"><a href="#" data-reveal-id="week3_solution1">click here for the solution</a></p></div>
 </div>
 
-<div id="week4_solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week3_solution1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 #import random library
@@ -1047,13 +1048,13 @@ numberGuesser()
       <h4>Higher or Lower?</h4>
       <p>It'd be nice to provide feedback to the user after a guess regarding if the numbrer they guessed is too high or too low. Let's add that functionality to the function</p>
       <ol>
-        <li>We'll add the the current <code>if</code> statement in the function you've build thus far. But, we'll re-arrange the order of the if conditions.</li>
+        <li>We'll add the the current <code>if</code> statement in the function you've built thus far. But, we'll re-arrange the order of the if conditions.</li>
         <li>Change the first <code>if</code> to an<code>elif</code></li>
         <li>Create <code>if</code> to check if the guess is greater than the number and if the counter &lt; 3. If so, <code>print "Guess too high, you did!"</code>. <i>**We only want these two statemetns to trigger if the counter is less than 3, so on the third guess they won't be triggered**.</i></li>
         <li>Add an <code>elif</code> to check if the guess is less than the number and if the counter &lt; 3. If so, <code>print "Guess too low, you did!"</code></li>
       </ol>
       <h4>More Guesses?</h4>
-      <p>What if the game is just too much fun and you want to keep guessing? Let's add an option to ask for more guesses by nesting anotehr <code>if</code> statement inside the last <code>else</code> condition..</p>
+      <p>What if the game is just too much fun and you want to keep guessing? Let's add an option to ask for more guesses by nesting another <code>if</code> statement inside the last <code>else</code> condition..</p>
       <ol>
         <li>Inside the final <code>else</code> statment add another <code>raw_input</code> statement asking the user if they would like more guesses.</li>
         <li>check the response. If the user answered 'y' reset the counter. if not, then close the game.</li>
@@ -1096,12 +1097,12 @@ def numberGuesser():
 numberGuesser()
 </code>
 </pre>
-<div class=panel><p id="solution"><a href="#" data-reveal-id="week4_solution2">click here for the solution part 1</a></p>
-<p id="solution"><a href="#" data-reveal-id="week4_solution3">click here for the solution part 2</a></p>
-<p id="solution"><a href="#" data-reveal-id="week4_solution4">click here for the solution part 3</a></p></div>
+<div class=panel><p id="solution"><a href="#" data-reveal-id="week3_solution2">click here for the solution part 1</a></p>
+<p id="solution"><a href="#" data-reveal-id="week3_solution3">click here for the solution part 2</a></p>
+<p id="solution"><a href="#" data-reveal-id="week3_solution4">click here for the solution part 3</a></p></div>
 
 <!--reveal solution-->
-<div id="week4_solution2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week3_solution2" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 #import random library
@@ -1127,6 +1128,7 @@ def numberGuesser():
     #use a 'if' to check if guess is the number
     if number == guess:
       print "Lucky Guess the number was %s!" %(number)
+      counter = 3 #set counter equal to 3 to break the while loop
 
     else:
       print "You chose...poorly"
@@ -1139,7 +1141,7 @@ numberGuesser()
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
 
-<div id="week4_solution3" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week3_solution3" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 #import random library
@@ -1171,6 +1173,7 @@ def numberGuesser():
 
     elif number == guess:
       print "Lucky Guess the number was %s!" %(number)
+      counter = 3 #set counter equal to 3 to break while loop
 
     else:
       print "You've chosen...poorly."
@@ -1183,7 +1186,7 @@ numberGuesser()
 
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
-<div id="week4_solution4" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week3_solution4" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 #import random library
@@ -1215,6 +1218,7 @@ def numberGuesser():
 
     elif number == guess:
       print "Lucky Guess the number was %s!" %(number)
+      counter = 3 #set counter equal to 3 to break while loop
 
     else:
       print "You've chosen...poorly."
@@ -1222,6 +1226,7 @@ def numberGuesser():
       #get response from user
       moreGuesses = raw_input("Would you like more guesses? answer with y or n: ")
       #add another if statment to check the user response
+      #convert user response to lowercase
       if moreGuesses.lower() == 'y':
         counter = 0
 
@@ -1267,7 +1272,7 @@ numberGuesser()
         <li>Randomly select an answer from the list using the <code>random.choice()</code> function and print it.</li>
       </ol>
 </div>
-<div class="row">
+
     <div class="large-6 columns" id="codeWindow">
       <h3><code>&lt;Code&gt;</code></h3>
 <pre>
@@ -1288,10 +1293,10 @@ magicBall
 </code>
 </pre>
 <!--solution stuff-->
-<div class=panel><p id="solution"><a href="#" data-reveal-id="week4_challenge">click here for the solution part 1</a></p>
+<div class=panel><p id="solution"><a href="#" data-reveal-id="week3_challenge">click here for the solution part 1</a></p>
 </div>
 
-<div id="week4_challenge" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<div id="week3_challenge" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
 <pre>
 <code class="python hljs">
 import random
@@ -1327,6 +1332,20 @@ magicBall()
 
 
 </div><!--end of row-->
+
+<hr class='week'>
+<hr class='week'>
+<!--week3 class-->
+<h1 id="heading" data-magellan-destination="week4">Week 4</h1>
+<div class=row>
+  <div class="Large-12 columns" id="week4" >
+    <h2 id="heading">Topic <code>tbd</code></h2>
+    <div class="panel">
+      <p>Not sure what's next, still deciding. I'll consult the magic 8 ball when I have something in mind...</p>
+    </div>
+  </div>
+
+</div>
 
 
   <footer class="row" id="footer">

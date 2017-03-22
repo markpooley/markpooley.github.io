@@ -287,8 +287,8 @@ print "Hi %s. I'm HAL" %(name)
   ls = []
   ls.append(1)
   ls.append(1.23)
-  ls.append('string')
   ls.append(True)
+  ls.append('Bunny's pinky toe)
   print ls
 
   ls_len = len(ls) #list length
@@ -298,7 +298,7 @@ print "Hi %s. I'm HAL" %(name)
   print ls[0],ls[-1]
 
   #remove the last item
-  removed = ls.pop()
+  removed = ls.pop() #remove the string "Bunny's pinky toe"
   ls.insert(1,removed)
   print ls
 

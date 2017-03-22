@@ -65,7 +65,17 @@
         </ol>
       </li>
       <li>print one of your integer variables, below the <code>print</code> statement assign that variable to a new value and <code>print</code> it again.</li>
-      <li></li>
+      <li>The variable types we'll be using most frequently are:
+        <ul>
+          <li>Numeric (integer or float/decimal)</li>
+          <li>String (text)</li>
+          <li>List (hopefully this needs no explanation)</li>
+          <li>Boolean (True or False)</li>
+          <li>Dictionary (more on this later)</li>
+          <li>Tuple (similar to a list, with one key difference)</li>
+        </ul>
+
+      </li>
     </ol>
   </div>
   <div class="large-6 columns">
@@ -238,6 +248,82 @@ print 'Hi %s. I'm HAL' %(name)
 </pre>
 </div>
 </div><!--end of row-->
+
+<hr>
+<div class="row">
+<div class="large-6 columns">
+  <h3 id="heading">Lists, Tuples, and Dictionaries</h3>
+  <ol>
+    <li>A list is a set or collection of comma seprated values. Lists can be all the same data type, or a collection of diffferent data types.
+      <ol>
+        <li>Create an empty list equal to a variable <code>ls = []</code></li>
+        <li>Using the <code>.append(item)</code> method add an integer, decimal, string, and boolean to the list</li>
+        <li>print the length of the list using <code>print len(ls)</code></li>
+        <li>Print the first and last item in the list, accessing them by index using brackets <code>ls[index]</code></li>
+        <li>Remove the last item in the ls using <code>.pop</code> and set it equal to a variable.</li>
+        <li>Insert the removed item into the second index (index number 1) using the <code>ls.insert(index, thing)</code></li>
+      </ol>
+    </li>
+    <li>Create a tuple variable and <code>tup = ()</code>
+      <ol>
+        <li>Try the same set of insructions on the <code>tup</code> variable as you did on the <code>ls</code> varible and see what happens (<a href="#" data-reveal-id="tupleModal">Explanation</a>)</li>
+      </ol>
+    </li>
+    <li>Creat a dictionary variable <code>d = {}</code>
+      <ol>
+        <li>A dictionary is a set of key, value pairs. Dictionaries can be useful when trying to classify data into groups, or when just trying to keep track of related data.</li>
+        <li>Create a series of dictionary entries of actors and a movie they've been in (i.e. <code>d["Jeff Bridges"] = 'The Big Lebowski'</code>. A new dictionary entry is created by in using brackets for the key, an equal sign, and the associated value.</li>
+        <li>Recreate your dictionary now, with two or more movies associazted with each actor using the tuple variable type. (i.e. <code>d["Jeff Bridges"] = ('The Big Lebowski','Tron')</code></li>
+        <li>Pick a dictionary entry and access the second associatea movie for an entry (i.e. d["Jeff Bridges"][1] where the bracketed 1 is accessing the second item associate with the Jeff Bridges entry)</li>
+      </ol>
+    </li>
+
+  </ol>
+</div>
+<div class="large-6 columns">
+<h3 id="heading"><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python hljs">
+  ls = []
+  ls.append(1)
+  ls.append(1.23)
+  ls.append('string')
+  ls.append(True)
+  print ls
+
+  ls_len = len(ls) #list length
+  print ls_len
+  #You access items in a list by their index, starting at 0 for the first item.
+  #The last item of a list can be accessed using the -1 index, or the length of the list
+  print ls[0],ls[-1]
+
+  #remove the last item
+  removed = ls.pop()
+  ls.insert(1,removed)
+  print ls
+
+  #tuples
+  tup = ()
+  #What happens when you try append?
+
+  #dictionaries
+  d = {}
+  d["Jeff Bridges"] = "The Big Leboswki"
+  d["Bruce Willis"] = "The Fifth Element"
+  d["Keanue Reeves"] = "John Wick"
+  d["Nicolas Cage"] = "Con Air"
+  d["Simon Pegg"] = "Shaun of the Dead"
+  print d, d["Simon Pegg"]
+
+
+</code>
+</pre>
+</div>
+<div id="tupleModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
+<p><code>tuples</code> are different than lists, in that they are immutable - meaning they cannot be changed or altered. You may ask "Then why use tuples?" Tuples can be faster and more useful for data you're not going to change and/or only iterate through. They're safe too, in that they're "write protected" (you can't remove or append items to a tuple). We'll use typles later in the class...</p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+</div><!--end of row-->
 <hr>
 <div class="row">
 <div class="large-6 columns">
@@ -404,7 +490,7 @@ b5 = 1 &gt; 2 and 1 == 2
 <hr>
 <div class="row">
 <div class="large-6 columns">
-  <h3 id="heading">Comparisons</h3>
+  <h3 id="heading">More Comparisons</h3>
   <p>Comparisons evalute one thing to another, or check if something is true. Here we'll learn <code>if</code>, <code>and</code>, and <code>or</code> statemetns.</p>
   <ol>
     <li>Create a numeric variable that is an intiger between 1 and 20.</li>

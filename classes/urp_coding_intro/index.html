@@ -880,12 +880,81 @@ while addNumbers:
     </ol>
   </div>
 </div><!--end of row-->
-
 <div class='row'>
   <div class="panel">
     <p id="solution"><a href="#" data-reveal-id="week2Challenge">click here for solution</a> (after you've at least given it the old "college try"...</p>
   </div>
 </div>
+<hr>
+<div class="row">
+  <h1 id="heading">Working with a CSV</h1>
+  <div class="large-6 columns">
+    <p>Let's dive in to the deep end and start working with a CSV, which will be avaialble on the repl.it site. We will open the CSV and look for locations that are within the North American Bounding geographic bounding box and append those names to a new list. This is just a list of randomly generated names and locations.</p>
+    <ol>
+      <li>First we need the bounding box, which has already been defined for you.</li>
+      <li>Next create an empty list variable that will have name/location data appended to it when iterating through the CSV</li>
+      <li>We will open the CSV file here is where some new syntax is going to be helpful.
+        <ol>
+          <li>Let's look at the <code>with open("file name in quotes", "r") as f</code>:
+            <ol>
+              <li>Using the <code>with</code> only keep the file open for as long as we need to iterate through it. No need to close it after we're done. It's nice, neat, and tidy.</li>
+              <li><code>open()</code> as the name implies, opens the file, and the <code>as f:</code> assigns that open file to a variable.</li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li>Next we'll create "reader object" that will actually read in the csv data we've opened. This easily accomplished by assigning it to variable <code>reader = csv.reader(f)</code> (with f being the open csv file)</li>
+      <li>We'll want to skip the header row since it doesn't contain any data. For now, the easiest way to do this is use the <code>next(reader, None)</code>. It will skip the first row.</li>
+      <li>Using a <code>for</code> loop we'll iterate through all the rows in the reader object and look for locations within the North American bounding box.
+        <ol>
+          <li>create lat, and lon variables assigned to the appropriate index in the row and convert them to a float</li>
+          <li>Chain comparisons together to evaulate if the lat and lon are within the bounding box. This can be done in one single <code>if</code> statment...</li>
+          <li>In the event the <code>if</code> condition is satisfied, create a tuple varible containing the first name, last name, lat, and lon and append it to the list being used to track these locations.</li>
+      </ol></li>
+    </ol>
+    <p class="panel" id="solution"><a href="https://repl.it/GicW/2" class="replitLink">Here's a link to the code on repl.it to get you going.</a></p>
+  </div>
+  <div class="large-6 columns">
+     <h3><code>&lt;Code&gt;</code></h3>
+<pre>
+<code class="python hljs">
+import csv #import the csv library
+
+#Geographic Bounding box of North America(ish)
+top = 72.471968 # north lat
+left = -168.222656 # west long
+right = -47.988281 # east long
+bottom =  12.801088 # south lat
+
+#empty list
+NA_locations = []
+
+with open("csv name here","r") as f:
+  reader = csv.reader(f) #create a reader object
+  next(reader, None) #skip header
+
+  #iterate through rows looking for locations within North American Bounding Box
+  for row in reader:
+
+  #access the index of lat and lon using row[index] and assign lat and lon variables
+  #make sure to convert them to a float. All data will be read in as a string unless
+  #until converted
+  lat =
+  lon =
+
+  #string together comparisons to create one if statment checking if the location is within the bounding box
+  if check for lat and check for lon:
+    name = (tuple of data to append to NA_locations)
+    NA_locations.append(name)
+
+
+#You should get a list of 7 people/locations..
+print NA_locations, len(NA_locations)
+</code>
+</pre>
+  </div>
+</div>
+
 
 <div id="stringHint1" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true">
   <p>The <code>[]</code> notation access up to the index before the second number. So <code>textVar[1:4]</code> will give start at index 1 (second character) and go up to index 3 (the 4<sup>th</sup> character).</p>

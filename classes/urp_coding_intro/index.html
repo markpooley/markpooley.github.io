@@ -36,11 +36,11 @@
   <dl class="sub-nav">
     <dd data-magellan-arrival="week1"><a href="#week1">Week 1: Introduction</a></dd>
     <dd data-magellan-arrival="week2"><a href="#week2">Week 2: Loops</a></dd>
-    <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Working with Function</a></dd>
+    <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Working with Functions</a></dd>
     <dd data-magellan-arrival="week4"><a href="#week4">Week 4: TBD</a></dd>
   </dl>
 </div>
-<!--week 2 class-->
+<!--week 1 class-->
 <div class="row">
   <h1 id="heading" data-magellan-destination="week1">Week 1</h1>
   <div class="Large-12 columns" id="week1" >
@@ -639,7 +639,7 @@ else:
 
 <hr class='week'>
 <hr class='week'>
-<!--week3 class-->
+<!--week2 class-->
 <h1 id="heading" data-magellan-destination="week2">Week 2</h1>
 <div class=row>
   <div class="Large-12 columns" id="week2" >
@@ -658,7 +658,7 @@ else:
         <li>Start by creating a function that takes input from the user.
           <ol>
             <li>Check that the <code>raw_input</code> is a string using <code>.isalpha()</code></li>
-            <li>use an <code>if else</code> statement to print a statement for each condition.</li>
+            <li>Use an <code>if else</code> statement to print a statement for each condition.</li>
             <li>Test your function by calling it.</li>
           </ol>
         </li>
@@ -726,10 +726,10 @@ s1 = s[0] #acces first letter using brackets
       <div class=panel><p id=challenge>If you want to challenge yourself <a href="#" data-reveal-id="challenge1">click here</a></p></div>
       <li>Modify your <code>for</code> loop to print the thing if the thing is a digit.
         <ol>
-          <li>To check of a variable is numeric you need to check if it's an integer (<code>int</code>)</li>
+          <li>To check if a variable is numeric you need to check if it's an integer (<code>int</code>)</li>
           <li>Use the <code>type(variable)</code> to determine the type for each thing in list</li>
           <li>If the type is a number print a string notifying the user that it's a number. If not, print a string notifying it isn't</li>
-          <i>**You'll notice that the float isn the list isn't evaluated as a number..**</i>
+          <i>**You'll notice that the float number isn't evaluated as a number...**</i>
           <li>Add an <code>or</code> to the <code>if</code> conditional statement to check if a list element is a float.</li>
         </ol>
       </li>
@@ -776,9 +776,9 @@ for thing in ls:
   <h3><code>for i in range()</code> Loops</h3>
   <p>The <code>for i in range()</code> loop type is a bit different than the standard <code>for i in ... </code> loop. Think of <code>for i in range()</code> as accessing the index of an array of elements. As an example, we'll do two of these loops with one small difference. you can read more about the range function <a href="https://docs.python.org/2/library/functions.html#range">here</a>.</p>
   <ol>
-    <li>You can use the same list you created for in the <code>for</code> loop section, except use the <code>for i in range(len(list_varaible))</code>.The built in <code>range()</code> function combined with a <code>for</code> loop will iterate the number times as your list is long which is fed into the range function. </li>
+    <li>You can use the same list you created for in the <code>for</code> loop section, except use the <code>for i in range(len(list_variable))</code>.The built in <code>range()</code> function combined with a <code>for</code> loop will iterate the number times as your list is long which is fed into the range function. </li>
     <li>As an exercise, create a variable equal to the <code>range(len(list_variable))</code> and print it. How many elements are in the list?</li>
-    <li>Modify your loop for each element in the list it will print the element and the index where it is in the list.</li>
+    <li>Modify your loop so that for each element in the list it will print the element and the index where it is in the list.</li>
     <li>Modify the loop so it prints the variable, type and index</li>
     <li>Modify the loop so that you only print elements in the list occuring at odd indices. <i>**hint use the % operator**</i></li>
   </ol>
@@ -812,12 +812,12 @@ for i in range(len(list_variable)):
     <h3><code>while</code> Loops</h3>
     <p>A <code>while</code> loop will continue to as long as a condition is true. This can be dangerous. If you don't specify how to break the loop it will continue infinitely - hence the term infinte loop. Much like the "revolving door of experience" where you can't get a job w/o experience, but you need a job to get experience...</p>
     <ol>
-      <li>import the random library by using <code>import random</code>.</li>
+      <li>Import the random library by using <code>import random</code>.</li>
       <li>Use a <code>while</code> loop that will continue to append random numbers to a list until the list length is greater than 10
         <ol>
-          <li>create an empty list</li>
-          <li>create a <code>bool</code> variable and set it to <code>True</code></li>
-          <li>establish a <code>while</code> with your boolean condition. </li>
+          <li>Create an empty list</li>
+          <li>Create a <code>bool</code> variable and set it to <code>True</code></li>
+          <li>Establish a <code>while</code> with your boolean condition. </li>
           <li>Generate a random number between 0 and 100 and store it to a variable.</li>
           <li>Append the number to your list.</li>
           <li>Create a condtional statement using <code>if</code> to check the list length. If it's <code>&gt;= 10</code> set your continue variable to <code>False</code>.</li>
@@ -853,7 +853,7 @@ while addNumbers:
 
 </code>
 </pre>
-<div class=panel><p id=solution><a href="#" data-reveal-id="solution2">click here for the solution</a></p></div>
+<div class=panel><p id="solution"><a href="#" data-reveal-id="solution2">click here for the solution</a></p></div>
 </div>
 
 </div><!-- end of row-->
@@ -975,6 +975,13 @@ while addNumbers:
   ls.append(number)
 
 print len(ls), ls #list should be 11 items long
+
+#another way of doing this would be
+#creating a boolean by comparing the
+#length of the list to an integer
+while len(ls) &lt;= 10:
+  number = random.randint(0,100)
+  ls.append(number)
 
 </code>
 

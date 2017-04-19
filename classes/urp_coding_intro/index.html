@@ -37,7 +37,7 @@
     <dd data-magellan-arrival="week1"><a href="#week1">Week 1: Introduction</a></dd>
     <dd data-magellan-arrival="week2"><a href="#week2">Week 2: Loops</a></dd>
     <dd data-magellan-arrival="week3"><a href="#week3">Week 3: Working with Functions</a></dd>
-    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: TBD</a></dd>
+    <dd data-magellan-arrival="week4"><a href="#week4">Week 4: Working with ArcPy</a></dd>
   </dl>
 </div>
 <!--week 1 class-->
@@ -1498,16 +1498,116 @@ magicBall()
 <hr class='week'>
 <hr class='week'>
 <!--week3 class-->
-<h1 id="heading" data-magellan-destination="week4">Week 4</h1>
+<h1 id="heading" data-magellan-destination="week4">Week 4: ArcPy</h1>
 <div class=row>
   <div class="Large-12 columns" id="week4" >
-    <h2 id="heading">Topic <code>tbd</code></h2>
+    <h2 id="heading">Working with <code>ArcPy</code></h2>
     <div class="panel">
-      <p>Not sure what's next, still deciding. I'll consult the magic 8 ball when I have something in mind...</p>
+      <p>ArcPy is the python library used in ESRI's software (ArcMap, ArcCatalog, etc). You can open a python interepreter inside of ArcMap and test ideas or hash out short loops and scripts. Or, you can write longer scripts and create tools/scripts for repeated use.</p>
     </div>
   </div>
 
 </div>
+<div class="row">
+    <div class="large-6 columns" id="instructionWindow">
+      <h3>Create Random Points</h3>
+      <p>To start let's create some random points inside the state of Iowa. Go to the <A HREF="https://programs.iowadnr.gov/nrgislibx/">Iowa NRGIS Library</A> and grab a state boundary shapefile for Iowa </p>
+      <ol>
+        <li>Pull the Iowa Boundary into ArcMap.</li>
+        <li>Open the python window in ArcMap.</li>
+        <li>Create a random set of 100 points inside the the state boundary using the tool.</li>
+        <li>Go into geoprocessing history and copy the result as a python snippet and paste it into your Python window in Arcmap. Take a look at the snippet for reference.</li>
+        <li>Now replicate the same process in Python.</li>]
+        <li>Create some variables for the output path, name, number of points to generate, etc.</li>
+        <li>Any optional parameter can be skipped by just using a comma.</li>
+        <li>There's an optional parameter after the "MULTIPOINT" parameter, but you can just close the parenthesis to run the tool.</li>
+      </ol>
+
+
+  </div>
+  <div class="large-6 columns" id="codeWindow">
+    <h3><code>&lt;Code&gt;</code></h3>
+    <pre>
+<code class="python hljs">
+#This will be done inside the python window of arcMap
+#define output path for ease
+outPath = "C:\Users\Your_HAWKID\Documents\ArcGIS\Default.gdb"
+outName = 'Iowa_Random_Points'
+numPoints = 100
+
+arcpy.CreateRandomPoints_management(outPath,outName,IowaShapeFileHere,,numPoints,,"MULTIPOINT")
+
+</code>
+    </pre>
+  </div>
+</div>
+<hr>
+<div class="row">
+    <div class="large-6 columns" id="instructionWindow">
+      <h3>Create a Random Number in a Field</h3>
+      <p>This can be done in the "table view", but it can also be done in the python window...</p>
+      <ol>
+        <li>In the Python window create a field in the newly created randon points. "InTable will be the random points layer, and "FieldName" will be a field you name (i.e. BufferDistance)</li>
+        <li>We'll actually want this field to be text so we can use it in buffer creation in the  next step.</li>
+        <li>In the field calculator for that field we'll use a simple python function to create a randon number and return it as a string with " MILES" attached to it.</li>
+        <li>Open the field calculator in the table view</li>
+        <li>Select the Python button</li>
+      </ol>
+
+
+  </div>
+  <div class="large-6 columns" id="codeWindow">
+    <h3><code>&lt;Code&gt;</code></h3>
+    <pre>
+<code class="python hljs">
+#This will be done inside the python window of arcMap
+#define output path for ease
+arcpy.AddField_Management("InTable","FieldName","TEXT")
+
+#This part will actually be done in the field calculator.
+#We don't need any input so nothing goes in the parenthesis
+def randNumber():
+  #import just the random integer part of the random library
+  from random import randint
+
+  #generate a randon mumber between 5 and 25
+  randNumber = randint(5,25)
+
+  #create a string combining that random number and the text Miles.
+  text = str(randNumber) + " MILES"
+  return text
+
+</code>
+    </pre>
+  </div>
+</div>
+<hr>
+<div class="row">
+    <div class="large-6 columns" id="instructionWindow">
+      <h3>Create a Buffer Around Each Point Based on Randon Number Field</h3>
+      <p>We'll use python in the field calculator to create a random integer between 5 and 25 in a field </p>
+      <ol>
+        <li>In the Python Window create a variables for the output name and distnace field (the field you created for the randon numbers).</li>
+        <li>Run the Buffer tool to create buffers around each point bassed on the buffer field.</li>
+      </ol>
+
+
+  </div>
+  <div class="large-6 columns" id="codeWindow">
+    <h3><code>&lt;Code&gt;</code></h3>
+    <pre>
+<code class="python hljs">
+#This will be done inside the python window of arcMap
+#define output path for ease
+outName = "RandPoints_Buffer"
+DistanceField = "BufferDistance"
+arcpy.Buffer_analysis(randomPoints,outName,DistanceField,,,"ALL")
+</code>
+    </pre>
+  </div>
+</div>
+
+
 
 
   <footer class="row" id="footer">

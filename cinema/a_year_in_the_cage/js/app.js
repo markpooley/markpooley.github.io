@@ -302,7 +302,7 @@ function drawViz(){
 			Freaks: d.Freakouts
 		})
 	})
-
+	console.log(kills,freaks)
 	//draw the number days spent in the cage
 	var pctDays = days/365 *100;
 	timeForeground.transition()

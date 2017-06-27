@@ -50,7 +50,7 @@ var killSVG = d3.select('#splitsCount').append('svg')
 	.attr('width', counterWidth)
 	.attr('height',counterHeight)
 	.attr('id','splitsCount')
-	.attr('transform','translate(0,'+(height*.25)+')')
+	//.attr('transform','translate(0,'+(height*.25)+')')
 
 killSVG.append('text')
 	.text('Splits')
@@ -75,6 +75,7 @@ var freakSVG = 	d3.select('#nutPunches').append('svg')
 	.attr('height',counterHeight)
 	.attr('id','cageFreaks')
 
+
 freakSVG.append('text')
 	.text('Nut')
 	.attr('class', 'svgText')
@@ -97,7 +98,7 @@ freakSVG.append('text')
 var unwatched = d3.selectAll('.unwatched')[0].length
 var watched = d3.selectAll('.watched')[0].length
 weeks = decFormat(weeks);
-console.log(unwatched,watched)
+
 var watchRate = decFormat(watched/weeks);
 
 
@@ -274,7 +275,6 @@ $('#nutPunches').css('font-size',(height/5.5) + 'px').css('font-weight','bold')
 function drawViz(){
 	d3.csv('Data/jcvd_data.csv', function(data){
 	dataset = data;
-	console.log(data)
 	jcvdArray = []
 	var splits = 0,
 		nutPunches = 0;
@@ -287,7 +287,7 @@ function drawViz(){
 			nutPunches: d.nutPunches
 		})
 	})
-	console.log(jcvdArray)
+	console.log(splits,nutPunches)
 
 
 	//draw Cage Gauge, which is the pct of movies watched

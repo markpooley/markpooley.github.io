@@ -1,63 +1,63 @@
 Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Status,splits,nutPunches
-2013,Enemies Closer,"Action, Thriller",R,5.2/10,5000000,0,125,Unwatched,,
-2004,Wake of Death,"Action, Drama",R,5.8/10,14000000,0,131,Unwatched,,
-2006,Sinav,"Comedy, Drama",Unrated,6.6/10,0,0,120,Unwatched,,
-2001,Replicant,"Action, Sci-Fi, Thriller",R,5.3/10,17000000,0,140,Unwatched,,
+2013,Enemies Closer,"Action, Thriller",R,5.2/10,5000000,0,125,Unwatched,0,0
+2004,Wake of Death,"Action, Drama",R,5.8/10,14000000,0,131,Unwatched,0,0
+2006,Sinav,"Comedy, Drama",Unrated,6.6/10,0,0,120,Unwatched,0,0
+2001,Replicant,"Action, Sci-Fi, Thriller",R,5.3/10,17000000,0,140,Unwatched,0,0
 1993,Hard Target,"Action, Thriller",R,6.1/10,18000000,32534954,137,watched,2,0
-1998,Legionnaire,"Action, Adventure, Drama",R,5.4/10,20000000,0,139,Unwatched,,
-1993,Nowhere to Run,"Action, Crime, Drama",R,5.5/10,15000000,22189039,134,Unwatched,,
-2016,Kung Fu Panda 3,"Animation, Action, Adventure",PG,7.2/10,145000000,143523463,135,Unwatched,,
-2011,Kung Fu Panda 2,"Animation, Action, Adventure",PG,7.3/10,150000000,165230261,130,Unwatched,,
-2014,Full Love,"Action, Drama",Unrated,7.4/10,5000000,0,148,Unwatched,,
-2001,The Order,"Action, Adventure, Comedy",R,4.6/10,12000000,0,129,Unwatched,,
-2008,JCVD,"Comedy, Crime, Drama",R,7.2/10,10000000,470691,137,Unwatched,,
-1994,Timecop,"Action, Crime, Sci-Fi",R,5.8/10,27000000,44450000,139,Unwatched,,
+1998,Legionnaire,"Action, Adventure, Drama",R,5.4/10,20000000,0,139,Unwatched,0,0
+1993,Nowhere to Run,"Action, Crime, Drama",R,5.5/10,15000000,22189039,134,Unwatched,0,0
+2016,Kung Fu Panda 3,"Animation, Action, Adventure",PG,7.2/10,145000000,143523463,135,Unwatched,0,0
+2011,Kung Fu Panda 2,"Animation, Action, Adventure",PG,7.3/10,150000000,165230261,130,Unwatched,0,0
+2014,Full Love,"Action, Drama",Unrated,7.4/10,5000000,0,148,Unwatched,0,0
+2001,The Order,"Action, Adventure, Comedy",R,4.6/10,12000000,0,129,Unwatched,0,0
+2008,JCVD,"Comedy, Crime, Drama",R,7.2/10,10000000,470691,137,Unwatched,0,0
+1994,Timecop,"Action, Crime, Sci-Fi",R,5.8/10,27000000,44450000,139,watched,2,2
 2013,Welcome to the Jungle,"Action, Adventure, Comedy",NOT RATED,5.0/10,3500000,87397,135,Watched,0,0
-1999,Universal Soldier: The Return,"Action, Sci-Fi",R,4.1/10,45000000,10431220,123,Unwatched,,
-2014,JCVD's Make My Movie Challenge,"Short, Comedy",Unrated,8.4/10,0,0,0,Unwatched,,
-1995,Street Fighter: The Movie,Action,Unrated,4.0/10,0,0,0,Unwatched,,
-1996,The Quest,"Action, Adventure, Thriller",PG-13,5.5/10,30000000,21600000,135,Unwatched,,
-1984,Missing in Action,"Action, Adventure, Drama",R,5.3/10,2550000,22812500,141,Unwatched,,
-2006,The Hard Corps,"Action, Thriller",R,5.3/10,12000000,0,150,Unwatched,,
-1988,Black Eagle,"Action, Drama",R,3.7/10,3000000,0,133,Unwatched,,
-1995,Sudden Death,"Action, Crime, Thriller",R,5.7/10,35000000,22000000,151,Unwatched,,
-2016,Kickboxer: Vengeance,Action,Unrated,5.0/10,17000000,0,130,Unwatched,,
-2007,Until Death,"Action, Crime, Drama",R,6.0/10,15000000,0,141,Unwatched,,
-1992,Universal Soldier,"Action, Sci-Fi, Thriller",R,6.0/10,23000000,36299898,142,Unwatched,,
-1989,Cyborg,"Action, Sci-Fi, Thriller",R,5.0/10,500000,10166459,126,Unwatched,,
-2003,In Hell,"Action, Thriller, Drama",R,6.2/10,17000000,0,138,Unwatched,,
-1991,Double Impact,"Action, Crime",R,5.5/10,15000000,30102717,150,Unwatched,,
-1986,"No Retreat, No Surrender","Action, Crime, Drama",PG,5.6/10,0,4662137,125,Unwatched,,
-2011,Beur sur la ville,"Comedy, Crime",Unrated,4.7/10,0,0,139,Unwatched,,
-2015,Pound of Flesh,"Action, Thriller",R,5.1/10,7500000,0,144,Unwatched,,
-2012,The Expendables 2,"Action, Adventure, Thriller",R,6.7/10,100000000,85017401,143,Unwatched,,
+1999,Universal Soldier: The Return,"Action, Sci-Fi",R,4.1/10,45000000,10431220,123,Unwatched,0,0
+2014,JCVD's Make My Movie Challenge,"Short, Comedy",Unrated,8.4/10,0,0,0,Unwatched,0,0
+1995,Street Fighter: The Movie,Action,Unrated,4.0/10,0,0,0,Unwatched,0,0
+1996,The Quest,"Action, Adventure, Thriller",PG-13,5.5/10,30000000,21600000,135,Unwatched,0,0
+1984,Missing in Action,"Action, Adventure, Drama",R,5.3/10,2550000,22812500,141,Unwatched,0,0
+2006,The Hard Corps,"Action, Thriller",R,5.3/10,12000000,0,150,Unwatched,0,0
+1988,Black Eagle,"Action, Drama",R,3.7/10,3000000,0,133,Unwatched,0,0
+1995,Sudden Death,"Action, Crime, Thriller",R,5.7/10,35000000,22000000,151,Unwatched,0,0
+2016,Kickboxer: Vengeance,Action,Unrated,5.0/10,17000000,0,130,Unwatched,0,0
+2007,Until Death,"Action, Crime, Drama",R,6.0/10,15000000,0,141,Unwatched,0,0
+1992,Universal Soldier,"Action, Sci-Fi, Thriller",R,6.0/10,23000000,36299898,142,Unwatched,0,0
+1989,Cyborg,"Action, Sci-Fi, Thriller",R,5.0/10,500000,10166459,126,Unwatched,0,0
+2003,In Hell,"Action, Thriller, Drama",R,6.2/10,17000000,0,138,Unwatched,0,0
+1991,Double Impact,"Action, Crime",R,5.5/10,15000000,30102717,150,Unwatched,0,0
+1986,"No Retreat, No Surrender","Action, Crime, Drama",PG,5.6/10,0,4662137,125,Unwatched,0,0
+2011,Beur sur la ville,"Comedy, Crime",Unrated,4.7/10,0,0,139,Unwatched,0,0
+2015,Pound of Flesh,"Action, Thriller",R,5.1/10,7500000,0,144,Unwatched,0,0
+2012,The Expendables 2,"Action, Adventure, Thriller",R,6.7/10,100000000,85017401,143,Unwatched,0,0
 1998,Knock Off,"Action, Comedy, Thriller",R,4.8/10,35000000,10076136,131,Unwatched,0,0
-2011,Assassination Games,"Action, Crime, Drama",R,6.2/10,8000000,0,141,Unwatched,,
-1994,Street Fighter,"Action, Adventure, Comedy",PG-13,3.8/10,35000000,33423521,142,Unwatched,,
+2011,Assassination Games,"Action, Crime, Drama",R,6.2/10,8000000,0,141,Unwatched,0,0
+1994,Street Fighter,"Action, Adventure, Comedy",PG-13,3.8/10,35000000,33423521,142,Unwatched,0,0
 1997,Double Team,"Action, Comedy, Sci-Fi",R,4.7/10,30000000,11313010,133,Watched,2,0
-2012,Universal Soldier: Day of Reckoning,"Action, Horror, Mystery",R,5.0/10,11500000,5247,154,Unwatched,,
-2002,Derailed,"Action, Thriller",R,3.9/10,18000000,0,129,Unwatched,,
-2016,Jean-Claude Van Johnson,"Short, Action, Comedy",Unrated,8.2/10,0,0,30,Unwatched,,
-2015,Jian Bing Man,Comedy,Unrated,5.9/10,12880000,0,153,Unwatched,,
-1984,Breakin',"Comedy, Drama, Music",PG,5.7/10,0,36100000,130,Unwatched,,
-1990,Death Warrant,"Action, Crime, Mystery",R,5.6/10,4000000,16853487,129,Unwatched,,
-2008,The Shepherd,"Action, Crime, Thriller",R,5.7/10,12000000,0,135,Unwatched,,
-2004,Narco,Comedy,Unrated,6.3/10,0,0,145,Unwatched,,
-1984,Barbarous Street,"Crime, Drama",Unrated,5.4/10,0,0,147,Unwatched,,
-1996,Friends,"Comedy, Romance",TV-14,9.0/10,0,0,22,Unwatched,,
-1984,Monaco Forever,Comedy,Unrated,4.0/10,0,0,48,Unwatched,,
-2012,6 Bullets,"Action, Crime, Drama",R,6.1/10,10000000,0,155,Unwatched,,
-2012,U.F.O.,"Comedy, Sci-Fi",R,3.1/10,2500000,0,141,Unwatched,,
+2012,Universal Soldier: Day of Reckoning,"Action, Horror, Mystery",R,5.0/10,11500000,5247,154,Unwatched,0,0
+2002,Derailed,"Action, Thriller",R,3.9/10,18000000,0,129,Unwatched,0,0
+2016,Jean-Claude Van Johnson,"Short, Action, Comedy",Unrated,8.2/10,0,0,30,Unwatched,0,0
+2015,Jian Bing Man,Comedy,Unrated,5.9/10,12880000,0,153,Unwatched,0,0
+1984,Breakin',"Comedy, Drama, Music",PG,5.7/10,0,36100000,130,Unwatched,0,0
+1990,Death Warrant,"Action, Crime, Mystery",R,5.6/10,4000000,16853487,129,Unwatched,0,0
+2008,The Shepherd,"Action, Crime, Thriller",R,5.7/10,12000000,0,135,Unwatched,0,0
+2004,Narco,Comedy,Unrated,6.3/10,0,0,145,Unwatched,0,0
+1984,Barbarous Street,"Crime, Drama",Unrated,5.4/10,0,0,147,Unwatched,0,0
+1996,Friends,"Comedy, Romance",TV-14,9.0/10,0,0,22,Unwatched,0,0
+1984,Monaco Forever,Comedy,Unrated,4.0/10,0,0,48,Unwatched,0,0
+2012,6 Bullets,"Action, Crime, Drama",R,6.1/10,10000000,0,155,Unwatched,0,0
+2012,U.F.O.,"Comedy, Sci-Fi",R,3.1/10,2500000,0,141,Unwatched,0,0
 1988,Bloodsport,"Action, Biography, Drama",R,6.8/10,1100000,11806119,132,Watched,10,1
-2012,Dragon Eyes,"Action, Crime, Drama",R,4.5/10,3000000,0,131,Unwatched,,
-1996,Maximum Risk,"Action, Crime, Mystery",R,5.4/10,25000000,14095303,141,Unwatched,,
-1999,Desert Heat,"Action, Comedy, Drama",R,5.1/10,15000000,0,135,Unwatched,,
-2012,Rzhevskiy protiv Napoleona,Comedy,Unrated,3.2/10,8000000,0,135,Unwatched,,
-2006,Second in Command,"Action, Thriller, War",R,5.1/10,12000000,0,132,Unwatched,,
-2009,Universal Soldier: Regeneration,"Action, Adventure, Sci-Fi",R,5.2/10,10000000,0,137,Unwatched,,
-2004,Las Vegas,"Crime, Drama",TV-14,7.5/10,0,0,60,Unwatched,,
-1989,Kickboxer,"Action, Sport",R,6.4/10,1500000,14697005,137,Unwatched,,
-2014,Swelter,"Action, Crime, Drama",R,4.6/10,8000000,0,136,Unwatched,,
-2010,Soldiers,"Action, Crime, Drama",Unrated,7.6/10,5000000,0,148,Unwatched,,
-1993,Last Action Hero,"Action, Adventure, Comedy",PG-13,6.2/10,70000000,50016394,210,Unwatched,,
-1990,Lionheart,"Action, Drama, Sport",R,6.1/10,3000000,24078196,148,Unwatched,,
+2012,Dragon Eyes,"Action, Crime, Drama",R,4.5/10,3000000,0,131,Unwatched,0,0
+1996,Maximum Risk,"Action, Crime, Mystery",R,5.4/10,25000000,14095303,141,Unwatched,0,0
+1999,Desert Heat,"Action, Comedy, Drama",R,5.1/10,15000000,0,135,Unwatched,0,0
+2012,Rzhevskiy protiv Napoleona,Comedy,Unrated,3.2/10,8000000,0,135,Unwatched,0,0
+2006,Second in Command,"Action, Thriller, War",R,5.1/10,12000000,0,132,Unwatched,0,0
+2009,Universal Soldier: Regeneration,"Action, Adventure, Sci-Fi",R,5.2/10,10000000,0,137,Unwatched,0,0
+2004,Las Vegas,"Crime, Drama",TV-14,7.5/10,0,0,60,Unwatched,0,0
+1989,Kickboxer,"Action, Sport",R,6.4/10,1500000,14697005,137,Unwatched,0,0
+2014,Swelter,"Action, Crime, Drama",R,4.6/10,8000000,0,136,Unwatched,0,0
+2010,Soldiers,"Action, Crime, Drama",Unrated,7.6/10,5000000,0,148,Unwatched,0,0
+1993,Last Action Hero,"Action, Adventure, Comedy",PG-13,6.2/10,70000000,50016394,210,Unwatched,0,0
+1990,Lionheart,"Action, Drama, Sport",R,6.1/10,3000000,24078196,148,Unwatched,0,0

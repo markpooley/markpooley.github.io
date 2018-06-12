@@ -1,0 +1,32 @@
+* {
+	font-family: helvetica !important;
+	font-size: .95em;
+}
+
+ ul.noBullet {
+ 	list-style-type: none;
+ 	margin-left: 0 !important;
+ 	font-size: .95em;
+ }
+ .date {
+ 	font-weight: bold;
+ 	color: #696969;
+ 	text-align: right;
+ 	font-size: .95em;
+ }
+ .item {
+ 	text-align: left;
+ 	padding-left: 0px;
+ 	font-size: .95em;
+ }
+ li {
+ 	font-size: .95em;
+ }
+
+ .header {
+ 	border-bottom: 1px solid black;
+ 	padding-bottom: 10px;
+ }
+ p {
+ 	font-size: .95em;
+ }

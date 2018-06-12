@@ -40,7 +40,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Status,splits,nut
 2016,Jean-Claude Van Johnson,"Short, Action, Comedy",Unrated,8.2/10,0,0,30,Unwatched,0,0
 2015,Jian Bing Man,Comedy,Unrated,5.9/10,12880000,0,153,Unwatched,0,0
 1984,Breakin',"Comedy, Drama, Music",PG,5.7/10,0,36100000,130,Unwatched,0,0
-1990,Death Warrant,"Action, Crime, Mystery",R,5.6/10,4000000,16853487,129,Unwatched,0,0
+1990,Death Warrant,"Action, Crime, Mystery",R,5.6/10,4000000,16853487,129,Unwatched,0,1
 2008,The Shepherd,"Action, Crime, Thriller",R,5.7/10,12000000,0,135,Unwatched,0,0
 2004,Narco,Comedy,Unrated,6.3/10,0,0,145,Unwatched,0,0
 1984,Barbarous Street,"Crime, Drama",Unrated,5.4/10,0,0,147,Unwatched,0,0
@@ -56,7 +56,7 @@ Release Year,Title,Genre,MPAA,IMDB Rating,Budget,Gross,Runtime,Status,splits,nut
 2006,Second in Command,"Action, Thriller, War",R,5.1/10,12000000,0,132,Unwatched,0,0
 2009,Universal Soldier: Regeneration,"Action, Adventure, Sci-Fi",R,5.2/10,10000000,0,137,Unwatched,0,0
 2004,Las Vegas,"Crime, Drama",TV-14,7.5/10,0,0,60,Unwatched,0,0
-1989,Kickboxer,"Action, Sport",R,6.4/10,1500000,14697005,137,Unwatched,0,0
+1989,Kickboxer,"Action, Sport",R,6.4/10,1500000,14697005,137,Unwatched,3,1
 2014,Swelter,"Action, Crime, Drama",R,4.6/10,8000000,0,136,Unwatched,0,0
 2010,Soldiers,"Action, Crime, Drama",Unrated,7.6/10,5000000,0,148,Unwatched,0,0
 1993,Last Action Hero,"Action, Adventure, Comedy",PG-13,6.2/10,70000000,50016394,210,Unwatched,0,0
